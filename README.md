@@ -1,0 +1,2 @@
+# 2026-AI-ROOKEY-LooKEY
+2026 AI ROOKEY - LooKEY 팀 프로젝트 깃허브입니다.
