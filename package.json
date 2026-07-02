@@ -1,0 +1,30 @@
+{
+  "name": "rookie-circuit-asset-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "validate:pins": "tsx src/scripts/validateCircuitData.ts",
+    "upload:assets": "tsx src/scripts/uploadAssets.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.110.0",
+    "@vitejs/plugin-react": "6.0.3",
+    "dotenv": "17.4.2",
+    "fflate": "0.8.3",
+    "lucide-react": "1.22.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "vite": "8.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "26.0.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "tsx": "4.22.4",
+    "typescript": "6.0.3"
+  }
+}
