@@ -1,0 +1,53 @@
+{
+  "name": "prototype-isometric-circuit-layout",
+  "coordinate_space": "scene-world",
+  "camera": {
+    "projection": "orthographic",
+    "position": [7.5, 6.0, 7.5],
+    "target": [0.0, 0.0, 0.0],
+    "zoom": 70
+  },
+  "placements": [
+    {
+      "component_slug": "arduino-uno-r3",
+      "position": [-2.4, 0.0, 0.0],
+      "rotation_euler_degrees": [0, 0, 0],
+      "scale": [2.6, 2.6, 2.6]
+    },
+    {
+      "component_slug": "breadboard-half",
+      "position": [1.8, 0.0, 0.0],
+      "rotation_euler_degrees": [0, 0, 0],
+      "scale": [10.0, 10.0, 10.0]
+    },
+    {
+      "component_slug": "hc-sr04",
+      "position": [1.8, 1.0, -1.5],
+      "rotation_euler_degrees": [0, 0, 0],
+      "scale": [0.8, 0.8, 0.8]
+    },
+    {
+      "component_slug": "led-5mm-blue",
+      "position": [2.8, 0.7, 1.1],
+      "rotation_euler_degrees": [0, 0, 0],
+      "scale": [0.22, 0.22, 0.22]
+    },
+    {
+      "component_slug": "pushbutton-6x6",
+      "position": [1.0, 0.2, 1.2],
+      "rotation_euler_degrees": [0, 0, 0],
+      "scale": [55.0, 55.0, 55.0]
+    },
+    {
+      "component_slug": "servo-sg90",
+      "position": [3.6, 0.0, -1.3],
+      "rotation_euler_degrees": [0, 0, 0],
+      "scale": [0.5, 0.5, 0.5]
+    }
+  ],
+  "notes": [
+    "Pin anchors are stored in each GLB model's local coordinate space.",
+    "Frontend code should transform local anchors by the matching placement transform to obtain world-space wire endpoints.",
+    "This scene is a prototype isometric layout preset, not a database source of truth for pin coordinates."
+  ]
+}

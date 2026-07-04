@@ -11,6 +11,10 @@
   상태를 정리한 manifest입니다.
 - `glb_audit_report.json`
   `DB 에셋` 폴더에 있던 GLB 후보 전체를 검사한 결과입니다.
+- `pin_anchors/`
+  기존 2D 핀 좌표를 GLB bounds에 투영해 만든 draft 3D pin anchor입니다.
+- `scene_presets/`
+  프론트엔드에서 테스트할 수 있는 아이소메트릭 배치 preset입니다.
 
 ## 현재 판단
 
@@ -31,6 +35,11 @@
 주의할 점은 위에서 찍은 PNG 한 장으로는 `z_3d`를 정확히 구할 수 없다는
 것입니다. z 좌표는 Blender, GLB, VARCO 같은 3D 모델 안에서 핀 위치를 직접
 찍어서 추출해야 합니다.
+
+현재 들어 있는 3D pin anchor는 자동 초안입니다. 방식은 `x_px`, `y_px`를 각
+GLB의 bounds에 투영하고, surface axis의 max 값을 `z_3d` 또는 해당 모델의 높이
+축 값으로 쓰는 것입니다. 따라서 프로토타입에는 사용할 수 있지만, 최종 배포 전에는
+실제 핀 구멍이나 금속 핀 중심에 맞는지 시각 검수가 필요합니다.
 
 ## 향후 모델별 최소 메타데이터
 

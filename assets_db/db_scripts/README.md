@@ -19,6 +19,9 @@
 - `005_seed_breadboards_and_models.sql`
   일반/긴 브래드보드 metadata, procedural layout, 대표 anchor pin, GLB model
   metadata를 insert/upsert합니다.
+- `006_seed_3d_pin_anchors.sql`
+  기존 2D 핀 좌표를 GLB bounds에 투영해 만든 draft 3D pin anchor를
+  `circuit_component_pins.x_3d`, `y_3d`, `z_3d`에 업데이트합니다.
 - `pin_coordinates/*.json`
   부품별 핀 좌표 export 파일입니다.
 - `breadboard_layouts/*.json`
@@ -32,6 +35,10 @@
 - `validate_3d_models.py`
   GLB 파일 header, 파일 길이, bounds metadata, ready 모델 크기를 확인하는 로컬
   검증 스크립트입니다.
+- `generate_3d_pin_anchors.py`
+  2D 핀 좌표와 GLB bounds를 이용해 draft 3D pin anchor JSON과 SQL을 생성합니다.
+- `validate_3d_pin_anchors.py`
+  생성된 3D pin anchor가 GLB bounds 안에 있는지 검증합니다.
 
 ## 실행 순서
 
@@ -46,9 +53,11 @@
    `circuit-assets/3d_models/glb/`에 업로드합니다.
 5. `002_seed_assets_and_pins.sql`을 실행합니다.
 6. `005_seed_breadboards_and_models.sql`을 실행합니다.
-7. 좌표나 이미지가 바뀌면 로컬에서 `python validate_pin_coordinates.py`를
+7. `006_seed_3d_pin_anchors.sql`을 실행합니다.
+8. 좌표나 이미지가 바뀌면 로컬에서 `python validate_pin_coordinates.py`를
    실행합니다.
-8. GLB가 바뀌면 로컬에서 `python validate_3d_models.py`를 실행합니다.
+9. GLB가 바뀌면 로컬에서 `python validate_3d_models.py`를 실행합니다.
+10. 3D anchor가 바뀌면 로컬에서 `python validate_3d_pin_anchors.py`를 실행합니다.
 
 이미 이전 버전의 `001_schema.sql`을 실행한 DB라면, seed 실행 전에
 `003_add_optional_3d_pin_columns.sql`과 `004_add_models_and_breadboard_layouts.sql`을

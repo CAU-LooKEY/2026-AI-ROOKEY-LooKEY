@@ -27,8 +27,10 @@
   좌표계 기준의 `x_3d`, `y_3d`, `z_3d`가 추가로 필요합니다.
 - 위에서 찍은 사진 한 장만으로는 정확한 `z_3d`를 알 수 없습니다. 3D 좌표는
   GLB, Blender, VARCO 원본 모델에서 핀 앵커를 직접 찍어 추출해야 합니다.
-- 그래서 DB에는 3D 핀 좌표를 저장할 수 있는 선택형 컬럼을 열어두었고,
-  현재 값은 아직 비워두는 구조입니다.
+- 현재 패키지에는 기존 2D 핀맵을 GLB bounds에 투영한 draft 3D anchor가
+  `3d_models/pin_anchors/`와 `006_seed_3d_pin_anchors.sql`에 들어 있습니다.
+  이 값은 프로토타입 3D wire snapping에는 쓸 수 있지만, production 전에는
+  Blender나 Three.js calibration view에서 한 번 더 검수하는 것을 권장합니다.
 
 ## 브래드보드 좌표 기준
 
@@ -50,7 +52,8 @@
 - `db_scripts/`
   Supabase schema, seed SQL, 핀 좌표 JSON, 검증 스크립트가 들어 있습니다.
 - `3d_models/`
-  선별한 GLB 모델, GLB audit report, 모델 manifest가 들어 있습니다.
+  선별한 GLB 모델, GLB audit report, 모델 manifest, draft 3D pin anchor가
+  들어 있습니다.
 
 ## 주의사항
 

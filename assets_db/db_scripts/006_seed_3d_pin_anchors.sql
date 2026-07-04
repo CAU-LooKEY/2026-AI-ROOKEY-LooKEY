@@ -1,0 +1,815 @@
+-- Seed draft GLB-local 3D pin anchors.
+-- These values are projected from the existing 2D pin maps onto each selected GLB model bounds.
+-- They are good enough for prototype 3D wire snapping, but should be reviewed in a visual
+-- calibration tool before production.
+
+with anchor_rows as (
+  select * from jsonb_to_recordset($anchors$[
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D12",
+    "x_3d": -1.11611418,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d12"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D11",
+    "x_3d": -0.96826838,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d11"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D10",
+    "x_3d": -0.81473621,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d10"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D9",
+    "x_3d": -0.66120405,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d9"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D8",
+    "x_3d": -0.5019855,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d8"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D7",
+    "x_3d": -0.35413971,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d7"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D6",
+    "x_3d": -0.20060754,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d6"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D5",
+    "x_3d": -0.05276175,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d5"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D4",
+    "x_3d": 0.1064568,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d4"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D3",
+    "x_3d": 0.26567535,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d3"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D2",
+    "x_3d": 0.41352114,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d2"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "GND_2",
+    "x_3d": 0.57273968,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_gnd_2"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "RESET_2",
+    "x_3d": 0.7148991,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_reset_2"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D0",
+    "x_3d": 0.87980402,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d0"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D1",
+    "x_3d": 1.02196344,
+    "y_3d": 5.00892408,
+    "z_3d": 0.35687878,
+    "model_anchor_name": "pin_d1"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "D13",
+    "x_3d": -1.11611418,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_d13"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "3V3",
+    "x_3d": -0.96826838,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_3v3"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "AREF",
+    "x_3d": -0.81473621,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_aref"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A0",
+    "x_3d": -0.66120405,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a0"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A1",
+    "x_3d": -0.5019855,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a1"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A2",
+    "x_3d": -0.35413971,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a2"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A3",
+    "x_3d": -0.20060754,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a3"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A4",
+    "x_3d": -0.05276175,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a4"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A5",
+    "x_3d": 0.1064568,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a5"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A6",
+    "x_3d": 0.26567535,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a6"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "A7",
+    "x_3d": 0.41352114,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_a7"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "5V",
+    "x_3d": 0.57273968,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_5v"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "RESET_1",
+    "x_3d": 0.7148991,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_reset_1"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "GND_1",
+    "x_3d": 0.87980402,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_gnd_1"
+  },
+  {
+    "slug": "arduino-nano",
+    "pin_key": "VIN",
+    "x_3d": 1.02196344,
+    "y_3d": 5.00892408,
+    "z_3d": 5.72038885,
+    "model_anchor_name": "pin_vin"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "SCL",
+    "x_3d": -0.214883,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_scl"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "SDA",
+    "x_3d": -0.17475099,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_sda"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AREF",
+    "x_3d": -0.13662558,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aref"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "GND_D",
+    "x_3d": -0.09649357,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_gnd_d"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D13",
+    "x_3d": -0.05836816,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d13"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D12",
+    "x_3d": -0.02024276,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d12"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D11",
+    "x_3d": 0.01988925,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d11"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D10",
+    "x_3d": 0.06002126,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d10"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D9",
+    "x_3d": 0.09614007,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d9"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D8",
+    "x_3d": 0.13827868,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d8"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D7",
+    "x_3d": 0.2004833,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d7"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D6",
+    "x_3d": 0.2386087,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d6"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D5",
+    "x_3d": 0.27673411,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d5"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D4",
+    "x_3d": 0.31686612,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d4"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D3",
+    "x_3d": 0.35699813,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d3"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D2",
+    "x_3d": 0.39512354,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d2"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D1",
+    "x_3d": 0.43525555,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d1"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "D0",
+    "x_3d": 0.47338096,
+    "y_3d": -0.28871235,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_d0"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "IOREF",
+    "x_3d": -0.07843417,
+    "y_3d": 0.35328635,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_ioref"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "RESET",
+    "x_3d": -0.03830216,
+    "y_3d": 0.35328635,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_reset"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "3V3",
+    "x_3d": 0.00182985,
+    "y_3d": 0.35328635,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_3v3"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "5V",
+    "x_3d": 0.03995526,
+    "y_3d": 0.35526783,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_5v"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "GND_P1",
+    "x_3d": 0.08209387,
+    "y_3d": 0.35526783,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_gnd_p1"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "GND_P2",
+    "x_3d": 0.11620608,
+    "y_3d": 0.35526783,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_gnd_p2"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "VIN",
+    "x_3d": 0.15633809,
+    "y_3d": 0.3572493,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_vin"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "A0",
+    "x_3d": 0.27472751,
+    "y_3d": 0.35526783,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_a0"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "A1",
+    "x_3d": 0.31285292,
+    "y_3d": 0.3572493,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_a1"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "A2",
+    "x_3d": 0.35499153,
+    "y_3d": 0.3572493,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_a2"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "A3",
+    "x_3d": 0.39311694,
+    "y_3d": 0.3572493,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_a3"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "A4",
+    "x_3d": 0.43525555,
+    "y_3d": 0.3572493,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_a4"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "A5",
+    "x_3d": 0.47338096,
+    "y_3d": 0.3572493,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_a5"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_RX",
+    "x_3d": 0.40515654,
+    "y_3d": 0.16504599,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_rx"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_TX",
+    "x_3d": 0.43926875,
+    "y_3d": 0.16504599,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_tx"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_5V",
+    "x_3d": 0.48140736,
+    "y_3d": 0.16504599,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_5v"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_GND_1",
+    "x_3d": 0.51953277,
+    "y_3d": 0.16504599,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_gnd_1"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_SDA",
+    "x_3d": 0.40515654,
+    "y_3d": 0.20467554,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_sda"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_SCL",
+    "x_3d": 0.44127535,
+    "y_3d": 0.20467554,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_scl"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_3V3",
+    "x_3d": 0.47940076,
+    "y_3d": 0.20467554,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_3v3"
+  },
+  {
+    "slug": "arduino-uno-r3",
+    "pin_key": "AUX_GND_2",
+    "x_3d": 0.51953277,
+    "y_3d": 0.20467554,
+    "z_3d": 0.34962918,
+    "model_anchor_name": "pin_aux_gnd_2"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "RAIL_TOP_POS",
+    "x_3d": -2.35428057,
+    "y_3d": 0.80488734,
+    "z_3d": -6.09123573,
+    "model_anchor_name": "pin_rail_top_pos"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "RAIL_TOP_NEG",
+    "x_3d": -2.35428057,
+    "y_3d": 0.80488734,
+    "z_3d": -5.36934645,
+    "model_anchor_name": "pin_rail_top_neg"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "RAIL_BOTTOM_POS",
+    "x_3d": -2.34676348,
+    "y_3d": 0.80488734,
+    "z_3d": 6.4403848,
+    "model_anchor_name": "pin_rail_bottom_pos"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "RAIL_BOTTOM_NEG",
+    "x_3d": -2.34676348,
+    "y_3d": 0.80488734,
+    "z_3d": 7.16699231,
+    "model_anchor_name": "pin_rail_bottom_neg"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "A1",
+    "x_3d": -2.47079555,
+    "y_3d": 0.80488734,
+    "z_3d": -3.36881666,
+    "model_anchor_name": "pin_a1"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "E1",
+    "x_3d": -2.47079555,
+    "y_3d": 0.80488734,
+    "z_3d": -0.5237236,
+    "model_anchor_name": "pin_e1"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "F1",
+    "x_3d": -2.47079555,
+    "y_3d": 0.80488734,
+    "z_3d": 1.59004372,
+    "model_anchor_name": "pin_f1"
+  },
+  {
+    "slug": "breadboard-full",
+    "pin_key": "J1",
+    "x_3d": -2.47079555,
+    "y_3d": 0.80488734,
+    "z_3d": 4.43041855,
+    "model_anchor_name": "pin_j1"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "RAIL_TOP_POS",
+    "x_3d": 0.25032392,
+    "y_3d": -0.26734928,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_rail_top_pos"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "RAIL_TOP_NEG",
+    "x_3d": 0.25032392,
+    "y_3d": -0.25660914,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_rail_top_neg"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "RAIL_BOTTOM_POS",
+    "x_3d": 0.25032392,
+    "y_3d": -0.08297693,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_rail_bottom_pos"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "RAIL_BOTTOM_NEG",
+    "x_3d": 0.25032392,
+    "y_3d": -0.07253513,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_rail_bottom_neg"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "A1",
+    "x_3d": 0.244548,
+    "y_3d": -0.22697432,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_a1"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "E1",
+    "x_3d": 0.244548,
+    "y_3d": -0.18550546,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_e1"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "F1",
+    "x_3d": 0.244548,
+    "y_3d": -0.15457785,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_f1"
+  },
+  {
+    "slug": "breadboard-half",
+    "pin_key": "J1",
+    "x_3d": 0.244548,
+    "y_3d": -0.11300954,
+    "z_3d": 0.1982273,
+    "model_anchor_name": "pin_j1"
+  },
+  {
+    "slug": "hc-sr04",
+    "pin_key": "VCC",
+    "x_3d": -0.0480566,
+    "y_3d": 1.27654776,
+    "z_3d": 0.78184999,
+    "model_anchor_name": "pin_vcc"
+  },
+  {
+    "slug": "hc-sr04",
+    "pin_key": "TRIG",
+    "x_3d": 0.12305306,
+    "y_3d": 1.27654776,
+    "z_3d": 0.78184999,
+    "model_anchor_name": "pin_trig"
+  },
+  {
+    "slug": "hc-sr04",
+    "pin_key": "ECHO",
+    "x_3d": 0.29416273,
+    "y_3d": 1.27654776,
+    "z_3d": 0.78184999,
+    "model_anchor_name": "pin_echo"
+  },
+  {
+    "slug": "hc-sr04",
+    "pin_key": "GND",
+    "x_3d": 0.46527239,
+    "y_3d": 1.27654776,
+    "z_3d": 0.78184999,
+    "model_anchor_name": "pin_gnd"
+  },
+  {
+    "slug": "led-5mm-blue",
+    "pin_key": "ANODE",
+    "x_3d": -0.61489252,
+    "y_3d": 1.30503732,
+    "z_3d": 0.23535273,
+    "model_anchor_name": "pin_anode"
+  },
+  {
+    "slug": "led-5mm-blue",
+    "pin_key": "CATHODE",
+    "x_3d": -0.68232816,
+    "y_3d": 0.94797256,
+    "z_3d": 0.23535273,
+    "model_anchor_name": "pin_cathode"
+  },
+  {
+    "slug": "pushbutton-6x6",
+    "pin_key": "A1",
+    "x_3d": -0.00274175,
+    "y_3d": 0.00378942,
+    "z_3d": -0.00356453,
+    "model_anchor_name": "pin_a1"
+  },
+  {
+    "slug": "pushbutton-6x6",
+    "pin_key": "A2",
+    "x_3d": -0.00274175,
+    "y_3d": 0.00378942,
+    "z_3d": 0.00355589,
+    "model_anchor_name": "pin_a2"
+  },
+  {
+    "slug": "pushbutton-6x6",
+    "pin_key": "B1",
+    "x_3d": 0.00273358,
+    "y_3d": 0.00378942,
+    "z_3d": -0.00356453,
+    "model_anchor_name": "pin_b1"
+  },
+  {
+    "slug": "pushbutton-6x6",
+    "pin_key": "B2",
+    "x_3d": 0.00273358,
+    "y_3d": 0.00378942,
+    "z_3d": 0.00355589,
+    "model_anchor_name": "pin_b2"
+  },
+  {
+    "slug": "servo-sg90",
+    "pin_key": "GND",
+    "x_3d": -0.07586592,
+    "y_3d": 2.58911993,
+    "z_3d": -1.24314635,
+    "model_anchor_name": "pin_gnd"
+  },
+  {
+    "slug": "servo-sg90",
+    "pin_key": "VCC",
+    "x_3d": 0.01637567,
+    "y_3d": 2.58911993,
+    "z_3d": -1.24314635,
+    "model_anchor_name": "pin_vcc"
+  },
+  {
+    "slug": "servo-sg90",
+    "pin_key": "SIGNAL",
+    "x_3d": 0.10861727,
+    "y_3d": 2.58911993,
+    "z_3d": -1.24314635,
+    "model_anchor_name": "pin_signal"
+  }
+]$anchors$::jsonb) as x(
+    slug text,
+    pin_key text,
+    x_3d numeric,
+    y_3d numeric,
+    z_3d numeric,
+    model_anchor_name text
+  )
+)
+update public.circuit_component_pins pins
+set x_3d = anchor_rows.x_3d,
+    y_3d = anchor_rows.y_3d,
+    z_3d = anchor_rows.z_3d,
+    model_anchor_name = anchor_rows.model_anchor_name,
+    notes = trim(both ' ' from concat_ws(
+      ' ',
+      pins.notes,
+      '[3D anchor: draft projected from 2D pin map to GLB bounds.]'
+    )),
+    updated_at = now()
+from anchor_rows
+join public.circuit_component_assets assets on assets.slug = anchor_rows.slug
+where pins.component_id = assets.id
+  and pins.pin_key = anchor_rows.pin_key;

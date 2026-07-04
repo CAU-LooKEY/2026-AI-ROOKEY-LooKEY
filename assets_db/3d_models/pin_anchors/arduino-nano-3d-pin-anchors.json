@@ -1,0 +1,342 @@
+{
+  "component_slug": "arduino-nano",
+  "display_name": "Arduino Nano",
+  "model_storage_path": "3d_models/glb/arduino-nano.glb",
+  "model_bounds": {
+    "min": [
+      -1.4971014102779918,
+      2.6058101384642214,
+      -0.3714991287306475
+    ],
+    "max": [
+      1.334714153515506,
+      5.00892408296022,
+      6.912279976355421
+    ],
+    "size": [
+      2.831815563793498,
+      2.403113944495999,
+      7.283779105086069
+    ]
+  },
+  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "image_x_axis": "x",
+    "image_y_axis": "z",
+    "surface_axis": "y",
+    "image_y_direction": "positive",
+    "calibration_quality": "draft_projected"
+  },
+  "pixel_source": {
+    "width_px": 498,
+    "height_px": 220,
+    "origin": "top-left"
+  },
+  "pins": [
+    {
+      "pin_key": "D12",
+      "label": "D12/MISO",
+      "x_3d": -1.11611418,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d12",
+      "source_x_px": 67,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D11",
+      "label": "D11 PWM/MOSI",
+      "x_3d": -0.96826838,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d11",
+      "source_x_px": 93,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D10",
+      "label": "D10 PWM/SS",
+      "x_3d": -0.81473621,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d10",
+      "source_x_px": 120,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D9",
+      "label": "D9 PWM",
+      "x_3d": -0.66120405,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d9",
+      "source_x_px": 147,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D8",
+      "label": "D8",
+      "x_3d": -0.5019855,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d8",
+      "source_x_px": 175,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D7",
+      "label": "D7",
+      "x_3d": -0.35413971,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d7",
+      "source_x_px": 201,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D6",
+      "label": "D6 PWM",
+      "x_3d": -0.20060754,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d6",
+      "source_x_px": 228,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D5",
+      "label": "D5 PWM",
+      "x_3d": -0.05276175,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d5",
+      "source_x_px": 254,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D4",
+      "label": "D4",
+      "x_3d": 0.1064568,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d4",
+      "source_x_px": 282,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D3",
+      "label": "D3 PWM",
+      "x_3d": 0.26567535,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d3",
+      "source_x_px": 310,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D2",
+      "label": "D2",
+      "x_3d": 0.41352114,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d2",
+      "source_x_px": 336,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "GND_2",
+      "label": "GND",
+      "x_3d": 0.57273968,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_gnd_2",
+      "source_x_px": 364,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "RESET_2",
+      "label": "RESET",
+      "x_3d": 0.7148991,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_reset_2",
+      "source_x_px": 389,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D0",
+      "label": "D0/RX",
+      "x_3d": 0.87980402,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d0",
+      "source_x_px": 418,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D1",
+      "label": "D1/TX",
+      "x_3d": 1.02196344,
+      "y_3d": 5.00892408,
+      "z_3d": 0.35687878,
+      "model_anchor_name": "pin_d1",
+      "source_x_px": 443,
+      "source_y_px": 22
+    },
+    {
+      "pin_key": "D13",
+      "label": "D13/SCK",
+      "x_3d": -1.11611418,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_d13",
+      "source_x_px": 67,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "3V3",
+      "label": "3.3V",
+      "x_3d": -0.96826838,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_3v3",
+      "source_x_px": 93,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "AREF",
+      "label": "AREF",
+      "x_3d": -0.81473621,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_aref",
+      "source_x_px": 120,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A0",
+      "label": "A0",
+      "x_3d": -0.66120405,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a0",
+      "source_x_px": 147,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A1",
+      "label": "A1",
+      "x_3d": -0.5019855,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a1",
+      "source_x_px": 175,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A2",
+      "label": "A2",
+      "x_3d": -0.35413971,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a2",
+      "source_x_px": 201,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A3",
+      "label": "A3",
+      "x_3d": -0.20060754,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a3",
+      "source_x_px": 228,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A4",
+      "label": "A4/SDA",
+      "x_3d": -0.05276175,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a4",
+      "source_x_px": 254,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A5",
+      "label": "A5/SCL",
+      "x_3d": 0.1064568,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a5",
+      "source_x_px": 282,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A6",
+      "label": "A6",
+      "x_3d": 0.26567535,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a6",
+      "source_x_px": 310,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "A7",
+      "label": "A7",
+      "x_3d": 0.41352114,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_a7",
+      "source_x_px": 336,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "5V",
+      "label": "5V",
+      "x_3d": 0.57273968,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_5v",
+      "source_x_px": 364,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "RESET_1",
+      "label": "RESET",
+      "x_3d": 0.7148991,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_reset_1",
+      "source_x_px": 389,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "GND_1",
+      "label": "GND",
+      "x_3d": 0.87980402,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_gnd_1",
+      "source_x_px": 418,
+      "source_y_px": 184
+    },
+    {
+      "pin_key": "VIN",
+      "label": "VIN",
+      "x_3d": 1.02196344,
+      "y_3d": 5.00892408,
+      "z_3d": 5.72038885,
+      "model_anchor_name": "pin_vin",
+      "source_x_px": 443,
+      "source_y_px": 184
+    }
+  ],
+  "notes": [
+    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
+    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+  ]
+}
