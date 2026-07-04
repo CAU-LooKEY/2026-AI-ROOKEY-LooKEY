@@ -1,4 +1,378 @@
 {
+  "arduino-nano": {
+    "component_slug": "arduino-nano",
+    "display_name": "Arduino Nano",
+    "category": "controller",
+    "board_family": "arduino",
+    "description": "Nano-compatible board calibrated from the uploaded top-view image.",
+    "grid_width": 10,
+    "grid_height": 4,
+    "pixel_width": 498,
+    "pixel_height": 220,
+    "license_status": "needs_review",
+    "trademark_notes": "Source image includes Arduino/Nano markings; replace with clean self-generated artwork before public production use.",
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/arduino-nano-top.png",
+      "mime_type": "image/png",
+      "width_px": 498,
+      "height_px": 220,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "D12",
+        "label": "D12/MISO",
+        "signal_type": "spi",
+        "side": "top",
+        "x_px": 67,
+        "y_px": 22,
+        "aliases": [
+          "12",
+          "MISO"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "D11",
+        "label": "D11 PWM/MOSI",
+        "signal_type": "pwm",
+        "side": "top",
+        "x_px": 93,
+        "y_px": 22,
+        "aliases": [
+          "11",
+          "MOSI"
+        ],
+        "sort_order": 1
+      },
+      {
+        "pin_key": "D10",
+        "label": "D10 PWM/SS",
+        "signal_type": "pwm",
+        "side": "top",
+        "x_px": 120,
+        "y_px": 22,
+        "aliases": [
+          "10",
+          "SS"
+        ],
+        "sort_order": 2
+      },
+      {
+        "pin_key": "D9",
+        "label": "D9 PWM",
+        "signal_type": "pwm",
+        "side": "top",
+        "x_px": 147,
+        "y_px": 22,
+        "aliases": [
+          "9"
+        ],
+        "sort_order": 3
+      },
+      {
+        "pin_key": "D8",
+        "label": "D8",
+        "signal_type": "digital",
+        "side": "top",
+        "x_px": 175,
+        "y_px": 22,
+        "aliases": [
+          "8"
+        ],
+        "sort_order": 4
+      },
+      {
+        "pin_key": "D7",
+        "label": "D7",
+        "signal_type": "digital",
+        "side": "top",
+        "x_px": 201,
+        "y_px": 22,
+        "aliases": [
+          "7"
+        ],
+        "sort_order": 5
+      },
+      {
+        "pin_key": "D6",
+        "label": "D6 PWM",
+        "signal_type": "pwm",
+        "side": "top",
+        "x_px": 228,
+        "y_px": 22,
+        "aliases": [
+          "6"
+        ],
+        "sort_order": 6
+      },
+      {
+        "pin_key": "D5",
+        "label": "D5 PWM",
+        "signal_type": "pwm",
+        "side": "top",
+        "x_px": 254,
+        "y_px": 22,
+        "aliases": [
+          "5"
+        ],
+        "sort_order": 7
+      },
+      {
+        "pin_key": "D4",
+        "label": "D4",
+        "signal_type": "digital",
+        "side": "top",
+        "x_px": 282,
+        "y_px": 22,
+        "aliases": [
+          "4"
+        ],
+        "sort_order": 8
+      },
+      {
+        "pin_key": "D3",
+        "label": "D3 PWM",
+        "signal_type": "pwm",
+        "side": "top",
+        "x_px": 310,
+        "y_px": 22,
+        "aliases": [
+          "3"
+        ],
+        "sort_order": 9
+      },
+      {
+        "pin_key": "D2",
+        "label": "D2",
+        "signal_type": "digital",
+        "side": "top",
+        "x_px": 336,
+        "y_px": 22,
+        "aliases": [
+          "2"
+        ],
+        "sort_order": 10
+      },
+      {
+        "pin_key": "GND_2",
+        "label": "GND",
+        "signal_type": "ground",
+        "side": "top",
+        "x_px": 364,
+        "y_px": 22,
+        "aliases": [
+          "GND"
+        ],
+        "sort_order": 11
+      },
+      {
+        "pin_key": "RESET_2",
+        "label": "RESET",
+        "signal_type": "digital",
+        "side": "top",
+        "x_px": 389,
+        "y_px": 22,
+        "aliases": [
+          "RST",
+          "RESET"
+        ],
+        "sort_order": 12
+      },
+      {
+        "pin_key": "D0",
+        "label": "D0/RX",
+        "signal_type": "uart",
+        "side": "top",
+        "x_px": 418,
+        "y_px": 22,
+        "aliases": [
+          "0",
+          "RX"
+        ],
+        "sort_order": 13
+      },
+      {
+        "pin_key": "D1",
+        "label": "D1/TX",
+        "signal_type": "uart",
+        "side": "top",
+        "x_px": 443,
+        "y_px": 22,
+        "aliases": [
+          "1",
+          "TX"
+        ],
+        "sort_order": 14
+      },
+      {
+        "pin_key": "D13",
+        "label": "D13/SCK",
+        "signal_type": "spi",
+        "side": "bottom",
+        "x_px": 67,
+        "y_px": 184,
+        "aliases": [
+          "13",
+          "SCK"
+        ],
+        "sort_order": 100
+      },
+      {
+        "pin_key": "3V3",
+        "label": "3.3V",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 93,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 101
+      },
+      {
+        "pin_key": "AREF",
+        "label": "AREF",
+        "signal_type": "analog",
+        "side": "bottom",
+        "x_px": 120,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 102
+      },
+      {
+        "pin_key": "A0",
+        "label": "A0",
+        "signal_type": "analog",
+        "side": "bottom",
+        "x_px": 147,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 103
+      },
+      {
+        "pin_key": "A1",
+        "label": "A1",
+        "signal_type": "analog",
+        "side": "bottom",
+        "x_px": 175,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 104
+      },
+      {
+        "pin_key": "A2",
+        "label": "A2",
+        "signal_type": "analog",
+        "side": "bottom",
+        "x_px": 201,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 105
+      },
+      {
+        "pin_key": "A3",
+        "label": "A3",
+        "signal_type": "analog",
+        "side": "bottom",
+        "x_px": 228,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 106
+      },
+      {
+        "pin_key": "A4",
+        "label": "A4/SDA",
+        "signal_type": "i2c",
+        "side": "bottom",
+        "x_px": 254,
+        "y_px": 184,
+        "aliases": [
+          "SDA"
+        ],
+        "sort_order": 107
+      },
+      {
+        "pin_key": "A5",
+        "label": "A5/SCL",
+        "signal_type": "i2c",
+        "side": "bottom",
+        "x_px": 282,
+        "y_px": 184,
+        "aliases": [
+          "SCL"
+        ],
+        "sort_order": 108
+      },
+      {
+        "pin_key": "A6",
+        "label": "A6",
+        "signal_type": "analog",
+        "side": "bottom",
+        "x_px": 310,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 109
+      },
+      {
+        "pin_key": "A7",
+        "label": "A7",
+        "signal_type": "analog",
+        "side": "bottom",
+        "x_px": 336,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 110
+      },
+      {
+        "pin_key": "5V",
+        "label": "5V",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 364,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 111
+      },
+      {
+        "pin_key": "RESET_1",
+        "label": "RESET",
+        "signal_type": "digital",
+        "side": "bottom",
+        "x_px": 389,
+        "y_px": 184,
+        "aliases": [
+          "RST",
+          "RESET"
+        ],
+        "sort_order": 112
+      },
+      {
+        "pin_key": "GND_1",
+        "label": "GND",
+        "signal_type": "ground",
+        "side": "bottom",
+        "x_px": 418,
+        "y_px": 184,
+        "aliases": [
+          "GND"
+        ],
+        "sort_order": 113
+      },
+      {
+        "pin_key": "VIN",
+        "label": "VIN",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 443,
+        "y_px": 184,
+        "aliases": [],
+        "sort_order": 114
+      }
+    ],
+    "notes": [
+      "Mounting holes and the right ICSP header are not mapped as primary breadboard/header pins."
+    ]
+  },
   "arduino-uno-r3": {
     "component_slug": "arduino-uno-r3",
     "display_name": "Arduino Uno R3",
@@ -488,378 +862,324 @@
       "Auxiliary right-side header coordinates are included as additional pins."
     ]
   },
-  "arduino-nano": {
-    "component_slug": "arduino-nano",
-    "display_name": "Arduino Nano",
-    "category": "controller",
-    "board_family": "arduino",
-    "description": "Nano-compatible board calibrated from the uploaded top-view image.",
-    "grid_width": 10,
-    "grid_height": 4,
-    "pixel_width": 498,
-    "pixel_height": 220,
+  "breadboard-full": {
+    "component_slug": "breadboard-full",
+    "display_name": "Full-size Breadboard",
+    "category": "prototyping",
+    "board_family": null,
+    "description": "Representative breadboard anchors. Full hole coordinates are procedural and stored in db_scripts/breadboard_layouts.",
+    "grid_width": 24,
+    "grid_height": 8,
+    "pixel_width": 1007,
+    "pixel_height": 350,
     "license_status": "needs_review",
-    "trademark_notes": "Source image includes Arduino/Nano markings; replace with clean self-generated artwork before public production use.",
+    "trademark_notes": null,
     "image": {
-      "path": "assets_db/2d_svgs/raster_sources/arduino-nano-top.png",
+      "path": "assets_db/2d_svgs/raster_sources/breadboard-full-top.png",
       "mime_type": "image/png",
-      "width_px": 498,
-      "height_px": 220,
+      "width_px": 1007,
+      "height_px": 350,
       "coordinate_origin": "top-left",
       "background": "transparent"
     },
     "pins": [
       {
-        "pin_key": "D12",
-        "label": "D12/MISO",
-        "signal_type": "spi",
+        "pin_key": "RAIL_TOP_POS",
+        "label": "+ top",
+        "signal_type": "power",
         "side": "top",
-        "x_px": 67,
-        "y_px": 22,
+        "x_px": 65.0,
+        "y_px": 45.9,
         "aliases": [
-          "12",
-          "MISO"
+          "+"
         ],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
         "sort_order": 0
       },
       {
-        "pin_key": "D11",
-        "label": "D11 PWM/MOSI",
-        "signal_type": "pwm",
+        "pin_key": "RAIL_TOP_NEG",
+        "label": "- top",
+        "signal_type": "ground",
         "side": "top",
-        "x_px": 93,
-        "y_px": 22,
+        "x_px": 65.0,
+        "y_px": 61.2,
         "aliases": [
-          "11",
-          "MOSI"
+          "-"
         ],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
         "sort_order": 1
       },
       {
-        "pin_key": "D10",
-        "label": "D10 PWM/SS",
-        "signal_type": "pwm",
-        "side": "top",
-        "x_px": 120,
-        "y_px": 22,
+        "pin_key": "RAIL_BOTTOM_POS",
+        "label": "+ bottom",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 66.4,
+        "y_px": 311.5,
         "aliases": [
-          "10",
-          "SS"
+          "+"
         ],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
         "sort_order": 2
       },
       {
-        "pin_key": "D9",
-        "label": "D9 PWM",
-        "signal_type": "pwm",
-        "side": "top",
-        "x_px": 147,
-        "y_px": 22,
-        "aliases": [
-          "9"
-        ],
-        "sort_order": 3
-      },
-      {
-        "pin_key": "D8",
-        "label": "D8",
-        "signal_type": "digital",
-        "side": "top",
-        "x_px": 175,
-        "y_px": 22,
-        "aliases": [
-          "8"
-        ],
-        "sort_order": 4
-      },
-      {
-        "pin_key": "D7",
-        "label": "D7",
-        "signal_type": "digital",
-        "side": "top",
-        "x_px": 201,
-        "y_px": 22,
-        "aliases": [
-          "7"
-        ],
-        "sort_order": 5
-      },
-      {
-        "pin_key": "D6",
-        "label": "D6 PWM",
-        "signal_type": "pwm",
-        "side": "top",
-        "x_px": 228,
-        "y_px": 22,
-        "aliases": [
-          "6"
-        ],
-        "sort_order": 6
-      },
-      {
-        "pin_key": "D5",
-        "label": "D5 PWM",
-        "signal_type": "pwm",
-        "side": "top",
-        "x_px": 254,
-        "y_px": 22,
-        "aliases": [
-          "5"
-        ],
-        "sort_order": 7
-      },
-      {
-        "pin_key": "D4",
-        "label": "D4",
-        "signal_type": "digital",
-        "side": "top",
-        "x_px": 282,
-        "y_px": 22,
-        "aliases": [
-          "4"
-        ],
-        "sort_order": 8
-      },
-      {
-        "pin_key": "D3",
-        "label": "D3 PWM",
-        "signal_type": "pwm",
-        "side": "top",
-        "x_px": 310,
-        "y_px": 22,
-        "aliases": [
-          "3"
-        ],
-        "sort_order": 9
-      },
-      {
-        "pin_key": "D2",
-        "label": "D2",
-        "signal_type": "digital",
-        "side": "top",
-        "x_px": 336,
-        "y_px": 22,
-        "aliases": [
-          "2"
-        ],
-        "sort_order": 10
-      },
-      {
-        "pin_key": "GND_2",
-        "label": "GND",
+        "pin_key": "RAIL_BOTTOM_NEG",
+        "label": "- bottom",
         "signal_type": "ground",
-        "side": "top",
-        "x_px": 364,
-        "y_px": 22,
-        "aliases": [
-          "GND"
-        ],
-        "sort_order": 11
-      },
-      {
-        "pin_key": "RESET_2",
-        "label": "RESET",
-        "signal_type": "digital",
-        "side": "top",
-        "x_px": 389,
-        "y_px": 22,
-        "aliases": [
-          "RST",
-          "RESET"
-        ],
-        "sort_order": 12
-      },
-      {
-        "pin_key": "D0",
-        "label": "D0/RX",
-        "signal_type": "uart",
-        "side": "top",
-        "x_px": 418,
-        "y_px": 22,
-        "aliases": [
-          "0",
-          "RX"
-        ],
-        "sort_order": 13
-      },
-      {
-        "pin_key": "D1",
-        "label": "D1/TX",
-        "signal_type": "uart",
-        "side": "top",
-        "x_px": 443,
-        "y_px": 22,
-        "aliases": [
-          "1",
-          "TX"
-        ],
-        "sort_order": 14
-      },
-      {
-        "pin_key": "D13",
-        "label": "D13/SCK",
-        "signal_type": "spi",
         "side": "bottom",
-        "x_px": 67,
-        "y_px": 184,
+        "x_px": 66.4,
+        "y_px": 326.9,
         "aliases": [
-          "13",
-          "SCK"
+          "-"
         ],
-        "sort_order": 100
-      },
-      {
-        "pin_key": "3V3",
-        "label": "3.3V",
-        "signal_type": "power",
-        "side": "bottom",
-        "x_px": 93,
-        "y_px": 184,
-        "aliases": [],
-        "sort_order": 101
-      },
-      {
-        "pin_key": "AREF",
-        "label": "AREF",
-        "signal_type": "analog",
-        "side": "bottom",
-        "x_px": 120,
-        "y_px": 184,
-        "aliases": [],
-        "sort_order": 102
-      },
-      {
-        "pin_key": "A0",
-        "label": "A0",
-        "signal_type": "analog",
-        "side": "bottom",
-        "x_px": 147,
-        "y_px": 184,
-        "aliases": [],
-        "sort_order": 103
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 3
       },
       {
         "pin_key": "A1",
         "label": "A1",
-        "signal_type": "analog",
-        "side": "bottom",
-        "x_px": 175,
-        "y_px": 184,
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 43.3,
+        "y_px": 103.6,
         "aliases": [],
-        "sort_order": 104
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 4
       },
       {
-        "pin_key": "A2",
-        "label": "A2",
-        "signal_type": "analog",
-        "side": "bottom",
-        "x_px": 201,
-        "y_px": 184,
+        "pin_key": "E1",
+        "label": "E1",
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 43.3,
+        "y_px": 163.9,
         "aliases": [],
-        "sort_order": 105
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 5
       },
       {
-        "pin_key": "A3",
-        "label": "A3",
-        "signal_type": "analog",
-        "side": "bottom",
-        "x_px": 228,
-        "y_px": 184,
+        "pin_key": "F1",
+        "label": "F1",
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 43.3,
+        "y_px": 208.7,
         "aliases": [],
-        "sort_order": 106
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 6
       },
       {
-        "pin_key": "A4",
-        "label": "A4/SDA",
-        "signal_type": "i2c",
-        "side": "bottom",
-        "x_px": 254,
-        "y_px": 184,
-        "aliases": [
-          "SDA"
-        ],
-        "sort_order": 107
-      },
-      {
-        "pin_key": "A5",
-        "label": "A5/SCL",
-        "signal_type": "i2c",
-        "side": "bottom",
-        "x_px": 282,
-        "y_px": 184,
-        "aliases": [
-          "SCL"
-        ],
-        "sort_order": 108
-      },
-      {
-        "pin_key": "A6",
-        "label": "A6",
-        "signal_type": "analog",
-        "side": "bottom",
-        "x_px": 310,
-        "y_px": 184,
+        "pin_key": "J1",
+        "label": "J1",
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 43.3,
+        "y_px": 268.9,
         "aliases": [],
-        "sort_order": 109
-      },
-      {
-        "pin_key": "A7",
-        "label": "A7",
-        "signal_type": "analog",
-        "side": "bottom",
-        "x_px": 336,
-        "y_px": 184,
-        "aliases": [],
-        "sort_order": 110
-      },
-      {
-        "pin_key": "5V",
-        "label": "5V",
-        "signal_type": "power",
-        "side": "bottom",
-        "x_px": 364,
-        "y_px": 184,
-        "aliases": [],
-        "sort_order": 111
-      },
-      {
-        "pin_key": "RESET_1",
-        "label": "RESET",
-        "signal_type": "digital",
-        "side": "bottom",
-        "x_px": 389,
-        "y_px": 184,
-        "aliases": [
-          "RST",
-          "RESET"
-        ],
-        "sort_order": 112
-      },
-      {
-        "pin_key": "GND_1",
-        "label": "GND",
-        "signal_type": "ground",
-        "side": "bottom",
-        "x_px": 418,
-        "y_px": 184,
-        "aliases": [
-          "GND"
-        ],
-        "sort_order": 113
-      },
-      {
-        "pin_key": "VIN",
-        "label": "VIN",
-        "signal_type": "power",
-        "side": "bottom",
-        "x_px": 443,
-        "y_px": 184,
-        "aliases": [],
-        "sort_order": 114
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 7
       }
     ],
     "notes": [
-      "Mounting holes and the right ICSP header are not mapped as primary breadboard/header pins."
+      "Procedural layout calibrated from detected hole centers in the uploaded top-view image.",
+      "Long breadboard rail split metadata should be used when routing power rails."
+    ]
+  },
+  "breadboard-half": {
+    "component_slug": "breadboard-half",
+    "display_name": "Half-size Breadboard",
+    "category": "prototyping",
+    "board_family": null,
+    "description": "Representative breadboard anchors. Full hole coordinates are procedural and stored in db_scripts/breadboard_layouts.",
+    "grid_width": 12,
+    "grid_height": 8,
+    "pixel_width": 367,
+    "pixel_height": 247,
+    "license_status": "needs_review",
+    "trademark_notes": null,
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/breadboard-half-top.png",
+      "mime_type": "image/png",
+      "width_px": 367,
+      "height_px": 247,
+      "coordinate_origin": "top-left",
+      "background": "opaque-board-crop"
+    },
+    "pins": [
+      {
+        "pin_key": "RAIL_TOP_POS",
+        "label": "+ top",
+        "signal_type": "power",
+        "side": "top",
+        "x_px": 37.9,
+        "y_px": 28.6,
+        "aliases": [
+          "+"
+        ],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 0
+      },
+      {
+        "pin_key": "RAIL_TOP_NEG",
+        "label": "- top",
+        "signal_type": "ground",
+        "side": "top",
+        "x_px": 37.9,
+        "y_px": 39.4,
+        "aliases": [
+          "-"
+        ],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 1
+      },
+      {
+        "pin_key": "RAIL_BOTTOM_POS",
+        "label": "+ bottom",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 37.9,
+        "y_px": 214.0,
+        "aliases": [
+          "+"
+        ],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 2
+      },
+      {
+        "pin_key": "RAIL_BOTTOM_NEG",
+        "label": "- bottom",
+        "signal_type": "ground",
+        "side": "bottom",
+        "x_px": 37.9,
+        "y_px": 224.5,
+        "aliases": [
+          "-"
+        ],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 3
+      },
+      {
+        "pin_key": "A1",
+        "label": "A1",
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 32.1,
+        "y_px": 69.2,
+        "aliases": [],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 4
+      },
+      {
+        "pin_key": "E1",
+        "label": "E1",
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 32.1,
+        "y_px": 110.9,
+        "aliases": [],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 5
+      },
+      {
+        "pin_key": "F1",
+        "label": "F1",
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 32.1,
+        "y_px": 142.0,
+        "aliases": [],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 6
+      },
+      {
+        "pin_key": "J1",
+        "label": "J1",
+        "signal_type": "component",
+        "side": "center",
+        "x_px": 32.1,
+        "y_px": 183.8,
+        "aliases": [],
+        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
+        "sort_order": 7
+      }
+    ],
+    "notes": [
+      "Procedural layout calibrated from detected hole centers in the uploaded top-view image.",
+      "Do not store every breadboard hole as a DB row; compute holes from x_start, x_pitch, and y row arrays."
+    ]
+  },
+  "hc-sr04": {
+    "component_slug": "hc-sr04",
+    "display_name": "HC-SR04 Ultrasonic",
+    "category": "sensor",
+    "board_family": null,
+    "description": "HC-SR04 ultrasonic distance sensor calibrated from the uploaded top-view image.",
+    "grid_width": 6,
+    "grid_height": 3,
+    "pixel_width": 502,
+    "pixel_height": 292,
+    "license_status": "approved",
+    "trademark_notes": null,
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/hc-sr04-top.png",
+      "mime_type": "image/png",
+      "width_px": 502,
+      "height_px": 292,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "VCC",
+        "label": "VCC",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 207,
+        "y_px": 238,
+        "aliases": [
+          "5V"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "TRIG",
+        "label": "TRIG",
+        "signal_type": "digital",
+        "side": "bottom",
+        "x_px": 237,
+        "y_px": 238,
+        "aliases": [
+          "trigger"
+        ],
+        "sort_order": 1
+      },
+      {
+        "pin_key": "ECHO",
+        "label": "ECHO",
+        "signal_type": "digital",
+        "side": "bottom",
+        "x_px": 267,
+        "y_px": 238,
+        "aliases": [
+          "echo"
+        ],
+        "sort_order": 2
+      },
+      {
+        "pin_key": "GND",
+        "label": "GND",
+        "signal_type": "ground",
+        "side": "bottom",
+        "x_px": 297,
+        "y_px": 238,
+        "aliases": [
+          "GND"
+        ],
+        "sort_order": 3
+      }
+    ],
+    "notes": [
+      "Front-view HC-SR04 pin order is VCC, TRIG, ECHO, GND from left to right."
     ]
   },
   "led-5mm-blue": {
@@ -1065,80 +1385,6 @@
     ],
     "notes": [
       "Servo connector order inferred from visible wire colors: brown/dark, red, orange."
-    ]
-  },
-  "hc-sr04": {
-    "component_slug": "hc-sr04",
-    "display_name": "HC-SR04 Ultrasonic",
-    "category": "sensor",
-    "board_family": null,
-    "description": "HC-SR04 ultrasonic distance sensor calibrated from the uploaded top-view image.",
-    "grid_width": 6,
-    "grid_height": 3,
-    "pixel_width": 502,
-    "pixel_height": 292,
-    "license_status": "approved",
-    "trademark_notes": null,
-    "image": {
-      "path": "assets_db/2d_svgs/raster_sources/hc-sr04-top.png",
-      "mime_type": "image/png",
-      "width_px": 502,
-      "height_px": 292,
-      "coordinate_origin": "top-left",
-      "background": "transparent"
-    },
-    "pins": [
-      {
-        "pin_key": "VCC",
-        "label": "VCC",
-        "signal_type": "power",
-        "side": "bottom",
-        "x_px": 207,
-        "y_px": 238,
-        "aliases": [
-          "5V"
-        ],
-        "sort_order": 0
-      },
-      {
-        "pin_key": "TRIG",
-        "label": "TRIG",
-        "signal_type": "digital",
-        "side": "bottom",
-        "x_px": 237,
-        "y_px": 238,
-        "aliases": [
-          "trigger"
-        ],
-        "sort_order": 1
-      },
-      {
-        "pin_key": "ECHO",
-        "label": "ECHO",
-        "signal_type": "digital",
-        "side": "bottom",
-        "x_px": 267,
-        "y_px": 238,
-        "aliases": [
-          "echo"
-        ],
-        "sort_order": 2
-      },
-      {
-        "pin_key": "GND",
-        "label": "GND",
-        "signal_type": "ground",
-        "side": "bottom",
-        "x_px": 297,
-        "y_px": 238,
-        "aliases": [
-          "GND"
-        ],
-        "sort_order": 3
-      }
-    ],
-    "notes": [
-      "Front-view HC-SR04 pin order is VCC, TRIG, ECHO, GND from left to right."
     ]
   }
 }

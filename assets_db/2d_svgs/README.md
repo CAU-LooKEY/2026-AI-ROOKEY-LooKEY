@@ -12,6 +12,10 @@
 - `pin_map_previews/`
   좌표가 제대로 찍혔는지 확인하기 위한 핀맵 미리보기 이미지입니다.
 
+브래드보드의 전체 홀 좌표는 이 폴더가 아니라
+`../db_scripts/breadboard_layouts/`의 procedural layout JSON에 저장되어 있습니다.
+SVG는 이미지만 감싸고, 실제 홀 좌표 계산은 layout JSON을 기준으로 해야 합니다.
+
 ## 좌표계
 
 모든 2D 핀 좌표는 `raster_sources/`의 투명 PNG를 기준으로 측정했습니다.

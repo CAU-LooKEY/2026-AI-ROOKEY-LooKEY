@@ -1,0 +1,318 @@
+[
+  {
+    "component_slug": "arduino-uno-r3",
+    "target": "arduino-uno-r3.glb",
+    "source": "arduino_uno.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected Uno candidate with stable bounds and moderate file size.",
+    "storage_path": "3d_models/glb/arduino-uno-r3.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 4491236,
+    "sha256": "e5556c7b8c5417121bd6a6d6f80708e86044f965ca9d3865279fe1cca02f4fc9",
+    "version": 2,
+    "nodes": 108,
+    "meshes": 34,
+    "materials": 34,
+    "textures": 11,
+    "images": 11,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.6041634910627027,
+        -0.37986031128498043,
+        0.16593804822606747
+      ],
+      "max": [
+        0.5596647789396831,
+        0.4464157889981979,
+        0.349629177977125
+      ],
+      "size": [
+        1.1638282700023859,
+        0.8262761002831783,
+        0.18369112975105753
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "arduino-nano",
+    "target": "arduino-nano.glb",
+    "source": "arduino_nano (1).glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected Nano candidate with plausible board aspect ratio and 2.3 MB size.",
+    "storage_path": "3d_models/glb/arduino-nano.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 2313776,
+    "sha256": "1d55ae6423feef21d6854e155ca21da31e0620f0d35debeaafe60861dbc995ec",
+    "version": 2,
+    "nodes": 11,
+    "meshes": 7,
+    "materials": 7,
+    "textures": 1,
+    "images": 1,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -1.4971014102779918,
+        2.6058101384642214,
+        -0.3714991287306475
+      ],
+      "max": [
+        1.334714153515506,
+        5.00892408296022,
+        6.912279976355421
+      ],
+      "size": [
+        2.831815563793498,
+        2.403113944495999,
+        7.283779105086069
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "breadboard-half",
+    "target": "breadboard-half.glb",
+    "source": "breadboard_arduino.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected regular breadboard candidate with small file size and simple structure.",
+    "storage_path": "3d_models/glb/breadboard-half.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 1998128,
+    "sha256": "a6a53a19dede60c269274886f05b4966ddb5a40dd08f83b1a47c721bca7569a2",
+    "version": 2,
+    "nodes": 6,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "bounds": {
+      "min": [
+        0.21258124709129328,
+        -0.29579075426517537,
+        0.17433716814463632
+      ],
+      "max": [
+        0.5780577957630157,
+        -0.05015984921993204,
+        0.19822729666287406
+      ],
+      "size": [
+        0.36547654867172247,
+        0.24563090504524332,
+        0.02389012851823774
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "breadboard-full",
+    "target": "breadboard-full.glb",
+    "source": "breadboard_blender.glb",
+    "audit_status": "needs_optimization",
+    "model_kind": "candidate_3d",
+    "notes": "Valid long breadboard candidate, but about 25 MB; optimize before production web delivery.",
+    "storage_path": "3d_models/glb/breadboard-full.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 25283068,
+    "sha256": "b9e9ef4e44db22fcf37dcc07714f16a01e1e8e7f4fdb1b217a3d1de4355279c9",
+    "version": 2,
+    "nodes": 41,
+    "meshes": 33,
+    "materials": 5,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [
+      "KHR_materials_clearcoat",
+      "KHR_materials_specular",
+      "KHR_materials_ior"
+    ],
+    "bounds": {
+      "min": [
+        -2.703288565661377,
+        0.0008963979780673981,
+        -8.25690358842266
+      ],
+      "max": [
+        2.70365066388778,
+        0.8048873360144884,
+        8.25690358842266
+      ],
+      "size": [
+        5.406939229549157,
+        0.803990938036421,
+        16.51380717684532
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "hc-sr04",
+    "target": "hc-sr04.glb",
+    "source": "hc-sr04.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected smaller HC-SR04 candidate with valid mesh and texture metadata.",
+    "storage_path": "3d_models/glb/hc-sr04.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 1310040,
+    "sha256": "59e486e3173fe311cf685ab61451241b8c1198829c2728d329f04c4f203d8e6b",
+    "version": 2,
+    "nodes": 45,
+    "meshes": 25,
+    "materials": 9,
+    "textures": 3,
+    "images": 3,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -1.2287132735491468,
+        -0.07834634256011341,
+        -0.3487059473991394
+      ],
+      "max": [
+        1.6345217521429731,
+        1.5839607119560242,
+        0.7818499892883217
+      ],
+      "size": [
+        2.86323502569212,
+        1.6623070545161376,
+        1.1305559366874611
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "led-5mm-blue",
+    "target": "led-5mm-blue.glb",
+    "source": "led_light-emitting_diode.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected detailed LED candidate.",
+    "storage_path": "3d_models/glb/led-5mm-blue.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 204992,
+    "sha256": "22d73261961c68f1dcadda61374bd54728fef02812be26dcdaf8fb99700f6e4e",
+    "version": 2,
+    "nodes": 25,
+    "meshes": 10,
+    "materials": 3,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "bounds": {
+      "min": [
+        -0.7099154650891037,
+        -1.2011530950029548,
+        -0.23535256324766307
+      ],
+      "max": [
+        0.2403139845835432,
+        1.3656709622220875,
+        0.23535272745438912
+      ],
+      "size": [
+        0.9502294496726469,
+        2.566824057225042,
+        0.4707052907020522
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "pushbutton-6x6",
+    "target": "pushbutton-6x6.glb",
+    "source": "push_button_6x6x5mm.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected compact 6x6 pushbutton model.",
+    "storage_path": "3d_models/glb/pushbutton-6x6.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 43928,
+    "sha256": "7a925080695029f57df877e8f5d46da6b80d0d92cbb011cd5cfdf35151c67d8b",
+    "version": 2,
+    "nodes": 5,
+    "meshes": 2,
+    "materials": 2,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.003608345054090023,
+        -0.005616545211523772,
+        -0.004085539840161801
+      ],
+      "max": [
+        0.0036001799162477255,
+        0.0037894239649176606,
+        0.004076898097991943
+      ],
+      "size": [
+        0.0072085249703377485,
+        0.009405969176441433,
+        0.008162437938153744
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "servo-sg90",
+    "target": "servo-sg90.glb",
+    "source": "servo_motor_sg_90.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected SG90 candidate with compact file size.",
+    "storage_path": "3d_models/glb/servo-sg90.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 376656,
+    "sha256": "fc321496fc81d5183b4eda2eca3fc0fe4fec059e2cfe548d028d0152d586ea13",
+    "version": 2,
+    "nodes": 31,
+    "meshes": 14,
+    "materials": 7,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.5124761462211609,
+        -0.07357913255691528,
+        -1.4787427186965942
+      ],
+      "max": [
+        0.5144802927970886,
+        2.589119926095009,
+        1.9720511734485626
+      ],
+      "size": [
+        1.0269564390182495,
+        2.662699058651924,
+        3.450793892145157
+      ]
+    },
+    "unit": "model-unit"
+  }
+]

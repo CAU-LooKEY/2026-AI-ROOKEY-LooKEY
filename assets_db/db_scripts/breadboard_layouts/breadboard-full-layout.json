@@ -1,0 +1,224 @@
+{
+  "component_slug": "breadboard-full",
+  "display_name": "Full-size Breadboard",
+  "layout_kind": "breadboard",
+  "hole_coordinate_system": "image-pixel-procedural",
+  "column_indexing": "left-to-right",
+  "columns": 63,
+  "terminal_rows": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+  ],
+  "terminal": {
+    "x_start_px": 43.3,
+    "x_pitch_px": 15.0,
+    "upper_rows": {
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "y_px": [
+        103.6,
+        118.7,
+        133.8,
+        148.9,
+        163.9
+      ]
+    },
+    "lower_rows": {
+      "labels": [
+        "F",
+        "G",
+        "H",
+        "I",
+        "J"
+      ],
+      "y_px": [
+        208.7,
+        223.7,
+        238.8,
+        253.9,
+        268.9
+      ]
+    }
+  },
+  "rails": {
+    "top_positive": {
+      "label": "+",
+      "y_px": 45.9,
+      "x_start_px": 65.0,
+      "x_pitch_px": 15.0,
+      "segments": [
+        {
+          "start_column": 1,
+          "end_column": 29
+        },
+        {
+          "start_column": 31,
+          "end_column": 59
+        }
+      ]
+    },
+    "top_negative": {
+      "label": "-",
+      "y_px": 61.2,
+      "x_start_px": 65.0,
+      "x_pitch_px": 15.0,
+      "segments": [
+        {
+          "start_column": 1,
+          "end_column": 29
+        },
+        {
+          "start_column": 31,
+          "end_column": 59
+        }
+      ]
+    },
+    "bottom_positive": {
+      "label": "+",
+      "y_px": 311.5,
+      "x_start_px": 66.4,
+      "x_pitch_px": 15.0,
+      "segments": [
+        {
+          "start_column": 1,
+          "end_column": 29
+        },
+        {
+          "start_column": 31,
+          "end_column": 59
+        }
+      ]
+    },
+    "bottom_negative": {
+      "label": "-",
+      "y_px": 326.9,
+      "x_start_px": 66.4,
+      "x_pitch_px": 15.0,
+      "segments": [
+        {
+          "start_column": 1,
+          "end_column": 29
+        },
+        {
+          "start_column": 31,
+          "end_column": 59
+        }
+      ]
+    }
+  },
+  "representative_pins": [
+    {
+      "pin_key": "RAIL_TOP_POS",
+      "label": "+ top",
+      "signal_type": "power",
+      "side": "top",
+      "x_px": 65.0,
+      "y_px": 45.9,
+      "aliases": [
+        "+"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "RAIL_TOP_NEG",
+      "label": "- top",
+      "signal_type": "ground",
+      "side": "top",
+      "x_px": 65.0,
+      "y_px": 61.2,
+      "aliases": [
+        "-"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_POS",
+      "label": "+ bottom",
+      "signal_type": "power",
+      "side": "bottom",
+      "x_px": 66.4,
+      "y_px": 311.5,
+      "aliases": [
+        "+"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_NEG",
+      "label": "- bottom",
+      "signal_type": "ground",
+      "side": "bottom",
+      "x_px": 66.4,
+      "y_px": 326.9,
+      "aliases": [
+        "-"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "A1",
+      "label": "A1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 43.3,
+      "y_px": 103.6,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "E1",
+      "label": "E1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 43.3,
+      "y_px": 163.9,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "F1",
+      "label": "F1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 43.3,
+      "y_px": 208.7,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "J1",
+      "label": "J1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 43.3,
+      "y_px": 268.9,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    }
+  ],
+  "notes": [
+    "Procedural layout calibrated from detected hole centers in the uploaded top-view image.",
+    "Long breadboard rail split metadata should be used when routing power rails."
+  ],
+  "image": {
+    "path": "assets_db/2d_svgs/raster_sources/breadboard-full-top.png",
+    "mime_type": "image/png",
+    "width_px": 1007,
+    "height_px": 350,
+    "coordinate_origin": "top-left",
+    "background": "transparent"
+  }
+}

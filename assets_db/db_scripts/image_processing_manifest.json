@@ -88,5 +88,43 @@
       502,
       292
     ]
+  },
+  "breadboard-full": {
+    "source_path": "uploaded-chat-image",
+    "transparent_png": "assets_db/2d_svgs/raster_sources/breadboard-full-top.png",
+    "original_size": [
+      1007,
+      350
+    ],
+    "crop_box_original_px": [
+      0,
+      0,
+      1007,
+      350
+    ],
+    "size": [
+      1007,
+      350
+    ],
+    "coordinate_method": "procedural breadboard layout with representative anchor pins"
+  },
+  "breadboard-half": {
+    "source_path": "uploaded-chat-image",
+    "transparent_png": "assets_db/2d_svgs/raster_sources/breadboard-half-top.png",
+    "original_size": [
+      367,
+      247
+    ],
+    "crop_box_original_px": [
+      0,
+      0,
+      367,
+      247
+    ],
+    "size": [
+      367,
+      247
+    ],
+    "coordinate_method": "procedural breadboard layout with representative anchor pins"
   }
 }

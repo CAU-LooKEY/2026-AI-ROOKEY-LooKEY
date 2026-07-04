@@ -1,0 +1,505 @@
+[
+  {
+    "source_filename": "arduino_breadboard_-_low_poly (1).glb",
+    "bytes": 184552,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 184552,
+    "scenes": 1,
+    "nodes": 5,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "animations": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -812.4295402085118,
+        -51.321658081171805,
+        -274.6457650221205
+      ],
+      "max": [
+        812.4295402085118,
+        45.09532218545711,
+        274.6457660365194
+      ],
+      "size": [
+        1624.8590804170235,
+        96.41698026662891,
+        549.2915310586399
+      ]
+    }
+  },
+  {
+    "source_filename": "arduino_breadboard_-_low_poly.glb",
+    "bytes": 319452,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 319452,
+    "scenes": 1,
+    "nodes": 5,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "animations": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -812.4295402085118,
+        -51.321658081171805,
+        -274.6457650221205
+      ],
+      "max": [
+        812.4295402085118,
+        45.09532218545711,
+        274.6457660365194
+      ],
+      "size": [
+        1624.8590804170235,
+        96.41698026662891,
+        549.2915310586399
+      ]
+    }
+  },
+  {
+    "source_filename": "arduino_nano (1).glb",
+    "bytes": 2313776,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 2313776,
+    "scenes": 1,
+    "nodes": 11,
+    "meshes": 7,
+    "materials": 7,
+    "textures": 1,
+    "images": 1,
+    "animations": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -1.4971014102779918,
+        2.6058101384642214,
+        -0.3714991287306475
+      ],
+      "max": [
+        1.334714153515506,
+        5.00892408296022,
+        6.912279976355421
+      ],
+      "size": [
+        2.831815563793498,
+        2.403113944495999,
+        7.283779105086069
+      ]
+    }
+  },
+  {
+    "source_filename": "arduino_nano.glb",
+    "bytes": 8932848,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 8932848,
+    "scenes": 1,
+    "nodes": 163,
+    "meshes": 161,
+    "materials": 21,
+    "textures": 15,
+    "images": 12,
+    "animations": 1,
+    "extensions_used": [
+      "KHR_materials_clearcoat",
+      "KHR_materials_transmission",
+      "KHR_materials_specular",
+      "KHR_materials_ior"
+    ],
+    "bounds": {
+      "min": [
+        -0.03818601977048405,
+        -0.003090229896314368,
+        -0.03131357871071638
+      ],
+      "max": [
+        0.02466758734735863,
+        0.016050490813351474,
+        0.031478791111906504
+      ],
+      "size": [
+        0.06285360711784269,
+        0.01914072070966584,
+        0.06279236982262289
+      ]
+    }
+  },
+  {
+    "source_filename": "arduino_uno.glb",
+    "bytes": 4491236,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 4491236,
+    "scenes": 1,
+    "nodes": 108,
+    "meshes": 34,
+    "materials": 34,
+    "textures": 11,
+    "images": 11,
+    "animations": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.6041634910627027,
+        -0.37986031128498043,
+        0.16593804822606747
+      ],
+      "max": [
+        0.5596647789396831,
+        0.4464157889981979,
+        0.349629177977125
+      ],
+      "size": [
+        1.1638282700023859,
+        0.8262761002831783,
+        0.18369112975105753
+      ]
+    }
+  },
+  {
+    "source_filename": "arduino_uno_board.glb",
+    "bytes": 9389360,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 9389360,
+    "scenes": 1,
+    "nodes": 46,
+    "meshes": 26,
+    "materials": 8,
+    "textures": 9,
+    "images": 9,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "bounds": {
+      "min": [
+        -4.700197760832309,
+        -0.6730730322098744,
+        -4.700197760832309
+      ],
+      "max": [
+        4.700197760832309,
+        0.4878589759569535,
+        4.700197760832309
+      ],
+      "size": [
+        9.400395521664619,
+        1.160932008166828,
+        9.400395521664619
+      ]
+    }
+  },
+  {
+    "source_filename": "breadboard_arduino.glb",
+    "bytes": 1998128,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 1998128,
+    "scenes": 1,
+    "nodes": 6,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "bounds": {
+      "min": [
+        0.21258124709129328,
+        -0.29579075426517537,
+        0.17433716814463632
+      ],
+      "max": [
+        0.5780577957630157,
+        -0.05015984921993204,
+        0.19822729666287406
+      ],
+      "size": [
+        0.36547654867172247,
+        0.24563090504524332,
+        0.02389012851823774
+      ]
+    }
+  },
+  {
+    "source_filename": "breadboard_blender.glb",
+    "bytes": 25283068,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 25283068,
+    "scenes": 1,
+    "nodes": 41,
+    "meshes": 33,
+    "materials": 5,
+    "textures": 0,
+    "images": 0,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_clearcoat",
+      "KHR_materials_specular",
+      "KHR_materials_ior"
+    ],
+    "bounds": {
+      "min": [
+        -2.703288565661377,
+        0.0008963979780673981,
+        -8.25690358842266
+      ],
+      "max": [
+        2.70365066388778,
+        0.8048873360144884,
+        8.25690358842266
+      ],
+      "size": [
+        5.406939229549157,
+        0.803990938036421,
+        16.51380717684532
+      ]
+    }
+  },
+  {
+    "source_filename": "hc-sr04.glb",
+    "bytes": 1310040,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 1310040,
+    "scenes": 1,
+    "nodes": 45,
+    "meshes": 25,
+    "materials": 9,
+    "textures": 3,
+    "images": 3,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -1.2287132735491468,
+        -0.07834634256011341,
+        -0.3487059473991394
+      ],
+      "max": [
+        1.6345217521429731,
+        1.5839607119560242,
+        0.7818499892883217
+      ],
+      "size": [
+        2.86323502569212,
+        1.6623070545161376,
+        1.1305559366874611
+      ]
+    }
+  },
+  {
+    "source_filename": "led_light-emitting_diode.glb",
+    "bytes": 204992,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 204992,
+    "scenes": 1,
+    "nodes": 25,
+    "meshes": 10,
+    "materials": 3,
+    "textures": 0,
+    "images": 0,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "bounds": {
+      "min": [
+        -0.7099154650891037,
+        -1.2011530950029548,
+        -0.23535256324766307
+      ],
+      "max": [
+        0.2403139845835432,
+        1.3656709622220875,
+        0.23535272745438912
+      ],
+      "size": [
+        0.9502294496726469,
+        2.566824057225042,
+        0.4707052907020522
+      ]
+    }
+  },
+  {
+    "source_filename": "led_light.glb",
+    "bytes": 22456,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 22456,
+    "scenes": 1,
+    "nodes": 5,
+    "meshes": 2,
+    "materials": 2,
+    "textures": 0,
+    "images": 0,
+    "animations": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -1.2100000381469727,
+        -9.836779594421387,
+        -1.210000038146973
+      ],
+      "max": [
+        1.048930048942566,
+        1.7500000000000002,
+        1.210000038146973
+      ],
+      "size": [
+        2.2589300870895386,
+        11.586779594421387,
+        2.420000076293946
+      ]
+    }
+  },
+  {
+    "source_filename": "push_button_6x6x5mm.glb",
+    "bytes": 43928,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 43928,
+    "scenes": 1,
+    "nodes": 5,
+    "meshes": 2,
+    "materials": 2,
+    "textures": 0,
+    "images": 0,
+    "animations": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.003608345054090023,
+        -0.005616545211523772,
+        -0.004085539840161801
+      ],
+      "max": [
+        0.0036001799162477255,
+        0.0037894239649176606,
+        0.004076898097991943
+      ],
+      "size": [
+        0.0072085249703377485,
+        0.009405969176441433,
+        0.008162437938153744
+      ]
+    }
+  },
+  {
+    "source_filename": "sensor_ultrasonik_3d.glb",
+    "bytes": 5189052,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 5189052,
+    "scenes": 1,
+    "nodes": 19,
+    "meshes": 7,
+    "materials": 7,
+    "textures": 12,
+    "images": 12,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_pbrSpecularGlossiness"
+    ],
+    "bounds": {
+      "min": [
+        -0.15105093623466706,
+        -0.12194277457206104,
+        0.2256837771368838
+      ],
+      "max": [
+        0.20346802246457932,
+        0.09096771763959005,
+        0.32938800786340505
+      ],
+      "size": [
+        0.3545189586992464,
+        0.2129104922116511,
+        0.10370423072652124
+      ]
+    }
+  },
+  {
+    "source_filename": "servo.glb",
+    "bytes": 3506504,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 3506504,
+    "scenes": 1,
+    "nodes": 77,
+    "meshes": 40,
+    "materials": 18,
+    "textures": 2,
+    "images": 2,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_transmission"
+    ],
+    "bounds": {
+      "min": [
+        -2.3590281084789453,
+        -1.0693502220669424,
+        -0.5402576614603393
+      ],
+      "max": [
+        1.4438494205474854,
+        1.4949263588348476,
+        0.5434326765475612
+      ],
+      "size": [
+        3.8028775290264307,
+        2.5642765809017902,
+        1.0836903380079006
+      ]
+    }
+  },
+  {
+    "source_filename": "servo_motor_sg_90.glb",
+    "bytes": 376656,
+    "ok": true,
+    "version": 2,
+    "declared_bytes": 376656,
+    "scenes": 1,
+    "nodes": 31,
+    "meshes": 14,
+    "materials": 7,
+    "textures": 2,
+    "images": 2,
+    "animations": 0,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.5124761462211609,
+        -0.07357913255691528,
+        -1.4787427186965942
+      ],
+      "max": [
+        0.5144802927970886,
+        2.589119926095009,
+        1.9720511734485626
+      ],
+      "size": [
+        1.0269564390182495,
+        2.662699058651924,
+        3.450793892145157
+      ]
+    }
+  }
+]

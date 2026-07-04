@@ -13,14 +13,25 @@
 - `003_add_optional_3d_pin_columns.sql`
   이미 예전 schema를 실행한 DB에 3D 핀 좌표 컬럼만 추가하기 위한 보정
   스크립트입니다.
+- `004_add_models_and_breadboard_layouts.sql`
+  이미 예전 schema를 실행한 DB에 GLB 모델 metadata 테이블과 브래드보드 layout
+  테이블을 추가하기 위한 보정 스크립트입니다.
+- `005_seed_breadboards_and_models.sql`
+  일반/긴 브래드보드 metadata, procedural layout, 대표 anchor pin, GLB model
+  metadata를 insert/upsert합니다.
 - `pin_coordinates/*.json`
   부품별 핀 좌표 export 파일입니다.
+- `breadboard_layouts/*.json`
+  모든 브래드보드 홀 좌표를 계산하기 위한 procedural layout export 파일입니다.
 - `all_component_pin_coordinates.json`
   모든 부품의 핀 좌표를 합친 JSON 파일입니다.
 - `image_processing_manifest.json`
   원본 이미지 처리와 출력 파일 경로를 기록한 manifest입니다.
 - `validate_pin_coordinates.py`
   좌표가 이미지 범위 안에 있는지 확인하는 로컬 검증 스크립트입니다.
+- `validate_3d_models.py`
+  GLB 파일 header, 파일 길이, bounds metadata, ready 모델 크기를 확인하는 로컬
+  검증 스크립트입니다.
 
 ## 실행 순서
 
@@ -31,13 +42,17 @@
    `circuit-assets/raster_sources/`에 업로드합니다.
 3. `../2d_svgs/react_flow_nodes/` 안의 파일을 Storage 버킷
    `circuit-assets/react_flow_nodes/`에 업로드합니다.
-4. `002_seed_assets_and_pins.sql`을 실행합니다.
-5. 좌표나 이미지가 바뀌면 로컬에서 `python validate_pin_coordinates.py`를
+4. `assets_db/3d_models/glb/` 안의 파일을 Storage 버킷
+   `circuit-assets/3d_models/glb/`에 업로드합니다.
+5. `002_seed_assets_and_pins.sql`을 실행합니다.
+6. `005_seed_breadboards_and_models.sql`을 실행합니다.
+7. 좌표나 이미지가 바뀌면 로컬에서 `python validate_pin_coordinates.py`를
    실행합니다.
+8. GLB가 바뀌면 로컬에서 `python validate_3d_models.py`를 실행합니다.
 
-이미 이전 버전의 `001_schema.sql`을 실행한 DB라면, `002_seed_assets_and_pins.sql`
-실행 전에 `003_add_optional_3d_pin_columns.sql`을 한 번 실행하세요.
+이미 이전 버전의 `001_schema.sql`을 실행한 DB라면, seed 실행 전에
+`003_add_optional_3d_pin_columns.sql`과 `004_add_models_and_breadboard_layouts.sql`을
+한 번씩 실행하세요.
 
-현재 Storage 허용 MIME 타입은 `image/png`, `image/jpeg`, `image/svg+xml`입니다.
-GLB 같은 실제 3D 파일까지 Supabase Storage에서 제공하려면 별도의 모델 테이블과
-`model/gltf-binary` 등 3D MIME 타입 허용을 추가해야 합니다.
+현재 Storage 허용 MIME 타입은 `image/png`, `image/jpeg`, `image/svg+xml`,
+`model/gltf-binary`입니다.

@@ -5,7 +5,7 @@
 
 ## 포함된 부품
 
-현재 seed 데이터에는 6개 부품과 총 82개 핀이 들어 있습니다.
+현재 seed 데이터에는 8개 부품과 대표 핀 총 98개가 들어 있습니다.
 
 - Arduino Uno R3
 - Arduino Nano
@@ -13,6 +13,8 @@
 - 5 mm 파란색 LED
 - 6x6 푸쉬 버튼
 - SG90 계열 서보모터
+- 일반 브래드보드
+- 긴 브래드보드
 
 현재 확정된 핀 좌표는 투명 PNG 기준의 `x_px`, `y_px`입니다. 좌표 원점은
 이미지의 왼쪽 위 `(0, 0)`입니다.
@@ -28,6 +30,18 @@
 - 그래서 DB에는 3D 핀 좌표를 저장할 수 있는 선택형 컬럼을 열어두었고,
   현재 값은 아직 비워두는 구조입니다.
 
+## 브래드보드 좌표 기준
+
+브래드보드는 LED나 푸쉬 버튼처럼 한두 개 핀을 가진 부품이 아니라, 연결 가능한
+홀이 수백 개 있는 부품입니다. 그래서 모든 홀을 `circuit_component_pins` row로
+저장하지 않고, `db_scripts/breadboard_layouts/`에 procedural layout으로 저장했습니다.
+
+- `circuit_component_pins`: 프론트/백엔드가 바로 참조할 수 있는 대표 anchor 핀만 저장
+- `circuit_breadboard_layouts`: 전체 홀 좌표를 계산하기 위한 행/열/전원레일 규칙 저장
+
+즉, 브래드보드에는 좌표가 필요하지만 수작업 핀 좌표를 전부 찍는 방식은 권장하지
+않습니다.
+
 ## 폴더 구조
 
 - `2d_svgs/`
@@ -36,8 +50,7 @@
 - `db_scripts/`
   Supabase schema, seed SQL, 핀 좌표 JSON, 검증 스크립트가 들어 있습니다.
 - `3d_models/`
-  실제 3D 원본 파일을 넣기 위한 폴더입니다. 현재는 production용 `.glb`,
-  `.fbx`, `.blend`, VARCO 파일이 아직 없습니다.
+  선별한 GLB 모델, GLB audit report, 모델 manifest가 들어 있습니다.
 
 ## 주의사항
 
@@ -48,3 +61,5 @@
   권장합니다.
 - Arduino 계열 이미지에는 상표/로고 이슈가 있을 수 있으므로 공개 배포 전
   라이선스와 상표권 검토가 필요합니다.
+- `breadboard-full.glb`는 구조상 정상 GLB지만 25MB라 웹 배포 전 최적화를
+  권장하며, DB manifest에서도 `needs_optimization`으로 표시했습니다.
