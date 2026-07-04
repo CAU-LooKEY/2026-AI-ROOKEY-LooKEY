@@ -1,0 +1,92 @@
+{
+  "arduino-nano": {
+    "source_path": "C:/Users/user/AppData/Local/Temp/codex-clipboard-fa67a5b3-0a03-44d3-bd7c-a39b36cea2b8.png",
+    "transparent_png": "assets_db/2d_svgs/raster_sources/arduino-nano-top.png",
+    "original_size": [
+      520,
+      252
+    ],
+    "crop_box_original_px": [
+      14,
+      32,
+      512,
+      252
+    ],
+    "size": [
+      498,
+      220
+    ]
+  },
+  "led-5mm-blue": {
+    "source_path": "C:/Users/user/AppData/Local/Temp/codex-clipboard-b57478a3-6c93-4014-a359-1ea33cd20362.png",
+    "transparent_png": "assets_db/2d_svgs/raster_sources/led-5mm-blue-top.png",
+    "original_size": [
+      412,
+      427
+    ],
+    "crop_box_original_px": [
+      59,
+      43,
+      369,
+      424
+    ],
+    "size": [
+      310,
+      381
+    ]
+  },
+  "pushbutton-6x6": {
+    "source_path": "C:/Users/user/AppData/Local/Temp/codex-clipboard-52f96d80-e3bc-4807-8140-d1cc2d64be13.png",
+    "transparent_png": "assets_db/2d_svgs/raster_sources/pushbutton-6x6-top.png",
+    "original_size": [
+      220,
+      237
+    ],
+    "crop_box_original_px": [
+      19,
+      2,
+      202,
+      237
+    ],
+    "size": [
+      183,
+      235
+    ]
+  },
+  "servo-sg90": {
+    "source_path": "C:/Users/user/AppData/Local/Temp/codex-clipboard-8f1377c1-10c3-4d14-951b-a3d67842833e.png",
+    "transparent_png": "assets_db/2d_svgs/raster_sources/servo-sg90-top.png",
+    "original_size": [
+      167,
+      265
+    ],
+    "crop_box_original_px": [
+      0,
+      16,
+      167,
+      265
+    ],
+    "size": [
+      167,
+      249
+    ]
+  },
+  "hc-sr04": {
+    "source_path": "C:/Users/user/AppData/Local/Temp/codex-clipboard-71fc3ee4-a404-4b38-a366-49912a751e0a.png",
+    "transparent_png": "assets_db/2d_svgs/raster_sources/hc-sr04-top.png",
+    "original_size": [
+      502,
+      292
+    ],
+    "crop_box_original_px": [
+      0,
+      0,
+      502,
+      292
+    ],
+    "size": [
+      502,
+      292
+    ]
+  }
+}
