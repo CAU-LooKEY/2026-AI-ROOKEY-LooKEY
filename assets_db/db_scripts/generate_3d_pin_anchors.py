@@ -12,7 +12,7 @@ AXIS_CONFIG = {
         "image_x_axis": "x",
         "image_y_axis": "y",
         "surface_axis": "z",
-        "image_y_direction": "positive",
+        "image_y_direction": "negative",
         "calibration_quality": "draft_projected",
     },
     "arduino-nano": {

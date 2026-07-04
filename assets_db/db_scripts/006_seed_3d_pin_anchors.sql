@@ -249,7 +249,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "SCL",
     "x_3d": -0.214883,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_scl"
   },
@@ -257,7 +257,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "SDA",
     "x_3d": -0.17475099,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_sda"
   },
@@ -265,7 +265,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AREF",
     "x_3d": -0.13662558,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aref"
   },
@@ -273,7 +273,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "GND_D",
     "x_3d": -0.09649357,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_gnd_d"
   },
@@ -281,7 +281,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D13",
     "x_3d": -0.05836816,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d13"
   },
@@ -289,7 +289,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D12",
     "x_3d": -0.02024276,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d12"
   },
@@ -297,7 +297,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D11",
     "x_3d": 0.01988925,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d11"
   },
@@ -305,7 +305,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D10",
     "x_3d": 0.06002126,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d10"
   },
@@ -313,7 +313,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D9",
     "x_3d": 0.09614007,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d9"
   },
@@ -321,7 +321,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D8",
     "x_3d": 0.13827868,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d8"
   },
@@ -329,7 +329,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D7",
     "x_3d": 0.2004833,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d7"
   },
@@ -337,7 +337,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D6",
     "x_3d": 0.2386087,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d6"
   },
@@ -345,7 +345,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D5",
     "x_3d": 0.27673411,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d5"
   },
@@ -353,7 +353,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D4",
     "x_3d": 0.31686612,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d4"
   },
@@ -361,7 +361,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D3",
     "x_3d": 0.35699813,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d3"
   },
@@ -369,7 +369,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D2",
     "x_3d": 0.39512354,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d2"
   },
@@ -377,7 +377,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D1",
     "x_3d": 0.43525555,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d1"
   },
@@ -385,7 +385,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "D0",
     "x_3d": 0.47338096,
-    "y_3d": -0.28871235,
+    "y_3d": 0.35526783,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_d0"
   },
@@ -393,7 +393,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "IOREF",
     "x_3d": -0.07843417,
-    "y_3d": 0.35328635,
+    "y_3d": -0.28673087,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_ioref"
   },
@@ -401,7 +401,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "RESET",
     "x_3d": -0.03830216,
-    "y_3d": 0.35328635,
+    "y_3d": -0.28673087,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_reset"
   },
@@ -409,7 +409,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "3V3",
     "x_3d": 0.00182985,
-    "y_3d": 0.35328635,
+    "y_3d": -0.28673087,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_3v3"
   },
@@ -417,7 +417,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "5V",
     "x_3d": 0.03995526,
-    "y_3d": 0.35526783,
+    "y_3d": -0.28871235,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_5v"
   },
@@ -425,7 +425,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "GND_P1",
     "x_3d": 0.08209387,
-    "y_3d": 0.35526783,
+    "y_3d": -0.28871235,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_gnd_p1"
   },
@@ -433,7 +433,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "GND_P2",
     "x_3d": 0.11620608,
-    "y_3d": 0.35526783,
+    "y_3d": -0.28871235,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_gnd_p2"
   },
@@ -441,7 +441,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "VIN",
     "x_3d": 0.15633809,
-    "y_3d": 0.3572493,
+    "y_3d": -0.29069383,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_vin"
   },
@@ -449,7 +449,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "A0",
     "x_3d": 0.27472751,
-    "y_3d": 0.35526783,
+    "y_3d": -0.28871235,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_a0"
   },
@@ -457,7 +457,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "A1",
     "x_3d": 0.31285292,
-    "y_3d": 0.3572493,
+    "y_3d": -0.29069383,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_a1"
   },
@@ -465,7 +465,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "A2",
     "x_3d": 0.35499153,
-    "y_3d": 0.3572493,
+    "y_3d": -0.29069383,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_a2"
   },
@@ -473,7 +473,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "A3",
     "x_3d": 0.39311694,
-    "y_3d": 0.3572493,
+    "y_3d": -0.29069383,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_a3"
   },
@@ -481,7 +481,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "A4",
     "x_3d": 0.43525555,
-    "y_3d": 0.3572493,
+    "y_3d": -0.29069383,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_a4"
   },
@@ -489,7 +489,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "A5",
     "x_3d": 0.47338096,
-    "y_3d": 0.3572493,
+    "y_3d": -0.29069383,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_a5"
   },
@@ -497,7 +497,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_RX",
     "x_3d": 0.40515654,
-    "y_3d": 0.16504599,
+    "y_3d": -0.09849051,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_rx"
   },
@@ -505,7 +505,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_TX",
     "x_3d": 0.43926875,
-    "y_3d": 0.16504599,
+    "y_3d": -0.09849051,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_tx"
   },
@@ -513,7 +513,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_5V",
     "x_3d": 0.48140736,
-    "y_3d": 0.16504599,
+    "y_3d": -0.09849051,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_5v"
   },
@@ -521,7 +521,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_GND_1",
     "x_3d": 0.51953277,
-    "y_3d": 0.16504599,
+    "y_3d": -0.09849051,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_gnd_1"
   },
@@ -529,7 +529,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_SDA",
     "x_3d": 0.40515654,
-    "y_3d": 0.20467554,
+    "y_3d": -0.13812006,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_sda"
   },
@@ -537,7 +537,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_SCL",
     "x_3d": 0.44127535,
-    "y_3d": 0.20467554,
+    "y_3d": -0.13812006,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_scl"
   },
@@ -545,7 +545,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_3V3",
     "x_3d": 0.47940076,
-    "y_3d": 0.20467554,
+    "y_3d": -0.13812006,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_3v3"
   },
@@ -553,7 +553,7 @@ with anchor_rows as (
     "slug": "arduino-uno-r3",
     "pin_key": "AUX_GND_2",
     "x_3d": 0.51953277,
-    "y_3d": 0.20467554,
+    "y_3d": -0.13812006,
     "z_3d": 0.34962918,
     "model_anchor_name": "pin_aux_gnd_2"
   },
