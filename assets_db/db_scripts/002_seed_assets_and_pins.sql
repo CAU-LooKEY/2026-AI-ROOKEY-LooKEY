@@ -1319,12 +1319,20 @@ with pin_rows as (
     side text,
     x_px numeric,
     y_px numeric,
+    x_3d numeric,
+    y_3d numeric,
+    z_3d numeric,
+    model_anchor_name text,
     aliases jsonb,
     sort_order integer,
     notes text
   )
 )
-insert into public.circuit_component_pins (component_id, pin_key, label, signal_type, side, x_px, y_px, aliases, notes, sort_order)
+insert into public.circuit_component_pins (
+  component_id, pin_key, label, signal_type, side,
+  x_px, y_px, x_3d, y_3d, z_3d, model_anchor_name,
+  aliases, notes, sort_order
+)
 select assets.id,
   pin_rows.pin_key,
   pin_rows.label,
@@ -1332,6 +1340,10 @@ select assets.id,
   pin_rows.side,
   pin_rows.x_px,
   pin_rows.y_px,
+  pin_rows.x_3d,
+  pin_rows.y_3d,
+  pin_rows.z_3d,
+  pin_rows.model_anchor_name,
   array(select jsonb_array_elements_text(coalesce(pin_rows.aliases, '[]'::jsonb))),
   pin_rows.notes,
   pin_rows.sort_order
@@ -1343,6 +1355,10 @@ set label = excluded.label,
     side = excluded.side,
     x_px = excluded.x_px,
     y_px = excluded.y_px,
+    x_3d = excluded.x_3d,
+    y_3d = excluded.y_3d,
+    z_3d = excluded.z_3d,
+    model_anchor_name = excluded.model_anchor_name,
     aliases = excluded.aliases,
     notes = excluded.notes,
     sort_order = excluded.sort_order,

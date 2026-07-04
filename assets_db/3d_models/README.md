@@ -1,20 +1,30 @@
-# 3D Models
+# 3D 모델
 
-No production 3D model files are included yet.
+현재 production용 3D 모델 파일은 아직 포함되어 있지 않습니다.
 
-This folder is reserved for the model source files described in the team
-handoff note:
+이 폴더는 추후 실제 3D 모델 원본과 검토 자료를 넣기 위한 공간입니다.
 
-- VARCO or Blender source files
-- `.glb` and `.fbx` exports for review
-- Generated isometric PNG renders if the frontend continues with a 2.5D flow
-- License and trademark review notes for each external asset source
+- VARCO 또는 Blender 원본 파일
+- 검토용 `.glb`, `.fbx` export 파일
+- 2.5D 방식을 계속 사용할 경우 생성된 아이소메트릭 PNG 렌더
+- 외부 에셋 출처별 라이선스와 상표권 검토 자료
 
-Recommended minimum metadata for each future model:
+## z 좌표가 필요한 경우
 
-- component slug
-- source URL or creator
-- license
-- export format and version
-- model scale unit
-- pin order and pin anchor mapping
+이 폴더를 단순히 3D 파일 보관용으로만 쓴다면 핀별 z 좌표는 필수는 아닙니다.
+하지만 사용자가 마우스로 돌려보는 실제 3D 회로도에서 점퍼선을 모델 핀에
+정확히 연결하려면 핀마다 모델 로컬 좌표 `x_3d`, `y_3d`, `z_3d`가 필요합니다.
+
+주의할 점은 위에서 찍은 PNG 한 장으로는 `z_3d`를 정확히 구할 수 없다는
+것입니다. z 좌표는 Blender, GLB, VARCO 같은 3D 모델 안에서 핀 위치를 직접
+찍어서 추출해야 합니다.
+
+## 향후 모델별 최소 메타데이터
+
+- 부품 slug
+- 출처 URL 또는 제작자
+- 라이선스
+- export 형식과 버전
+- 모델 스케일 단위
+- 모델 로컬 좌표계 기준
+- 핀 순서와 핀 앵커 좌표

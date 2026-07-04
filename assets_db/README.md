@@ -1,41 +1,50 @@
-# Circuit Asset Database
+# 회로 에셋 DB
 
-This folder contains the asset database package for the hardware circuit
-visualization workstream. It is scoped to component metadata, image assets, and
-pin coordinates only.
+하드웨어 회로 시각화를 위한 에셋 DB 패키지입니다. 현재 범위는 부품
+메타데이터, 투명 배경 이미지, 핀 좌표, Supabase 적재 스크립트입니다.
 
-## Components Included
+## 포함된 부품
 
-The current seed set contains 6 components and 82 pins:
+현재 seed 데이터에는 6개 부품과 총 82개 핀이 들어 있습니다.
 
 - Arduino Uno R3
 - Arduino Nano
-- HC-SR04 ultrasonic sensor
-- 5 mm blue LED
-- 6x6 pushbutton
-- SG90-style servo motor
+- HC-SR04 초음파 센서
+- 5 mm 파란색 LED
+- 6x6 푸쉬 버튼
+- SG90 계열 서보모터
 
-Pin coordinates are stored in source-image pixel coordinates with `(0, 0)` at
-the top-left of the transparent PNG.
+현재 확정된 핀 좌표는 투명 PNG 기준의 `x_px`, `y_px`입니다. 좌표 원점은
+이미지의 왼쪽 위 `(0, 0)`입니다.
 
-## Folder Map
+## 2.5D와 3D 좌표 기준
+
+- 2.5D 아이소메트릭 회로도에서는 PNG 위의 연결점만 필요하므로
+  `x_px`, `y_px`만으로 배치와 배선이 가능합니다.
+- 실제 GLB/Blender 모델의 핀에 선을 꽂는 3D 회로도를 만들려면 모델 로컬
+  좌표계 기준의 `x_3d`, `y_3d`, `z_3d`가 추가로 필요합니다.
+- 위에서 찍은 사진 한 장만으로는 정확한 `z_3d`를 알 수 없습니다. 3D 좌표는
+  GLB, Blender, VARCO 원본 모델에서 핀 앵커를 직접 찍어 추출해야 합니다.
+- 그래서 DB에는 3D 핀 좌표를 저장할 수 있는 선택형 컬럼을 열어두었고,
+  현재 값은 아직 비워두는 구조입니다.
+
+## 폴더 구조
 
 - `2d_svgs/`
-  Transparent PNG source assets, React Flow SVG wrappers, and pin-map preview
-  images.
+  투명 PNG 원본, React Flow용 SVG 래퍼, 핀맵 확인용 미리보기 이미지가
+  들어 있습니다.
 - `db_scripts/`
-  Supabase schema, seed SQL, and JSON pin coordinate exports.
+  Supabase schema, seed SQL, 핀 좌표 JSON, 검증 스크립트가 들어 있습니다.
 - `3d_models/`
-  Reserved for real 3D source assets. This package currently does not include
-  production `.glb`, `.fbx`, `.blend`, or VARCO model files.
+  실제 3D 원본 파일을 넣기 위한 폴더입니다. 현재는 production용 `.glb`,
+  `.fbx`, `.blend`, VARCO 파일이 아직 없습니다.
 
-## Production Notes
+## 주의사항
 
-- The SVG files are lightweight node wrappers around the transparent PNG
-  images. Upload the PNG and SVG files to Supabase Storage before running the
-  seed SQL.
-- The LED source image is angled rather than a strict top-down image, so its
-  two lead coordinates are usable for a prototype but should be replaced with a
-  cleaner calibrated top-view asset before production.
-- Trademarked markings and logos on source images should be reviewed before
-  public release.
+- SVG 파일은 투명 PNG를 감싼 노드용 파일입니다. Supabase seed SQL을 실행하기
+  전에 PNG와 SVG를 Storage에 먼저 업로드해야 합니다.
+- LED 이미지는 엄밀한 위쪽 사진이 아니라 사선 사진이라, 현재 좌표는
+  프로토타입용입니다. 배포 전에는 위에서 찍은 투명 PNG로 교체하는 것을
+  권장합니다.
+- Arduino 계열 이미지에는 상표/로고 이슈가 있을 수 있으므로 공개 배포 전
+  라이선스와 상표권 검토가 필요합니다.

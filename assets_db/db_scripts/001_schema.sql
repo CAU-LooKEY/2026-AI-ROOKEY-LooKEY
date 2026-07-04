@@ -70,11 +70,20 @@ create table if not exists public.circuit_component_pins (
   side text not null check (side in ('top', 'right', 'bottom', 'left', 'center')),
   x_px numeric not null check (x_px >= 0),
   y_px numeric not null check (y_px >= 0),
+  x_3d numeric,
+  y_3d numeric,
+  z_3d numeric,
+  model_anchor_name text,
   aliases text[] not null default '{}',
   notes text,
   sort_order integer not null default 0,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
+  constraint circuit_component_pins_3d_complete_check check (
+    (x_3d is null and y_3d is null and z_3d is null)
+    or
+    (x_3d is not null and y_3d is not null and z_3d is not null)
+  ),
   constraint circuit_component_pins_unique_key unique (component_id, pin_key)
 );
 
