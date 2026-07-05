@@ -1,0 +1,15 @@
+{
+  "boards": [
+    { "id": "arduino_uno", "name_kr": "아두이노 우노", "type": "main_controller" },
+    { "id": "arduino_nano", "name_kr": "아두이노 나노", "type": "sub_controller" },
+    { "id": "breadboard", "name_kr": "브레드보드", "type": "interface" }
+  ],
+  "inputs": [
+    { "id": "ultrasonic_sensor", "name_kr": "초음파 센서", "type": "sensor" },
+    { "id": "push_button", "name_kr": "푸쉬 버튼", "type": "switch" }
+  ],
+  "outputs": [
+    { "id": "led", "name_kr": "LED", "type": "actuator" },
+    { "id": "servo_motor", "name_kr": "서보 모터", "type": "actuator" }
+  ]
+}
