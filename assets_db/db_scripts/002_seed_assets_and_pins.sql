@@ -87,6 +87,20 @@ with asset_rows as (
     "license_status": "approved",
     "trademark_notes": null,
     "status": "ready"
+  },
+  {
+    "slug": "resistor-220-ohm",
+    "display_name": "220 Ohm Resistor",
+    "category": "passive",
+    "board_family": null,
+    "description": "220 ohm through-hole resistor with two non-polarized leads. Clean transparent 2D asset generated from the uploaded reference and paired with the supplied GLB model.",
+    "grid_width": 4,
+    "grid_height": 1,
+    "pixel_width": 320,
+    "pixel_height": 90,
+    "license_status": "needs_review",
+    "trademark_notes": null,
+    "status": "ready"
   }
 ]$assets$::jsonb) as x(
     slug text,
@@ -223,6 +237,22 @@ with image_rows as (
     "mime_type": "image/svg+xml",
     "width_px": 502,
     "height_px": 292
+  },
+  {
+    "slug": "resistor-220-ohm",
+    "image_kind": "isometric_2d",
+    "storage_path": "raster_sources/resistor-220-ohm-top.png",
+    "mime_type": "image/png",
+    "width_px": 320,
+    "height_px": 90
+  },
+  {
+    "slug": "resistor-220-ohm",
+    "image_kind": "schematic_2d",
+    "storage_path": "react_flow_nodes/resistor-220-ohm.svg",
+    "mime_type": "image/svg+xml",
+    "width_px": 320,
+    "height_px": 90
   }
 ]$images$::jsonb) as x(
     slug text,
@@ -1310,6 +1340,38 @@ with pin_rows as (
       "GND"
     ],
     "sort_order": 3
+  },
+  {
+    "slug": "resistor-220-ohm",
+    "pin_key": "LEAD_A",
+    "label": "Lead A",
+    "signal_type": "component",
+    "side": "left",
+    "x_px": 16,
+    "y_px": 45,
+    "aliases": [
+      "A",
+      "1",
+      "lead-1"
+    ],
+    "sort_order": 0,
+    "notes": "Non-polarized resistor lead; either lead can connect to either side of the circuit."
+  },
+  {
+    "slug": "resistor-220-ohm",
+    "pin_key": "LEAD_B",
+    "label": "Lead B",
+    "signal_type": "component",
+    "side": "right",
+    "x_px": 304,
+    "y_px": 45,
+    "aliases": [
+      "B",
+      "2",
+      "lead-2"
+    ],
+    "sort_order": 1,
+    "notes": "Non-polarized resistor lead; either lead can connect to either side of the circuit."
   }
 ]$pins$::jsonb) as x(
     slug text,

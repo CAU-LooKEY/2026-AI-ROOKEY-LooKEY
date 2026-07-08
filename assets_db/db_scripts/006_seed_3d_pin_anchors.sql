@@ -766,6 +766,22 @@ with anchor_rows as (
     "model_anchor_name": "pin_b2"
   },
   {
+    "slug": "resistor-220-ohm",
+    "pin_key": "LEAD_A",
+    "x_3d": 0.01925661,
+    "y_3d": 0.19690887,
+    "z_3d": 0.25789459,
+    "model_anchor_name": "pin_lead_a"
+  },
+  {
+    "slug": "resistor-220-ohm",
+    "pin_key": "LEAD_B",
+    "x_3d": 0.01925661,
+    "y_3d": 3.01132783,
+    "z_3d": 0.25789459,
+    "model_anchor_name": "pin_lead_b"
+  },
+  {
     "slug": "servo-sg90",
     "pin_key": "GND",
     "x_3d": -0.07586592,

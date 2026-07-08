@@ -406,6 +406,41 @@ with model_rows as (
     "unit": "model-unit",
     "audit_status": "ready",
     "notes": "Selected SG90 candidate with compact file size."
+  },
+  {
+    "slug": "resistor-220-ohm",
+    "model_kind": "production_3d",
+    "storage_path": "3d_models/glb/resistor-220-ohm.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "source_filename": "resistor.glb",
+    "file_size_bytes": 167684,
+    "sha256": "fd4a5a218cbe116459c61cbb20e4547736e6e13976a2eca6b739f6e293c20d05",
+    "bounds": {
+      "min": [
+        -0.238720898443745,
+        0.04055225849151611,
+        -0.2580604818399479
+      ],
+      "max": [
+        0.2772341209613387,
+        3.1676844358444214,
+        0.2578945923955587
+      ],
+      "size": [
+        0.5159550194050837,
+        3.1271321773529053,
+        0.5159550742355066
+      ]
+    },
+    "dimensions": {
+      "x": 0.5159550194050837,
+      "y": 3.1271321773529053,
+      "z": 0.5159550742355066
+    },
+    "unit": "model-unit",
+    "audit_status": "ready",
+    "notes": "User-supplied compact 220 ohm resistor GLB; two non-polarized leads use draft projected anchors."
   }
 ]$models$::jsonb) as x(
     slug text,

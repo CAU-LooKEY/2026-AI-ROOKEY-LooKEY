@@ -50,6 +50,13 @@
       "calibration_quality": "draft_projected"
     },
     {
+      "component_slug": "resistor-220-ohm",
+      "pin_count": 2,
+      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "coordinate_space": "glb_model_local",
+      "calibration_quality": "draft_projected"
+    },
+    {
       "component_slug": "servo-sg90",
       "pin_count": 3,
       "method": "projected_from_2d_pin_map_to_glb_bounds",
@@ -817,6 +824,22 @@
       "y_3d": 0.00378942,
       "z_3d": 0.00355589,
       "model_anchor_name": "pin_b2"
+    },
+    {
+      "slug": "resistor-220-ohm",
+      "pin_key": "LEAD_A",
+      "x_3d": 0.01925661,
+      "y_3d": 0.19690887,
+      "z_3d": 0.25789459,
+      "model_anchor_name": "pin_lead_a"
+    },
+    {
+      "slug": "resistor-220-ohm",
+      "pin_key": "LEAD_B",
+      "x_3d": 0.01925661,
+      "y_3d": 3.01132783,
+      "z_3d": 0.25789459,
+      "model_anchor_name": "pin_lead_b"
     },
     {
       "slug": "servo-sg90",

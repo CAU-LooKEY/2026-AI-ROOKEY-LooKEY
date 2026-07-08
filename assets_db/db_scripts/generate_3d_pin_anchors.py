@@ -57,6 +57,13 @@ AXIS_CONFIG = {
         "image_y_direction": "positive",
         "calibration_quality": "draft_projected",
     },
+    "resistor-220-ohm": {
+        "image_x_axis": "y",
+        "image_y_axis": "x",
+        "surface_axis": "z",
+        "image_y_direction": "positive",
+        "calibration_quality": "draft_projected",
+    },
     "servo-sg90": {
         "image_x_axis": "x",
         "image_y_axis": "z",

@@ -314,5 +314,43 @@
       ]
     },
     "unit": "model-unit"
+  },
+  {
+    "component_slug": "resistor-220-ohm",
+    "target": "resistor-220-ohm.glb",
+    "source": "resistor.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "User-supplied compact 220 ohm resistor GLB; two non-polarized leads use draft projected anchors.",
+    "storage_path": "3d_models/glb/resistor-220-ohm.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 167684,
+    "sha256": "fd4a5a218cbe116459c61cbb20e4547736e6e13976a2eca6b739f6e293c20d05",
+    "version": 2,
+    "nodes": 17,
+    "meshes": 7,
+    "materials": 5,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.238720898443745,
+        0.04055225849151611,
+        -0.2580604818399479
+      ],
+      "max": [
+        0.2772341209613387,
+        3.1676844358444214,
+        0.2578945923955587
+      ],
+      "size": [
+        0.5159550194050837,
+        3.1271321773529053,
+        0.5159550742355066
+      ]
+    },
+    "unit": "model-unit"
   }
 ]
