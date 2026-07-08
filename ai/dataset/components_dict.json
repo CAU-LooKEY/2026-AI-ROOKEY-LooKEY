@@ -11,5 +11,8 @@
   "outputs": [
     { "id": "led", "name_kr": "LED", "type": "actuator" },
     { "id": "servo_motor", "name_kr": "서보 모터", "type": "actuator" }
+  ],
+  "components": [
+    { "id": "resistor", "name_kr": "저항", "type": "passive" }
   ]
 }
