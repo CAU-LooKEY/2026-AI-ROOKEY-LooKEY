@@ -1,14 +1,24 @@
 """
 LOOKEY 3팀 회로 검증 모듈 — adapter.py (JSON 수신/변환 담당)
 
-⚠️ AI팀 실제 스키마(componentKey, type, sourceHandle, targetHandle, code)가
-이미 확정되어 있어서, "어떤 형식으로 올지 몰라 대비하는" 방어 코드를 다
-뺐습니다. 원래 버전은 JSON 문자열/파일 경로 입력, codeMeta 대체 구조,
-label 없을 때의 여러 겹 대체 로직까지 지원했는데, 실제로는 백엔드가 이미
-파싱된 dict를 그대로 받고 필드 이름도 고정돼 있어서 전부 불필요했습니다.
+지원하는 입력 형식 3가지 (convert_edges_to_connections가 자동으로 판별):
 
-rules.py가 가져다 쓰는 함수 이름/역할은 그대로 유지했으니 rules.py는 안
-고쳐도 됩니다.
+1. 이미 변환된 connections 배열 (그대로 통과)
+2. nodes + edges (componentKey/sourceHandle/targetHandle) — 이전 AI팀 목업 API 형식
+3. components + circuit_connections (component_index 기반) — Task-Result DB 형식
+   {
+     "components": ["arduino_uno", "hc_sr04", "led", "resistor_220ohm"],
+     "circuit_connections": [
+       {"from": {"component_index": 0, "pin": "5V"}, "to": {"component_index": 1, "pin": "VCC"}},
+       ...
+     ]
+   }
+   ⚠️ component_index는 components 배열에서 몇 번째 부품인지를 가리킵니다.
+   같은 부품이 여러 개 있어도(LED 2개 등) 인덱스로 구분할 수 있게 3팀이
+   제안한 형식입니다 — 아직 팀 확정 전이라 4팀/1팀과 맞춰봐야 합니다.
+
+세 형식 다 아래 공통 connections 구조로 변환되고, rules.py의 나머지
+규칙들은 이 공통 구조만 보므로 그대로 재사용됩니다.
 """
 
 import re
@@ -24,11 +34,23 @@ def _to_lower(value: Any) -> str:
     return str(value or "").strip().lower()
 
 
+# assets_db 기준 실제 보드 핀 이름 중, 물리적으로 같은 GND/전원 레일인데
+# 이름이 다른 것들. (예: 우노는 GND가 5곳에 있음 — GND_D, GND_P1, GND_P2,
+# AUX_GND_1, AUX_GND_2가 전부 하나의 GND 레일)
+_PIN_ALIASES = {
+    "GROUND": "GND",
+    "GND_D": "GND", "GND_P1": "GND", "GND_P2": "GND",
+    "AUX_GND_1": "GND", "AUX_GND_2": "GND", "GND_1": "GND", "GND_2": "GND",
+    "+5V": "5V", "AUX_5V": "5V",
+    "3V3": "3.3V", "AUX_3V3": "3.3V",
+    "VDD": "VCC",
+}
+
+
 def normalize_pin(pin: Any) -> str:
-    """핀 이름 정규화. gnd -> GND, +5v -> 5V, d3 -> D3"""
+    """핀 이름 정규화. gnd -> GND, GND_P1 -> GND, +5v -> 5V, d3 -> D3"""
     raw = str(pin or "").strip().upper()
-    aliases = {"GROUND": "GND", "+5V": "5V", "3V3": "3.3V", "VDD": "VCC"}
-    return aliases.get(raw, raw)
+    return _PIN_ALIASES.get(raw, raw)
 
 
 def is_io_pin(pin: Any) -> bool:
@@ -39,8 +61,7 @@ def is_io_pin(pin: Any) -> bool:
 def load_circuit_json(source: Any) -> CircuitJson:
     """
     회로 JSON을 받는다. 백엔드가 이미 파싱해서 dict로 넘겨주는 게 기본이고,
-    혹시 JSON 문자열로 오면 그것도 파싱해준다 (파일 경로 입력은 지원 안 함 —
-    백엔드 함수 호출에서는 필요 없음).
+    혹시 JSON 문자열로 오면 그것도 파싱해준다.
     """
     if isinstance(source, dict):
         return source
@@ -50,11 +71,8 @@ def load_circuit_json(source: Any) -> CircuitJson:
     raise ValueError("회로 JSON은 dict 또는 JSON 문자열이어야 합니다.")
 
 
-def convert_edges_to_connections(circuit_json: CircuitJson) -> List[Connection]:
-    """
-    nodes + edges(componentKey/sourceHandle/targetHandle 확정 스키마)를
-    검증 규칙에서 쓰기 쉬운 connections 구조로 변환한다.
-    """
+def _connections_from_nodes_edges(circuit_json: CircuitJson) -> List[Connection]:
+    """형식 2: nodes + edges (componentKey/sourceHandle/targetHandle)"""
     node_map = {str(n["id"]): n for n in circuit_json.get("nodes", []) if n.get("id")}
     connections: List[Connection] = []
 
@@ -77,15 +95,64 @@ def convert_edges_to_connections(circuit_json: CircuitJson) -> List[Connection]:
     return connections
 
 
-def get_connected_pins_by_node(circuit_json: CircuitJson) -> Dict[str, List[str]]:
-    """node id별로 연결된 핀 목록을 만든다."""
+def _connections_from_task_result(circuit_json: CircuitJson) -> List[Connection]:
+    """형식 3: components(문자열 리스트) + circuit_connections(component_index 기반)"""
+    components: List[str] = circuit_json.get("components", [])
+    # 같은 부품이 여러 개일 수 있으므로 "타입_인덱스" 형태로 고유 id를 만든다
+    instance_ids = [f"{comp_type}_{idx}" for idx, comp_type in enumerate(components)]
+
+    connections: List[Connection] = []
+    for cc in circuit_json.get("circuit_connections", []):
+        f, t = cc.get("from", {}), cc.get("to", {})
+        f_idx, t_idx = f.get("component_index"), t.get("component_index")
+
+        if f_idx is None or t_idx is None or f_idx >= len(components) or t_idx >= len(components):
+            continue  # 잘못된 인덱스는 건너뜀 (필요하면 나중에 에러로 승격 가능)
+
+        connections.append({
+            "edge_id": cc.get("id"),
+            "from_component": instance_ids[f_idx],
+            "from_component_key": components[f_idx],
+            "from_component_type": None,
+            "from_pin": f.get("pin"),
+            "to_component": instance_ids[t_idx],
+            "to_component_key": components[t_idx],
+            "to_component_type": None,
+            "to_pin": t.get("pin"),
+        })
+
+    return connections
+
+
+def convert_edges_to_connections(circuit_json: CircuitJson) -> List[Connection]:
+    """
+    회로 JSON을 공통 connections 구조로 변환한다. 세 가지 입력 형식을
+    자동으로 판별해서 처리한다 (모듈 docstring 참고).
+    """
+    if isinstance(circuit_json.get("connections"), list):
+        return circuit_json["connections"]
+
+    if isinstance(circuit_json.get("circuit_connections"), list):
+        return _connections_from_task_result(circuit_json)
+
+    return _connections_from_nodes_edges(circuit_json)
+
+
+def get_connected_pins_by_node(connections: List[Connection]) -> Dict[str, List[str]]:
+    """
+    부품 instance id별로 연결된 핀 목록을 만든다.
+    ⚠️ 예전엔 raw circuit_json(nodes/edges)을 직접 읽었는데, 그러면 형식 3
+    (components+circuit_connections)에서는 항상 빈 값만 나오는 문제가 있어서
+    convert_edges_to_connections()가 만든 공통 connections 리스트를 받는
+    방식으로 바꿨다. (rules.py의 check_missing_power_or_gnd 호출부도 같이 수정 필요)
+    """
     connected: Dict[str, List[str]] = {}
-    for edge in circuit_json.get("edges", []):
-        source, target = edge.get("source"), edge.get("target")
-        if source:
-            connected.setdefault(str(source), []).append(normalize_pin(edge.get("sourceHandle")))
-        if target:
-            connected.setdefault(str(target), []).append(normalize_pin(edge.get("targetHandle")))
+    for conn in connections:
+        from_id, to_id = conn.get("from_component"), conn.get("to_component")
+        if from_id:
+            connected.setdefault(from_id, []).append(normalize_pin(conn.get("from_pin")))
+        if to_id:
+            connected.setdefault(to_id, []).append(normalize_pin(conn.get("to_pin")))
     return connected
 
 
@@ -95,8 +162,8 @@ _PIN_CALL_PATTERN = re.compile(
 
 
 def extract_used_pins_from_code(circuit_json: CircuitJson) -> List[str]:
-    """code 문자열에서 pinMode/digitalWrite 등에 실제 쓰인 핀을 뽑는다."""
-    code = circuit_json.get("code", "")
+    """code(또는 source_code) 문자열에서 pinMode/digitalWrite 등에 쓰인 핀을 뽑는다."""
+    code = circuit_json.get("code") or circuit_json.get("source_code") or ""
     if not isinstance(code, str):
         return []
 

@@ -79,13 +79,17 @@ def check_required_fields(circuit_json: CircuitJson) -> Optional[ValidationResul
     """[R002] 필수 필드 누락 검사"""
     has_nodes_edges = "nodes" in circuit_json and "edges" in circuit_json
     has_connections = "connections" in circuit_json
+    has_task_result_format = "components" in circuit_json and "circuit_connections" in circuit_json
 
-    if not has_nodes_edges and not has_connections:
+    if not has_nodes_edges and not has_connections and not has_task_result_format:
         return {
             "rule": "R002",
             "grade": "ERROR",
             "title": "회로 JSON 필수 필드 누락",
-            "feedback": "회로 JSON에 nodes/edges 또는 connections 정보가 없습니다. 회로 연결 정보를 먼저 생성해야 합니다.",
+            "feedback": (
+                "회로 JSON에 nodes/edges, connections, 또는 components/"
+                "circuit_connections 정보가 없습니다. 회로 연결 정보를 먼저 생성해야 합니다."
+            ),
             "target": {},
         }
 
@@ -232,56 +236,61 @@ def check_unused_hardware_pin(connections: List[Connection], circuit_json: Circu
     return None
 
 
-def check_missing_power_or_gnd(circuit_json: CircuitJson) -> Optional[ValidationResult]:
-    """[R007/R008] 부품 전원 또는 GND 미연결 검사"""
-    nodes = circuit_json.get("nodes", [])
-    if not isinstance(nodes, list):
-        return None
+def check_missing_power_or_gnd(connections: List[Connection]) -> Optional[ValidationResult]:
+    """
+    [R007/R008] 부품 전원 또는 GND 미연결 검사
 
-    connected_pins = get_connected_pins_by_node(circuit_json)
+    ⚠️ 예전엔 circuit_json의 nodes 배열에서 "type"(input/output/power) 필드를
+    보고 검사 대상을 골랐는데, Task-Result 형식(components 문자열 리스트)엔
+    그런 분류 필드가 없다. 그래서 "보드/저항/LED가 아니면 검사 대상"으로
+    단순화했다 — 어차피 기존 로직도 결국 이 세 개만 제외했었어서 동작은
+    똑같다.
+    """
+    connected_pins = get_connected_pins_by_node(connections)
 
-    for node in nodes:
-        node_id = str(node.get("id") or "")
-        label = node.get("label")
-        component_key = node.get("componentKey")
-        node_type = node.get("type")
+    # connections에 등장하는 모든 부품 instance id를 훑는다
+    seen: set = set()
+    for conn in connections:
+        for instance_id, component_key in (
+            (conn.get("from_component"), conn.get("from_component_key")),
+            (conn.get("to_component"), conn.get("to_component_key")),
+        ):
+            if not instance_id or instance_id in seen:
+                continue
+            seen.add(instance_id)
 
-        text = _component_text(label, component_key, node_type)
+            text = _component_text(instance_id, component_key)
 
-        if _is_board_component(text) or _is_passive_component(text) or _is_led_component(text):
-            continue
+            if _is_board_component(text) or _is_passive_component(text) or _is_led_component(text):
+                continue
 
-        if node_type not in {"input", "output", "power"}:
-            continue
+            pins = connected_pins.get(instance_id, [])
+            has_power = any(_is_power_pin(pin) for pin in pins)
+            has_gnd = any(_is_gnd_pin(pin) for pin in pins)
 
-        pins = connected_pins.get(node_id, [])
+            if not has_power:
+                return {
+                    "rule": "R007",
+                    "grade": "WARNING",
+                    "title": "부품 전원 연결 확인 필요",
+                    "feedback": (
+                        f"{instance_id} 부품에 전원 핀 연결이 보이지 않아요. "
+                        "센서나 모듈이라면 VCC, 5V, 3.3V 중 필요한 전원을 연결해야 합니다."
+                    ),
+                    "target": {"component": instance_id, "connected_pins": pins},
+                }
 
-        has_power = any(_is_power_pin(pin) for pin in pins)
-        has_gnd = any(_is_gnd_pin(pin) for pin in pins)
-
-        if not has_power:
-            return {
-                "rule": "R007",
-                "grade": "WARNING",
-                "title": "부품 전원 연결 확인 필요",
-                "feedback": (
-                    f"{label or component_key or node_id} 부품에 전원 핀 연결이 보이지 않아요. "
-                    "센서나 모듈이라면 VCC, 5V, 3.3V 중 필요한 전원을 연결해야 합니다."
-                ),
-                "target": {"node_id": node_id, "component": label or component_key, "connected_pins": pins},
-            }
-
-        if not has_gnd:
-            return {
-                "rule": "R008",
-                "grade": "WARNING",
-                "title": "부품 GND 연결 확인 필요",
-                "feedback": (
-                    f"{label or component_key or node_id} 부품에 GND 연결이 보이지 않아요. "
-                    "대부분의 센서와 모듈은 보드와 GND를 공통으로 연결해야 정상 동작합니다."
-                ),
-                "target": {"node_id": node_id, "component": label or component_key, "connected_pins": pins},
-            }
+            if not has_gnd:
+                return {
+                    "rule": "R008",
+                    "grade": "WARNING",
+                    "title": "부품 GND 연결 확인 필요",
+                    "feedback": (
+                        f"{instance_id} 부품에 GND 연결이 보이지 않아요. "
+                        "대부분의 센서와 모듈은 보드와 GND를 공통으로 연결해야 정상 동작합니다."
+                    ),
+                    "target": {"component": instance_id, "connected_pins": pins},
+                }
 
     return None
 
@@ -348,7 +357,7 @@ def validate_circuit(circuit_input: Union[str, Path, CircuitJson]) -> List[Valid
         check_unknown_components(circuit_json),
         check_short_circuit(connections),
         check_led_resistor(connections),
-        check_missing_power_or_gnd(circuit_json),
+        check_missing_power_or_gnd(connections),
         check_duplicate_pin_usage(connections),
         check_pin_mismatch(connections, circuit_json),
         check_unused_hardware_pin(connections, circuit_json),
