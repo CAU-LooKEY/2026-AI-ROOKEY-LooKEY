@@ -1,0 +1,40 @@
+{
+  "id": "case-001",
+  "title": "K-EXAONE LED 테스트 회로",
+  "userPrompt": "아두이노로 LED를 켜는 회로 만들어줘",
+  "nodes": [
+    {
+      "id": "arduino-1",
+      "componentKey": "arduino_uno",
+      "type": "board",
+      "label": "Arduino Uno"
+    },
+    {
+      "id": "led-1",
+      "componentKey": "led",
+      "type": "output",
+      "label": "Red LED"
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "arduino-1",
+      "target": "led-1",
+      "sourceHandle": "D9",
+      "targetHandle": "anode"
+    },
+    {
+      "id": "e2",
+      "source": "led-1",
+      "target": "arduino-1",
+      "sourceHandle": "cathode",
+      "targetHandle": "GND"
+    }
+  ],
+  "code": "void setup(){ pinMode(9, OUTPUT); }",
+  "warnings": [],
+  "safety_focus": [
+    "LED 저항 필요"
+  ]
+}
