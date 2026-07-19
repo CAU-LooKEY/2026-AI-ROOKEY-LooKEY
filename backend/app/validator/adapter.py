@@ -182,3 +182,109 @@ def get_hardware_io_pins(connections: List[Connection]) -> List[str]:
             if is_io_pin(pin):
                 pins.add(normalize_pin(pin))
     return sorted(pins)
+
+def infer_component_type(component_key: str, label: str = "") -> str:
+    """
+    componentKey 또는 label을 보고 validator용 component type을 추정한다.
+
+    rules.py는 type을 보고 board/input/output/passive 등을 판단하므로,
+    API 응답의 componentKey를 우리 검증기가 이해할 수 있게 바꿔주는 역할이다.
+    """
+
+    text = f"{component_key} {label}".lower()
+
+    if "arduino" in text or "uno" in text or "nano" in text:
+        return "board"
+
+    if "hc-sr04" in text or "ultrasonic" in text or "sensor" in text:
+        return "input"
+
+    if "button" in text or "pushbutton" in text or "switch" in text:
+        return "input"
+
+    if "led" in text or "buzzer" in text or "servo" in text:
+        return "output"
+
+    if "resistor" in text or "220" in text or "ohm" in text or "저항" in text:
+        return "passive"
+
+    return "unknown"
+
+
+def convert_api_response_to_validator_json(api_response: CircuitJson) -> CircuitJson:
+    """
+    /api/v1/circuit/generate 응답을
+    3팀 validator가 검사할 수 있는 nodes/edges/code 구조로 변환한다.
+
+    API 응답 구조:
+    {
+        "circuit": {
+            "parts": [...],
+            "connections": [...]
+        },
+        "codeLines": [...]
+    }
+
+    validator 입력 구조:
+    {
+        "nodes": [...],
+        "edges": [...],
+        "code": "..."
+    }
+    """
+
+    circuit = api_response.get("circuit", {})
+    parts = circuit.get("parts", [])
+    connections = circuit.get("connections", [])
+
+    nodes = []
+    for part in parts:
+        component_key = part.get("componentKey", "")
+        label = part.get("label") or part.get("name") or component_key
+
+        nodes.append({
+            "id": part.get("id"),
+            "componentKey": component_key,
+            "type": infer_component_type(component_key, label),
+            "label": label,
+            "position": part.get("position", {}),
+            "width": part.get("width"),
+        })
+
+    edges = []
+    for connection in connections:
+        edges.append({
+            "id": connection.get("id"),
+            "source": connection.get("source"),
+            "target": connection.get("target"),
+            "sourceHandle": connection.get("sourcePin"),
+            "targetHandle": connection.get("targetPin"),
+            "label": connection.get("label", ""),
+        })
+
+    code_lines = api_response.get("codeLines", [])
+    if isinstance(code_lines, list):
+        code = "\n".join(str(line) for line in code_lines)
+    elif isinstance(api_response.get("code"), str):
+        code = api_response.get("code", "")
+    else:
+        code = ""
+
+    return {
+        "title": api_response.get("title"),
+        "intent": api_response.get("intent"),
+        "difficulty": api_response.get("difficulty"),
+        "estimatedTime": api_response.get("estimatedTime"),
+
+        "nodes": nodes,
+        "edges": edges,
+        "code": code,
+
+        "warnings": api_response.get("warnings", []),
+        "explanation": api_response.get("tutorSteps", []),
+        "validationResultsFromApi": api_response.get("validationResults", []),
+
+        # 원본 API 응답 보존
+        "originalApiResponse": api_response,
+    }
+    
