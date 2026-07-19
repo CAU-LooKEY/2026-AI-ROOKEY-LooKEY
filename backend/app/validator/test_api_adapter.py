@@ -3,6 +3,7 @@ import json
 from app.validator.adapter import convert_api_response_to_validator_json
 from app.validator.rules import validate_and_attach
 
+
 SAMPLE_CIRCUIT = {
     "title": "LED 켜기",
     "intent": "LED 제어",
