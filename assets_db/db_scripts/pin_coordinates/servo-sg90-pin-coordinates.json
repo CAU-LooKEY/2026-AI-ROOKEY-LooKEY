@@ -1,0 +1,71 @@
+{
+  "component_slug": "servo-sg90",
+  "display_name": "SG90 Micro Servo",
+  "category": "actuator",
+  "board_family": null,
+  "description": "SG90 micro servo calibrated from the uploaded front/top image; connector pin order follows brown/red/orange wire order.",
+  "grid_width": 3,
+  "grid_height": 5,
+  "pixel_width": 167,
+  "pixel_height": 249,
+  "license_status": "needs_review",
+  "trademark_notes": null,
+  "image": {
+    "path": "assets_db/2d_svgs/raster_sources/servo-sg90-top.png",
+    "mime_type": "image/png",
+    "width_px": 167,
+    "height_px": 249,
+    "coordinate_origin": "top-left",
+    "background": "transparent"
+  },
+  "pins": [
+    {
+      "pin_key": "GND",
+      "label": "GND",
+      "signal_type": "ground",
+      "side": "top",
+      "x_px": 71,
+      "y_px": 17,
+      "aliases": [
+        "brown",
+        "black",
+        "-"
+      ],
+      "sort_order": 0,
+      "notes": "Left connector socket in the uploaded image."
+    },
+    {
+      "pin_key": "VCC",
+      "label": "VCC",
+      "signal_type": "power",
+      "side": "top",
+      "x_px": 86,
+      "y_px": 17,
+      "aliases": [
+        "5V",
+        "red"
+      ],
+      "sort_order": 1,
+      "notes": "Middle connector socket in the uploaded image."
+    },
+    {
+      "pin_key": "SIGNAL",
+      "label": "Signal",
+      "signal_type": "pwm",
+      "side": "top",
+      "x_px": 101,
+      "y_px": 17,
+      "aliases": [
+        "SIG",
+        "PWM",
+        "orange",
+        "yellow"
+      ],
+      "sort_order": 2,
+      "notes": "Right connector socket in the uploaded image."
+    }
+  ],
+  "notes": [
+    "Servo connector order inferred from visible wire colors: brown/dark, red, orange."
+  ]
+}

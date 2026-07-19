@@ -1,0 +1,316 @@
+{
+  "component_slug": "breadboard-half",
+  "display_name": "Half-size Breadboard",
+  "layout_kind": "breadboard",
+  "hole_coordinate_system": "image-pixel-procedural",
+  "column_indexing": "left-to-right",
+  "columns": 30,
+  "terminal_rows": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J"
+  ],
+  "terminal": {
+    "x_start_px": 32.1,
+    "x_pitch_px": 10.45,
+    "upper_rows": {
+      "labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "y_px": [
+        69.2,
+        79.7,
+        90.1,
+        100.6,
+        110.9
+      ]
+    },
+    "lower_rows": {
+      "labels": [
+        "F",
+        "G",
+        "H",
+        "I",
+        "J"
+      ],
+      "y_px": [
+        142.0,
+        152.1,
+        162.9,
+        173.1,
+        183.8
+      ]
+    }
+  },
+  "rails": {
+    "top_positive": {
+      "label": "+",
+      "y_px": 28.6,
+      "x_groups_px": [
+        [
+          37.9,
+          48.0,
+          58.4,
+          68.9,
+          79.0
+        ],
+        [
+          100.0,
+          110.5,
+          120.9,
+          131.1,
+          141.8,
+          152.1,
+          162.3,
+          172.6,
+          183.0,
+          193.5,
+          203.9,
+          214.3,
+          225.0,
+          235.8,
+          245.9,
+          256.3,
+          267.0
+        ],
+        [
+          287.9,
+          298.0,
+          308.5,
+          319.0,
+          329.1
+        ]
+      ]
+    },
+    "top_negative": {
+      "label": "-",
+      "y_px": 39.4,
+      "x_groups_px": [
+        [
+          37.9,
+          48.0,
+          58.4,
+          68.9,
+          79.0
+        ],
+        [
+          100.0,
+          110.5,
+          120.9,
+          131.1,
+          141.8,
+          152.1,
+          162.3,
+          172.6,
+          183.0,
+          193.5,
+          203.9,
+          214.3,
+          225.0,
+          235.8,
+          245.9,
+          256.3,
+          267.0
+        ],
+        [
+          287.9,
+          298.0,
+          308.5,
+          319.0,
+          329.1
+        ]
+      ]
+    },
+    "bottom_positive": {
+      "label": "+",
+      "y_px": 214.0,
+      "x_groups_px": [
+        [
+          37.9,
+          48.0,
+          58.6,
+          69.0,
+          79.5
+        ],
+        [
+          100.1,
+          110.8,
+          121.0,
+          131.6,
+          142.0,
+          152.2,
+          162.8,
+          173.0,
+          183.6,
+          194.0,
+          204.4,
+          214.9,
+          225.7,
+          236.0,
+          246.4,
+          256.9,
+          267.4
+        ],
+        [
+          288.0,
+          298.9,
+          309.0,
+          319.9,
+          330.0
+        ]
+      ]
+    },
+    "bottom_negative": {
+      "label": "-",
+      "y_px": 224.5,
+      "x_groups_px": [
+        [
+          37.9,
+          48.0,
+          58.6,
+          69.0,
+          79.5
+        ],
+        [
+          100.1,
+          110.8,
+          121.0,
+          131.6,
+          142.0,
+          152.2,
+          162.8,
+          173.0,
+          183.6,
+          194.0,
+          204.4,
+          214.9,
+          225.7,
+          236.0,
+          246.4,
+          256.9,
+          267.4
+        ],
+        [
+          288.0,
+          298.9,
+          309.0,
+          319.9,
+          330.0
+        ]
+      ]
+    }
+  },
+  "representative_pins": [
+    {
+      "pin_key": "RAIL_TOP_POS",
+      "label": "+ top",
+      "signal_type": "power",
+      "side": "top",
+      "x_px": 37.9,
+      "y_px": 28.6,
+      "aliases": [
+        "+"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "RAIL_TOP_NEG",
+      "label": "- top",
+      "signal_type": "ground",
+      "side": "top",
+      "x_px": 37.9,
+      "y_px": 39.4,
+      "aliases": [
+        "-"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_POS",
+      "label": "+ bottom",
+      "signal_type": "power",
+      "side": "bottom",
+      "x_px": 37.9,
+      "y_px": 214.0,
+      "aliases": [
+        "+"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_NEG",
+      "label": "- bottom",
+      "signal_type": "ground",
+      "side": "bottom",
+      "x_px": 37.9,
+      "y_px": 224.5,
+      "aliases": [
+        "-"
+      ],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "A1",
+      "label": "A1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 32.1,
+      "y_px": 69.2,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "E1",
+      "label": "E1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 32.1,
+      "y_px": 110.9,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "F1",
+      "label": "F1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 32.1,
+      "y_px": 142.0,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    },
+    {
+      "pin_key": "J1",
+      "label": "J1",
+      "signal_type": "component",
+      "side": "center",
+      "x_px": 32.1,
+      "y_px": 183.8,
+      "aliases": [],
+      "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts."
+    }
+  ],
+  "notes": [
+    "Procedural layout calibrated from detected hole centers in the uploaded top-view image.",
+    "Do not store every breadboard hole as a DB row; compute holes from x_start, x_pitch, and y row arrays."
+  ],
+  "image": {
+    "path": "assets_db/2d_svgs/raster_sources/breadboard-half-top.png",
+    "mime_type": "image/png",
+    "width_px": 367,
+    "height_px": 247,
+    "coordinate_origin": "top-left",
+    "background": "opaque-board-crop"
+  }
+}

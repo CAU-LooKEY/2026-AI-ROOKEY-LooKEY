@@ -1,0 +1,62 @@
+{
+  "component_slug": "led-5mm-blue",
+  "display_name": "Blue LED 5mm",
+  "model_storage_path": "3d_models/glb/led-5mm-blue.glb",
+  "model_bounds": {
+    "min": [
+      -0.7099154650891037,
+      -1.2011530950029548,
+      -0.23535256324766307
+    ],
+    "max": [
+      0.2403139845835432,
+      1.3656709622220875,
+      0.23535272745438912
+    ],
+    "size": [
+      0.9502294496726469,
+      2.566824057225042,
+      0.4707052907020522
+    ]
+  },
+  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "image_x_axis": "x",
+    "image_y_axis": "y",
+    "surface_axis": "z",
+    "image_y_direction": "positive",
+    "calibration_quality": "draft_projected"
+  },
+  "pixel_source": {
+    "width_px": 310,
+    "height_px": 381,
+    "origin": "top-left"
+  },
+  "pins": [
+    {
+      "pin_key": "ANODE",
+      "label": "Anode +",
+      "x_3d": -0.61489252,
+      "y_3d": 1.30503732,
+      "z_3d": 0.23535273,
+      "model_anchor_name": "pin_anode",
+      "source_x_px": 31,
+      "source_y_px": 372
+    },
+    {
+      "pin_key": "CATHODE",
+      "label": "Cathode -",
+      "x_3d": -0.68232816,
+      "y_3d": 0.94797256,
+      "z_3d": 0.23535273,
+      "model_anchor_name": "pin_cathode",
+      "source_x_px": 9,
+      "source_y_px": 319
+    }
+  ],
+  "notes": [
+    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
+    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+  ]
+}

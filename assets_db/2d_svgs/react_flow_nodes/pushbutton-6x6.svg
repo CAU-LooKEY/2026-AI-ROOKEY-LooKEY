@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 183 235" width="183" height="235" role="img" aria-label="6x6 Tactile Pushbutton">
+  <image href="../raster_sources/pushbutton-6x6-top.png" x="0" y="0" width="183" height="235" preserveAspectRatio="xMidYMid meet"/>
+  <circle id="pin-A1" cx="22" cy="15" r="4" fill="#14b8a6" stroke="#fff" stroke-width="2"><title>A1</title></circle>
+  <circle id="pin-A2" cx="22" cy="220" r="4" fill="#14b8a6" stroke="#fff" stroke-width="2"><title>A2</title></circle>
+  <circle id="pin-B1" cx="161" cy="15" r="4" fill="#14b8a6" stroke="#fff" stroke-width="2"><title>B1</title></circle>
+  <circle id="pin-B2" cx="161" cy="220" r="4" fill="#14b8a6" stroke="#fff" stroke-width="2"><title>B2</title></circle>
+</svg>

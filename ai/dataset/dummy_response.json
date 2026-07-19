@@ -1,0 +1,12 @@
+{
+  "intent": "거리 측정 및 경고등",
+  "components": [
+    { "id": "arduino_uno", "quantity": 1 },
+    { "id": "breadboard", "quantity": 1 },
+    { "id": "ultrasonic_sensor", "quantity": 1 },
+    { "id": "led", "quantity": 3 }
+  ],
+  "unsupported_components": [
+    "블루투스 모듈"
+  ]
+}

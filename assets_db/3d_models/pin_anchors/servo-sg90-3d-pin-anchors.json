@@ -1,0 +1,72 @@
+{
+  "component_slug": "servo-sg90",
+  "display_name": "SG90 Micro Servo",
+  "model_storage_path": "3d_models/glb/servo-sg90.glb",
+  "model_bounds": {
+    "min": [
+      -0.5124761462211609,
+      -0.07357913255691528,
+      -1.4787427186965942
+    ],
+    "max": [
+      0.5144802927970886,
+      2.589119926095009,
+      1.9720511734485626
+    ],
+    "size": [
+      1.0269564390182495,
+      2.662699058651924,
+      3.450793892145157
+    ]
+  },
+  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "image_x_axis": "x",
+    "image_y_axis": "z",
+    "surface_axis": "y",
+    "image_y_direction": "positive",
+    "calibration_quality": "draft_projected"
+  },
+  "pixel_source": {
+    "width_px": 167,
+    "height_px": 249,
+    "origin": "top-left"
+  },
+  "pins": [
+    {
+      "pin_key": "GND",
+      "label": "GND",
+      "x_3d": -0.07586592,
+      "y_3d": 2.58911993,
+      "z_3d": -1.24314635,
+      "model_anchor_name": "pin_gnd",
+      "source_x_px": 71,
+      "source_y_px": 17
+    },
+    {
+      "pin_key": "VCC",
+      "label": "VCC",
+      "x_3d": 0.01637567,
+      "y_3d": 2.58911993,
+      "z_3d": -1.24314635,
+      "model_anchor_name": "pin_vcc",
+      "source_x_px": 86,
+      "source_y_px": 17
+    },
+    {
+      "pin_key": "SIGNAL",
+      "label": "Signal",
+      "x_3d": 0.10861727,
+      "y_3d": 2.58911993,
+      "z_3d": -1.24314635,
+      "model_anchor_name": "pin_signal",
+      "source_x_px": 101,
+      "source_y_px": 17
+    }
+  ],
+  "notes": [
+    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
+    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+  ]
+}

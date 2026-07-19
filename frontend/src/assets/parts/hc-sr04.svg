@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 502 292" width="502" height="292" role="img" aria-label="HC-SR04 Ultrasonic">
+  <image href="../raster_sources/hc-sr04-top.png" x="0" y="0" width="502" height="292" preserveAspectRatio="xMidYMid meet"/>
+  <circle id="pin-VCC" cx="207" cy="238" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>VCC</title></circle>
+  <circle id="pin-TRIG" cx="237" cy="238" r="4" fill="#2563eb" stroke="#fff" stroke-width="2"><title>TRIG</title></circle>
+  <circle id="pin-ECHO" cx="267" cy="238" r="4" fill="#2563eb" stroke="#fff" stroke-width="2"><title>ECHO</title></circle>
+  <circle id="pin-GND" cx="297" cy="238" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>GND</title></circle>
+</svg>

@@ -1,0 +1,82 @@
+{
+  "component_slug": "hc-sr04",
+  "display_name": "HC-SR04 Ultrasonic",
+  "model_storage_path": "3d_models/glb/hc-sr04.glb",
+  "model_bounds": {
+    "min": [
+      -1.2287132735491468,
+      -0.07834634256011341,
+      -0.3487059473991394
+    ],
+    "max": [
+      1.6345217521429731,
+      1.5839607119560242,
+      0.7818499892883217
+    ],
+    "size": [
+      2.86323502569212,
+      1.6623070545161376,
+      1.1305559366874611
+    ]
+  },
+  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "image_x_axis": "x",
+    "image_y_axis": "y",
+    "surface_axis": "z",
+    "image_y_direction": "positive",
+    "calibration_quality": "draft_projected"
+  },
+  "pixel_source": {
+    "width_px": 502,
+    "height_px": 292,
+    "origin": "top-left"
+  },
+  "pins": [
+    {
+      "pin_key": "VCC",
+      "label": "VCC",
+      "x_3d": -0.0480566,
+      "y_3d": 1.27654776,
+      "z_3d": 0.78184999,
+      "model_anchor_name": "pin_vcc",
+      "source_x_px": 207,
+      "source_y_px": 238
+    },
+    {
+      "pin_key": "TRIG",
+      "label": "TRIG",
+      "x_3d": 0.12305306,
+      "y_3d": 1.27654776,
+      "z_3d": 0.78184999,
+      "model_anchor_name": "pin_trig",
+      "source_x_px": 237,
+      "source_y_px": 238
+    },
+    {
+      "pin_key": "ECHO",
+      "label": "ECHO",
+      "x_3d": 0.29416273,
+      "y_3d": 1.27654776,
+      "z_3d": 0.78184999,
+      "model_anchor_name": "pin_echo",
+      "source_x_px": 267,
+      "source_y_px": 238
+    },
+    {
+      "pin_key": "GND",
+      "label": "GND",
+      "x_3d": 0.46527239,
+      "y_3d": 1.27654776,
+      "z_3d": 0.78184999,
+      "model_anchor_name": "pin_gnd",
+      "source_x_px": 297,
+      "source_y_px": 238
+    }
+  ],
+  "notes": [
+    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
+    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+  ]
+}

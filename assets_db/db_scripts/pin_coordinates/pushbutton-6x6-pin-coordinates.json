@@ -1,0 +1,78 @@
+{
+  "component_slug": "pushbutton-6x6",
+  "display_name": "6x6 Tactile Pushbutton",
+  "category": "input",
+  "board_family": null,
+  "description": "Four-leg tactile switch calibrated from the uploaded top-view image.",
+  "grid_width": 2,
+  "grid_height": 2,
+  "pixel_width": 183,
+  "pixel_height": 235,
+  "license_status": "approved",
+  "trademark_notes": null,
+  "image": {
+    "path": "assets_db/2d_svgs/raster_sources/pushbutton-6x6-top.png",
+    "mime_type": "image/png",
+    "width_px": 183,
+    "height_px": 235,
+    "coordinate_origin": "top-left",
+    "background": "transparent"
+  },
+  "pins": [
+    {
+      "pin_key": "A1",
+      "label": "A1",
+      "signal_type": "component",
+      "side": "left",
+      "x_px": 22,
+      "y_px": 15,
+      "aliases": [
+        "left-top"
+      ],
+      "sort_order": 0,
+      "notes": "Internally common with A2."
+    },
+    {
+      "pin_key": "A2",
+      "label": "A2",
+      "signal_type": "component",
+      "side": "left",
+      "x_px": 22,
+      "y_px": 220,
+      "aliases": [
+        "left-bottom"
+      ],
+      "sort_order": 1,
+      "notes": "Internally common with A1."
+    },
+    {
+      "pin_key": "B1",
+      "label": "B1",
+      "signal_type": "component",
+      "side": "right",
+      "x_px": 161,
+      "y_px": 15,
+      "aliases": [
+        "right-top"
+      ],
+      "sort_order": 2,
+      "notes": "Internally common with B2."
+    },
+    {
+      "pin_key": "B2",
+      "label": "B2",
+      "signal_type": "component",
+      "side": "right",
+      "x_px": 161,
+      "y_px": 220,
+      "aliases": [
+        "right-bottom"
+      ],
+      "sort_order": 3,
+      "notes": "Internally common with B1."
+    }
+  ],
+  "notes": [
+    "Pins are placed at the external lead tips rather than the dark circular case marks."
+  ]
+}
