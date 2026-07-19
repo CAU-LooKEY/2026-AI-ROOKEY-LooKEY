@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { generateCircuit } from "./api/circuitApi.js";
 import CanvasView from "./views/canvas/CanvasView.jsx";
-import { sampleCircuit } from "./views/canvas/sampleCircuit.js";
-import { examplePrompts, sampleProject, sampleSavedProjects } from "./sampleProject.js";
+import { examplePrompts, sampleSavedProjects } from "./sampleProject.js";
 import "./App.css";
 
 const resultSteps = [
@@ -18,6 +18,36 @@ export default function App() {
   const [savedPrompts, setSavedPrompts] = useState([]);
   const [shareMessage, setShareMessage] = useState("");
   const [copyMessage, setCopyMessage] = useState("");
+  const [project, setProject] = useState(null);
+  const [circuit, setCircuit] = useState(null);
+  const [apiMessage, setApiMessage] = useState("");
+  const [generationError, setGenerationError] = useState("");
+
+  const isGenerating = page === "loading";
+  const hasGeneratedResult = Boolean(project && circuit);
+
+  const handleGenerate = async () => {
+    if (!prompt.trim()) {
+      setGenerationError("만들고 싶은 회로를 문장으로 입력해주세요.");
+      setPage("error");
+      return;
+    }
+
+    setPage("loading");
+    setApiMessage("");
+    setGenerationError("");
+
+    try {
+      const result = await generateCircuit(prompt);
+      setProject(result.project);
+      setCircuit(result.circuit);
+      setApiMessage("K-EXAONE API에서 새로 생성한 결과입니다.");
+      setPage("summary");
+    } catch (error) {
+      setGenerationError(error instanceof Error ? error.message : "K-EXAONE 회로 생성에 실패했습니다.");
+      setPage("error");
+    }
+  };
 
   const savePrompt = () => {
     setSavedPrompts((items) => {
@@ -28,20 +58,20 @@ export default function App() {
 
   const sharePrompt = () => {
     savePrompt();
-    setShareMessage(sampleProject.shareMessage);
+    setShareMessage(project.shareMessage);
   };
 
   return (
     <div className="app">
       <header className="nav">
-        <button className="logoButton" onClick={() => setPage("home")}>
+        <button className="logoButton" disabled={isGenerating} onClick={() => setPage("home")}>
           ⚙️ Prompt to Circuit
         </button>
         <div className="menu">
-          <button onClick={() => setPage("home")}>홈</button>
-          <button onClick={() => setPage("summary")}>내 프로젝트</button>
-          <button onClick={() => setPage("tutor")}>AI 튜터</button>
-          <button onClick={() => setPage("history")}>저장</button>
+          <button disabled={isGenerating} onClick={() => setPage("home")}>홈</button>
+          <button disabled={isGenerating || !hasGeneratedResult} onClick={() => setPage("summary")}>내 프로젝트</button>
+          <button disabled={isGenerating || !hasGeneratedResult} onClick={() => setPage("tutor")}>AI 튜터</button>
+          <button disabled={isGenerating || !hasGeneratedResult} onClick={() => setPage("history")}>저장</button>
         </div>
       </header>
 
@@ -50,23 +80,41 @@ export default function App() {
           prompt={prompt}
           onPromptChange={setPrompt}
           onExampleSelect={setPrompt}
-          onNext={() => setPage("loading")}
+          onNext={handleGenerate}
         />
       )}
-      {page === "loading" && <LoadingPage onNext={() => setPage("summary")} />}
+      {page === "loading" && <LoadingPage prompt={prompt} />}
+      {page === "error" && (
+        <GenerationErrorPage
+          prompt={prompt}
+          message={generationError}
+          onBack={() => setPage("home")}
+          onRetry={handleGenerate}
+        />
+      )}
       {page === "summary" && (
         <SummaryPage
           prompt={prompt}
+          project={project}
+          circuit={circuit}
+          apiMessage={apiMessage}
           onStepSelect={setPage}
           onBack={() => setPage("home")}
           onNext={() => setPage("circuit")}
         />
       )}
       {page === "circuit" && (
-        <CircuitPage onStepSelect={setPage} onBack={() => setPage("summary")} onNext={() => setPage("code")} />
+        <CircuitPage
+          circuit={circuit}
+          project={project}
+          onStepSelect={setPage}
+          onBack={() => setPage("summary")}
+          onNext={() => setPage("code")}
+        />
       )}
       {page === "code" && (
         <CodePage
+          project={project}
           copyMessage={copyMessage}
           onCopyMessage={setCopyMessage}
           onStepSelect={setPage}
@@ -74,10 +122,13 @@ export default function App() {
           onNext={() => setPage("tutor")}
         />
       )}
-      {page === "tutor" && <TutorPage onStepSelect={setPage} onBack={() => setPage("code")} onNext={() => setPage("history")} />}
+      {page === "tutor" && (
+        <TutorPage project={project} onStepSelect={setPage} onBack={() => setPage("code")} onNext={() => setPage("history")} />
+      )}
       {page === "history" && (
         <HistoryPage
           prompt={prompt}
+          project={project}
           savedPrompts={savedPrompts}
           shareMessage={shareMessage}
           onSave={savePrompt}
@@ -120,7 +171,7 @@ function HomePage({ prompt, onPromptChange, onExampleSelect, onNext }) {
   );
 }
 
-function LoadingPage({ onNext }) {
+function LoadingPage({ prompt }) {
   return (
     <main className="hero">
       <section className="card loading">
@@ -135,32 +186,44 @@ function LoadingPage({ onNext }) {
 
         <div className="steps loadingSteps">
           <div className="done">
-            <b>동작 분석 완료</b>
-            <span>사용자가 원하는 기능을 이해했어요.</span>
-          </div>
-          <div className="done">
-            <b>필요한 부품 찾기 완료</b>
-            <span>거리 센서, LED, 저항 등을 선택했어요.</span>
+            <b>K-EXAONE 요청 전송 완료</b>
+            <span>입력 문장과 회로 생성 규칙을 모델에 전달했습니다.</span>
           </div>
           <div className="active">
-            <b>회로 연결 구성 중</b>
-            <span>핀 번호와 연결 구조를 설계하고 있어요.</span>
+            <b>회로와 코드 생성 중</b>
+            <span>요청에 맞는 부품, 핀 연결, Arduino 코드를 만들고 있어요.</span>
           </div>
           <div>
-            <b>코드 작성 중</b>
-            <span>Arduino 예제 코드를 생성합니다.</span>
-          </div>
-          <div>
-            <b>AI 튜터 설명 준비 중</b>
-            <span>초보자 눈높이에 맞춰 설명합니다.</span>
+            <b>응답 검증 대기</b>
+            <span>JSON 형식과 지원 부품, 핀 연결을 확인합니다.</span>
           </div>
         </div>
 
-        <div className="pageActions loadingActions">
-          <button className="secondaryBtn">이전</button>
-          <button className="mainBtn" onClick={onNext}>
-            결과 보기
-          </button>
+        <div className="loadingRequest">
+          <b>입력 문장</b>
+          <span>{prompt}</span>
+          <p>생성이 완료되면 결과 화면으로 자동 이동합니다. 보통 30~120초 정도 걸립니다.</p>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function GenerationErrorPage({ prompt, message, onBack, onRetry }) {
+  return (
+    <main className="hero">
+      <section className="card errorPanel">
+        <div className="errorMark">!</div>
+        <h1>회로를 생성하지 못했어요</h1>
+        <p>샘플 회로로 대체하지 않았습니다. 오류를 확인한 뒤 다시 시도해주세요.</p>
+        <div className="errorPrompt">
+          <b>입력 문장</b>
+          <span>{prompt}</span>
+        </div>
+        <div className="notice errorNotice">{message}</div>
+        <div className="pageActions errorActions">
+          <button className="secondaryBtn" onClick={onBack}>입력 수정</button>
+          <button className="mainBtn" onClick={onRetry}>다시 생성</button>
         </div>
       </section>
     </main>
@@ -210,7 +273,7 @@ function StepNav({ activeStep, onStepSelect }) {
   );
 }
 
-function SummaryPage({ prompt, onStepSelect, onBack, onNext }) {
+function SummaryPage({ prompt, project, circuit, apiMessage, onStepSelect, onBack, onNext }) {
   return (
     <ResultShell
       activeStep="summary"
@@ -221,25 +284,30 @@ function SummaryPage({ prompt, onStepSelect, onBack, onNext }) {
       onNext={onNext}
       nextLabel="회로도 보기"
     >
-      <div className="promptPreview">{prompt}</div>
+      {apiMessage && <div className="notice compactNotice">{apiMessage}</div>}
+      <div className="generatedSummary">
+        <span>K-EXAONE 생성 제목</span>
+        <h3>{project.title}</h3>
+        <p>{prompt}</p>
+      </div>
 
       <div className="stats">
         <div>
           <b>필요 부품</b>
-          <strong>{sampleCircuit.parts.length}개</strong>
+          <strong>{circuit.parts.length}개</strong>
         </div>
         <div>
           <b>난이도</b>
-          <strong>{sampleProject.difficulty}</strong>
+          <strong>{project.difficulty}</strong>
         </div>
         <div>
           <b>예상 시간</b>
-          <strong>{sampleProject.estimatedTime}</strong>
+          <strong>{project.estimatedTime}</strong>
         </div>
       </div>
 
       <div className="parts">
-        {sampleProject.parts.map((part) => (
+        {project.parts.map((part) => (
           <PartCard key={part.title} title={part.title} desc={part.desc} />
         ))}
       </div>
@@ -247,7 +315,7 @@ function SummaryPage({ prompt, onStepSelect, onBack, onNext }) {
   );
 }
 
-function CircuitPage({ onStepSelect, onBack, onNext }) {
+function CircuitPage({ circuit, project, onStepSelect, onBack, onNext }) {
   return (
     <ResultShell
       activeStep="circuit"
@@ -261,25 +329,32 @@ function CircuitPage({ onStepSelect, onBack, onNext }) {
       <div className="circuitStage">
         <div className="circuitChecklist">
           <div className="done">① 보드 배치 ✓</div>
-          <div className="done">② 센서 연결 ✓</div>
-          <div className="active">③ LED 연결 ●</div>
-          <div>④ 전체 회로 확인</div>
+          <div className="done">② 핀 연결 구성 ✓</div>
+          <div className="done">③ 응답 형식 검증 ✓</div>
+          <div className="active">④ 전체 회로 확인 ●</div>
         </div>
         <div className="circuitCanvasPanel">
-          <CanvasView />
+          <CanvasView circuit={circuit} />
         </div>
       </div>
-      <div className="explainBox">
-        <b>3단계.</b> LED와 저항을 연결합니다. D3 핀 → LED(+) → LED(-) → 저항 → GND 순서로 연결합니다.
-      </div>
+      {project.validationResults?.length > 0 && (
+        <div className="explainBox">
+          <b>검증 결과.</b> {project.validationResults.map((item) => item.message).join(" ")}
+        </div>
+      )}
+      {project.tutorSteps?.[0] && (
+        <div className="explainBox">
+          <b>{project.tutorSteps[0].title}</b> {project.tutorSteps[0].desc}
+        </div>
+      )}
     </ResultShell>
   );
 }
 
-function CodePage({ copyMessage, onCopyMessage, onStepSelect, onBack, onNext }) {
+function CodePage({ project, copyMessage, onCopyMessage, onStepSelect, onBack, onNext }) {
   const copyCode = async () => {
     try {
-      await navigator.clipboard.writeText(sampleProject.code);
+      await navigator.clipboard.writeText(project.code);
       onCopyMessage("코드를 클립보드에 복사했습니다.");
     } catch {
       onCopyMessage("복사에 실패했습니다. 코드를 직접 선택해서 복사해주세요.");
@@ -304,16 +379,16 @@ function CodePage({ copyMessage, onCopyMessage, onStepSelect, onBack, onNext }) 
       </div>
       {copyMessage && <div className="notice compactNotice">{copyMessage}</div>}
       <pre className="codeBlock">
-        <code>{sampleProject.code}</code>
+        <code>{project.code}</code>
       </pre>
       <div className="explainBox">
-        이 코드는 거리 센서의 초음파 왕복 시간을 이용해 거리를 계산합니다. 계산된 거리가 가까우면 LED를 켜고, 멀어지면 LED를 끕니다.
+        이 코드는 생성된 회로의 핀 연결을 기준으로 작성되었습니다. 업로드 전 회로도와 사용 핀을 다시 확인해주세요.
       </div>
     </ResultShell>
   );
 }
 
-function TutorPage({ onStepSelect, onBack, onNext }) {
+function TutorPage({ project, onStepSelect, onBack, onNext }) {
   return (
     <ResultShell
       activeStep="tutor"
@@ -326,7 +401,7 @@ function TutorPage({ onStepSelect, onBack, onNext }) {
     >
       <div className="tutorLayout">
         <div className="tutorGrid">
-          {sampleProject.tutorSteps.map((step) => (
+          {project.tutorSteps.map((step) => (
             <InfoPanel key={step.title} title={step.title}>
               {step.desc}
             </InfoPanel>
@@ -348,13 +423,13 @@ function TutorPage({ onStepSelect, onBack, onNext }) {
   );
 }
 
-function HistoryPage({ prompt, savedPrompts, shareMessage, onSave, onShare, onStepSelect, onBack, onHome }) {
+function HistoryPage({ prompt, project, savedPrompts, shareMessage, onSave, onShare, onStepSelect, onBack, onHome }) {
   const projects =
     savedPrompts.length > 0
       ? [
           {
             ...sampleSavedProjects[0],
-            title: sampleProject.title,
+            title: project.title,
             prompt: savedPrompts[0],
           },
           ...sampleSavedProjects.slice(1),

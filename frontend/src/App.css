@@ -38,6 +38,11 @@ body {
   cursor: pointer;
 }
 
+.nav button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
 .menu {
   display: flex;
   gap: 32px;
@@ -216,6 +221,35 @@ p {
   text-align: center;
 }
 
+.generatedSummary {
+  max-width: 900px;
+  margin: 28px auto 0;
+  border: 1px solid #c7d8f5;
+  border-radius: 18px;
+  background: #f4f8ff;
+  padding: 22px 26px;
+  text-align: center;
+}
+
+.generatedSummary span {
+  display: block;
+  color: #2f5bea;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.generatedSummary h3 {
+  margin: 8px 0 10px;
+  color: #10203f;
+  font-size: 26px;
+}
+
+.generatedSummary p {
+  margin: 0;
+  color: #5b6b88;
+  font-size: 18px;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -391,10 +425,83 @@ p {
   color: #2f5bea;
 }
 
-.loadingActions {
+.loadingRequest {
   grid-column: 2;
+  border: 1px solid #c7d8f5;
+  border-radius: 18px;
+  background: #f4f8ff;
+  padding: 20px 24px;
+}
+
+.loadingRequest b,
+.loadingRequest span {
+  display: block;
+}
+
+.loadingRequest b {
+  color: #2f5bea;
+  margin-bottom: 8px;
+}
+
+.loadingRequest span {
+  color: #10203f;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.loadingRequest p {
+  margin: 12px 0 0;
+  color: #5b6b88;
+  font-size: 16px;
+}
+
+.errorPanel {
+  max-width: 760px;
+  text-align: center;
+}
+
+.errorMark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: #fff1f2;
+  color: #be123c;
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.errorPrompt {
+  margin-top: 28px;
+  border: 1px solid #dfe6f0;
+  border-radius: 16px;
+  background: #f8fafc;
+  padding: 18px 20px;
+  text-align: left;
+}
+
+.errorPrompt b,
+.errorPrompt span {
+  display: block;
+}
+
+.errorPrompt span {
+  margin-top: 8px;
+  color: #22304a;
+  font-size: 18px;
+}
+
+.errorNotice {
+  border-color: #fecdd3;
+  background: #fff1f2;
+  color: #be123c;
+  text-align: left;
+}
+
+.errorActions {
   justify-content: center;
-  margin-top: 14px;
 }
 
 .circuitStage {
@@ -767,7 +874,7 @@ p {
     flex-direction: column;
   }
 
-  .loadingActions {
+  .loadingRequest {
     grid-column: auto;
   }
 
@@ -846,22 +953,183 @@ p {
 }
 
 .lookeyPartNodeLabel {
-  padding: 6px 0 0;
-  font-size: 14px;
+  width: max-content;
+  max-width: 180px;
+  margin: 4px auto 0;
+  padding: 2px 4px;
+  border: none;
+  font-size: 8px;
+  line-height: 1.25;
   font-weight: 800;
   color: #07142f;
-  background: white;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 3px;
+  white-space: nowrap;
 }
 
 .react-flow__edges {
-  z-index: 9999 !important;
+  z-index: 5 !important;
 }
 
 .react-flow__edge {
-  z-index: 9999 !important;
+  z-index: 5 !important;
 }
 
 .react-flow__nodes {
-  z-index: 1 !important;
+  z-index: 3 !important;
+}
+
+.circuitWorkspace {
+  width: 100%;
+  overflow: hidden;
+  background: white;
+}
+
+.jumperInventory {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 14px 16px;
+  border-bottom: 1px solid #dfe6f0;
+  background: #f8fafc;
+}
+
+.jumperInventoryTitle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 30px;
+  font-size: 13px;
+  color: #14213a;
+}
+
+.jumperInventoryTitle span {
+  color: #64748b;
+  font-weight: 700;
+}
+
+.wireLabelToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 5px;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.wireLabelToggle input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: #2563eb;
+}
+
+.wireLabelToggle span {
+  color: inherit;
+}
+
+.jumperInventoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.jumperInventoryItem {
+  display: inline-grid;
+  grid-template-columns: 9px auto auto;
+  gap: 6px;
+  align-items: center;
+  min-height: 30px;
+  padding: 4px 8px;
+  border: 1px solid #dbe3ef;
+  border-radius: 6px;
+  background: white;
+  color: #334155;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.jumperInventoryItem b {
+  color: #111827;
+  font-size: 11px;
+}
+
+.jumperInventoryItem > span:last-child {
+  padding-left: 6px;
+  border-left: 1px solid #e2e8f0;
+  color: #475569;
+  font-weight: 800;
+}
+
+.jumperInventorySwatch,
+.jumperEdgeSwatch {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.16);
+}
+
+.circuitFlowFrame {
+  width: 100%;
+  height: 590px;
+}
+
+.jumperEdgeLabel {
+  position: absolute;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 120px;
+  padding: 2px 4px;
+  border: 1px solid;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+  color: #111827;
+  font-size: 8px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.jumperConnector rect {
+  stroke: white;
+  stroke-width: 1;
+}
+
+.jumperConnectorPin {
+  stroke: #94a3b8;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.jumperConnectorSocket {
+  fill: #111827;
+  stroke: #cbd5e1;
+  stroke-width: 0.75;
+}
+
+@media (max-width: 900px) {
+  .jumperInventory {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .jumperInventoryList {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .circuitFlowFrame {
+    height: 500px;
+  }
 }

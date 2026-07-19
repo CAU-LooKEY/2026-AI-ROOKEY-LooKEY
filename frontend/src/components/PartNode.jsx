@@ -37,8 +37,8 @@ export default function PartNode({ data }) {
             position: "absolute",
             left,
             top,
-            width: 9,
-            height: 9,
+            width: 4,
+            height: 4,
             borderRadius: "50%",
             transform: "translate(-50%, -50%)",
             zIndex: 20,
@@ -54,7 +54,7 @@ export default function PartNode({ data }) {
                 style={{
                   ...commonStyle,
                   background: "#2563eb",
-                  border: "2px solid white",
+                  border: "1px solid white",
                 }}
               />
 
