@@ -1,24 +1,5 @@
 """
 LOOKEY 3팀 회로 검증 모듈 — adapter.py (JSON 수신/변환 담당)
-
-지원하는 입력 형식 3가지 (convert_edges_to_connections가 자동으로 판별):
-
-1. 이미 변환된 connections 배열 (그대로 통과)
-2. nodes + edges (componentKey/sourceHandle/targetHandle) — 이전 AI팀 목업 API 형식
-3. components + circuit_connections (component_index 기반) — Task-Result DB 형식
-   {
-     "components": ["arduino_uno", "hc_sr04", "led", "resistor_220ohm"],
-     "circuit_connections": [
-       {"from": {"component_index": 0, "pin": "5V"}, "to": {"component_index": 1, "pin": "VCC"}},
-       ...
-     ]
-   }
-   ⚠️ component_index는 components 배열에서 몇 번째 부품인지를 가리킵니다.
-   같은 부품이 여러 개 있어도(LED 2개 등) 인덱스로 구분할 수 있게 3팀이
-   제안한 형식입니다 — 아직 팀 확정 전이라 4팀/1팀과 맞춰봐야 합니다.
-
-세 형식 다 아래 공통 connections 구조로 변환되고, rules.py의 나머지
-규칙들은 이 공통 구조만 보므로 그대로 재사용됩니다.
 """
 
 import re
@@ -34,9 +15,6 @@ def _to_lower(value: Any) -> str:
     return str(value or "").strip().lower()
 
 
-# assets_db 기준 실제 보드 핀 이름 중, 물리적으로 같은 GND/전원 레일인데
-# 이름이 다른 것들. (예: 우노는 GND가 5곳에 있음 — GND_D, GND_P1, GND_P2,
-# AUX_GND_1, AUX_GND_2가 전부 하나의 GND 레일)
 _PIN_ALIASES = {
     "GROUND": "GND",
     "GND_D": "GND", "GND_P1": "GND", "GND_P2": "GND",
@@ -48,21 +26,15 @@ _PIN_ALIASES = {
 
 
 def normalize_pin(pin: Any) -> str:
-    """핀 이름 정규화. gnd -> GND, GND_P1 -> GND, +5v -> 5V, d3 -> D3"""
     raw = str(pin or "").strip().upper()
     return _PIN_ALIASES.get(raw, raw)
 
 
 def is_io_pin(pin: Any) -> bool:
-    """D3, A0처럼 아두이노 디지털/아날로그 핀 이름인지 판별."""
     return bool(re.fullmatch(r"[DA]\d+", normalize_pin(pin)))
 
 
 def load_circuit_json(source: Any) -> CircuitJson:
-    """
-    회로 JSON을 받는다. 백엔드가 이미 파싱해서 dict로 넘겨주는 게 기본이고,
-    혹시 JSON 문자열로 오면 그것도 파싱해준다.
-    """
     if isinstance(source, dict):
         return source
     if isinstance(source, str):
@@ -72,7 +44,6 @@ def load_circuit_json(source: Any) -> CircuitJson:
 
 
 def _connections_from_nodes_edges(circuit_json: CircuitJson) -> List[Connection]:
-    """형식 2: nodes + edges (componentKey/sourceHandle/targetHandle)"""
     node_map = {str(n["id"]): n for n in circuit_json.get("nodes", []) if n.get("id")}
     connections: List[Connection] = []
 
@@ -96,9 +67,7 @@ def _connections_from_nodes_edges(circuit_json: CircuitJson) -> List[Connection]
 
 
 def _connections_from_task_result(circuit_json: CircuitJson) -> List[Connection]:
-    """형식 3: components(문자열 리스트) + circuit_connections(component_index 기반)"""
     components: List[str] = circuit_json.get("components", [])
-    # 같은 부품이 여러 개일 수 있으므로 "타입_인덱스" 형태로 고유 id를 만든다
     instance_ids = [f"{comp_type}_{idx}" for idx, comp_type in enumerate(components)]
 
     connections: List[Connection] = []
@@ -107,7 +76,7 @@ def _connections_from_task_result(circuit_json: CircuitJson) -> List[Connection]
         f_idx, t_idx = f.get("component_index"), t.get("component_index")
 
         if f_idx is None or t_idx is None or f_idx >= len(components) or t_idx >= len(components):
-            continue  # 잘못된 인덱스는 건너뜀 (필요하면 나중에 에러로 승격 가능)
+            continue
 
         connections.append({
             "edge_id": cc.get("id"),
@@ -125,10 +94,6 @@ def _connections_from_task_result(circuit_json: CircuitJson) -> List[Connection]
 
 
 def convert_edges_to_connections(circuit_json: CircuitJson) -> List[Connection]:
-    """
-    회로 JSON을 공통 connections 구조로 변환한다. 세 가지 입력 형식을
-    자동으로 판별해서 처리한다 (모듈 docstring 참고).
-    """
     if isinstance(circuit_json.get("connections"), list):
         return circuit_json["connections"]
 
@@ -139,13 +104,6 @@ def convert_edges_to_connections(circuit_json: CircuitJson) -> List[Connection]:
 
 
 def get_connected_pins_by_node(connections: List[Connection]) -> Dict[str, List[str]]:
-    """
-    부품 instance id별로 연결된 핀 목록을 만든다.
-    ⚠️ 예전엔 raw circuit_json(nodes/edges)을 직접 읽었는데, 그러면 형식 3
-    (components+circuit_connections)에서는 항상 빈 값만 나오는 문제가 있어서
-    convert_edges_to_connections()가 만든 공통 connections 리스트를 받는
-    방식으로 바꿨다. (rules.py의 check_missing_power_or_gnd 호출부도 같이 수정 필요)
-    """
     connected: Dict[str, List[str]] = {}
     for conn in connections:
         from_id, to_id = conn.get("from_component"), conn.get("to_component")
@@ -162,7 +120,15 @@ _PIN_CALL_PATTERN = re.compile(
 
 
 def extract_used_pins_from_code(circuit_json: CircuitJson) -> List[str]:
-    """code(또는 source_code) 문자열에서 pinMode/digitalWrite 등에 쓰인 핀을 뽑는다."""
+    """
+    코드에서 실제로 사용된 핀을 뽑는다. 우선순위:
+    1. codeMeta.used_pins (K-EXAONE이 이미 계산해서 줌 — 제일 정확)
+    2. code/source_code 문자열을 정규식으로 파싱
+    """
+    code_meta = circuit_json.get("codeMeta")
+    if isinstance(code_meta, dict) and isinstance(code_meta.get("used_pins"), list):
+        return sorted({normalize_pin(p) for p in code_meta["used_pins"]})
+
     code = circuit_json.get("code") or circuit_json.get("source_code") or ""
     if not isinstance(code, str):
         return []
@@ -175,7 +141,6 @@ def extract_used_pins_from_code(circuit_json: CircuitJson) -> List[str]:
 
 
 def get_hardware_io_pins(connections: List[Connection]) -> List[str]:
-    """실제 회로 연결에서 D/A 핀 목록 추출."""
     pins = set()
     for conn in connections:
         for pin in (conn.get("from_pin"), conn.get("to_pin")):
@@ -183,56 +148,24 @@ def get_hardware_io_pins(connections: List[Connection]) -> List[str]:
                 pins.add(normalize_pin(pin))
     return sorted(pins)
 
+
 def infer_component_type(component_key: str, label: str = "") -> str:
-    """
-    componentKey 또는 label을 보고 validator용 component type을 추정한다.
-
-    rules.py는 type을 보고 board/input/output/passive 등을 판단하므로,
-    API 응답의 componentKey를 우리 검증기가 이해할 수 있게 바꿔주는 역할이다.
-    """
-
     text = f"{component_key} {label}".lower()
 
     if "arduino" in text or "uno" in text or "nano" in text:
         return "board"
-
     if "hc-sr04" in text or "ultrasonic" in text or "sensor" in text:
         return "input"
-
     if "button" in text or "pushbutton" in text or "switch" in text:
         return "input"
-
     if "led" in text or "buzzer" in text or "servo" in text:
         return "output"
-
     if "resistor" in text or "220" in text or "ohm" in text or "저항" in text:
         return "passive"
-
     return "unknown"
 
 
 def convert_api_response_to_validator_json(api_response: CircuitJson) -> CircuitJson:
-    """
-    /api/v1/circuit/generate 응답을
-    3팀 validator가 검사할 수 있는 nodes/edges/code 구조로 변환한다.
-
-    API 응답 구조:
-    {
-        "circuit": {
-            "parts": [...],
-            "connections": [...]
-        },
-        "codeLines": [...]
-    }
-
-    validator 입력 구조:
-    {
-        "nodes": [...],
-        "edges": [...],
-        "code": "..."
-    }
-    """
-
     circuit = api_response.get("circuit", {})
     parts = circuit.get("parts", [])
     connections = circuit.get("connections", [])
@@ -275,16 +208,12 @@ def convert_api_response_to_validator_json(api_response: CircuitJson) -> Circuit
         "intent": api_response.get("intent"),
         "difficulty": api_response.get("difficulty"),
         "estimatedTime": api_response.get("estimatedTime"),
-
         "nodes": nodes,
         "edges": edges,
         "code": code,
-
+        "codeMeta": api_response.get("codeMeta"),  # used_pins(K-EXAONE이 계산한 정확한 값) 보존
         "warnings": api_response.get("warnings", []),
         "explanation": api_response.get("tutorSteps", []),
         "validationResultsFromApi": api_response.get("validationResults", []),
-
-        # 원본 API 응답 보존
         "originalApiResponse": api_response,
     }
-    
