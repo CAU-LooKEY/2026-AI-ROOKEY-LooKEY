@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 381" width="310" height="381" role="img" aria-label="Blue LED 5mm">
+  <image href="../raster_sources/led-5mm-blue-top.png" x="0" y="0" width="310" height="381" preserveAspectRatio="xMidYMid meet"/>
+  <circle id="pin-ANODE" cx="31" cy="372" r="4" fill="#14b8a6" stroke="#fff" stroke-width="2"><title>Anode +</title></circle>
+  <circle id="pin-CATHODE" cx="9" cy="319" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>Cathode -</title></circle>
+</svg>

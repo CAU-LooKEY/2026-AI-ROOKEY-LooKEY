@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 417" width="580" height="417" role="img" aria-label="Arduino Uno R3">
+  <image href="../raster_sources/arduino-uno-r3-top.png" x="0" y="0" width="580" height="417" preserveAspectRatio="xMidYMid meet"/>
+  <circle id="pin-SCL" cx="194" cy="46" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>SCL</title></circle>
+  <circle id="pin-SDA" cx="214" cy="46" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>SDA</title></circle>
+  <circle id="pin-AREF" cx="233" cy="46" r="4" fill="#7c3aed" stroke="#fff" stroke-width="2"><title>AREF</title></circle>
+  <circle id="pin-GND_D" cx="253" cy="46" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>GND</title></circle>
+  <circle id="pin-D13" cx="272" cy="46" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>D13/SCK</title></circle>
+  <circle id="pin-D12" cx="291" cy="46" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>D12/MISO</title></circle>
+  <circle id="pin-D11" cx="311" cy="46" r="4" fill="#d97706" stroke="#fff" stroke-width="2"><title>D11 PWM/MOSI</title></circle>
+  <circle id="pin-D10" cx="331" cy="46" r="4" fill="#d97706" stroke="#fff" stroke-width="2"><title>D10 PWM/SS</title></circle>
+  <circle id="pin-D9" cx="349" cy="46" r="4" fill="#d97706" stroke="#fff" stroke-width="2"><title>D9 PWM</title></circle>
+  <circle id="pin-D8" cx="370" cy="46" r="4" fill="#2563eb" stroke="#fff" stroke-width="2"><title>D8</title></circle>
+  <circle id="pin-D7" cx="401" cy="46" r="4" fill="#2563eb" stroke="#fff" stroke-width="2"><title>D7</title></circle>
+  <circle id="pin-D6" cx="420" cy="46" r="4" fill="#d97706" stroke="#fff" stroke-width="2"><title>D6 PWM</title></circle>
+  <circle id="pin-D5" cx="439" cy="46" r="4" fill="#d97706" stroke="#fff" stroke-width="2"><title>D5 PWM</title></circle>
+  <circle id="pin-D4" cx="459" cy="46" r="4" fill="#2563eb" stroke="#fff" stroke-width="2"><title>D4</title></circle>
+  <circle id="pin-D3" cx="479" cy="46" r="4" fill="#d97706" stroke="#fff" stroke-width="2"><title>D3 PWM</title></circle>
+  <circle id="pin-D2" cx="498" cy="46" r="4" fill="#2563eb" stroke="#fff" stroke-width="2"><title>D2</title></circle>
+  <circle id="pin-D1" cx="518" cy="46" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>D1/TX</title></circle>
+  <circle id="pin-D0" cx="537" cy="46" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>D0/RX</title></circle>
+  <circle id="pin-IOREF" cx="262" cy="370" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>IOREF</title></circle>
+  <circle id="pin-RESET" cx="282" cy="370" r="4" fill="#2563eb" stroke="#fff" stroke-width="2"><title>RESET</title></circle>
+  <circle id="pin-3V3" cx="302" cy="370" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>3.3V</title></circle>
+  <circle id="pin-5V" cx="321" cy="371" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>5V</title></circle>
+  <circle id="pin-GND_P1" cx="342" cy="371" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>GND</title></circle>
+  <circle id="pin-GND_P2" cx="359" cy="371" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>GND</title></circle>
+  <circle id="pin-VIN" cx="379" cy="372" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>VIN</title></circle>
+  <circle id="pin-A0" cx="438" cy="371" r="4" fill="#7c3aed" stroke="#fff" stroke-width="2"><title>A0</title></circle>
+  <circle id="pin-A1" cx="457" cy="372" r="4" fill="#7c3aed" stroke="#fff" stroke-width="2"><title>A1</title></circle>
+  <circle id="pin-A2" cx="478" cy="372" r="4" fill="#7c3aed" stroke="#fff" stroke-width="2"><title>A2</title></circle>
+  <circle id="pin-A3" cx="497" cy="372" r="4" fill="#7c3aed" stroke="#fff" stroke-width="2"><title>A3</title></circle>
+  <circle id="pin-A4" cx="518" cy="372" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>A4/SDA</title></circle>
+  <circle id="pin-A5" cx="537" cy="372" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>A5/SCL</title></circle>
+  <circle id="pin-AUX_RX" cx="503" cy="275" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>RX</title></circle>
+  <circle id="pin-AUX_TX" cx="520" cy="275" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>TX</title></circle>
+  <circle id="pin-AUX_5V" cx="541" cy="275" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>5V</title></circle>
+  <circle id="pin-AUX_GND_1" cx="560" cy="275" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>GND</title></circle>
+  <circle id="pin-AUX_SDA" cx="503" cy="295" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>SDA</title></circle>
+  <circle id="pin-AUX_SCL" cx="521" cy="295" r="4" fill="#0284c7" stroke="#fff" stroke-width="2"><title>SCL</title></circle>
+  <circle id="pin-AUX_3V3" cx="540" cy="295" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>3.3V</title></circle>
+  <circle id="pin-AUX_GND_2" cx="560" cy="295" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>GND</title></circle>
+</svg>

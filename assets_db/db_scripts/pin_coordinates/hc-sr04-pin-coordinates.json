@@ -1,0 +1,74 @@
+{
+  "component_slug": "hc-sr04",
+  "display_name": "HC-SR04 Ultrasonic",
+  "category": "sensor",
+  "board_family": null,
+  "description": "HC-SR04 ultrasonic distance sensor calibrated from the uploaded top-view image.",
+  "grid_width": 6,
+  "grid_height": 3,
+  "pixel_width": 502,
+  "pixel_height": 292,
+  "license_status": "approved",
+  "trademark_notes": null,
+  "image": {
+    "path": "assets_db/2d_svgs/raster_sources/hc-sr04-top.png",
+    "mime_type": "image/png",
+    "width_px": 502,
+    "height_px": 292,
+    "coordinate_origin": "top-left",
+    "background": "transparent"
+  },
+  "pins": [
+    {
+      "pin_key": "VCC",
+      "label": "VCC",
+      "signal_type": "power",
+      "side": "bottom",
+      "x_px": 207,
+      "y_px": 238,
+      "aliases": [
+        "5V"
+      ],
+      "sort_order": 0
+    },
+    {
+      "pin_key": "TRIG",
+      "label": "TRIG",
+      "signal_type": "digital",
+      "side": "bottom",
+      "x_px": 237,
+      "y_px": 238,
+      "aliases": [
+        "trigger"
+      ],
+      "sort_order": 1
+    },
+    {
+      "pin_key": "ECHO",
+      "label": "ECHO",
+      "signal_type": "digital",
+      "side": "bottom",
+      "x_px": 267,
+      "y_px": 238,
+      "aliases": [
+        "echo"
+      ],
+      "sort_order": 2
+    },
+    {
+      "pin_key": "GND",
+      "label": "GND",
+      "signal_type": "ground",
+      "side": "bottom",
+      "x_px": 297,
+      "y_px": 238,
+      "aliases": [
+        "GND"
+      ],
+      "sort_order": 3
+    }
+  ],
+  "notes": [
+    "Front-view HC-SR04 pin order is VCC, TRIG, ECHO, GND from left to right."
+  ]
+}

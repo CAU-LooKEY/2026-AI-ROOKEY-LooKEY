@@ -1,0 +1,82 @@
+{
+  "component_slug": "pushbutton-6x6",
+  "display_name": "6x6 Tactile Pushbutton",
+  "model_storage_path": "3d_models/glb/pushbutton-6x6.glb",
+  "model_bounds": {
+    "min": [
+      -0.003608345054090023,
+      -0.005616545211523772,
+      -0.004085539840161801
+    ],
+    "max": [
+      0.0036001799162477255,
+      0.0037894239649176606,
+      0.004076898097991943
+    ],
+    "size": [
+      0.0072085249703377485,
+      0.009405969176441433,
+      0.008162437938153744
+    ]
+  },
+  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "image_x_axis": "x",
+    "image_y_axis": "z",
+    "surface_axis": "y",
+    "image_y_direction": "positive",
+    "calibration_quality": "draft_projected"
+  },
+  "pixel_source": {
+    "width_px": 183,
+    "height_px": 235,
+    "origin": "top-left"
+  },
+  "pins": [
+    {
+      "pin_key": "A1",
+      "label": "A1",
+      "x_3d": -0.00274175,
+      "y_3d": 0.00378942,
+      "z_3d": -0.00356453,
+      "model_anchor_name": "pin_a1",
+      "source_x_px": 22,
+      "source_y_px": 15
+    },
+    {
+      "pin_key": "A2",
+      "label": "A2",
+      "x_3d": -0.00274175,
+      "y_3d": 0.00378942,
+      "z_3d": 0.00355589,
+      "model_anchor_name": "pin_a2",
+      "source_x_px": 22,
+      "source_y_px": 220
+    },
+    {
+      "pin_key": "B1",
+      "label": "B1",
+      "x_3d": 0.00273358,
+      "y_3d": 0.00378942,
+      "z_3d": -0.00356453,
+      "model_anchor_name": "pin_b1",
+      "source_x_px": 161,
+      "source_y_px": 15
+    },
+    {
+      "pin_key": "B2",
+      "label": "B2",
+      "x_3d": 0.00273358,
+      "y_3d": 0.00378942,
+      "z_3d": 0.00355589,
+      "model_anchor_name": "pin_b2",
+      "source_x_px": 161,
+      "source_y_px": 220
+    }
+  ],
+  "notes": [
+    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
+    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+  ]
+}

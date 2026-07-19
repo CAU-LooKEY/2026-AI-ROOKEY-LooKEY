@@ -4,3 +4,13 @@ __pycache__/
 *.pyc
 .env
 
+node_modules/
+dist/
+.env.local
+.env.*.local
+asset-import/
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+vite.config.d.ts
+vite.config.js

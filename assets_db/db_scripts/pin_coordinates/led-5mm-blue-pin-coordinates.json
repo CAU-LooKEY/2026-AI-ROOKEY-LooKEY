@@ -1,0 +1,56 @@
+{
+  "component_slug": "led-5mm-blue",
+  "display_name": "Blue LED 5mm",
+  "category": "output",
+  "board_family": null,
+  "description": "Two-lead blue LED calibrated from the uploaded angled image. A true top-view LED asset is still recommended.",
+  "grid_width": 2,
+  "grid_height": 4,
+  "pixel_width": 310,
+  "pixel_height": 381,
+  "license_status": "needs_review",
+  "trademark_notes": null,
+  "image": {
+    "path": "assets_db/2d_svgs/raster_sources/led-5mm-blue-top.png",
+    "mime_type": "image/png",
+    "width_px": 310,
+    "height_px": 381,
+    "coordinate_origin": "top-left",
+    "background": "transparent"
+  },
+  "pins": [
+    {
+      "pin_key": "ANODE",
+      "label": "Anode +",
+      "signal_type": "component",
+      "side": "bottom",
+      "x_px": 31,
+      "y_px": 372,
+      "aliases": [
+        "A",
+        "+",
+        "long-leg"
+      ],
+      "sort_order": 0,
+      "notes": "Longer visible lead; inferred as anode."
+    },
+    {
+      "pin_key": "CATHODE",
+      "label": "Cathode -",
+      "signal_type": "ground",
+      "side": "bottom",
+      "x_px": 9,
+      "y_px": 319,
+      "aliases": [
+        "K",
+        "-",
+        "short-leg"
+      ],
+      "sort_order": 1,
+      "notes": "Shorter visible lead; inferred as cathode."
+    }
+  ],
+  "notes": [
+    "The uploaded LED image is angled, not a strict top-view photo; replace with a top-view or rendered LED for production-quality 2.5D placement."
+  ]
+}
