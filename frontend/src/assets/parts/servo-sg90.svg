@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167 249" width="167" height="249" role="img" aria-label="SG90 Micro Servo">
+  <image href="../raster_sources/servo-sg90-top.png" x="0" y="0" width="167" height="249" preserveAspectRatio="xMidYMid meet"/>
+  <circle id="pin-GND" cx="71" cy="17" r="4" fill="#1f2937" stroke="#fff" stroke-width="2"><title>GND</title></circle>
+  <circle id="pin-VCC" cx="86" cy="17" r="4" fill="#ef4444" stroke="#fff" stroke-width="2"><title>VCC</title></circle>
+  <circle id="pin-SIGNAL" cx="101" cy="17" r="4" fill="#d97706" stroke="#fff" stroke-width="2"><title>Signal</title></circle>
+</svg>

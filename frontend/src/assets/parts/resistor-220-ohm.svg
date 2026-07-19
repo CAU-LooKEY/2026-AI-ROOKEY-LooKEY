@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 90" width="320" height="90" role="img" aria-label="220 Ohm Resistor">
+  <image href="../raster_sources/resistor-220-ohm-top.png" x="0" y="0" width="320" height="90" preserveAspectRatio="xMidYMid meet"/>
+  <circle id="pin-LEAD_A" cx="16" cy="45" r="4" fill="#64748b" stroke="#fff" stroke-width="2"><title>Lead A</title></circle>
+  <circle id="pin-LEAD_B" cx="304" cy="45" r="4" fill="#64748b" stroke="#fff" stroke-width="2"><title>Lead B</title></circle>
+</svg>
