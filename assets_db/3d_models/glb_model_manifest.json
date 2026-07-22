@@ -161,16 +161,16 @@
     "component_slug": "hc-sr04",
     "target": "hc-sr04.glb",
     "source": "hc-sr04.glb",
-    "audit_status": "ready",
-    "model_kind": "production_3d",
-    "notes": "Selected smaller HC-SR04 candidate with valid mesh and texture metadata.",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Real-world HC-SR04 candidate normalized from the measured pin row with embedded VCC, TRIG, ECHO, and GND anchors.",
     "storage_path": "3d_models/glb/hc-sr04.glb",
     "mime_type": "model/gltf-binary",
     "format": "glb",
-    "bytes": 1310040,
-    "sha256": "59e486e3173fe311cf685ab61451241b8c1198829c2728d329f04c4f203d8e6b",
+    "bytes": 1329152,
+    "sha256": "1121ac4bc88cd428b21c2f7b30fd41ff11549aa39e0b6c00c93d55413158c4cc",
     "version": 2,
-    "nodes": 45,
+    "nodes": 30,
     "meshes": 25,
     "materials": 9,
     "textures": 3,
@@ -180,19 +180,19 @@
     ],
     "bounds": {
       "min": [
-        -1.2287132735491468,
-        -0.07834634256011341,
-        -0.3487059473991394
+        -0.022352345287799835,
+        -0.006000000052154064,
+        -0.0035682767629623413
       ],
       "max": [
-        1.6345217521429731,
-        1.5839607119560242,
-        0.7818499892883217
+        0.022996479645371437,
+        0.020328156650066376,
+        0.014337833970785141
       ],
       "size": [
-        2.86323502569212,
-        1.6623070545161376,
-        1.1305559366874611
+        0.04534882493317127,
+        0.02632815670222044,
+        0.017906110733747482
       ]
     },
     "unit": "model-unit"
@@ -235,7 +235,7 @@
         0.4707052907020522
       ]
     },
-    "unit": "model-unit"
+    "unit": "meter"
   },
   {
     "component_slug": "led-5mm-red",
@@ -281,16 +281,16 @@
     "component_slug": "pushbutton-6x6",
     "target": "pushbutton-6x6.glb",
     "source": "push_button_6x6x5mm.glb",
-    "audit_status": "ready",
-    "model_kind": "production_3d",
-    "notes": "Selected compact 6x6 pushbutton model.",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Real-world pushbutton candidate with a mounting-plane origin and four anchors measured from the source metal leads.",
     "storage_path": "3d_models/glb/pushbutton-6x6.glb",
     "mime_type": "model/gltf-binary",
     "format": "glb",
-    "bytes": 43928,
-    "sha256": "7a925080695029f57df877e8f5d46da6b80d0d92cbb011cd5cfdf35151c67d8b",
+    "bytes": 39480,
+    "sha256": "8b145ce3fea5e6958bf4859c4c1ac491d6d705722929b4b9805bec7c57539f99",
     "version": 2,
-    "nodes": 5,
+    "nodes": 7,
     "meshes": 2,
     "materials": 2,
     "textures": 0,
@@ -298,22 +298,22 @@
     "extensions_used": [],
     "bounds": {
       "min": [
-        -0.003608345054090023,
-        -0.005616545211523772,
-        -0.004085539840161801
+        -0.0036296590697020292,
+        -0.0035000001080334187,
+        -0.004081931430846453
       ],
       "max": [
-        0.0036001799162477255,
-        0.0037894239649176606,
-        0.004076898097991943
+        0.0035788659006357193,
+        0.005905970931053162,
+        0.004080507438629866
       ],
       "size": [
         0.0072085249703377485,
-        0.009405969176441433,
-        0.008162437938153744
+        0.00940597103908658,
+        0.008162438869476318
       ]
     },
-    "unit": "model-unit"
+    "unit": "meter"
   },
   {
     "component_slug": "servo-sg90",
@@ -359,38 +359,38 @@
     "component_slug": "resistor-220-ohm",
     "target": "resistor-220-ohm.glb",
     "source": "resistor.glb",
-    "audit_status": "ready",
-    "model_kind": "production_3d",
-    "notes": "User-supplied compact 220 ohm resistor GLB; two non-polarized leads use draft projected anchors.",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Breadboard-ready 220 ohm resistor candidate with a 10.16 mm span, rebuilt bent leads, and embedded non-polarized anchors.",
     "storage_path": "3d_models/glb/resistor-220-ohm.glb",
     "mime_type": "model/gltf-binary",
     "format": "glb",
-    "bytes": 167684,
-    "sha256": "fd4a5a218cbe116459c61cbb20e4547736e6e13976a2eca6b739f6e293c20d05",
+    "bytes": 129436,
+    "sha256": "781a89587bcb58e9b915045a9cfaf40c9265a951221da60c033ec50cd356e842",
     "version": 2,
-    "nodes": 17,
-    "meshes": 7,
+    "nodes": 11,
+    "meshes": 8,
     "materials": 5,
-    "textures": 2,
-    "images": 2,
+    "textures": 1,
+    "images": 1,
     "extensions_used": [],
     "bounds": {
       "min": [
-        -0.238720898443745,
-        0.04055225849151611,
-        -0.2580604818399479
+        -0.0054517099633812904,
+        -0.003000000026077032,
+        -0.0011500000255182385
       ],
       "max": [
-        0.2772341209613387,
-        3.1676844358444214,
-        0.2578945923955587
+        0.0054517099633812904,
+        0.0041499994695186615,
+        0.0011500000255182385
       ],
       "size": [
-        0.5159550194050837,
-        3.1271321773529053,
-        0.5159550742355066
+        0.010903419926762581,
+        0.007149999495595694,
+        0.002300000051036477
       ]
     },
-    "unit": "model-unit"
+    "unit": "meter"
   }
 ]

@@ -6,6 +6,7 @@ PIN_SOURCE = ROOT / "db_scripts" / "all_component_pin_coordinates.json"
 MODEL_MANIFEST = ROOT / "3d_models" / "glb_model_manifest.json"
 OUT_DIR = ROOT / "3d_models" / "pin_anchors"
 SQL_OUT = ROOT / "db_scripts" / "006_seed_3d_pin_anchors.sql"
+CANDIDATE_METADATA_DIR = ROOT / "3d_models" / "component_metadata" / "candidates"
 
 AXIS_CONFIG = {
     "arduino-uno-r3": {
@@ -112,6 +113,33 @@ def project_pin(pin, component, model, config):
     }
 
 
+def embedded_pin_anchors(component, metadata):
+    labels = {pin["pin_key"]: pin["label"] for pin in component["pins"]}
+    return [
+        {
+            "pin_key": pin["pinKey"],
+            "label": labels.get(pin["pinKey"], pin["label"]),
+            "x_3d": round(pin["position"][0], 8),
+            "y_3d": round(pin["position"][1], 8),
+            "z_3d": round(pin["position"][2], 8),
+            "model_anchor_name": pin["nodeName"],
+        }
+        for pin in metadata["pins"]
+    ]
+
+
+def load_candidate_metadata(slug):
+    path = CANDIDATE_METADATA_DIR / slug / "metadata.json"
+    if not path.is_file():
+        return None
+    metadata = json.loads(path.read_text(encoding="utf-8"))
+    if metadata.get("componentSlug") != slug:
+        raise ValueError(f"Candidate metadata slug mismatch: {path}")
+    if metadata.get("provenance", {}).get("method") != "blender-empty":
+        return None
+    return metadata
+
+
 def main():
     components = json.loads(PIN_SOURCE.read_text(encoding="utf-8"))
     models = {
@@ -128,26 +156,52 @@ def main():
 
         model = models[slug]
         config = AXIS_CONFIG[slug]
-        anchors = [project_pin(pin, component, model, config) for pin in component["pins"]]
-        calibration = {
-            "component_slug": slug,
-            "display_name": component["display_name"],
-            "model_storage_path": model["storage_path"],
-            "model_bounds": model["bounds"],
-            "method": "projected_from_2d_pin_map_to_glb_bounds",
-            "coordinate_space": "glb_model_local",
-            "axis_mapping": config,
-            "pixel_source": {
-                "width_px": component["pixel_width"],
-                "height_px": component["pixel_height"],
-                "origin": "top-left",
-            },
-            "pins": anchors,
-            "notes": [
-                "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
-                "Review in Blender or a Three.js calibration view before using for final production wire snapping.",
-            ],
-        }
+        candidate_metadata = load_candidate_metadata(slug)
+        if candidate_metadata:
+            anchors = embedded_pin_anchors(component, candidate_metadata)
+            method = "embedded_glb_empty"
+            calibration_quality = "candidate_blender_empty"
+            calibration = {
+                "component_slug": slug,
+                "display_name": component["display_name"],
+                "model_storage_path": model["storage_path"],
+                "model_bounds": model["bounds"],
+                "method": method,
+                "coordinate_space": "glb_model_local",
+                "axis_mapping": {
+                    "runtime_up_axis": "+Y",
+                    "runtime_front_axis": "+Z",
+                    "calibration_quality": calibration_quality,
+                },
+                "pins": anchors,
+                "notes": [
+                    "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
+                    "Candidate assets require visual review before moving to approved metadata.",
+                ],
+            }
+        else:
+            anchors = [project_pin(pin, component, model, config) for pin in component["pins"]]
+            method = "projected_from_2d_pin_map_to_glb_bounds"
+            calibration_quality = config["calibration_quality"]
+            calibration = {
+                "component_slug": slug,
+                "display_name": component["display_name"],
+                "model_storage_path": model["storage_path"],
+                "model_bounds": model["bounds"],
+                "method": method,
+                "coordinate_space": "glb_model_local",
+                "axis_mapping": config,
+                "pixel_source": {
+                    "width_px": component["pixel_width"],
+                    "height_px": component["pixel_height"],
+                    "origin": "top-left",
+                },
+                "pins": anchors,
+                "notes": [
+                    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
+                    "Review in Blender or a Three.js calibration view before using for final production wire snapping.",
+                ],
+            }
         (OUT_DIR / f"{slug}-3d-pin-anchors.json").write_text(
             json.dumps(calibration, ensure_ascii=False, indent=2),
             encoding="utf-8",
@@ -157,9 +211,9 @@ def main():
             {
                 "component_slug": slug,
                 "pin_count": len(anchors),
-                "method": calibration["method"],
+                "method": method,
                 "coordinate_space": calibration["coordinate_space"],
-                "calibration_quality": config["calibration_quality"],
+                "calibration_quality": calibration_quality,
             }
         )
         for anchor in anchors:

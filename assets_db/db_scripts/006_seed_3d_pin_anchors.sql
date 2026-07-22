@@ -688,33 +688,33 @@ with anchor_rows as (
   {
     "slug": "hc-sr04",
     "pin_key": "VCC",
-    "x_3d": -0.0480566,
-    "y_3d": 1.27654776,
-    "z_3d": 0.78184999,
+    "x_3d": -0.00381,
+    "y_3d": 0,
+    "z_3d": 0,
     "model_anchor_name": "pin_vcc"
   },
   {
     "slug": "hc-sr04",
     "pin_key": "TRIG",
-    "x_3d": 0.12305306,
-    "y_3d": 1.27654776,
-    "z_3d": 0.78184999,
+    "x_3d": -0.00121298,
+    "y_3d": 0,
+    "z_3d": 0,
     "model_anchor_name": "pin_trig"
   },
   {
     "slug": "hc-sr04",
     "pin_key": "ECHO",
-    "x_3d": 0.29416273,
-    "y_3d": 1.27654776,
-    "z_3d": 0.78184999,
+    "x_3d": 0.00130629,
+    "y_3d": 0,
+    "z_3d": 0,
     "model_anchor_name": "pin_echo"
   },
   {
     "slug": "hc-sr04",
     "pin_key": "GND",
-    "x_3d": 0.46527239,
-    "y_3d": 1.27654776,
-    "z_3d": 0.78184999,
+    "x_3d": 0.00381,
+    "y_3d": 0,
+    "z_3d": 0,
     "model_anchor_name": "pin_gnd"
   },
   {
@@ -736,49 +736,49 @@ with anchor_rows as (
   {
     "slug": "pushbutton-6x6",
     "pin_key": "A1",
-    "x_3d": -0.00274175,
-    "y_3d": 0.00378942,
-    "z_3d": -0.00356453,
+    "x_3d": -0.00252083,
+    "y_3d": 0,
+    "z_3d": -0.00347212,
     "model_anchor_name": "pin_a1"
   },
   {
     "slug": "pushbutton-6x6",
     "pin_key": "A2",
-    "x_3d": -0.00274175,
-    "y_3d": 0.00378942,
-    "z_3d": 0.00355589,
+    "x_3d": -0.00252084,
+    "y_3d": 0,
+    "z_3d": 0.00347071,
     "model_anchor_name": "pin_a2"
   },
   {
     "slug": "pushbutton-6x6",
     "pin_key": "B1",
-    "x_3d": 0.00273358,
-    "y_3d": 0.00378942,
-    "z_3d": -0.00356453,
+    "x_3d": 0.00252085,
+    "y_3d": 0,
+    "z_3d": -0.00346929,
     "model_anchor_name": "pin_b1"
   },
   {
     "slug": "pushbutton-6x6",
     "pin_key": "B2",
-    "x_3d": 0.00273358,
-    "y_3d": 0.00378942,
-    "z_3d": 0.00355589,
+    "x_3d": 0.00252083,
+    "y_3d": 0,
+    "z_3d": 0.00347071,
     "model_anchor_name": "pin_b2"
   },
   {
     "slug": "resistor-220-ohm",
     "pin_key": "LEAD_A",
-    "x_3d": 0.01925661,
-    "y_3d": 0.19690887,
-    "z_3d": 0.25789459,
+    "x_3d": -0.00508,
+    "y_3d": 0,
+    "z_3d": 0,
     "model_anchor_name": "pin_lead_a"
   },
   {
     "slug": "resistor-220-ohm",
     "pin_key": "LEAD_B",
-    "x_3d": 0.01925661,
-    "y_3d": 3.01132783,
-    "z_3d": 0.25789459,
+    "x_3d": 0.00508,
+    "y_3d": 0,
+    "z_3d": 0,
     "model_anchor_name": "pin_lead_b"
   },
   {

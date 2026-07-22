@@ -7,6 +7,7 @@ import pinCatalog from "../../assets/all_component_pin_coordinates.json";
 import { modelRegistry } from "./modelRegistry.js";
 
 const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
+const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
 
 const modelProfiles = {
   "arduino-uno-r3": {
@@ -31,8 +32,13 @@ const modelProfiles = {
   },
   "resistor-220-ohm": {
     longestSide: 2.8,
-    rotation: [0, 0, Math.PI / 2],
+    rotation: [0, 0, 0],
     pinLayout: "resistor",
+  },
+  "pushbutton-6x6": {
+    longestSide: 1.8,
+    rotation: [0, 0, 0],
+    pinLayout: "switch",
   },
 };
 
@@ -93,17 +99,37 @@ function prepareModel(gltf, part, asset, layoutBounds) {
   model.rotation.set(...profile.rotation);
   model.updateMatrixWorld(true);
 
+  const pinAnchors = new Map();
+  const pinKeyByNodeName = new Map(
+    (asset.metadata?.pins ?? [])
+      .filter((pin) => pin.nodeName && pin.pinKey)
+      .map((pin) => [pin.nodeName, pin.pinKey]),
+  );
+  model.traverse((object) => {
+    const pinKey = object.userData?.pinKey ?? pinKeyByNodeName.get(object.name);
+    if (pinKey) pinAnchors.set(pinKey, object);
+  });
+  const isRealWorldAsset = asset.metadata?.asset?.scaleStatus === "real-world"
+    && asset.metadata?.coordinateSystems?.runtime?.unit === "meter";
+  const hasNormalizedOrigin = Boolean(asset.metadata?.origin?.normalized);
+
   let modelBounds = new THREE.Box3().setFromObject(model);
   let size = modelBounds.getSize(new THREE.Vector3());
-  const longestSide = Math.max(size.x, size.y, size.z, 0.0001);
-  model.scale.setScalar(profile.longestSide / longestSide);
+  if (isRealWorldAsset) {
+    model.scale.setScalar(REAL_WORLD_SCENE_UNITS_PER_METER);
+  } else {
+    const longestSide = Math.max(size.x, size.y, size.z, 0.0001);
+    model.scale.setScalar(profile.longestSide / longestSide);
+  }
   model.updateMatrixWorld(true);
 
   modelBounds = new THREE.Box3().setFromObject(model);
-  const center = modelBounds.getCenter(new THREE.Vector3());
-  model.position.x -= center.x;
-  model.position.y -= modelBounds.min.y;
-  model.position.z -= center.z;
+  if (!hasNormalizedOrigin) {
+    const center = modelBounds.getCenter(new THREE.Vector3());
+    model.position.x -= center.x;
+    model.position.y -= modelBounds.min.y;
+    model.position.z -= center.z;
+  }
   model.updateMatrixWorld(true);
 
   model.traverse((object) => {
@@ -121,6 +147,7 @@ function prepareModel(gltf, part, asset, layoutBounds) {
     asset,
     group,
     part,
+    pinAnchors,
     pinLayout: profile.pinLayout,
     size,
   };
@@ -161,6 +188,12 @@ function pinLocalPosition(record, pinKey) {
 }
 
 function pinWorldPosition(record, pinKey) {
+  const embeddedAnchor = record.pinAnchors?.get(pinKey);
+  if (embeddedAnchor) {
+    record.group.updateMatrixWorld(true);
+    return embeddedAnchor.getWorldPosition(new THREE.Vector3());
+  }
+
   const position = pinLocalPosition(record, pinKey);
   record.group.updateMatrixWorld(true);
   return record.group.localToWorld(position);

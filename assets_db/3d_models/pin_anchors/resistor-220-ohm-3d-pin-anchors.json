@@ -4,59 +4,48 @@
   "model_storage_path": "3d_models/glb/resistor-220-ohm.glb",
   "model_bounds": {
     "min": [
-      -0.238720898443745,
-      0.04055225849151611,
-      -0.2580604818399479
+      -0.0054517099633812904,
+      -0.003000000026077032,
+      -0.0011500000255182385
     ],
     "max": [
-      0.2772341209613387,
-      3.1676844358444214,
-      0.2578945923955587
+      0.0054517099633812904,
+      0.0041499994695186615,
+      0.0011500000255182385
     ],
     "size": [
-      0.5159550194050837,
-      3.1271321773529053,
-      0.5159550742355066
+      0.010903419926762581,
+      0.007149999495595694,
+      0.002300000051036477
     ]
   },
-  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "method": "embedded_glb_empty",
   "coordinate_space": "glb_model_local",
   "axis_mapping": {
-    "image_x_axis": "y",
-    "image_y_axis": "x",
-    "surface_axis": "z",
-    "image_y_direction": "positive",
-    "calibration_quality": "draft_projected"
-  },
-  "pixel_source": {
-    "width_px": 320,
-    "height_px": 90,
-    "origin": "top-left"
+    "runtime_up_axis": "+Y",
+    "runtime_front_axis": "+Z",
+    "calibration_quality": "candidate_blender_empty"
   },
   "pins": [
     {
       "pin_key": "LEAD_A",
       "label": "Lead A",
-      "x_3d": 0.01925661,
-      "y_3d": 0.19690887,
-      "z_3d": 0.25789459,
-      "model_anchor_name": "pin_lead_a",
-      "source_x_px": 16,
-      "source_y_px": 45
+      "x_3d": -0.00508,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_lead_a"
     },
     {
       "pin_key": "LEAD_B",
       "label": "Lead B",
-      "x_3d": 0.01925661,
-      "y_3d": 3.01132783,
-      "z_3d": 0.25789459,
-      "model_anchor_name": "pin_lead_b",
-      "source_x_px": 304,
-      "source_y_px": 45
+      "x_3d": 0.00508,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_lead_b"
     }
   ],
   "notes": [
-    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
-    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+    "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
+    "Candidate assets require visual review before moving to approved metadata."
   ]
 }
