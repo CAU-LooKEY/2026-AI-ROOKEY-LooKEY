@@ -37,6 +37,8 @@ Rules:
 - Return Arduino source code as codeLines, an array containing one source line
   per item. Do not return a code field. Keep each code line free of newline
   escape sequences.
+- Keep the response compact: use at most 40 codeLines, 5 tutorSteps, 4
+  warnings, and 6 validationResults. Keep descriptions to one short sentence.
 - validationResults must describe safety and circuit consistency checks.
 - validationResults.level must be PASS, WARNING, or ERROR. Use PASS when a
   check is satisfied, WARNING for a usable circuit that needs attention, and
@@ -187,7 +189,7 @@ class KExaoneClient:
             "messages": messages,
             "stream": False,
             "temperature": 0.2,
-            "max_tokens": 4096,
+            "max_tokens": 2048,
             "chat_template_kwargs": {"enable_thinking": False},
             "parse_reasoning": True,
             "include_reasoning": False,

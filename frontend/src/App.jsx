@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { Box, Workflow } from "lucide-react";
 import { generateCircuit } from "./api/circuitApi.js";
 import CanvasView from "./views/canvas/CanvasView.jsx";
+import Circuit3DView from "./views/three/Circuit3DView.jsx";
 import { examplePrompts, sampleSavedProjects } from "./sampleProject.js";
 import "./App.css";
 
@@ -316,11 +318,13 @@ function SummaryPage({ prompt, project, circuit, apiMessage, onStepSelect, onBac
 }
 
 function CircuitPage({ circuit, project, onStepSelect, onBack, onNext }) {
+  const [viewMode, setViewMode] = useState("3d");
+
   return (
     <ResultShell
       activeStep="circuit"
-      title="회로도"
-      desc="전원, 접지, 신호선을 구분해서 부품 사이의 실제 연결을 확인합니다."
+      title="3D 회로 조립도"
+      desc="실제 부품의 방향과 점퍼선 연결을 돌려보며 확인합니다."
       onStepSelect={onStepSelect}
       onBack={onBack}
       onNext={onNext}
@@ -331,10 +335,38 @@ function CircuitPage({ circuit, project, onStepSelect, onBack, onNext }) {
           <div className="done">① 보드 배치 ✓</div>
           <div className="done">② 핀 연결 구성 ✓</div>
           <div className="done">③ 응답 형식 검증 ✓</div>
-          <div className="active">④ 전체 회로 확인 ●</div>
+          <div className="active">④ 3D 전체 회로 확인 ●</div>
         </div>
         <div className="circuitCanvasPanel">
-          <CanvasView circuit={circuit} />
+          <div className="circuitViewHeader">
+            <div>
+              <strong>{viewMode === "3d" ? "3D 조립 배치" : "2D 배선도"}</strong>
+              <span>{viewMode === "3d" ? "드래그해서 회전하고 휠로 확대하세요." : "핀 이름과 배선 경로를 확인하세요."}</span>
+            </div>
+            <div className="circuitViewSwitch" role="tablist" aria-label="회로 보기 방식">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={viewMode === "3d"}
+                className={viewMode === "3d" ? "active" : ""}
+                onClick={() => setViewMode("3d")}
+              >
+                <Box size={16} />
+                3D
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={viewMode === "2d"}
+                className={viewMode === "2d" ? "active" : ""}
+                onClick={() => setViewMode("2d")}
+              >
+                <Workflow size={16} />
+                2D
+              </button>
+            </div>
+          </div>
+          {viewMode === "3d" ? <Circuit3DView circuit={circuit} /> : <CanvasView circuit={circuit} />}
         </div>
       </div>
       {project.validationResults?.length > 0 && (

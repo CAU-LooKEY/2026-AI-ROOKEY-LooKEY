@@ -1238,6 +1238,62 @@
       "The uploaded LED image is angled, not a strict top-view photo; replace with a top-view or rendered LED for production-quality 2.5D placement."
     ]
   },
+  "led-5mm-red": {
+    "component_slug": "led-5mm-red",
+    "display_name": "Red LED 5mm",
+    "category": "output",
+    "board_family": null,
+    "description": "Two-lead red LED generated from a normalized GLB candidate.",
+    "grid_width": 2,
+    "grid_height": 4,
+    "pixel_width": 512,
+    "pixel_height": 512,
+    "license_status": "needs_review",
+    "trademark_notes": null,
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/led-5mm-red-front.png",
+      "mime_type": "image/png",
+      "width_px": 512,
+      "height_px": 512,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "ANODE",
+        "label": "Anode +",
+        "signal_type": "component",
+        "side": "bottom",
+        "x_px": 267,
+        "y_px": 470,
+        "aliases": [
+          "A",
+          "+",
+          "long-leg"
+        ],
+        "sort_order": 0,
+        "notes": "Longer rendered lead; inferred as anode."
+      },
+      {
+        "pin_key": "CATHODE",
+        "label": "Cathode -",
+        "signal_type": "ground",
+        "side": "bottom",
+        "x_px": 232,
+        "y_px": 356,
+        "aliases": [
+          "K",
+          "-",
+          "short-leg"
+        ],
+        "sort_order": 1,
+        "notes": "Shorter rendered lead; inferred as cathode."
+      }
+    ],
+    "notes": [
+      "This entry supports the 3D metadata candidate; verify the source asset license and measured dimensions before approval."
+    ]
+  },
   "pushbutton-6x6": {
     "component_slug": "pushbutton-6x6",
     "display_name": "6x6 Tactile Pushbutton",

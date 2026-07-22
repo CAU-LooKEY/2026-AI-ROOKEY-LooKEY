@@ -238,6 +238,46 @@
     "unit": "model-unit"
   },
   {
+    "component_slug": "led-5mm-red",
+    "target": "led-5mm-red.glb",
+    "source": "Red LED.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Normalized 5 mm red LED candidate with a 2.54 mm pin pitch and embedded pin anchor nodes; verify source license and physical measurements before approval.",
+    "storage_path": "3d_models/glb/led-5mm-red.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 2013224,
+    "sha256": "d6dcbc67be4ef2a2197ba04f2497c4a6fd70b620747b84b967720a582f62bbe9",
+    "version": 2,
+    "nodes": 4,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.002290737582370639,
+        -0.01433674618601799,
+        -0.0024615181609988213
+      ],
+      "max": [
+        0.002669190987944603,
+        0.011729164980351925,
+        0.0024940113071352243
+      ],
+      "size": [
+        0.004959928570315242,
+        0.026065911166369915,
+        0.004955529468134046
+      ]
+    },
+    "unit": "meter"
+  },
+  {
     "component_slug": "pushbutton-6x6",
     "target": "pushbutton-6x6.glb",
     "source": "push_button_6x6x5mm.glb",
