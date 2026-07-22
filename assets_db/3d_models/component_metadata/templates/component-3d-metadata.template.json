@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "component-slug",
+  "asset": {
+    "path": "assets_db/3d_models/glb/component-slug.glb",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "format": "glb",
+    "scaleStatus": "real-world",
+    "thumbnailPath": null
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 1,
+    "depth": 1,
+    "height": 1,
+    "measurementScope": "overall-including-pins",
+    "source": "measured",
+    "confidence": 1
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "millimeter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": true,
+    "description": "The GLB origin is the center of the surface that touches the mounting plane."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "front",
+        "pinKey": null,
+        "direction": "+Z",
+        "description": "Replace this with a component-specific landmark."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "PIN_KEY",
+      "label": "Pin label",
+      "nodeName": "pin_pin_key",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": []
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 1,
+      "sourceObject": "pin_pin_key",
+      "notes": []
+    }
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "keepOutMarginMillimeter": 1
+  },
+  "provenance": {
+    "authorGithub": "github-id",
+    "branch": "feat/component-slug-3d-metadata",
+    "method": "blender-empty",
+    "sourceTool": "Blender",
+    "createdAt": "2026-07-22",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "Replace every placeholder before submitting this file as a candidate."
+  ]
+}
