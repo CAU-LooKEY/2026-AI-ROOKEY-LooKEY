@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "component_slug": "breadboard-half",
+  "status": "candidate",
+  "coordinate_system": {
+    "handedness": "right",
+    "up_axis": "+Y",
+    "front_axis": "+Z",
+    "unit": "millimeter"
+  },
+  "breadboard_socket": {
+    "gender": "female",
+    "shape": "square",
+    "opening_width_mm": 0.723666,
+    "opening_height_mm": 0.723666,
+    "usable_depth_mm": 7.09568,
+    "pitch_mm": 2.54,
+    "outward_axis_runtime": [
+      0,
+      1,
+      0
+    ],
+    "insertion_axis_runtime": [
+      0,
+      -1,
+      0
+    ],
+    "measurement_source": "normalized GLB geometry measured in Blender 5.2 LTS"
+  },
+  "jumper_male": {
+    "gender": "male",
+    "shape": "square",
+    "pin_width_mm": 0.64,
+    "pin_height_mm": 0.64,
+    "mating_axis_local": [
+      0,
+      -1,
+      0
+    ],
+    "maximum_modeled_insertion_mm": 7.09568,
+    "dimension_basis": "Molex PS-10-07-001 and Amphenol BergStik official documentation for 2.54 mm pitch, 0.64 mm square pins",
+    "dimension_source_url": "https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/productspecificationpdf/100/1007/PS-10-07-001.pdf"
+  },
+  "jumper_female": {
+    "gender": "female",
+    "accepted_mating_pin_shape": "square",
+    "accepted_mating_pin_width_mm": 0.64,
+    "pitch_mm": 2.54,
+    "breadboard_direct_fit": false,
+    "reason": "The breadboard socket and a female jumper end are both female; a male pin is required between them.",
+    "dimension_basis": "Harwin M20-1160042 official product data: straight female receptacle for 0.64 mm square mating pins at 2.54 mm pitch",
+    "dimension_source_url": "https://www.harwin.com/products/M20-1160042"
+  },
+  "fit_check": {
+    "profile_clearance_total_mm": 0.083666,
+    "profile_clearance_each_side_mm": 0.041833,
+    "male_profile_fits_opening": true,
+    "depth_condition": "The exposed male pin length inserted into the asset must not exceed 7.09568 mm.",
+    "result": "pass",
+    "limitations": [
+      "This is a geometry fit check, not a spring-contact force test.",
+      "The source STEP mesh does not model metal spring contacts.",
+      "Physical fit still requires comparison with the selected real jumper part."
+    ]
+  }
+}

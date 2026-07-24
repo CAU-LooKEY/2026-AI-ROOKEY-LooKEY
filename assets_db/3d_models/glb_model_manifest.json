@@ -78,42 +78,42 @@
   {
     "component_slug": "breadboard-half",
     "target": "breadboard-half.glb",
-    "source": "breadboard_arduino.glb",
-    "audit_status": "ready",
-    "model_kind": "production_3d",
-    "notes": "Selected regular breadboard candidate with small file size and simple structure.",
+    "source": "breadboard-half-working.blend",
+    "audit_status": "candidate",
+    "model_kind": "candidate_3d",
+    "notes": "Real-world Half Breadboard exported from Blender with a mounting-surface origin, 300 terminal-hole Empty nodes, and 100 power-rail Empty nodes.",
     "storage_path": "3d_models/glb/breadboard-half.glb",
     "mime_type": "model/gltf-binary",
     "format": "glb",
-    "bytes": 1998128,
-    "sha256": "a6a53a19dede60c269274886f05b4966ddb5a40dd08f83b1a47c721bca7569a2",
+    "bytes": 2142580,
+    "sha256": "09574a9d7b95d22dec389cef3048615289c18bcd4ed12287323bd4e223b1de76",
     "version": 2,
-    "nodes": 6,
+    "nodes": 402,
     "meshes": 1,
-    "materials": 1,
-    "textures": 2,
-    "images": 2,
-    "extensions_used": [
-      "KHR_materials_pbrSpecularGlossiness"
-    ],
+    "materials": 0,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
     "bounds": {
       "min": [
-        0.21258124709129328,
-        -0.29579075426517537,
-        0.17433716814463632
+        -0.04150497540831566,
+        -0.009509995579719543,
+        -0.028040006756782532
       ],
       "max": [
-        0.5780577957630157,
-        -0.05015984921993204,
-        0.19822729666287406
+        0.04150497540831566,
+        0,
+        0.028039991855621338
       ],
       "size": [
-        0.36547654867172247,
-        0.24563090504524332,
-        0.02389012851823774
+        0.08300995081663132,
+        0.009509995579719543,
+        0.05607999861240387
       ]
     },
-    "unit": "model-unit"
+    "unit": "meter",
+    "upstream_url": "https://grabcad.com/library/half-breadboard-1",
+    "upstream_license": "GrabCAD Community personal-use permission; redistribution and commercial-use permission not explicitly established"
   },
   {
     "component_slug": "breadboard-full",

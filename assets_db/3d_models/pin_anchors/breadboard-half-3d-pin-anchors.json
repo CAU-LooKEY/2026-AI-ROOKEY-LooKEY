@@ -4,119 +4,107 @@
   "model_storage_path": "3d_models/glb/breadboard-half.glb",
   "model_bounds": {
     "min": [
-      0.21258124709129328,
-      -0.29579075426517537,
-      0.17433716814463632
+      -0.04150497540831566,
+      -0.009509995579719543,
+      -0.028040006756782532
     ],
     "max": [
-      0.5780577957630157,
-      -0.05015984921993204,
-      0.19822729666287406
+      0.04150497540831566,
+      0,
+      0.028039991855621338
     ],
     "size": [
-      0.36547654867172247,
-      0.24563090504524332,
-      0.02389012851823774
+      0.08300995081663132,
+      0.009509995579719543,
+      0.05607999861240387
     ]
   },
-  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "method": "blender-empty",
   "coordinate_space": "glb_model_local",
   "axis_mapping": {
-    "image_x_axis": "x",
-    "image_y_axis": "y",
-    "surface_axis": "z",
-    "image_y_direction": "positive",
-    "calibration_quality": "draft_projected"
-  },
-  "pixel_source": {
-    "width_px": 367,
-    "height_px": 247,
-    "origin": "top-left"
+    "right_axis": "+X",
+    "up_axis": "+Y",
+    "front_axis": "+Z",
+    "unit": "meter",
+    "calibration_quality": "measured_candidate"
   },
   "pins": [
     {
-      "pin_key": "RAIL_TOP_POS",
-      "label": "+ top",
-      "x_3d": 0.25032392,
-      "y_3d": -0.26734928,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_top_pos",
-      "source_x_px": 37.9,
-      "source_y_px": 28.6
-    },
-    {
-      "pin_key": "RAIL_TOP_NEG",
-      "label": "- top",
-      "x_3d": 0.25032392,
-      "y_3d": -0.25660914,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_top_neg",
-      "source_x_px": 37.9,
-      "source_y_px": 39.4
-    },
-    {
-      "pin_key": "RAIL_BOTTOM_POS",
-      "label": "+ bottom",
-      "x_3d": 0.25032392,
-      "y_3d": -0.08297693,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_bottom_pos",
-      "source_x_px": 37.9,
-      "source_y_px": 214.0
-    },
-    {
-      "pin_key": "RAIL_BOTTOM_NEG",
-      "label": "- bottom",
-      "x_3d": 0.25032392,
-      "y_3d": -0.07253513,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_bottom_neg",
-      "source_x_px": 37.9,
-      "source_y_px": 224.5
-    },
-    {
       "pin_key": "A1",
       "label": "A1",
-      "x_3d": 0.244548,
-      "y_3d": -0.22697432,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_a1",
-      "source_x_px": 32.1,
-      "source_y_px": 69.2
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A1",
+      "source": "blender-empty"
     },
     {
       "pin_key": "E1",
       "label": "E1",
-      "x_3d": 0.244548,
-      "y_3d": -0.18550546,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_e1",
-      "source_x_px": 32.1,
-      "source_y_px": 110.9
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E1",
+      "source": "blender-empty"
     },
     {
       "pin_key": "F1",
       "label": "F1",
-      "x_3d": 0.244548,
-      "y_3d": -0.15457785,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_f1",
-      "source_x_px": 32.1,
-      "source_y_px": 142.0
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F1",
+      "source": "blender-empty"
     },
     {
       "pin_key": "J1",
       "label": "J1",
-      "x_3d": 0.244548,
-      "y_3d": -0.11300954,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_j1",
-      "source_x_px": 32.1,
-      "source_y_px": 183.8
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J1",
+      "source": "blender-empty"
+    },
+    {
+      "pin_key": "RAIL_TOP_POS",
+      "label": "RAIL_TOP_POS",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S1_1",
+      "source": "blender-empty"
+    },
+    {
+      "pin_key": "RAIL_TOP_NEG",
+      "label": "RAIL_TOP_NEG",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_1",
+      "source": "blender-empty"
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_POS",
+      "label": "RAIL_BOTTOM_POS",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_1",
+      "source": "blender-empty"
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_NEG",
+      "label": "RAIL_BOTTOM_NEG",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_1",
+      "source": "blender-empty"
     }
   ],
   "notes": [
-    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
-    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+    "Compatibility export of eight measured calibration anchors.",
+    "Generate A1-J30 from the breadboard layout rule or read the GLB Empty nodes.",
+    "The component metadata candidate is the versioned review record."
   ]
 }
