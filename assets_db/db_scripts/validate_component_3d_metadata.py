@@ -41,7 +41,9 @@ ALLOWED_CONNECTOR_FORMS = {
     "other",
 }
 PIN_KEY_PATTERN = re.compile(r"^[A-Z][A-Z0-9_+\-]*$")
-NODE_NAME_PATTERN = re.compile(r"^pin_[a-z0-9_]+$")
+NODE_NAME_PATTERN = re.compile(
+    r"^pin_(?:[A-Z][A-Z0-9_+\-]*|[a-z0-9_]+)$"
+)
 SHA256_PATTERN = re.compile(r"^[a-f0-9]{64}$")
 SLUG_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 UNIT_VECTOR_TOLERANCE = 0.05
@@ -121,11 +123,44 @@ def catalog_pin_keys(catalog: dict[str, Any], component_slug: str) -> set[str]:
     pins = component.get("pins")
     if not isinstance(pins, list):
         return set()
-    return {
+    keys = {
         pin.get("pin_key")
         for pin in pins
         if isinstance(pin, dict) and isinstance(pin.get("pin_key"), str)
     }
+    runtime_procedural = component.get("runtime_procedural")
+    if isinstance(runtime_procedural, dict):
+        columns = runtime_procedural.get("columns")
+        rows = runtime_procedural.get("rows_z_meter")
+        if (
+            isinstance(columns, dict)
+            and isinstance(columns.get("count"), int)
+            and isinstance(rows, dict)
+        ):
+            keys.update(
+                f"{row}{column}"
+                for row in rows
+                if isinstance(row, str)
+                for column in range(1, columns["count"] + 1)
+            )
+    rail_runtime = component.get("rail_runtime")
+    if isinstance(rail_runtime, dict):
+        rows = rail_runtime.get("rows_z_meter")
+        segments = rail_runtime.get("segments_per_row")
+        holes = rail_runtime.get("holes_per_segment")
+        if (
+            isinstance(rows, dict)
+            and isinstance(segments, int)
+            and isinstance(holes, int)
+        ):
+            keys.update(
+                f"RAIL_{rail_name}_S{segment}_{hole}"
+                for rail_name in rows
+                if isinstance(rail_name, str)
+                for segment in range(1, segments + 1)
+                for hole in range(1, holes + 1)
+            )
+    return keys
 
 
 def validate_metadata(
@@ -332,7 +367,7 @@ def validate_metadata(
 
         node_name = pin.get("nodeName")
         if not isinstance(node_name, str) or not NODE_NAME_PATTERN.fullmatch(node_name):
-            errors.append(f"{label}.nodeName must match pin_[a-z0-9_]+")
+            errors.append(f"{label}.nodeName must match pin_<PIN_KEY>")
         else:
             if node_name in seen_node_names:
                 errors.append(f"{label}.nodeName is duplicated: {node_name}")

@@ -990,7 +990,7 @@
     "display_name": "Half-size Breadboard",
     "category": "prototyping",
     "board_family": null,
-    "description": "Representative breadboard anchors. Full hole coordinates are procedural and stored in db_scripts/breadboard_layouts.",
+    "description": "Representative Half Breadboard anchors plus a procedural runtime rule. The 300 GLB Empty nodes remain the coordinate source of truth.",
     "grid_width": 12,
     "grid_height": 8,
     "pixel_width": 367,
@@ -1017,7 +1017,20 @@
           "+"
         ],
         "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 0
+        "sort_order": 0,
+        "runtime": {
+          "node_name": "pin_RAIL_TOP_POS_S1_1",
+          "position_meter": [
+            -0.036225,
+            0,
+            -0.02469
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "pin_key": "RAIL_TOP_NEG",
@@ -1030,7 +1043,20 @@
           "-"
         ],
         "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 1
+        "sort_order": 1,
+        "runtime": {
+          "node_name": "pin_RAIL_TOP_NEG_S1_1",
+          "position_meter": [
+            -0.036225,
+            0,
+            -0.02215
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "pin_key": "RAIL_BOTTOM_POS",
@@ -1043,7 +1069,20 @@
           "+"
         ],
         "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 2
+        "sort_order": 2,
+        "runtime": {
+          "node_name": "pin_RAIL_BOTTOM_POS_S1_1",
+          "position_meter": [
+            -0.036225,
+            0,
+            0.02082
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "pin_key": "RAIL_BOTTOM_NEG",
@@ -1056,7 +1095,20 @@
           "-"
         ],
         "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 3
+        "sort_order": 3,
+        "runtime": {
+          "node_name": "pin_RAIL_BOTTOM_NEG_S1_1",
+          "position_meter": [
+            -0.036225,
+            0,
+            0.02336
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "pin_key": "A1",
@@ -1066,8 +1118,21 @@
         "x_px": 32.1,
         "y_px": 69.2,
         "aliases": [],
-        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 4
+        "notes": "Procedural terminal hole; electrically common with upper bank column 1.",
+        "sort_order": 100,
+        "runtime": {
+          "node_name": "pin_A1",
+          "position_meter": [
+            -0.037495,
+            0,
+            -0.014725
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "pin_key": "E1",
@@ -1077,8 +1142,21 @@
         "x_px": 32.1,
         "y_px": 110.9,
         "aliases": [],
-        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 5
+        "notes": "Procedural terminal hole; electrically common with upper bank column 1.",
+        "sort_order": 220,
+        "runtime": {
+          "node_name": "pin_E1",
+          "position_meter": [
+            -0.037495,
+            0,
+            -0.004565
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "pin_key": "F1",
@@ -1088,8 +1166,21 @@
         "x_px": 32.1,
         "y_px": 142.0,
         "aliases": [],
-        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 6
+        "notes": "Procedural terminal hole; electrically common with lower bank column 1.",
+        "sort_order": 250,
+        "runtime": {
+          "node_name": "pin_F1",
+          "position_meter": [
+            -0.037495,
+            0,
+            0.003235
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       },
       {
         "pin_key": "J1",
@@ -1099,14 +1190,81 @@
         "x_px": 32.1,
         "y_px": 183.8,
         "aliases": [],
-        "notes": "Representative breadboard anchor; compute full hole coordinates from circuit_breadboard_layouts.",
-        "sort_order": 7
+        "notes": "Procedural terminal hole; electrically common with lower bank column 1.",
+        "sort_order": 370,
+        "runtime": {
+          "node_name": "pin_J1",
+          "position_meter": [
+            -0.037495,
+            0,
+            0.013395
+          ],
+          "outward_direction": [
+            0,
+            1,
+            0
+          ]
+        }
       }
     ],
     "notes": [
-      "Procedural layout calibrated from detected hole centers in the uploaded top-view image.",
-      "Do not store every breadboard hole as a DB row; compute holes from x_start, x_pitch, and y row arrays."
-    ]
+      "GLB Empty nodes are the source of truth; runtime JSON values are distribution copies.",
+      "Terminal pitch is 2.54 mm. E-F is separated by the center trench.",
+      "Do not materialize A1-J30 as ordinary catalog rows; use runtime_procedural.",
+      "Rail entries are representative; rail_runtime generates all 100 rail socket nodes."
+    ],
+    "runtime_procedural": {
+      "space": "gltf-model-local",
+      "unit": "meter",
+      "columns": {
+        "count": 30,
+        "x_start_meter": -0.037495,
+        "x_pitch_meter": 0.00254,
+        "formula": "x = x_start_meter + (column - 1) * x_pitch_meter"
+      },
+      "rows_z_meter": {
+        "A": -0.014725,
+        "B": -0.012185,
+        "C": -0.009645,
+        "D": -0.007105,
+        "E": -0.004565,
+        "F": 0.003235,
+        "G": 0.005775,
+        "H": 0.008315,
+        "I": 0.010855,
+        "J": 0.013395
+      },
+      "surface_y_meter": 0,
+      "outward_direction": [
+        0,
+        1,
+        0
+      ],
+      "node_name_formula": "pin_{ROW}{COLUMN}"
+    },
+    "rail_runtime": {
+      "space": "gltf-model-local",
+      "unit": "meter",
+      "rows_z_meter": {
+        "TOP_POS": -0.02469,
+        "TOP_NEG": -0.02215,
+        "BOTTOM_POS": 0.02082,
+        "BOTTOM_NEG": 0.02336
+      },
+      "segments_per_row": 5,
+      "holes_per_segment": 5,
+      "x_start_meter": -0.036225,
+      "hole_pitch_meter": 0.00254,
+      "segment_pitch_meter": 0.01524,
+      "formula": "x = x_start_meter + (segment - 1) * segment_pitch_meter + (hole - 1) * hole_pitch_meter",
+      "surface_y_meter": 0,
+      "outward_direction": [
+        0,
+        1,
+        0
+      ],
+      "node_name_formula": "pin_RAIL_{RAIL_NAME}_S{SEGMENT}_{HOLE}"
+    }
   },
   "hc-sr04": {
     "component_slug": "hc-sr04",

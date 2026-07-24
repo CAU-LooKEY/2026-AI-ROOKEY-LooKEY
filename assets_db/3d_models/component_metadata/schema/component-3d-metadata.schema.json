@@ -473,7 +473,7 @@
         },
         "nodeName": {
           "type": "string",
-          "pattern": "^pin_[a-z0-9_]+$"
+          "pattern": "^pin_(?:[A-Z][A-Z0-9_+\\-]*|[a-z0-9_]+)$"
         },
         "position": {
           "$ref": "#/$defs/vector3"
