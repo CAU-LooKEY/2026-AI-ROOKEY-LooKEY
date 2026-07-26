@@ -1,5 +1,9 @@
 # Assembly Plan 1.0
 
+> The production implementation now uses the merged real 3D asset metadata.
+> See `docs/physical-assembly-engine.md` for physical placement, split rails,
+> electrical grouping, and placement-failure behavior.
+
 `AssemblyPlan` is the server-owned physical layout returned as
 `assemblyPlan` by `POST /api/v1/circuit/generate`. K-EXAONE continues to
 produce the logical circuit; the backend converts that circuit into the same

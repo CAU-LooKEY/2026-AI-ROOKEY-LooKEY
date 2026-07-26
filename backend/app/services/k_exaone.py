@@ -7,7 +7,7 @@ from pydantic import ValidationError
 
 from app.core.settings import Settings
 from app.schemas.circuit import CircuitGenerationResponse
-from app.services.assembly_plan import AssemblyPlanEngine
+from app.services.physical_assembly import PhysicalAssemblyPlanEngine
 
 
 logger = logging.getLogger(__name__)
@@ -82,7 +82,7 @@ class KExaoneClient:
                     circuit_data = self._parse_json_content(content)
                     circuit_data = self._prepare_circuit_data(circuit_data)
                     result = CircuitGenerationResponse.model_validate(circuit_data)
-                    result.assembly_plan = AssemblyPlanEngine().build(result)
+                    result.assembly_plan = PhysicalAssemblyPlanEngine().build(result)
                     return result
                 except (ValueError, TypeError, ValidationError) as exc:
                     logger.warning(

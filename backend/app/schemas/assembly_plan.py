@@ -29,6 +29,8 @@ class Placement(AssemblyModel):
     component_id: str = Field(alias="componentId")
     transform: Transform
     mode: Literal["free", "board", "breadboard"] = "free"
+    status: Literal["placed", "failed"] = "placed"
+    failure_code: str | None = Field(default=None, alias="failureCode")
     addresses: dict[str, str] = Field(default_factory=dict)
 
 
@@ -50,6 +52,8 @@ class AssemblyWarning(AssemblyModel):
     code: str
     severity: Literal["INFO", "WARNING", "ERROR"]
     message: str
+    suggestion: str | None = None
+    details: dict[str, object] = Field(default_factory=dict)
     component_ids: list[str] = Field(default_factory=list, alias="componentIds")
     connection_ids: list[str] = Field(default_factory=list, alias="connectionIds")
 
