@@ -7,6 +7,7 @@ from pydantic import ValidationError
 
 from app.core.settings import Settings
 from app.schemas.circuit import CircuitGenerationResponse
+from app.services.assembly_plan import AssemblyPlanEngine
 
 
 logger = logging.getLogger(__name__)
@@ -78,7 +79,9 @@ class KExaoneClient:
                 try:
                     circuit_data = self._parse_json_content(content)
                     circuit_data = self._prepare_circuit_data(circuit_data)
-                    return CircuitGenerationResponse.model_validate(circuit_data)
+                    result = CircuitGenerationResponse.model_validate(circuit_data)
+                    result.assembly_plan = AssemblyPlanEngine().build(result)
+                    return result
                 except (ValueError, TypeError, ValidationError) as exc:
                     logger.warning(
                         "K-EXAONE circuit validation failed on attempt %s: %s",
@@ -199,6 +202,8 @@ class KExaoneClient:
             )
             schema = self._use_code_lines_schema(schema)
             schema = self._remove_server_derived_connection_fields(schema)
+            schema["properties"].pop("assemblyPlan", None)
+            schema["required"] = [item for item in schema.get("required", []) if item != "assemblyPlan"]
             payload["response_format"] = {
                 "type": "json_schema",
                 "json_schema": {

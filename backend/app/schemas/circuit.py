@@ -2,6 +2,8 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from app.schemas.assembly_plan import AssemblyPlan
+
 
 SUPPORTED_COMPONENT_PINS = {
     "arduino-uno-r3": {
@@ -200,6 +202,7 @@ class CircuitGenerationResponse(ApiModel):
     warnings: list[str]
     validation_results: list[ValidationResult] = Field(alias="validationResults")
     unsupported_components: list[str] = Field(alias="unsupportedComponents")
+    assembly_plan: AssemblyPlan | None = Field(default=None, alias="assemblyPlan")
 
     @staticmethod
     def _required_wire_connector(component_key: str) -> WireConnector:
