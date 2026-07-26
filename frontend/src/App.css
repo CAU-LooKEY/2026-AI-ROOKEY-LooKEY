@@ -711,6 +711,54 @@ p {
   color: #be123c;
 }
 
+.circuit3dPinGuide {
+  min-height: 54px;
+  padding: 8px 12px;
+  border-top: 1px solid #dfe6f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #eff6ff;
+}
+
+.circuit3dPinGuide > div:first-child {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.circuit3dPinGuide strong {
+  color: #1e3a8a;
+  font-size: 11px;
+}
+
+.circuit3dPinGuide span {
+  overflow: hidden;
+  color: #475569;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.circuit3dPinGuide > div:last-child {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 6px;
+}
+
+.circuit3dPinGuide button {
+  min-height: 30px;
+  padding: 0 9px;
+  border: 1px solid #bfdbfe;
+  border-radius: 6px;
+  background: #fff;
+  color: #1d4ed8;
+  font-size: 9px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .circuit3dLegend {
   min-height: 50px;
   padding: 9px 12px;

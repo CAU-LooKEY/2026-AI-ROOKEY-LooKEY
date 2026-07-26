@@ -117,15 +117,23 @@ export function resolveJumperWire(connection, sourceEndpoint, targetEndpoint, si
   ]) {
     if (
       endpoint.kind === "breadboard-hole"
-      && (
-        connectorGender !== ConnectorGender.MALE
-        || Math.abs(JUMPER_SPEC.malePinWidthMillimeter - 0.64) > 0.001
-      )
+      && connectorGender !== ConnectorGender.MALE
     ) {
       issues.push({
         code: "BREADBOARD_REQUIRES_MALE_064",
         level: "error",
         message: "브레드보드 홀에는 0.64mm 수 핀만 삽입할 수 있습니다.",
+      });
+    }
+    if (
+      endpoint.kind === "breadboard-hole"
+      && endpoint.connector?.diameterMillimeter
+      && JUMPER_SPEC.malePinWidthMillimeter > endpoint.connector.diameterMillimeter
+    ) {
+      issues.push({
+        code: "PIN_TOO_WIDE",
+        level: "error",
+        message: `${JUMPER_SPEC.malePinWidthMillimeter}mm 수 핀이 브레드보드 홀보다 큽니다.`,
       });
     }
   }
@@ -168,6 +176,7 @@ export function createPinEndpoint(record, pinKey) {
       metadata?.mounting?.insertionDepthMillimeter
       ?? JUMPER_SPEC.defaultInsertionDepthMillimeter,
     outwardDirection: metadata?.outwardDirection ?? [0, 1, 0],
+    connector: metadata?.connector ?? null,
     metadata,
   };
 }

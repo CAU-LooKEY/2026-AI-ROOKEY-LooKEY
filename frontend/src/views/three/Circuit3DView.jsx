@@ -152,11 +152,16 @@ function prepareModel(gltf, part, asset, layoutBounds) {
   return {
     asset,
     group,
+    model,
     part,
     pinAnchors,
     pinLayout: profile.pinLayout,
     size,
   };
+}
+
+function findPinMetadata(record, pinKey) {
+  return record.asset?.metadata?.pins?.find((pin) => pin.pinKey === pinKey) ?? null;
 }
 
 function findPinDefinition(record, pinKey) {
@@ -200,6 +205,12 @@ function pinWorldPosition(record, pinKey) {
     return embeddedAnchor.getWorldPosition(new THREE.Vector3());
   }
 
+  const metadata = findPinMetadata(record, pinKey);
+  if (metadata?.position?.length === 3) {
+    record.model.updateMatrixWorld(true);
+    return record.model.localToWorld(new THREE.Vector3(...metadata.position));
+  }
+
   const position = pinLocalPosition(record, pinKey);
   record.group.updateMatrixWorld(true);
   return record.group.localToWorld(position);
@@ -209,13 +220,45 @@ function pinWorldDirection(record, endpoint) {
   const direction = new THREE.Vector3(...endpoint.outwardDirection);
   if (direction.lengthSq() < 0.0001) direction.set(0, 1, 0);
   direction.normalize();
-  record.group.updateMatrixWorld(true);
-  direction.transformDirection(record.group.matrixWorld).normalize();
+  record.model.updateMatrixWorld(true);
+  direction.transformDirection(record.model.matrixWorld).normalize();
   return direction;
 }
 
-function makeConnector(position, direction, color, connectorType) {
+function getSelectablePinKeys(record) {
+  const metadataKeys = (record.asset?.metadata?.pins ?? []).map((pin) => pin.pinKey);
+  if (metadataKeys.length) return metadataKeys;
+  return (pinCatalog[record.part.componentKey]?.pins ?? []).map((pin) => pin.pin_key);
+}
+
+function makePinTarget(record, pinKey) {
+  const endpoint = createPinEndpoint(record, pinKey);
+  const direction = pinWorldDirection(record, endpoint);
+  const marker = new THREE.Mesh(
+    new THREE.SphereGeometry(record.part.componentKey.startsWith("breadboard-") ? 0.035 : 0.055, 10, 8),
+    new THREE.MeshBasicMaterial({
+      color: 0x0ea5e9,
+      depthTest: false,
+      transparent: true,
+      opacity: 0.82,
+    }),
+  );
+  marker.position.copy(pinWorldPosition(record, pinKey)).addScaledVector(direction, 0.045);
+  marker.renderOrder = 30;
+  marker.userData.pinRef = {
+    endpoint,
+    pinKey,
+    record,
+  };
+  return marker;
+}
+
+function makeConnector(position, direction, color, connectorType, endpoint) {
   const group = new THREE.Group();
+  const insertionLength = Math.min(
+    0.52,
+    Math.max(0.12, Number(endpoint.insertionDepthMillimeter ?? 2) * 0.08),
+  );
   const shellMaterial = new THREE.MeshStandardMaterial({
     color: connectorType === "female" ? 0x111827 : color,
     metalness: 0.18,
@@ -230,10 +273,10 @@ function makeConnector(position, direction, color, connectorType) {
 
   if (connectorType === "male") {
     const pin = new THREE.Mesh(
-      new THREE.BoxGeometry(0.032, 0.16, 0.032),
+      new THREE.BoxGeometry(0.032, insertionLength, 0.032),
       new THREE.MeshStandardMaterial({ color: 0xc8a951, metalness: 0.8, roughness: 0.25 }),
     );
-    pin.position.y = -0.08;
+    pin.position.y = -insertionLength / 2;
     group.add(pin);
   }
 
@@ -242,7 +285,16 @@ function makeConnector(position, direction, color, connectorType) {
   return group;
 }
 
-function makeWire(connection, source, target, sourceDirection, targetDirection, index) {
+function makeWire(
+  connection,
+  source,
+  target,
+  sourceDirection,
+  targetDirection,
+  sourceEndpoint,
+  targetEndpoint,
+  index,
+) {
   const distance = source.distanceTo(target);
   const profile = calculateCurveProfile(distance, Math.abs(source.y - target.y), index);
   const sourceRise = source.clone().addScaledVector(sourceDirection, 0.34);
@@ -284,10 +336,24 @@ function makeWire(connection, source, target, sourceDirection, targetDirection, 
   group.userData = {
     wireId: connection.id,
     validation: connection.validation,
+    curveLength: curve.getLength(),
+    curveHeight: profile.lift,
   };
   group.add(wire);
-  group.add(makeConnector(source, sourceDirection, color, connection.sourceConnector));
-  group.add(makeConnector(target, targetDirection, color, connection.targetConnector));
+  group.add(makeConnector(
+    source,
+    sourceDirection,
+    color,
+    connection.sourceConnector,
+    sourceEndpoint,
+  ));
+  group.add(makeConnector(
+    target,
+    targetDirection,
+    color,
+    connection.targetConnector,
+    targetEndpoint,
+  ));
   return group;
 }
 
@@ -319,16 +385,19 @@ function frameAssembly(camera, controls, assembly, view = "isometric") {
   controls.update();
 }
 
-export default function Circuit3DView({ circuit }) {
+export default function Circuit3DView({ circuit, interactive = false }) {
   const containerRef = useRef(null);
   const actionsRef = useRef({});
   const gridRef = useRef(null);
   const wireObjectsRef = useRef(new Map());
+  const pinTargetsRef = useRef([]);
   const [showGrid, setShowGrid] = useState(true);
   const [showWires, setShowWires] = useState(true);
   const [selectedWireId, setSelectedWireId] = useState(null);
   const [hiddenWireIds, setHiddenWireIds] = useState(() => new Set());
   const [resolvedWires, setResolvedWires] = useState([]);
+  const [pinSelection, setPinSelection] = useState(null);
+  const [interactiveWireCount, setInteractiveWireCount] = useState(0);
   const [loadState, setLoadState] = useState({ loaded: 0, status: "loading", total: 0 });
   const selectedWire = useMemo(
     () => resolvedWires.find((wire) => wire.id === selectedWireId) ?? null,
@@ -359,6 +428,11 @@ export default function Circuit3DView({ circuit }) {
 
     let disposed = false;
     let animationFrame = 0;
+    setSelectedWireId(null);
+    setPinSelection(null);
+    setInteractiveWireCount(0);
+    setHiddenWireIds(new Set());
+    setResolvedWires([]);
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf5f8fc);
     scene.fog = new THREE.Fog(0xf5f8fc, 23, 48);
@@ -434,10 +508,18 @@ export default function Circuit3DView({ circuit }) {
       pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
       const hit = raycaster.intersectObjects(
+        pinTargetsRef.current,
+        true,
+      ).find((intersection) => intersection.object.userData.pinRef);
+      if (hit) {
+        actionsRef.current.selectPin?.(hit.object.userData.pinRef);
+        return;
+      }
+      const wireHit = raycaster.intersectObjects(
         [...wireObjectsRef.current.values()],
         true,
       ).find((intersection) => intersection.object.userData.wireId);
-      if (hit) setSelectedWireId(hit.object.userData.wireId);
+      if (wireHit) setSelectedWireId(wireHit.object.userData.wireId);
     };
     renderer.domElement.addEventListener("pointerdown", handlePointerDown);
 
@@ -472,12 +554,23 @@ export default function Circuit3DView({ circuit }) {
         const recordsById = new Map(records.filter(Boolean).map((record) => [record.part.id, record]));
         const wireGroup = new THREE.Group();
         wireGroup.name = "jumper-wires";
+        const pinTargetGroup = new THREE.Group();
+        pinTargetGroup.name = "pin-snap-targets";
+        pinTargetGroup.visible = interactive;
+        recordsById.forEach((record) => {
+          getSelectablePinKeys(record).forEach((pinKey) => {
+            const marker = makePinTarget(record, pinKey);
+            pinTargetsRef.current.push(marker);
+            pinTargetGroup.add(marker);
+          });
+        });
+        assembly.add(pinTargetGroup);
         const normalizedWires = [];
         let signalIndex = 0;
-        (circuit.connections ?? []).forEach((connection, index) => {
+        const addConnection = (connection, index, isInteractive = false) => {
           const sourceRecord = recordsById.get(connection.source);
           const targetRecord = recordsById.get(connection.target);
-          if (!sourceRecord || !targetRecord) return;
+          if (!sourceRecord || !targetRecord) return null;
           const sourceEndpoint = createPinEndpoint(sourceRecord, connection.sourcePin);
           const targetEndpoint = createPinEndpoint(targetRecord, connection.targetPin);
           const resolved = resolveJumperWire(
@@ -487,24 +580,99 @@ export default function Circuit3DView({ circuit }) {
             signalIndex,
           );
           if (resolved.colorRole === "signal") signalIndex += 1;
-          normalizedWires.push(resolved);
+          resolved.interactive = isInteractive;
           const group = makeWire(
             resolved,
             pinWorldPosition(sourceRecord, connection.sourcePin),
             pinWorldPosition(targetRecord, connection.targetPin),
             pinWorldDirection(sourceRecord, sourceEndpoint),
             pinWorldDirection(targetRecord, targetEndpoint),
+            sourceEndpoint,
+            targetEndpoint,
             index,
           );
+          group.userData.interactive = isInteractive;
           wireObjectsRef.current.set(connection.id, group);
           wireGroup.add(group);
+          return resolved;
+        };
+        (circuit.connections ?? []).forEach((connection, index) => {
+          const resolved = addConnection(connection, index);
+          if (resolved) normalizedWires.push(resolved);
         });
         setResolvedWires(normalizedWires);
         assembly.add(wireGroup);
         frameAssembly(camera, controls, assembly);
+        let pendingPin = null;
+        let nextWireIndex = 0;
+        const resetPinSelection = () => {
+          pendingPin = null;
+          setPinSelection(null);
+          pinTargetsRef.current.forEach((marker) => {
+            marker.material.color.set(0x0ea5e9);
+            marker.scale.setScalar(1);
+          });
+        };
         actionsRef.current = {
           isometric: () => frameAssembly(camera, controls, assembly, "isometric"),
           top: () => frameAssembly(camera, controls, assembly, "top"),
+          clearPinSelection: resetPinSelection,
+          clearInteractiveWires: () => {
+            [...wireObjectsRef.current.entries()].forEach(([wireId, group]) => {
+              if (!group.userData.interactive) return;
+              wireGroup.remove(group);
+              disposeObject(group);
+              wireObjectsRef.current.delete(wireId);
+            });
+            setResolvedWires((current) => current.filter((wire) => !wire.interactive));
+            setInteractiveWireCount(0);
+          },
+          selectPin: (pinRef) => {
+              if (!interactive) return;
+              if (!pendingPin) {
+                pendingPin = pinRef;
+                setPinSelection({
+                  from: `${pinRef.record.part.label} ${pinRef.pinKey}`,
+                  to: null,
+                });
+                pinTargetsRef.current.forEach((marker) => {
+                  const candidate = marker.userData.pinRef;
+                  const isSelected = candidate === pinRef;
+                  marker.material.color.set(isSelected ? 0xf59e0b : 0x22c55e);
+                  marker.scale.setScalar(isSelected ? 1.7 : 1.15);
+                });
+                return;
+              }
+
+              if (
+                pendingPin.record.part.id === pinRef.record.part.id
+                && pendingPin.pinKey === pinRef.pinKey
+              ) {
+                resetPinSelection();
+                return;
+              }
+
+              const connection = {
+                id: `interactive-wire-${Date.now()}-${nextWireIndex}`,
+                source: pendingPin.record.part.id,
+                sourcePin: pendingPin.pinKey,
+                target: pinRef.record.part.id,
+                targetPin: pinRef.pinKey,
+                label: `${pendingPin.pinKey} ↔ ${pinRef.pinKey}`,
+              };
+              const resolved = addConnection(
+                connection,
+                normalizedWires.length + nextWireIndex,
+                true,
+              );
+              nextWireIndex += 1;
+              if (resolved) {
+                setResolvedWires((current) => [...current, resolved]);
+                setInteractiveWireCount((count) => count + 1);
+                setSelectedWireId(resolved.id);
+              }
+              resetPinSelection();
+          },
         };
         setLoadState({ loaded: records.length, status: "ready", total: parts.length });
       })
@@ -523,6 +691,7 @@ export default function Circuit3DView({ circuit }) {
       renderer.domElement.removeEventListener("pointerdown", handlePointerDown);
       controls.dispose();
       wireObjectsRef.current.clear();
+      pinTargetsRef.current = [];
       disposeObject(scene);
       renderer.dispose();
       renderer.domElement.remove();
@@ -545,6 +714,7 @@ export default function Circuit3DView({ circuit }) {
           <Box size={18} aria-hidden="true" />
           <strong>3D 회로</strong>
           <span>{loadState.loaded}/{loadState.total} 부품</span>
+          {interactive && <span>{interactiveWireCount}개 직접 연결</span>}
         </div>
         <div className="circuit3dControls">
           <button
@@ -619,6 +789,31 @@ export default function Circuit3DView({ circuit }) {
           </button>
         ))}
       </div>
+
+      {interactive && (
+        <div className="circuit3dPinGuide">
+          <div>
+            <strong>{pinSelection ? "두 번째 핀을 선택하세요" : "첫 번째 핀을 선택하세요"}</strong>
+            <span>
+              {pinSelection
+                ? `${pinSelection.from}에서 연결 시작 · 초록색 핀 중 하나를 클릭하세요.`
+                : "파란 핀 마커 두 개를 차례로 누르면 점퍼선 종류와 색상이 자동 결정됩니다."}
+            </span>
+          </div>
+          <div>
+            {pinSelection && (
+              <button type="button" onClick={() => actionsRef.current.clearPinSelection?.()}>
+                선택 취소
+              </button>
+            )}
+            {interactiveWireCount > 0 && (
+              <button type="button" onClick={() => actionsRef.current.clearInteractiveWires?.()}>
+                직접 연결 초기화
+              </button>
+            )}
+          </div>
+        </div>
+      )}
       {selectedWire && (
         <div className="circuit3dSelection" role="status">
           <div>

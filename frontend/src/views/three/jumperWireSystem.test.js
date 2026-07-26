@@ -54,6 +54,20 @@ test("rejects a female connector at a breadboard hole", () => {
   assert.ok(result.validation.issues.some((issue) => issue.code === "BREADBOARD_REQUIRES_MALE_064"));
 });
 
+test("rejects a male pin wider than a breadboard hole", () => {
+  const breadboard = {
+    ...endpoint("A1", ConnectorGender.FEMALE, "breadboard-hole"),
+    connector: { diameterMillimeter: 0.5 },
+  };
+  const result = resolveJumperWire(
+    { id: "wire-too-wide" },
+    endpoint("D9", ConnectorGender.FEMALE),
+    breadboard,
+  );
+  assert.equal(result.validation.valid, false);
+  assert.ok(result.validation.issues.some((issue) => issue.code === "PIN_TOO_WIDE"));
+});
+
 test("applies power, ground, and signal colors", () => {
   assert.equal(colorForWireRole(WireColorRole.POWER), "#dc2626");
   assert.equal(colorForWireRole(WireColorRole.GROUND), "#1f2937");
