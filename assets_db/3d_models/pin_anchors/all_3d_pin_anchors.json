@@ -24,16 +24,16 @@
     {
       "component_slug": "breadboard-half",
       "pin_count": 8,
-      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "method": "blender-empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "draft_projected"
+      "calibration_quality": "measured_candidate"
     },
     {
       "component_slug": "hc-sr04",
       "pin_count": 4,
-      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "draft_projected"
+      "calibration_quality": "candidate_blender_empty"
     },
     {
       "component_slug": "led-5mm-blue",
@@ -45,16 +45,16 @@
     {
       "component_slug": "pushbutton-6x6",
       "pin_count": 4,
-      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "draft_projected"
+      "calibration_quality": "candidate_blender_empty"
     },
     {
       "component_slug": "resistor-220-ohm",
       "pin_count": 2,
-      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "draft_projected"
+      "calibration_quality": "candidate_blender_empty"
     },
     {
       "component_slug": "servo-sg90",
@@ -682,99 +682,35 @@
       "model_anchor_name": "pin_j1"
     },
     {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_TOP_POS",
-      "x_3d": 0.25032392,
-      "y_3d": -0.26734928,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_top_pos"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_TOP_NEG",
-      "x_3d": 0.25032392,
-      "y_3d": -0.25660914,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_top_neg"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_BOTTOM_POS",
-      "x_3d": 0.25032392,
-      "y_3d": -0.08297693,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_bottom_pos"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_BOTTOM_NEG",
-      "x_3d": 0.25032392,
-      "y_3d": -0.07253513,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_rail_bottom_neg"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "A1",
-      "x_3d": 0.244548,
-      "y_3d": -0.22697432,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_a1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "E1",
-      "x_3d": 0.244548,
-      "y_3d": -0.18550546,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_e1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "F1",
-      "x_3d": 0.244548,
-      "y_3d": -0.15457785,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_f1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "J1",
-      "x_3d": 0.244548,
-      "y_3d": -0.11300954,
-      "z_3d": 0.1982273,
-      "model_anchor_name": "pin_j1"
-    },
-    {
       "slug": "hc-sr04",
       "pin_key": "VCC",
-      "x_3d": -0.0480566,
-      "y_3d": 1.27654776,
-      "z_3d": 0.78184999,
+      "x_3d": -0.00381,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_vcc"
     },
     {
       "slug": "hc-sr04",
       "pin_key": "TRIG",
-      "x_3d": 0.12305306,
-      "y_3d": 1.27654776,
-      "z_3d": 0.78184999,
+      "x_3d": -0.00121298,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_trig"
     },
     {
       "slug": "hc-sr04",
       "pin_key": "ECHO",
-      "x_3d": 0.29416273,
-      "y_3d": 1.27654776,
-      "z_3d": 0.78184999,
+      "x_3d": 0.00130629,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_echo"
     },
     {
       "slug": "hc-sr04",
       "pin_key": "GND",
-      "x_3d": 0.46527239,
-      "y_3d": 1.27654776,
-      "z_3d": 0.78184999,
+      "x_3d": 0.00381,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_gnd"
     },
     {
@@ -796,49 +732,49 @@
     {
       "slug": "pushbutton-6x6",
       "pin_key": "A1",
-      "x_3d": -0.00274175,
-      "y_3d": 0.00378942,
-      "z_3d": -0.00356453,
+      "x_3d": -0.00252083,
+      "y_3d": 0,
+      "z_3d": -0.00347212,
       "model_anchor_name": "pin_a1"
     },
     {
       "slug": "pushbutton-6x6",
       "pin_key": "A2",
-      "x_3d": -0.00274175,
-      "y_3d": 0.00378942,
-      "z_3d": 0.00355589,
+      "x_3d": -0.00252084,
+      "y_3d": 0,
+      "z_3d": 0.00347071,
       "model_anchor_name": "pin_a2"
     },
     {
       "slug": "pushbutton-6x6",
       "pin_key": "B1",
-      "x_3d": 0.00273358,
-      "y_3d": 0.00378942,
-      "z_3d": -0.00356453,
+      "x_3d": 0.00252085,
+      "y_3d": 0,
+      "z_3d": -0.00346929,
       "model_anchor_name": "pin_b1"
     },
     {
       "slug": "pushbutton-6x6",
       "pin_key": "B2",
-      "x_3d": 0.00273358,
-      "y_3d": 0.00378942,
-      "z_3d": 0.00355589,
+      "x_3d": 0.00252083,
+      "y_3d": 0,
+      "z_3d": 0.00347071,
       "model_anchor_name": "pin_b2"
     },
     {
       "slug": "resistor-220-ohm",
       "pin_key": "LEAD_A",
-      "x_3d": 0.01925661,
-      "y_3d": 0.19690887,
-      "z_3d": 0.25789459,
+      "x_3d": -0.00508,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_lead_a"
     },
     {
       "slug": "resistor-220-ohm",
       "pin_key": "LEAD_B",
-      "x_3d": 0.01925661,
-      "y_3d": 3.01132783,
-      "z_3d": 0.25789459,
+      "x_3d": 0.00508,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_lead_b"
     },
     {
@@ -864,6 +800,70 @@
       "y_3d": 2.58911993,
       "z_3d": -1.24314635,
       "model_anchor_name": "pin_signal"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S1_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_1"
     }
   ]
 }

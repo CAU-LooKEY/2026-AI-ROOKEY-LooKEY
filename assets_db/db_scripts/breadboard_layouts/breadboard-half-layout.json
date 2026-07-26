@@ -2,7 +2,7 @@
   "component_slug": "breadboard-half",
   "display_name": "Half-size Breadboard",
   "layout_kind": "breadboard",
-  "hole_coordinate_system": "image-pixel-procedural",
+  "hole_coordinate_system": "runtime-meter-procedural",
   "column_indexing": "left-to-right",
   "columns": 30,
   "terminal_rows": [
@@ -302,8 +302,9 @@
     }
   ],
   "notes": [
-    "Procedural layout calibrated from detected hole centers in the uploaded top-view image.",
-    "Do not store every breadboard hole as a DB row; compute holes from x_start, x_pitch, and y row arrays."
+    "A1, E1, F1, and J1 were measured on the normalized GLB.",
+    "A2 verified the 2.54 mm X pitch; D17, H23, and J30 were visually checked against actual hole centers.",
+    "Each power-rail row contains five isolated segments of five holes, measured on the normalized GLB."
   ],
   "image": {
     "path": "assets_db/2d_svgs/raster_sources/breadboard-half-top.png",
@@ -312,5 +313,882 @@
     "height_px": 247,
     "coordinate_origin": "top-left",
     "background": "opaque-board-crop"
+  },
+  "terminal_runtime": {
+    "space": "gltf-model-local",
+    "unit": "meter",
+    "up_axis": "+Y",
+    "front_axis": "+Z",
+    "columns": {
+      "count": 30,
+      "x_start_meter": -0.037495,
+      "x_pitch_meter": 0.00254,
+      "formula": "x = x_start_meter + (column - 1) * x_pitch_meter"
+    },
+    "rows_z_meter": {
+      "A": -0.014725,
+      "B": -0.012185,
+      "C": -0.009645,
+      "D": -0.007105,
+      "E": -0.004565,
+      "F": 0.003235,
+      "G": 0.005775,
+      "H": 0.008315,
+      "I": 0.010855,
+      "J": 0.013395
+    },
+    "surface_y_meter": 0,
+    "outward_direction": [
+      0,
+      1,
+      0
+    ]
+  },
+  "electrical_connectivity": {
+    "terminal_groups": [
+      {
+        "group_id": "terminal-ae-1",
+        "holes": [
+          "A1",
+          "B1",
+          "C1",
+          "D1",
+          "E1"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-2",
+        "holes": [
+          "A2",
+          "B2",
+          "C2",
+          "D2",
+          "E2"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-3",
+        "holes": [
+          "A3",
+          "B3",
+          "C3",
+          "D3",
+          "E3"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-4",
+        "holes": [
+          "A4",
+          "B4",
+          "C4",
+          "D4",
+          "E4"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-5",
+        "holes": [
+          "A5",
+          "B5",
+          "C5",
+          "D5",
+          "E5"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-6",
+        "holes": [
+          "A6",
+          "B6",
+          "C6",
+          "D6",
+          "E6"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-7",
+        "holes": [
+          "A7",
+          "B7",
+          "C7",
+          "D7",
+          "E7"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-8",
+        "holes": [
+          "A8",
+          "B8",
+          "C8",
+          "D8",
+          "E8"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-9",
+        "holes": [
+          "A9",
+          "B9",
+          "C9",
+          "D9",
+          "E9"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-10",
+        "holes": [
+          "A10",
+          "B10",
+          "C10",
+          "D10",
+          "E10"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-11",
+        "holes": [
+          "A11",
+          "B11",
+          "C11",
+          "D11",
+          "E11"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-12",
+        "holes": [
+          "A12",
+          "B12",
+          "C12",
+          "D12",
+          "E12"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-13",
+        "holes": [
+          "A13",
+          "B13",
+          "C13",
+          "D13",
+          "E13"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-14",
+        "holes": [
+          "A14",
+          "B14",
+          "C14",
+          "D14",
+          "E14"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-15",
+        "holes": [
+          "A15",
+          "B15",
+          "C15",
+          "D15",
+          "E15"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-16",
+        "holes": [
+          "A16",
+          "B16",
+          "C16",
+          "D16",
+          "E16"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-17",
+        "holes": [
+          "A17",
+          "B17",
+          "C17",
+          "D17",
+          "E17"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-18",
+        "holes": [
+          "A18",
+          "B18",
+          "C18",
+          "D18",
+          "E18"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-19",
+        "holes": [
+          "A19",
+          "B19",
+          "C19",
+          "D19",
+          "E19"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-20",
+        "holes": [
+          "A20",
+          "B20",
+          "C20",
+          "D20",
+          "E20"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-21",
+        "holes": [
+          "A21",
+          "B21",
+          "C21",
+          "D21",
+          "E21"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-22",
+        "holes": [
+          "A22",
+          "B22",
+          "C22",
+          "D22",
+          "E22"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-23",
+        "holes": [
+          "A23",
+          "B23",
+          "C23",
+          "D23",
+          "E23"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-24",
+        "holes": [
+          "A24",
+          "B24",
+          "C24",
+          "D24",
+          "E24"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-25",
+        "holes": [
+          "A25",
+          "B25",
+          "C25",
+          "D25",
+          "E25"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-26",
+        "holes": [
+          "A26",
+          "B26",
+          "C26",
+          "D26",
+          "E26"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-27",
+        "holes": [
+          "A27",
+          "B27",
+          "C27",
+          "D27",
+          "E27"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-28",
+        "holes": [
+          "A28",
+          "B28",
+          "C28",
+          "D28",
+          "E28"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-29",
+        "holes": [
+          "A29",
+          "B29",
+          "C29",
+          "D29",
+          "E29"
+        ]
+      },
+      {
+        "group_id": "terminal-ae-30",
+        "holes": [
+          "A30",
+          "B30",
+          "C30",
+          "D30",
+          "E30"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-1",
+        "holes": [
+          "F1",
+          "G1",
+          "H1",
+          "I1",
+          "J1"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-2",
+        "holes": [
+          "F2",
+          "G2",
+          "H2",
+          "I2",
+          "J2"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-3",
+        "holes": [
+          "F3",
+          "G3",
+          "H3",
+          "I3",
+          "J3"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-4",
+        "holes": [
+          "F4",
+          "G4",
+          "H4",
+          "I4",
+          "J4"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-5",
+        "holes": [
+          "F5",
+          "G5",
+          "H5",
+          "I5",
+          "J5"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-6",
+        "holes": [
+          "F6",
+          "G6",
+          "H6",
+          "I6",
+          "J6"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-7",
+        "holes": [
+          "F7",
+          "G7",
+          "H7",
+          "I7",
+          "J7"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-8",
+        "holes": [
+          "F8",
+          "G8",
+          "H8",
+          "I8",
+          "J8"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-9",
+        "holes": [
+          "F9",
+          "G9",
+          "H9",
+          "I9",
+          "J9"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-10",
+        "holes": [
+          "F10",
+          "G10",
+          "H10",
+          "I10",
+          "J10"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-11",
+        "holes": [
+          "F11",
+          "G11",
+          "H11",
+          "I11",
+          "J11"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-12",
+        "holes": [
+          "F12",
+          "G12",
+          "H12",
+          "I12",
+          "J12"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-13",
+        "holes": [
+          "F13",
+          "G13",
+          "H13",
+          "I13",
+          "J13"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-14",
+        "holes": [
+          "F14",
+          "G14",
+          "H14",
+          "I14",
+          "J14"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-15",
+        "holes": [
+          "F15",
+          "G15",
+          "H15",
+          "I15",
+          "J15"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-16",
+        "holes": [
+          "F16",
+          "G16",
+          "H16",
+          "I16",
+          "J16"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-17",
+        "holes": [
+          "F17",
+          "G17",
+          "H17",
+          "I17",
+          "J17"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-18",
+        "holes": [
+          "F18",
+          "G18",
+          "H18",
+          "I18",
+          "J18"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-19",
+        "holes": [
+          "F19",
+          "G19",
+          "H19",
+          "I19",
+          "J19"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-20",
+        "holes": [
+          "F20",
+          "G20",
+          "H20",
+          "I20",
+          "J20"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-21",
+        "holes": [
+          "F21",
+          "G21",
+          "H21",
+          "I21",
+          "J21"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-22",
+        "holes": [
+          "F22",
+          "G22",
+          "H22",
+          "I22",
+          "J22"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-23",
+        "holes": [
+          "F23",
+          "G23",
+          "H23",
+          "I23",
+          "J23"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-24",
+        "holes": [
+          "F24",
+          "G24",
+          "H24",
+          "I24",
+          "J24"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-25",
+        "holes": [
+          "F25",
+          "G25",
+          "H25",
+          "I25",
+          "J25"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-26",
+        "holes": [
+          "F26",
+          "G26",
+          "H26",
+          "I26",
+          "J26"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-27",
+        "holes": [
+          "F27",
+          "G27",
+          "H27",
+          "I27",
+          "J27"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-28",
+        "holes": [
+          "F28",
+          "G28",
+          "H28",
+          "I28",
+          "J28"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-29",
+        "holes": [
+          "F29",
+          "G29",
+          "H29",
+          "I29",
+          "J29"
+        ]
+      },
+      {
+        "group_id": "terminal-fj-30",
+        "holes": [
+          "F30",
+          "G30",
+          "H30",
+          "I30",
+          "J30"
+        ]
+      }
+    ],
+    "rail_groups": [
+      {
+        "group_id": "rail-top-pos-segment-1",
+        "rail": "TOP_POS",
+        "segment_index": 1,
+        "holes": [
+          "RAIL_TOP_POS_S1_1",
+          "RAIL_TOP_POS_S1_2",
+          "RAIL_TOP_POS_S1_3",
+          "RAIL_TOP_POS_S1_4",
+          "RAIL_TOP_POS_S1_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-pos-segment-2",
+        "rail": "TOP_POS",
+        "segment_index": 2,
+        "holes": [
+          "RAIL_TOP_POS_S2_1",
+          "RAIL_TOP_POS_S2_2",
+          "RAIL_TOP_POS_S2_3",
+          "RAIL_TOP_POS_S2_4",
+          "RAIL_TOP_POS_S2_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-pos-segment-3",
+        "rail": "TOP_POS",
+        "segment_index": 3,
+        "holes": [
+          "RAIL_TOP_POS_S3_1",
+          "RAIL_TOP_POS_S3_2",
+          "RAIL_TOP_POS_S3_3",
+          "RAIL_TOP_POS_S3_4",
+          "RAIL_TOP_POS_S3_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-pos-segment-4",
+        "rail": "TOP_POS",
+        "segment_index": 4,
+        "holes": [
+          "RAIL_TOP_POS_S4_1",
+          "RAIL_TOP_POS_S4_2",
+          "RAIL_TOP_POS_S4_3",
+          "RAIL_TOP_POS_S4_4",
+          "RAIL_TOP_POS_S4_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-pos-segment-5",
+        "rail": "TOP_POS",
+        "segment_index": 5,
+        "holes": [
+          "RAIL_TOP_POS_S5_1",
+          "RAIL_TOP_POS_S5_2",
+          "RAIL_TOP_POS_S5_3",
+          "RAIL_TOP_POS_S5_4",
+          "RAIL_TOP_POS_S5_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-neg-segment-1",
+        "rail": "TOP_NEG",
+        "segment_index": 1,
+        "holes": [
+          "RAIL_TOP_NEG_S1_1",
+          "RAIL_TOP_NEG_S1_2",
+          "RAIL_TOP_NEG_S1_3",
+          "RAIL_TOP_NEG_S1_4",
+          "RAIL_TOP_NEG_S1_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-neg-segment-2",
+        "rail": "TOP_NEG",
+        "segment_index": 2,
+        "holes": [
+          "RAIL_TOP_NEG_S2_1",
+          "RAIL_TOP_NEG_S2_2",
+          "RAIL_TOP_NEG_S2_3",
+          "RAIL_TOP_NEG_S2_4",
+          "RAIL_TOP_NEG_S2_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-neg-segment-3",
+        "rail": "TOP_NEG",
+        "segment_index": 3,
+        "holes": [
+          "RAIL_TOP_NEG_S3_1",
+          "RAIL_TOP_NEG_S3_2",
+          "RAIL_TOP_NEG_S3_3",
+          "RAIL_TOP_NEG_S3_4",
+          "RAIL_TOP_NEG_S3_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-neg-segment-4",
+        "rail": "TOP_NEG",
+        "segment_index": 4,
+        "holes": [
+          "RAIL_TOP_NEG_S4_1",
+          "RAIL_TOP_NEG_S4_2",
+          "RAIL_TOP_NEG_S4_3",
+          "RAIL_TOP_NEG_S4_4",
+          "RAIL_TOP_NEG_S4_5"
+        ]
+      },
+      {
+        "group_id": "rail-top-neg-segment-5",
+        "rail": "TOP_NEG",
+        "segment_index": 5,
+        "holes": [
+          "RAIL_TOP_NEG_S5_1",
+          "RAIL_TOP_NEG_S5_2",
+          "RAIL_TOP_NEG_S5_3",
+          "RAIL_TOP_NEG_S5_4",
+          "RAIL_TOP_NEG_S5_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-pos-segment-1",
+        "rail": "BOTTOM_POS",
+        "segment_index": 1,
+        "holes": [
+          "RAIL_BOTTOM_POS_S1_1",
+          "RAIL_BOTTOM_POS_S1_2",
+          "RAIL_BOTTOM_POS_S1_3",
+          "RAIL_BOTTOM_POS_S1_4",
+          "RAIL_BOTTOM_POS_S1_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-pos-segment-2",
+        "rail": "BOTTOM_POS",
+        "segment_index": 2,
+        "holes": [
+          "RAIL_BOTTOM_POS_S2_1",
+          "RAIL_BOTTOM_POS_S2_2",
+          "RAIL_BOTTOM_POS_S2_3",
+          "RAIL_BOTTOM_POS_S2_4",
+          "RAIL_BOTTOM_POS_S2_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-pos-segment-3",
+        "rail": "BOTTOM_POS",
+        "segment_index": 3,
+        "holes": [
+          "RAIL_BOTTOM_POS_S3_1",
+          "RAIL_BOTTOM_POS_S3_2",
+          "RAIL_BOTTOM_POS_S3_3",
+          "RAIL_BOTTOM_POS_S3_4",
+          "RAIL_BOTTOM_POS_S3_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-pos-segment-4",
+        "rail": "BOTTOM_POS",
+        "segment_index": 4,
+        "holes": [
+          "RAIL_BOTTOM_POS_S4_1",
+          "RAIL_BOTTOM_POS_S4_2",
+          "RAIL_BOTTOM_POS_S4_3",
+          "RAIL_BOTTOM_POS_S4_4",
+          "RAIL_BOTTOM_POS_S4_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-pos-segment-5",
+        "rail": "BOTTOM_POS",
+        "segment_index": 5,
+        "holes": [
+          "RAIL_BOTTOM_POS_S5_1",
+          "RAIL_BOTTOM_POS_S5_2",
+          "RAIL_BOTTOM_POS_S5_3",
+          "RAIL_BOTTOM_POS_S5_4",
+          "RAIL_BOTTOM_POS_S5_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-neg-segment-1",
+        "rail": "BOTTOM_NEG",
+        "segment_index": 1,
+        "holes": [
+          "RAIL_BOTTOM_NEG_S1_1",
+          "RAIL_BOTTOM_NEG_S1_2",
+          "RAIL_BOTTOM_NEG_S1_3",
+          "RAIL_BOTTOM_NEG_S1_4",
+          "RAIL_BOTTOM_NEG_S1_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-neg-segment-2",
+        "rail": "BOTTOM_NEG",
+        "segment_index": 2,
+        "holes": [
+          "RAIL_BOTTOM_NEG_S2_1",
+          "RAIL_BOTTOM_NEG_S2_2",
+          "RAIL_BOTTOM_NEG_S2_3",
+          "RAIL_BOTTOM_NEG_S2_4",
+          "RAIL_BOTTOM_NEG_S2_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-neg-segment-3",
+        "rail": "BOTTOM_NEG",
+        "segment_index": 3,
+        "holes": [
+          "RAIL_BOTTOM_NEG_S3_1",
+          "RAIL_BOTTOM_NEG_S3_2",
+          "RAIL_BOTTOM_NEG_S3_3",
+          "RAIL_BOTTOM_NEG_S3_4",
+          "RAIL_BOTTOM_NEG_S3_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-neg-segment-4",
+        "rail": "BOTTOM_NEG",
+        "segment_index": 4,
+        "holes": [
+          "RAIL_BOTTOM_NEG_S4_1",
+          "RAIL_BOTTOM_NEG_S4_2",
+          "RAIL_BOTTOM_NEG_S4_3",
+          "RAIL_BOTTOM_NEG_S4_4",
+          "RAIL_BOTTOM_NEG_S4_5"
+        ]
+      },
+      {
+        "group_id": "rail-bottom-neg-segment-5",
+        "rail": "BOTTOM_NEG",
+        "segment_index": 5,
+        "holes": [
+          "RAIL_BOTTOM_NEG_S5_1",
+          "RAIL_BOTTOM_NEG_S5_2",
+          "RAIL_BOTTOM_NEG_S5_3",
+          "RAIL_BOTTOM_NEG_S5_4",
+          "RAIL_BOTTOM_NEG_S5_5"
+        ]
+      }
+    ],
+    "rail_split_policy": "Each five-hole segment is internally connected. Different segments and different +/- rows are electrically isolated."
   }
 }

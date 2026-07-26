@@ -546,6 +546,216 @@ p {
   overflow: hidden;
 }
 
+.circuitViewHeader {
+  min-height: 64px;
+  padding: 10px 14px 10px 18px;
+  border-bottom: 1px solid #dfe6f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+}
+
+.circuitViewHeader > div:first-child {
+  display: grid;
+  gap: 3px;
+}
+
+.circuitViewHeader strong {
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.circuitViewHeader span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.circuitViewSwitch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid #dbe3ef;
+  border-radius: 7px;
+  background: #f1f5f9;
+}
+
+.circuitViewSwitch button {
+  min-width: 64px;
+  height: 32px;
+  border: 0;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.circuitViewSwitch button.active {
+  background: #ffffff;
+  color: #1d4ed8;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+.circuit3dWorkspace {
+  min-width: 0;
+  background: #f5f8fc;
+}
+
+.circuit3dToolbar {
+  min-height: 48px;
+  padding: 7px 10px 7px 14px;
+  border-bottom: 1px solid #dfe6f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.circuit3dTitle,
+.circuit3dControls {
+  display: flex;
+  align-items: center;
+}
+
+.circuit3dTitle {
+  gap: 7px;
+  color: #172033;
+  font-size: 12px;
+}
+
+.circuit3dTitle strong,
+.circuit3dTitle span {
+  white-space: nowrap;
+}
+
+.circuit3dTitle span {
+  padding-left: 7px;
+  border-left: 1px solid #dbe3ef;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.circuit3dControls {
+  gap: 5px;
+}
+
+.circuit3dControls button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid #d7e0eb;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.circuit3dControls button:hover,
+.circuit3dControls button.active {
+  border-color: #8fb2ff;
+  background: #edf4ff;
+  color: #1d4ed8;
+}
+
+.circuit3dCanvas {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.circuit3dCanvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.circuit3dState {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  gap: 8px;
+  background: rgba(245, 248, 252, 0.88);
+  color: #172033;
+  text-align: center;
+  pointer-events: none;
+}
+
+.circuit3dState strong {
+  font-size: 15px;
+}
+
+.circuit3dState span {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.circuit3dState.error strong {
+  color: #be123c;
+}
+
+.circuit3dLegend {
+  min-height: 50px;
+  padding: 9px 12px;
+  border-top: 1px solid #dfe6f0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  overflow-x: auto;
+  background: #ffffff;
+}
+
+.circuit3dLegendItem {
+  flex: 0 0 auto;
+  min-height: 30px;
+  padding: 5px 8px;
+  border: 1px solid #dbe3ef;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #334155;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.circuit3dLegendItem > span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.18);
+}
+
+.circuit3dLegendItem b {
+  color: #172033;
+  font-size: 10px;
+}
+
+.circuit3dLegendItem small {
+  padding-left: 6px;
+  border-left: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 9px;
+  font-weight: 800;
+}
+
 .explainBox {
   border: 1px solid #dfe6f0;
   border-radius: 20px;
@@ -1131,5 +1341,26 @@ p {
 
   .circuitFlowFrame {
     height: 500px;
+  }
+
+  .circuitViewHeader {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .circuitViewSwitch {
+    width: 100%;
+  }
+
+  .circuitViewSwitch button {
+    flex: 1;
+  }
+
+  .circuit3dCanvas {
+    height: 460px;
+  }
+
+  .circuit3dTitle span {
+    display: none;
   }
 }

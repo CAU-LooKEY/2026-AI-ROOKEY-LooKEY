@@ -1,0 +1,704 @@
+.assetLab {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template:
+    "header header header" 52px
+    "sidebar workspace inspector" minmax(0, 1fr)
+    / 276px minmax(420px, 1fr) 296px;
+  overflow: hidden;
+  background: #eef2f6;
+  color: #182235;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.assetLab *,
+.assetLab *::before,
+.assetLab *::after {
+  box-sizing: border-box;
+}
+
+.assetLab button,
+.assetLab input {
+  font: inherit;
+}
+
+.assetLabHeader {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 0 14px;
+  border-bottom: 1px solid #d7dee8;
+  background: #ffffff;
+  z-index: 5;
+}
+
+.assetLabHeader h1 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.backLink,
+.iconButton {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid #d7dee8;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #344054;
+  cursor: pointer;
+}
+
+.backLink {
+  margin-right: 2px;
+  text-decoration: none;
+}
+
+.backLink:hover,
+.iconButton:hover {
+  border-color: #8ba3bd;
+  background: #f7f9fb;
+}
+
+.modelCount {
+  margin-left: auto;
+  color: #667085;
+  font-size: 12px;
+}
+
+.assetSidebar {
+  grid-area: sidebar;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #d7dee8;
+  background: #f8fafc;
+}
+
+.assetSidebarTools {
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  border-bottom: 1px solid #dde3eb;
+}
+
+.assetSearch {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border: 1px solid #cfd8e3;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #667085;
+}
+
+.assetSearch:focus-within {
+  border-color: #207a88;
+  box-shadow: 0 0 0 2px rgba(32, 122, 136, 0.12);
+}
+
+.assetSearch input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #182235;
+  font-size: 13px;
+}
+
+.openLocalButton {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid #cfd8e3;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #344054;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.openLocalButton:hover {
+  border-color: #8ba3bd;
+  background: #f3f6f9;
+}
+
+.hiddenFileInput {
+  display: none;
+}
+
+.assetList {
+  min-height: 0;
+  overflow: auto;
+  padding: 6px;
+}
+
+.assetListItem {
+  width: 100%;
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 8px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background: transparent;
+  color: #344054;
+  text-align: left;
+  cursor: pointer;
+}
+
+.assetListItem:hover {
+  background: #edf2f6;
+}
+
+.assetListItem.active {
+  border-color: #a5c8ce;
+  background: #e7f2f3;
+  color: #123e45;
+}
+
+.assetListIcon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d7dee8;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.assetListText {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+}
+
+.assetListText strong,
+.assetListText small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assetListText strong {
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.assetListText small {
+  color: #7b8798;
+  font-size: 10px;
+}
+
+.metadataBadge {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 5px;
+  border: 1px solid #cdd6e1;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #667085;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.metadataBadge.approved {
+  border-color: #9bc6ad;
+  background: #edf8f1;
+  color: #22633b;
+}
+
+.metadataBadge.candidate {
+  border-color: #e0c16f;
+  background: #fff8e6;
+  color: #775b0d;
+}
+
+.metadataBadge.example {
+  border-color: #9fbce1;
+  background: #edf5ff;
+  color: #24588f;
+}
+
+.metadataBadge.missing {
+  border-color: #d5dae2;
+  background: #f6f7f9;
+  color: #7b8798;
+}
+
+.assetWorkspace {
+  grid-area: workspace;
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 54px minmax(0, 1fr);
+}
+
+.assetToolbar {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #d7dee8;
+  background: #ffffff;
+}
+
+.activeAssetName {
+  min-width: 120px;
+  max-width: 250px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.activeAssetName strong {
+  overflow: hidden;
+  color: #182235;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cameraTabs {
+  height: 32px;
+  display: flex;
+  flex: 0 0 auto;
+  padding: 2px;
+  border: 1px solid #cfd8e3;
+  border-radius: 5px;
+  background: #f4f6f8;
+}
+
+.cameraTabs button {
+  min-width: 48px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: #667085;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.cameraTabs button.active {
+  background: #ffffff;
+  color: #143f46;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.16);
+}
+
+.viewerTools {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+}
+
+.toolToggle {
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 8px;
+  border: 1px solid #cfd8e3;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #667085;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.toolToggle.active {
+  border-color: #90b9c0;
+  background: #eaf4f5;
+  color: #16545e;
+}
+
+.toolToggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.assetViewport {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #f3f6fa;
+}
+
+.threeViewer,
+.threeViewer canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.viewerState {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: min(320px, calc(100% - 32px));
+  transform: translate(-50%, -50%);
+  padding: 16px;
+  border: 1px solid #cfd8e3;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #344054;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(24, 34, 53, 0.12);
+}
+
+.viewerState strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+
+.viewerState.error {
+  border-color: #e3a1ae;
+  color: #9c1d3a;
+}
+
+.loadTrack {
+  height: 4px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #dce3ec;
+}
+
+.loadTrack span {
+  height: 100%;
+  display: block;
+  background: #178092;
+  transition: width 160ms ease;
+}
+
+.pinLegend {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  padding: 7px 9px;
+  border: 1px solid #d3dbe5;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #4b5565;
+  font-size: 10px;
+}
+
+.pinLegend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pinLegend i {
+  width: 9px;
+  height: 9px;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.nodePinDot {
+  background: #d11f4b;
+}
+
+.metadataPinDot {
+  border: 2px solid #087f8c;
+  background: transparent;
+}
+
+.emptyViewer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #667085;
+  font-size: 13px;
+}
+
+.assetInspector {
+  grid-area: inspector;
+  min-width: 0;
+  overflow: auto;
+  border-left: 1px solid #d7dee8;
+  background: #ffffff;
+}
+
+.assetInspector section {
+  padding: 14px;
+  border-bottom: 1px solid #e0e5ec;
+}
+
+.assetInspector h2 {
+  margin: 0 0 10px;
+  color: #344054;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.assetInspector dl {
+  margin: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.assetInspector dl div {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 82px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+}
+
+.assetInspector dt {
+  color: #7b8798;
+  font-size: 10px;
+}
+
+.assetInspector dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #273447;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 10px;
+  text-align: right;
+}
+
+.physicalSize {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px solid #e4e8ee;
+  color: #667085;
+  font-size: 10px;
+}
+
+.physicalSize strong {
+  color: #273447;
+  font-family: "Cascadia Code", Consolas, monospace;
+}
+
+.compatibilityNotice {
+  margin-top: 10px;
+  padding: 8px;
+  border-left: 3px solid #c58a12;
+  background: #fff8e7;
+  color: #6f510f;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.extensionList {
+  margin: 9px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.extensionList li {
+  padding: 4px 0;
+  overflow-wrap: anywhere;
+  border-top: 1px solid #edf0f4;
+  color: #667085;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 9px;
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sectionHeading span {
+  min-width: 22px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: #e7edf3;
+  color: #4b5565;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pinInspector ul {
+  max-height: 210px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+.pinInspector li {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+  padding: 7px 0;
+  border-top: 1px solid #edf0f4;
+}
+
+.pinInspector li:first-child {
+  border-top: 0;
+}
+
+.pinInspector li strong {
+  color: #344054;
+  font-size: 10px;
+}
+
+.pinInspector li span {
+  overflow-wrap: anywhere;
+  color: #7b8798;
+  font-family: "Cascadia Code", Consolas, monospace;
+  font-size: 9px;
+}
+
+.pinInspector p {
+  margin: 0;
+  color: #98a2b3;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+@media (max-width: 1080px) {
+  .assetLab {
+    grid-template:
+      "header header" 52px
+      "sidebar workspace" minmax(0, 1fr)
+      / 240px minmax(0, 1fr);
+  }
+
+  .assetInspector {
+    display: none;
+  }
+
+  .toolToggle span {
+    display: none;
+  }
+
+  .toolToggle {
+    width: 32px;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .assetLab {
+    grid-template:
+      "header" 48px
+      "sidebar" 128px
+      "workspace" minmax(0, 1fr)
+      / minmax(0, 1fr);
+  }
+
+  .assetLabHeader {
+    padding: 0 8px;
+  }
+
+  .assetSidebar {
+    border-right: 0;
+    border-bottom: 1px solid #d7dee8;
+  }
+
+  .assetSidebarTools {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 7px;
+  }
+
+  .assetList {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 5px 7px;
+  }
+
+  .assetListItem {
+    width: 190px;
+    min-width: 190px;
+    min-height: 48px;
+  }
+
+  .assetListItem .metadataBadge {
+    display: none;
+  }
+
+  .assetToolbar {
+    min-height: 86px;
+    height: auto;
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 7px;
+  }
+
+  .assetWorkspace {
+    grid-template-rows: 86px minmax(0, 1fr);
+  }
+
+  .activeAssetName {
+    max-width: calc(100% - 38px);
+  }
+
+  .cameraTabs {
+    order: 3;
+    width: 100%;
+  }
+
+  .cameraTabs button {
+    flex: 1;
+  }
+
+  .viewerTools {
+    margin-left: auto;
+  }
+
+  .pinLegend {
+    right: 8px;
+    left: 8px;
+    bottom: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

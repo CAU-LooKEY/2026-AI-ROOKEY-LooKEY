@@ -7,10 +7,11 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "@vitejs/plugin-react-swc": "latest",
-    "vite": "latest",
+    "@xyflow/react": "latest",
+    "lucide-react": "^1.25.0",
     "react": "latest",
     "react-dom": "latest",
-    "@xyflow/react": "latest"
-  },
-  "devDependencies": {}
+    "three": "^0.185.1",
+    "vite": "latest"
+  }
 }

@@ -1,0 +1,597 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lookey.local/schemas/component-3d-metadata.schema.json",
+  "title": "LookEY component 3D metadata",
+  "description": "Versioned contract for placing and connecting a component in the final GLB model-local coordinate system.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "componentSlug",
+    "asset",
+    "physicalDimensions",
+    "coordinateSystems",
+    "origin",
+    "orientation",
+    "pins",
+    "placement",
+    "provenance",
+    "notes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "componentSlug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256",
+        "format",
+        "scaleStatus"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^assets_db/3d_models/glb/[a-z0-9-]+\\.glb$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "format": {
+          "const": "glb"
+        },
+        "scaleStatus": {
+          "enum": [
+            "uncalibrated",
+            "real-world"
+          ]
+        },
+        "thumbnailPath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "physicalDimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unit",
+        "width",
+        "depth",
+        "height",
+        "measurementScope",
+        "source",
+        "confidence"
+      ],
+      "properties": {
+        "unit": {
+          "const": "millimeter"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "depth": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "measurementScope": {
+          "enum": [
+            "body-only",
+            "overall-including-pins",
+            "mounting-envelope"
+          ]
+        },
+        "source": {
+          "enum": [
+            "datasheet",
+            "measured",
+            "nominal",
+            "inferred"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "coordinateSystems": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authoring",
+        "runtime",
+        "anchorsStoredIn"
+      ],
+      "properties": {
+        "authoring": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "space",
+            "handedness",
+            "upAxis",
+            "frontAxis",
+            "unit"
+          ],
+          "properties": {
+            "space": {
+              "const": "blender-object-local"
+            },
+            "handedness": {
+              "const": "right"
+            },
+            "upAxis": {
+              "const": "+Z"
+            },
+            "frontAxis": {
+              "enum": [
+                "+X",
+                "-X",
+                "+Y",
+                "-Y"
+              ]
+            },
+            "unit": {
+              "enum": [
+                "millimeter",
+                "meter"
+              ]
+            }
+          }
+        },
+        "runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "space",
+            "handedness",
+            "upAxis",
+            "frontAxis",
+            "unit",
+            "modelUnitsPerMillimeter"
+          ],
+          "properties": {
+            "space": {
+              "const": "gltf-model-local"
+            },
+            "handedness": {
+              "const": "right"
+            },
+            "upAxis": {
+              "const": "+Y"
+            },
+            "frontAxis": {
+              "enum": [
+                "+X",
+                "-X",
+                "+Z",
+                "-Z"
+              ]
+            },
+            "unit": {
+              "enum": [
+                "meter",
+                "model-unit"
+              ]
+            },
+            "modelUnitsPerMillimeter": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "anchorsStoredIn": {
+          "const": "runtime"
+        }
+      }
+    },
+    "origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "targetReference",
+        "referencePoint",
+        "normalized",
+        "description"
+      ],
+      "properties": {
+        "targetReference": {
+          "enum": [
+            "body-bottom-center",
+            "mounting-surface-center",
+            "pin-tip-center",
+            "geometric-center",
+            "custom",
+            "unknown"
+          ]
+        },
+        "referencePoint": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/vector3"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "normalized": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "orientation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaultRotationQuaternion",
+        "normalized",
+        "markers"
+      ],
+      "properties": {
+        "defaultRotationQuaternion": {
+          "$ref": "#/$defs/quaternion"
+        },
+        "normalized": {
+          "type": "boolean"
+        },
+        "markers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "key",
+              "description"
+            ],
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+              },
+              "pinKey": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "direction": {
+                "enum": [
+                  "+X",
+                  "-X",
+                  "+Y",
+                  "-Y",
+                  "+Z",
+                  "-Z",
+                  "none"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "pins": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/pin"
+      }
+    },
+    "placement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mountingType",
+        "mountingPlaneNormal",
+        "rotationPolicy",
+        "allowedYawDegrees",
+        "keepOutMarginMillimeter"
+      ],
+      "properties": {
+        "mountingType": {
+          "enum": [
+            "breadboard-insert",
+            "surface",
+            "header",
+            "free",
+            "fixed",
+            "other"
+          ]
+        },
+        "mountingPlaneNormal": {
+          "$ref": "#/$defs/unitVector3"
+        },
+        "rotationPolicy": {
+          "enum": [
+            "fixed",
+            "free-yaw",
+            "snap-yaw",
+            "custom"
+          ]
+        },
+        "allowedYawDegrees": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "number",
+            "minimum": 0,
+            "exclusiveMaximum": 360
+          }
+        },
+        "keepOutMarginMillimeter": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorGithub",
+        "branch",
+        "method",
+        "sourceTool",
+        "createdAt",
+        "status"
+      ],
+      "properties": {
+        "authorGithub": {
+          "type": "string",
+          "minLength": 1
+        },
+        "branch": {
+          "type": "string",
+          "minLength": 1
+        },
+        "method": {
+          "enum": [
+            "blender-empty",
+            "threejs-picker",
+            "manual-measure",
+            "projected-2d",
+            "cad-import",
+            "other"
+          ]
+        },
+        "sourceTool": {
+          "type": "string",
+          "minLength": 1
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date"
+        },
+        "status": {
+          "enum": [
+            "example",
+            "candidate",
+            "approved",
+            "rejected"
+          ]
+        },
+        "reviewerGithub": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approvedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "vector3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number"
+      }
+    },
+    "unitVector3": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/vector3"
+        }
+      ],
+      "description": "A vector with magnitude 1. The project validator checks its magnitude."
+    },
+    "quaternion": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "number"
+      },
+      "description": "Quaternion in [x, y, z, w] order."
+    },
+    "pin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pinKey",
+        "label",
+        "nodeName",
+        "position",
+        "outwardDirection",
+        "connector",
+        "electrical",
+        "mounting",
+        "confidence",
+        "notes"
+      ],
+      "properties": {
+        "pinKey": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_+-]*$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nodeName": {
+          "type": "string",
+          "pattern": "^pin_(?:[A-Z][A-Z0-9_+\\-]*|[a-z0-9_]+)$"
+        },
+        "position": {
+          "$ref": "#/$defs/vector3"
+        },
+        "outwardDirection": {
+          "$ref": "#/$defs/unitVector3"
+        },
+        "connector": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "gender",
+            "form",
+            "pitchMillimeter",
+            "diameterMillimeter"
+          ],
+          "properties": {
+            "gender": {
+              "enum": [
+                "male",
+                "female",
+                "genderless",
+                "unknown"
+              ]
+            },
+            "form": {
+              "enum": [
+                "lead",
+                "pin",
+                "socket",
+                "hole",
+                "pad",
+                "wire-end",
+                "terminal",
+                "other"
+              ]
+            },
+            "pitchMillimeter": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            },
+            "diameterMillimeter": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "electrical": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "role",
+            "aliases"
+          ],
+          "properties": {
+            "role": {
+              "enum": [
+                "power",
+                "ground",
+                "signal",
+                "passive",
+                "no-connect",
+                "mechanical"
+              ]
+            },
+            "aliases": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "mounting": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "breadboardCompatible",
+            "insertionDepthMillimeter"
+          ],
+          "properties": {
+            "breadboardCompatible": {
+              "type": "boolean"
+            },
+            "insertionDepthMillimeter": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "sourceObject": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

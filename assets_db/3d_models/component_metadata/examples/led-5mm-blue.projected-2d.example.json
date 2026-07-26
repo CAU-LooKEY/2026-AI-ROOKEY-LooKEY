@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "led-5mm-blue",
+  "asset": {
+    "path": "assets_db/3d_models/glb/led-5mm-blue.glb",
+    "sha256": "22d73261961c68f1dcadda61374bd54728fef02812be26dcdaf8fb99700f6e4e",
+    "format": "glb",
+    "scaleStatus": "uncalibrated",
+    "thumbnailPath": "assets_db/2d_svgs/raster_sources/led-5mm-blue-top.png"
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 5,
+    "depth": 5,
+    "height": 28,
+    "measurementScope": "overall-including-pins",
+    "source": "inferred",
+    "confidence": 0.1
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "millimeter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "model-unit",
+      "modelUnitsPerMillimeter": null
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "body-bottom-center",
+    "referencePoint": null,
+    "normalized": false,
+    "description": "The legacy GLB has not yet been normalized to the body bottom center."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": false,
+    "markers": [
+      {
+        "key": "long-lead-right",
+        "pinKey": "ANODE",
+        "direction": "+X",
+        "description": "Target authoring rule from the team asset standard; not yet verified in this GLB."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "ANODE",
+      "label": "Anode +",
+      "nodeName": "pin_anode",
+      "position": [
+        -0.61489252,
+        1.30503732,
+        0.23535273
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "A",
+          "+",
+          "long-leg"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.1,
+      "sourceObject": null,
+      "notes": [
+        "Position was projected from the 2D pin map and is not production-ready."
+      ]
+    },
+    {
+      "pinKey": "CATHODE",
+      "label": "Cathode -",
+      "nodeName": "pin_cathode",
+      "position": [
+        -0.68232816,
+        0.94797256,
+        0.23535273
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "K",
+          "-",
+          "short-leg"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.1,
+      "sourceObject": null,
+      "notes": [
+        "Position was projected from the 2D pin map and is not production-ready."
+      ]
+    }
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "free-yaw",
+    "allowedYawDegrees": [],
+    "keepOutMarginMillimeter": 1
+  },
+  "provenance": {
+    "authorGithub": "integration-baseline",
+    "branch": "feat/3d-anchor-metadata-standard",
+    "method": "projected-2d",
+    "sourceTool": "assets_db legacy projection",
+    "createdAt": "2026-07-22",
+    "status": "example",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "This file demonstrates the contract using legacy data.",
+    "Do not copy its coordinates into approved metadata.",
+    "Rebuild the LED at real-world scale, normalize its origin, and place Blender Empty objects at both lead contact points."
+  ]
+}
