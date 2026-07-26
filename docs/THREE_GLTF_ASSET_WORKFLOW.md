@@ -1,4 +1,4 @@
-# Three.js GLB Asset Workflow
+# Three.js GLB 자산 작업 흐름
 
 ## 목적
 

@@ -1,8 +1,8 @@
-# LooKEY Backend API
+# LooKEY 백엔드 API
 
 프론트엔드 연동을 위한 초기 목업 API 문서입니다.
 
-## Run
+## 실행 방법
 
 ```powershell
 cd backend
@@ -15,7 +15,7 @@ Swagger 문서는 서버 실행 후 아래 주소에서 확인할 수 있습니�
 http://127.0.0.1:8000/docs
 ```
 
-## Endpoints
+## 엔드포인트
 
 ### `GET /health`
 
@@ -29,7 +29,7 @@ http://127.0.0.1:8000/docs
 
 자연어 프롬프트를 받아 현재는 데모 회로 JSON을 반환합니다.
 
-Request:
+요청:
 
 ```json
 {
@@ -37,7 +37,7 @@ Request:
 }
 ```
 
-Response 주요 구조:
+응답의 주요 구조:
 
 ```json
 {

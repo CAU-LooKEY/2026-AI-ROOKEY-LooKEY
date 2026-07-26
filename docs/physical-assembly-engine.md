@@ -1,79 +1,73 @@
-# Physical Assembly Engine
+# 물리 조립 엔진
 
-The production assembly path combines `feat/assembly-plan-engine` with the
-asset data merged from `integration/3d-assets`. The source integration branch
-is not modified; its metadata is consumed from this branch.
+운영 조립 경로는 `feat/assembly-plan-engine`과 `integration/3d-assets`에서 병합한
+자산 데이터를 함께 사용합니다. 원본 통합 브랜치는 수정하지 않으며, 현재 브랜치에서
+그 메타데이터를 읽어 사용합니다.
 
-## Runtime data sources
+## 런타임 데이터 출처
 
-- `breadboard-half-pin-coordinates.json`: 30-column, 2.54 mm procedural hole
-  coordinates in GLTF model-local meters
-- `breadboard-half-layout.json`: A-E/F-J terminal groups and the real split
-  power-rail groups
-- component metadata: physical dimensions, pin anchors, pin pitch,
-  breadboard compatibility, insertion depth, and keep-out margins
+- `breadboard-half-pin-coordinates.json`: GLTF 모델 로컬 미터 단위로 표현한
+  30열, 2.54mm 간격의 절차적 홀 좌표
+- `breadboard-half-layout.json`: `A-E`/`F-J` 터미널 그룹과 실제 분할 전원 레일 그룹
+- 부품 메타데이터: 물리 크기, 핀 앵커, 핀 간격, 브레드보드 호환성,
+  삽입 깊이, keep-out 여백
 
-The loader is `backend/app/services/asset_metadata.py`. The placement and
-electrical graph implementation is
-`backend/app/services/physical_assembly.py`.
+로더는 `backend/app/services/asset_metadata.py`에 있으며, 배치와 전기 그래프는
+`backend/app/services/physical_assembly.py`에 구현되어 있습니다.
 
-## Placement
+## 배치
 
-The engine adds one `breadboard-half` assembly instance, leaves the Arduino
-beside the breadboard, and places breadboard-compatible parts in stable ID
-order. Candidate positions must satisfy all of the following:
+엔진은 `breadboard-half` 조립 인스턴스 하나를 추가하고 Arduino는 브레드보드 옆에
+둡니다. 브레드보드 호환 부품은 안정적인 ID 순서로 배치합니다. 후보 위치는 다음 조건을
+모두 만족해야 합니다.
 
-1. every lead lands on a real A1-J30 hole at the metadata pitch;
-2. no hole is already occupied;
-3. physical dimensions plus the metadata keep-out margin do not overlap;
-4. the full keep-out rectangle remains inside the real breadboard bounds.
+1. 모든 다리가 메타데이터의 간격에 맞춰 실제 `A1`~`J30` 홀에 들어가야 합니다.
+2. 해당 홀을 다른 다리나 점퍼가 사용하고 있지 않아야 합니다.
+3. 물리 크기와 메타데이터의 keep-out 여백을 포함한 영역이 겹치지 않아야 합니다.
+4. 전체 keep-out 사각형이 실제 브레드보드 경계 안에 있어야 합니다.
 
-Successful placements contain pin-to-hole `addresses` and a transform derived
-from the real hole coordinates. The same input therefore produces the same
-serialized plan.
+배치에 성공하면 실제 홀 좌표에서 계산한 변환 정보와 핀별 `addresses`를 반환합니다.
+따라서 동일한 입력은 항상 직렬화 결과까지 동일한 계획을 생성합니다.
 
-## Electrical graph
+## 전기 그래프
 
-The union-find graph joins:
+Union-Find 그래프는 다음 항목을 연결합니다.
 
-- a component pin to its allocated physical hole;
-- each hole to its actual A-E/F-J terminal group;
-- rail holes only to their five-hole asset segment;
-- the two endpoints of each jumper connection.
+- 부품 핀과 할당된 물리 홀
+- 각 홀과 실제 `A-E`/`F-J` 터미널 그룹
+- 전원 레일 홀과 해당 5홀 자산 구간
+- 각 점퍼 연결의 양 끝점
 
-Resistor leads, LED leads, and sensor pins are deliberately not joined through
-the component body. This preserves resistance, polarity, and independent
-sensor-pin semantics while still allowing short-circuit and series-component
-checks over the physical graph.
+저항의 두 다리, LED의 두 다리, 센서의 각 핀은 부품 몸체를 통해 같은 노드로
+합치지 않습니다. 따라서 저항, 극성, 독립된 센서 핀의 의미를 보존하면서 물리 그래프에서
+단락과 직렬 부품 관계를 검사할 수 있습니다.
 
-Rail aliases use `T+1` to `T+25`, `T-1` to `T-25`, `B+1` to `B+25`, and
-`B-1` to `B-25`. The full asset names such as
-`RAIL_TOP_POS_S1_1` are also accepted. Each set of five holes is common;
-adjacent five-hole segments are isolated, matching the asset metadata.
+전원 레일 별칭은 `T+1`~`T+25`, `T-1`~`T-25`, `B+1`~`B+25`,
+`B-1`~`B-25`를 사용합니다. `RAIL_TOP_POS_S1_1` 같은 전체 자산 이름도
+허용합니다. 각 5홀 묶음은 내부적으로 연결되며, 인접한 5홀 구간은 자산 메타데이터에
+따라 서로 절연됩니다.
 
-## Placement failure policy
+## 배치 실패 정책
 
-The API returns a partial plan instead of discarding the logical circuit.
-A failed `Placement` has `status: "failed"`, a `failureCode`, empty addresses,
-and a matching structured warning containing a Korean message, suggestion,
-component IDs, and diagnostic details.
+API는 논리 회로 전체를 버리지 않고 부분 계획을 반환합니다. 실패한 `Placement`는
+`status: "failed"`, `failureCode`, 빈 주소를 포함합니다. 대응하는 구조화 경고에는
+한글 메시지, 해결 방법, 부품 ID, 진단 상세 정보가 들어갑니다.
 
-| Code | Meaning |
+| 코드 | 의미 |
 | --- | --- |
-| `BREADBOARD_METADATA_MISSING` | Breadboard coordinates cannot be loaded |
-| `ASSET_METADATA_MISSING` | A component has no usable physical pin metadata |
-| `NO_PLACEMENT_CANDIDATE` | No in-bounds, pitch-correct, collision-free holes remain |
-| `ASSET_SCALE_UNCALIBRATED` | Placement used nominal pitch for an unapproved asset |
-| `HOLE_OCCUPIED` | Multiple leads occupy the same physical hole |
-| `PIN_DUPLICATE` | Multiple jumper wires terminate directly at one pin |
-| `POWER_GROUND_SHORT` | Power and ground resolve to one electrical node |
-| `LED_REVERSED` | LED polarity is reversed |
-| `LED_RESISTOR_MISSING` | No resistor shares either LED terminal node |
-| `SENSOR_PIN_ROLE` | A sensor terminal resolves to the wrong board-pin role |
+| `BREADBOARD_METADATA_MISSING` | 브레드보드 좌표를 불러올 수 없음 |
+| `ASSET_METADATA_MISSING` | 부품에 사용할 수 있는 물리 핀 메타데이터가 없음 |
+| `NO_PLACEMENT_CANDIDATE` | 경계·핀 간격·충돌 조건을 만족하는 빈 홀이 없음 |
+| `ASSET_SCALE_UNCALIBRATED` | 미승인 자산에 공칭 핀 간격을 적용함 |
+| `HOLE_OCCUPIED` | 하나의 물리 홀을 여러 다리가 사용함 |
+| `PIN_DUPLICATE` | 하나의 핀에 여러 점퍼선이 직접 연결됨 |
+| `POWER_GROUND_SHORT` | 전원과 GND가 하나의 전기 노드로 계산됨 |
+| `LED_REVERSED` | LED 극성이 반대로 연결됨 |
+| `LED_RESISTOR_MISSING` | 어느 LED 단자 노드에도 저항이 연결되지 않음 |
+| `SENSOR_PIN_ROLE` | 센서 단자가 잘못된 역할의 보드 핀에 연결됨 |
 
-## Verification
+## 검증
 
-`backend/tests/test_physical_assembly.py` verifies the merged real metadata,
-2.54 mm pitch, split rail semantics, five representative circuits, endpoint
-addresses, deterministic output, board bounds, and structured placement
-failure results.
+`backend/tests/test_physical_assembly.py`는 병합된 실제 메타데이터, 2.54mm 간격,
+분할 레일 규칙, 대표 회로 5종, 끝점 주소, 결정적 출력, 보드 경계와 구조화된 배치 실패를
+검증합니다.
