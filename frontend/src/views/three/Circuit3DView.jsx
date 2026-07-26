@@ -1,10 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import { Box, Grid3X3, RotateCcw } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Box, Eye, EyeOff, Grid3X3, RotateCcw } from "lucide-react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import pinCatalog from "../../assets/all_component_pin_coordinates.json";
 import { modelRegistry } from "./modelRegistry.js";
+import {
+  calculateCurveProfile,
+  createPinEndpoint,
+  JUMPER_SPEC,
+  resolveJumperWire,
+} from "./jumperWireSystem.js";
 
 const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
 const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
@@ -199,22 +205,32 @@ function pinWorldPosition(record, pinKey) {
   return record.group.localToWorld(position);
 }
 
-function makeConnector(position, color, connectorType) {
+function pinWorldDirection(record, endpoint) {
+  const direction = new THREE.Vector3(...endpoint.outwardDirection);
+  if (direction.lengthSq() < 0.0001) direction.set(0, 1, 0);
+  direction.normalize();
+  record.group.updateMatrixWorld(true);
+  direction.transformDirection(record.group.matrixWorld).normalize();
+  return direction;
+}
+
+function makeConnector(position, direction, color, connectorType) {
   const group = new THREE.Group();
+  const shellMaterial = new THREE.MeshStandardMaterial({
+    color: connectorType === "female" ? 0x111827 : color,
+    metalness: 0.18,
+    roughness: 0.55,
+  });
   const shell = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.075, 0.075, 0.24, 12),
-    new THREE.MeshStandardMaterial({
-      color: connectorType === "female" ? 0x111827 : color,
-      metalness: 0.18,
-      roughness: 0.55,
-    }),
+    new THREE.BoxGeometry(0.15, 0.24, 0.15),
+    shellMaterial,
   );
   shell.position.y = 0.12;
   group.add(shell);
 
   if (connectorType === "male") {
     const pin = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.025, 0.025, 0.16, 10),
+      new THREE.BoxGeometry(0.032, 0.16, 0.032),
       new THREE.MeshStandardMaterial({ color: 0xc8a951, metalness: 0.8, roughness: 0.25 }),
     );
     pin.position.y = -0.08;
@@ -222,33 +238,56 @@ function makeConnector(position, color, connectorType) {
   }
 
   group.position.copy(position);
+  group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
   return group;
 }
 
-function makeWire(connection, source, target, index) {
+function makeWire(connection, source, target, sourceDirection, targetDirection, index) {
   const distance = source.distanceTo(target);
-  const lift = Math.min(2.4, Math.max(0.65, distance * 0.18)) + (index % 3) * 0.08;
-  const sourceRise = source.clone().add(new THREE.Vector3(0, 0.34, 0));
-  const targetRise = target.clone().add(new THREE.Vector3(0, 0.34, 0));
+  const profile = calculateCurveProfile(distance, Math.abs(source.y - target.y), index);
+  const sourceRise = source.clone().addScaledVector(sourceDirection, 0.34);
+  const targetRise = target.clone().addScaledVector(targetDirection, 0.34);
   const midpoint = source.clone().lerp(target, 0.5);
-  midpoint.y = Math.max(source.y, target.y) + lift;
+  midpoint.y = Math.max(source.y, target.y) + profile.lift;
+  const lateral = target.clone().sub(source).cross(new THREE.Vector3(0, 1, 0));
+  if (lateral.lengthSq() > 0.0001) {
+    midpoint.addScaledVector(lateral.normalize(), profile.lateralOffset);
+  }
   const curve = new THREE.CatmullRomCurve3(
     [source, sourceRise, midpoint, targetRise, target],
     false,
     "centripetal",
   );
   const color = new THREE.Color(connection.color || "#2563eb");
+  const material = new THREE.MeshStandardMaterial({
+    color,
+    emissive: color.clone(),
+    emissiveIntensity: 0,
+    roughness: 0.58,
+    metalness: 0.05,
+  });
   const wire = new THREE.Mesh(
-    new THREE.TubeGeometry(curve, 48, 0.035, 8, false),
-    new THREE.MeshStandardMaterial({ color, roughness: 0.58, metalness: 0.05 }),
+    new THREE.TubeGeometry(
+      curve,
+      profile.tubularSegments,
+      JUMPER_SPEC.wireRadiusSceneUnit,
+      8,
+      false,
+    ),
+    material,
   );
+  wire.userData.wireId = connection.id;
   wire.castShadow = true;
 
   const group = new THREE.Group();
   group.name = connection.id;
+  group.userData = {
+    wireId: connection.id,
+    validation: connection.validation,
+  };
   group.add(wire);
-  group.add(makeConnector(source, color, connection.sourceConnector));
-  group.add(makeConnector(target, color, connection.targetConnector));
+  group.add(makeConnector(source, sourceDirection, color, connection.sourceConnector));
+  group.add(makeConnector(target, targetDirection, color, connection.targetConnector));
   return group;
 }
 
@@ -284,12 +323,34 @@ export default function Circuit3DView({ circuit }) {
   const containerRef = useRef(null);
   const actionsRef = useRef({});
   const gridRef = useRef(null);
+  const wireObjectsRef = useRef(new Map());
   const [showGrid, setShowGrid] = useState(true);
+  const [showWires, setShowWires] = useState(true);
+  const [selectedWireId, setSelectedWireId] = useState(null);
+  const [hiddenWireIds, setHiddenWireIds] = useState(() => new Set());
+  const [resolvedWires, setResolvedWires] = useState([]);
   const [loadState, setLoadState] = useState({ loaded: 0, status: "loading", total: 0 });
+  const selectedWire = useMemo(
+    () => resolvedWires.find((wire) => wire.id === selectedWireId) ?? null,
+    [resolvedWires, selectedWireId],
+  );
 
   useEffect(() => {
     if (gridRef.current) gridRef.current.visible = showGrid;
   }, [showGrid]);
+
+  useEffect(() => {
+    wireObjectsRef.current.forEach((group, wireId) => {
+      const hidden = !showWires || hiddenWireIds.has(wireId);
+      group.visible = !hidden;
+      const selected = wireId === selectedWireId;
+      group.traverse((object) => {
+        if (!object.isMesh || !object.userData.wireId) return;
+        object.material.emissiveIntensity = selected ? 0.55 : 0;
+        object.scale.setScalar(selected ? 1.35 : 1);
+      });
+    });
+  }, [hiddenWireIds, selectedWireId, showWires]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -312,6 +373,7 @@ export default function Circuit3DView({ circuit }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(container.clientWidth, container.clientHeight, false);
     container.appendChild(renderer.domElement);
+    renderer.domElement.style.cursor = "grab";
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -364,6 +426,21 @@ export default function Circuit3DView({ circuit }) {
     });
     resizeObserver.observe(container);
 
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const handlePointerDown = (event) => {
+      const rect = renderer.domElement.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hit = raycaster.intersectObjects(
+        [...wireObjectsRef.current.values()],
+        true,
+      ).find((intersection) => intersection.object.userData.wireId);
+      if (hit) setSelectedWireId(hit.object.userData.wireId);
+    };
+    renderer.domElement.addEventListener("pointerdown", handlePointerDown);
+
     const render = () => {
       controls.update();
       renderer.render(scene, camera);
@@ -395,19 +472,34 @@ export default function Circuit3DView({ circuit }) {
         const recordsById = new Map(records.filter(Boolean).map((record) => [record.part.id, record]));
         const wireGroup = new THREE.Group();
         wireGroup.name = "jumper-wires";
+        const normalizedWires = [];
+        let signalIndex = 0;
         (circuit.connections ?? []).forEach((connection, index) => {
           const sourceRecord = recordsById.get(connection.source);
           const targetRecord = recordsById.get(connection.target);
           if (!sourceRecord || !targetRecord) return;
-          wireGroup.add(
-            makeWire(
-              connection,
-              pinWorldPosition(sourceRecord, connection.sourcePin),
-              pinWorldPosition(targetRecord, connection.targetPin),
-              index,
-            ),
+          const sourceEndpoint = createPinEndpoint(sourceRecord, connection.sourcePin);
+          const targetEndpoint = createPinEndpoint(targetRecord, connection.targetPin);
+          const resolved = resolveJumperWire(
+            connection,
+            sourceEndpoint,
+            targetEndpoint,
+            signalIndex,
           );
+          if (resolved.colorRole === "signal") signalIndex += 1;
+          normalizedWires.push(resolved);
+          const group = makeWire(
+            resolved,
+            pinWorldPosition(sourceRecord, connection.sourcePin),
+            pinWorldPosition(targetRecord, connection.targetPin),
+            pinWorldDirection(sourceRecord, sourceEndpoint),
+            pinWorldDirection(targetRecord, targetEndpoint),
+            index,
+          );
+          wireObjectsRef.current.set(connection.id, group);
+          wireGroup.add(group);
         });
+        setResolvedWires(normalizedWires);
         assembly.add(wireGroup);
         frameAssembly(camera, controls, assembly);
         actionsRef.current = {
@@ -428,12 +520,23 @@ export default function Circuit3DView({ circuit }) {
       gridRef.current = null;
       cancelAnimationFrame(animationFrame);
       resizeObserver.disconnect();
+      renderer.domElement.removeEventListener("pointerdown", handlePointerDown);
       controls.dispose();
+      wireObjectsRef.current.clear();
       disposeObject(scene);
       renderer.dispose();
       renderer.domElement.remove();
     };
   }, [circuit]);
+
+  const toggleWireHidden = (wireId) => {
+    setHiddenWireIds((current) => {
+      const next = new Set(current);
+      if (next.has(wireId)) next.delete(wireId);
+      else next.add(wireId);
+      return next;
+    });
+  };
 
   return (
     <div className="circuit3dWorkspace">
@@ -452,6 +555,15 @@ export default function Circuit3DView({ circuit }) {
             onClick={() => setShowGrid((visible) => !visible)}
           >
             <Grid3X3 size={17} />
+          </button>
+          <button
+            type="button"
+            className={showWires ? "active" : ""}
+            title={showWires ? "점퍼선 숨기기" : "점퍼선 표시"}
+            aria-label={showWires ? "점퍼선 숨기기" : "점퍼선 표시"}
+            onClick={() => setShowWires((visible) => !visible)}
+          >
+            {showWires ? <Eye size={17} /> : <EyeOff size={17} />}
           </button>
           <button
             type="button"
@@ -482,14 +594,45 @@ export default function Circuit3DView({ circuit }) {
       </div>
 
       <div className="circuit3dLegend" aria-label="3D 점퍼선 연결 목록">
-        {(circuit.connections ?? []).map((connection) => (
-          <div className="circuit3dLegendItem" key={connection.id} title={connection.label}>
+        {resolvedWires.map((connection) => (
+          <button
+            type="button"
+            className={[
+              "circuit3dLegendItem",
+              selectedWireId === connection.id ? "selected" : "",
+              hiddenWireIds.has(connection.id) ? "hidden" : "",
+              connection.validation.valid ? "" : "invalid",
+            ].filter(Boolean).join(" ")}
+            key={connection.id}
+            title={
+              connection.validation.valid
+                ? connection.label
+                : connection.validation.issues.map((issue) => issue.message).join(" ")
+            }
+            onClick={() => setSelectedWireId(connection.id)}
+            onDoubleClick={() => toggleWireHidden(connection.id)}
+          >
             <span style={{ backgroundColor: connection.color }} />
             <b>{connection.sourcePin} ↔ {connection.targetPin}</b>
             <small>{wireTypeLabel(connection.wireType)}</small>
-          </div>
+            <i>{connection.validation.valid ? "정상" : "오류"}</i>
+          </button>
         ))}
       </div>
+      {selectedWire && (
+        <div className="circuit3dSelection" role="status">
+          <div>
+            <strong>{selectedWire.sourcePin} ↔ {selectedWire.targetPin}</strong>
+            <span>
+              {wireTypeLabel(selectedWire.wireType)} · {selectedWire.colorRole}
+              {!selectedWire.validation.valid && ` · ${selectedWire.validation.issues[0]?.message}`}
+            </span>
+          </div>
+          <button type="button" onClick={() => toggleWireHidden(selectedWire.id)}>
+            {hiddenWireIds.has(selectedWire.id) ? "다시 표시" : "선 숨기기"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
