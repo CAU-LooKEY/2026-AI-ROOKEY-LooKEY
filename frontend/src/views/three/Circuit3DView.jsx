@@ -16,6 +16,7 @@ const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
 const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
 const CONNECTOR_SHELL_HEIGHT = 0.24;
 const CONNECTOR_SEATING_DEPTH = 0.045;
+const BOARD_HEADER_ROW_RATIO = 0.425;
 
 const modelProfiles = {
   "arduino-uno-r3": {
@@ -186,9 +187,9 @@ function pinLocalPosition(record, pinKey) {
     const side = definition?.side;
     const x = side === "right" ? size.x * 0.47 : xRatio * size.x;
     const z = side === "top"
-      ? -size.z * 0.47
+      ? -size.z * BOARD_HEADER_ROW_RATIO
       : side === "bottom"
-        ? size.z * 0.47
+        ? size.z * BOARD_HEADER_ROW_RATIO
         : yRatio * size.z;
     return new THREE.Vector3(x, size.y + 0.08, z);
   }
