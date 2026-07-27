@@ -255,7 +255,10 @@ function pinWorldPosition(record, pinKey) {
 
   const metadata = findPinMetadata(record, pinKey);
   if (metadata?.position?.length === 3) {
-    record.model.updateMatrixWorld(true);
+    // Metadata positions are model-local, but the assembled part group also
+    // carries the circuit layout translation. Update the complete ancestor
+    // chain before converting the pin to world space.
+    record.group.updateWorldMatrix(true, true);
     return record.model.localToWorld(new THREE.Vector3(...metadata.position));
   }
 
@@ -280,7 +283,7 @@ function pinWorldDirection(record, endpoint) {
   const direction = new THREE.Vector3(...endpoint.outwardDirection);
   if (direction.lengthSq() < 0.0001) direction.set(0, 1, 0);
   direction.normalize();
-  record.model.updateMatrixWorld(true);
+  record.group.updateWorldMatrix(true, true);
   direction.transformDirection(record.model.matrixWorld).normalize();
   return direction;
 }
