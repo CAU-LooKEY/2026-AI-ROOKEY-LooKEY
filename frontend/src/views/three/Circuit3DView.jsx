@@ -183,7 +183,14 @@ function pinLocalPosition(record, pinKey) {
     : 0;
 
   if (pinLayout === "board") {
-    return new THREE.Vector3(xRatio * size.x, size.y + 0.08, yRatio * size.z);
+    const side = definition?.side;
+    const x = side === "right" ? size.x * 0.47 : xRatio * size.x;
+    const z = side === "top"
+      ? -size.z * 0.47
+      : side === "bottom"
+        ? size.z * 0.47
+        : yRatio * size.z;
+    return new THREE.Vector3(x, size.y + 0.08, z);
   }
   if (pinLayout === "sensor") {
     return new THREE.Vector3(xRatio * size.x, 0.12, size.z * 0.42);
@@ -200,6 +207,44 @@ function pinLocalPosition(record, pinKey) {
   return new THREE.Vector3(xRatio * size.x, size.y + 0.08, yRatio * size.z);
 }
 
+function boardHeaderSurfacePosition(record, localPosition) {
+  record.group.updateWorldMatrix(true, true);
+  const modelBounds = new THREE.Box3().setFromObject(record.model);
+  const basePosition = record.group.localToWorld(
+    new THREE.Vector3(localPosition.x, 0, localPosition.z),
+  );
+  const raycaster = new THREE.Raycaster();
+  const downward = new THREE.Vector3(0, -1, 0);
+  const sampleOffset = 0.045;
+  const samples = [
+    [0, 0],
+    [sampleOffset, 0],
+    [-sampleOffset, 0],
+    [0, sampleOffset],
+    [0, -sampleOffset],
+  ];
+  let surfaceY = Number.NEGATIVE_INFINITY;
+
+  samples.forEach(([offsetX, offsetZ]) => {
+    raycaster.set(
+      new THREE.Vector3(
+        basePosition.x + offsetX,
+        modelBounds.max.y + 0.5,
+        basePosition.z + offsetZ,
+      ),
+      downward,
+    );
+    const hit = raycaster.intersectObject(record.model, true)[0];
+    if (hit) surfaceY = Math.max(surfaceY, hit.point.y);
+  });
+
+  if (Number.isFinite(surfaceY)) {
+    basePosition.y = surfaceY;
+    return basePosition;
+  }
+  return null;
+}
+
 function pinWorldPosition(record, pinKey) {
   const embeddedAnchor = record.pinAnchors?.get(pinKey);
   if (embeddedAnchor) {
@@ -214,6 +259,10 @@ function pinWorldPosition(record, pinKey) {
   }
 
   const position = pinLocalPosition(record, pinKey);
+  if (record.pinLayout === "board") {
+    const headerSurface = boardHeaderSurfacePosition(record, position);
+    if (headerSurface) return headerSurface;
+  }
   record.group.updateMatrixWorld(true);
   return record.group.localToWorld(position);
 }
