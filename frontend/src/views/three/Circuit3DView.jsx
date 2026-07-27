@@ -306,7 +306,10 @@ function makePinTarget(record, pinKey) {
       opacity: 0.82,
     }),
   );
-  marker.position.copy(pinWorldPosition(record, pinKey)).addScaledVector(direction, 0.045);
+  marker.position.copy(pinWorldPosition(record, pinKey));
+  if (record.pinLayout !== "board") {
+    marker.position.addScaledVector(direction, 0.045);
+  }
   marker.renderOrder = 30;
   marker.userData.pinRef = {
     endpoint,
