@@ -217,6 +217,14 @@ function pinWorldPosition(record, pinKey) {
 }
 
 function pinWorldDirection(record, endpoint) {
+  // Catalog-only board pins do not have an exported GLB direction. Their
+  // positions are already resolved in the assembled scene, so keep the
+  // insertion axis in world space instead of rotating the fallback vector
+  // with the GLB (Arduino models are laid down with an X-axis rotation).
+  if (!endpoint.metadata?.outwardDirection && record.pinLayout === "board") {
+    return new THREE.Vector3(0, 1, 0);
+  }
+
   const direction = new THREE.Vector3(...endpoint.outwardDirection);
   if (direction.lengthSq() < 0.0001) direction.set(0, 1, 0);
   direction.normalize();
