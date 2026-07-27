@@ -452,7 +452,9 @@ export default function Circuit3DView({ circuit, interactive = false }) {
       group.traverse((object) => {
         if (!object.isMesh || !object.userData.wireId) return;
         object.material.emissiveIntensity = selected ? 0.55 : 0;
-        object.scale.setScalar(selected ? 1.35 : 1);
+        // Scaling this geometry also scales its scene-space control points
+        // around the origin and pulls the ends away from their connectors.
+        object.scale.setScalar(1);
       });
     });
   }, [hiddenWireIds, selectedWireId, showWires]);
