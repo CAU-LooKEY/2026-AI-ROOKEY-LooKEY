@@ -282,7 +282,9 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
   shell.position.y = CONNECTOR_SHELL_HEIGHT / 2;
   group.add(shell);
 
-  if (connectorType === "male") {
+  const pinIsInsideSocket = connectorType === "male"
+    && endpoint.interfaceGender === "female";
+  if (connectorType === "male" && !pinIsInsideSocket) {
     const pin = new THREE.Mesh(
       new THREE.BoxGeometry(0.032, insertionLength, 0.032),
       new THREE.MeshStandardMaterial({ color: 0xc8a951, metalness: 0.8, roughness: 0.25 }),
