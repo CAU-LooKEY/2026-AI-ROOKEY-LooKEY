@@ -14,6 +14,8 @@ import {
 
 const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
 const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
+const CONNECTOR_SHELL_HEIGHT = 0.24;
+const CONNECTOR_SEATING_DEPTH = 0.045;
 
 const modelProfiles = {
   "arduino-uno-r3": {
@@ -263,6 +265,7 @@ function makePinTarget(record, pinKey) {
 
 function makeConnector(position, direction, color, connectorType, endpoint) {
   const group = new THREE.Group();
+  const normalizedDirection = direction.clone().normalize();
   const insertionLength = Math.min(
     0.52,
     Math.max(0.12, Number(endpoint.insertionDepthMillimeter ?? 2) * 0.08),
@@ -273,10 +276,10 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
     roughness: 0.55,
   });
   const shell = new THREE.Mesh(
-    new THREE.BoxGeometry(0.15, 0.24, 0.15),
+    new THREE.BoxGeometry(0.15, CONNECTOR_SHELL_HEIGHT, 0.15),
     shellMaterial,
   );
-  shell.position.y = 0.12;
+  shell.position.y = CONNECTOR_SHELL_HEIGHT / 2;
   group.add(shell);
 
   if (connectorType === "male") {
@@ -288,9 +291,22 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
     group.add(pin);
   }
 
+  // Seat male housings slightly below the mating surface. The metal pin then
+  // continues into the socket/hole by the requested insertion depth.
   group.position.copy(position);
-  group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
+  if (connectorType === "male") {
+    group.position.addScaledVector(normalizedDirection, -CONNECTOR_SEATING_DEPTH);
+  }
+  group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normalizedDirection);
   return group;
+}
+
+function connectorCablePosition(position, direction, connectorType) {
+  const seatingDepth = connectorType === "male" ? CONNECTOR_SEATING_DEPTH : 0;
+  return position.clone().addScaledVector(
+    direction,
+    CONNECTOR_SHELL_HEIGHT - seatingDepth,
+  );
 }
 
 function makeWire(
@@ -303,18 +319,28 @@ function makeWire(
   targetEndpoint,
   index,
 ) {
-  const distance = source.distanceTo(target);
+  const sourceCable = connectorCablePosition(
+    source,
+    sourceDirection,
+    connection.sourceConnector,
+  );
+  const targetCable = connectorCablePosition(
+    target,
+    targetDirection,
+    connection.targetConnector,
+  );
+  const distance = sourceCable.distanceTo(targetCable);
   const profile = calculateCurveProfile(distance, Math.abs(source.y - target.y), index);
-  const sourceRise = source.clone().addScaledVector(sourceDirection, 0.34);
-  const targetRise = target.clone().addScaledVector(targetDirection, 0.34);
-  const midpoint = source.clone().lerp(target, 0.5);
-  midpoint.y = Math.max(source.y, target.y) + profile.lift;
-  const lateral = target.clone().sub(source).cross(new THREE.Vector3(0, 1, 0));
+  const sourceRise = sourceCable.clone().addScaledVector(sourceDirection, 0.34);
+  const targetRise = targetCable.clone().addScaledVector(targetDirection, 0.34);
+  const midpoint = sourceCable.clone().lerp(targetCable, 0.5);
+  midpoint.y = Math.max(sourceCable.y, targetCable.y) + profile.lift;
+  const lateral = targetCable.clone().sub(sourceCable).cross(new THREE.Vector3(0, 1, 0));
   if (lateral.lengthSq() > 0.0001) {
     midpoint.addScaledVector(lateral.normalize(), profile.lateralOffset);
   }
   const curve = new THREE.CatmullRomCurve3(
-    [source, sourceRise, midpoint, targetRise, target],
+    [sourceCable, sourceRise, midpoint, targetRise, targetCable],
     false,
     "centripetal",
   );
