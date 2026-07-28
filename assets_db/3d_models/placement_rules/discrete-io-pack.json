@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "gridPitchMillimeter": 2.54,
+  "components": {
+    "led-5mm-blue": {
+      "pinKeys": [
+        "ANODE",
+        "CATHODE"
+      ],
+      "pitchMillimeter": 2.54,
+      "occupiedColumns": 2,
+      "occupiedRows": 1,
+      "polarity": {
+        "positive": "ANODE",
+        "negative": "CATHODE"
+      }
+    },
+    "led-rgb-5mm": {
+      "pinKeys": [
+        "RED",
+        "COMMON_CATHODE",
+        "GREEN",
+        "BLUE"
+      ],
+      "pitchMillimeter": 2.54,
+      "occupiedColumns": 4,
+      "occupiedRows": 1,
+      "polarity": {
+        "common": "COMMON_CATHODE",
+        "channels": [
+          "RED",
+          "GREEN",
+          "BLUE"
+        ]
+      }
+    },
+    "potentiometer-10k": {
+      "pinKeys": [
+        "CCW",
+        "WIPER",
+        "CW"
+      ],
+      "pitchMillimeter": 2.54,
+      "occupiedColumns": 3,
+      "occupiedRows": 4,
+      "polarity": null
+    },
+    "slide-switch-spdt": {
+      "pinKeys": [
+        "THROW_A",
+        "COMMON",
+        "THROW_B"
+      ],
+      "pitchMillimeter": 2.54,
+      "occupiedColumns": 3,
+      "occupiedRows": 3,
+      "polarity": null
+    }
+  }
+}

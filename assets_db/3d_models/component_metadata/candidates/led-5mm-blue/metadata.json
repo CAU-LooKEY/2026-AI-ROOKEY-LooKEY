@@ -3,43 +3,47 @@
   "componentSlug": "led-5mm-blue",
   "asset": {
     "path": "assets_db/3d_models/glb/led-5mm-blue.glb",
-    "sha256": "22d73261961c68f1dcadda61374bd54728fef02812be26dcdaf8fb99700f6e4e",
+    "sha256": "f0578c1fb11aaaaa7f1b1bc1301c0f333173b95bc5c3a2e57e023ede01e54801",
     "format": "glb",
-    "scaleStatus": "uncalibrated",
-    "thumbnailPath": "assets_db/2d_svgs/raster_sources/led-5mm-blue-top.png"
+    "scaleStatus": "real-world",
+    "thumbnailPath": null
   },
   "physicalDimensions": {
     "unit": "millimeter",
-    "width": 5,
-    "depth": 5,
-    "height": 28,
+    "width": 5.8,
+    "depth": 5.8,
+    "height": 19.6,
     "measurementScope": "overall-including-pins",
-    "source": "inferred",
-    "confidence": 0.1
+    "source": "nominal",
+    "confidence": 0.9
   },
   "coordinateSystems": {
     "authoring": {
-      "space": "blender-object-local",
+      "space": "threejs-object-local",
       "handedness": "right",
-      "upAxis": "+Z",
-      "frontAxis": "-Y",
-      "unit": "millimeter"
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter"
     },
     "runtime": {
       "space": "gltf-model-local",
       "handedness": "right",
       "upAxis": "+Y",
       "frontAxis": "+Z",
-      "unit": "model-unit",
-      "modelUnitsPerMillimeter": null
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
     },
     "anchorsStoredIn": "runtime"
   },
   "origin": {
-    "targetReference": "body-bottom-center",
-    "referencePoint": null,
-    "normalized": false,
-    "description": "The legacy GLB has not yet been normalized to the body bottom center."
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": true,
+    "description": "Origin is centered on the breadboard insertion plane between the outer leads."
   },
   "orientation": {
     "defaultRotationQuaternion": [
@@ -48,13 +52,13 @@
       0,
       1
     ],
-    "normalized": false,
+    "normalized": true,
     "markers": [
       {
-        "key": "long-lead-right",
+        "key": "anode-right",
         "pinKey": "ANODE",
         "direction": "+X",
-        "description": "Target authoring rule from the team asset standard; not yet verified in this GLB."
+        "description": "The longer anode lead is on runtime +X."
       }
     ]
   },
@@ -64,20 +68,20 @@
       "label": "Anode +",
       "nodeName": "pin_anode",
       "position": [
-        -0.61489252,
-        1.30503732,
-        0.23535273
+        0.00127,
+        0,
+        0
       ],
       "outwardDirection": [
         0,
-        0,
-        1
+        -1,
+        0
       ],
       "connector": {
         "gender": "male",
         "form": "lead",
         "pitchMillimeter": 2.54,
-        "diameterMillimeter": null
+        "diameterMillimeter": 0.5
       },
       "electrical": {
         "role": "passive",
@@ -89,12 +93,12 @@
       },
       "mounting": {
         "breadboardCompatible": true,
-        "insertionDepthMillimeter": null
+        "insertionDepthMillimeter": 6
       },
-      "confidence": 0.1,
-      "sourceObject": null,
+      "confidence": 0.95,
+      "sourceObject": "pin_anode",
       "notes": [
-        "Position was projected from the 2D pin map and is not production-ready."
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
       ]
     },
     {
@@ -102,20 +106,20 @@
       "label": "Cathode -",
       "nodeName": "pin_cathode",
       "position": [
-        -0.68232816,
-        0.94797256,
-        0.23535273
+        -0.00127,
+        0,
+        0
       ],
       "outwardDirection": [
         0,
-        0,
-        1
+        -1,
+        0
       ],
       "connector": {
         "gender": "male",
         "form": "lead",
         "pitchMillimeter": 2.54,
-        "diameterMillimeter": null
+        "diameterMillimeter": 0.5
       },
       "electrical": {
         "role": "passive",
@@ -127,12 +131,12 @@
       },
       "mounting": {
         "breadboardCompatible": true,
-        "insertionDepthMillimeter": null
+        "insertionDepthMillimeter": 6
       },
-      "confidence": 0.1,
-      "sourceObject": null,
+      "confidence": 0.95,
+      "sourceObject": "pin_cathode",
       "notes": [
-        "Position was projected from the 2D pin map and is not production-ready."
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
       ]
     }
   ],
@@ -143,23 +147,27 @@
       1,
       0
     ],
-    "rotationPolicy": "free-yaw",
-    "allowedYawDegrees": [],
-    "keepOutMarginMillimeter": 1
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "keepOutMarginMillimeter": 0.5
   },
   "provenance": {
-    "authorGithub": "integration-baseline",
-    "branch": "feat/3d-anchor-metadata-standard",
-    "method": "projected-2d",
-    "sourceTool": "assets_db legacy projection",
-    "createdAt": "2026-07-22",
-    "status": "example",
+    "authorGithub": "a3222",
+    "branch": "feat/assets-discrete-io-pack",
+    "method": "other",
+    "sourceTool": "Three.js GLTFExporter",
+    "createdAt": "2026-07-28",
+    "status": "candidate",
     "reviewerGithub": null,
     "approvedAt": null
   },
   "notes": [
-    "This file demonstrates the contract using legacy data.",
-    "Do not copy its coordinates into approved metadata.",
-    "Rebuild the LED at real-world scale, normalize its origin, and place Blender Empty objects at both lead contact points."
+    "Nominal real-world procedural model; breadboard occupancy 2 columns x 1 rows.",
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
   ]
 }

@@ -132,20 +132,28 @@
           ],
           "properties": {
             "space": {
-              "const": "blender-object-local"
+              "enum": [
+                "blender-object-local",
+                "threejs-object-local"
+              ]
             },
             "handedness": {
               "const": "right"
             },
             "upAxis": {
-              "const": "+Z"
+              "enum": [
+                "+Y",
+                "+Z"
+              ]
             },
             "frontAxis": {
               "enum": [
                 "+X",
                 "-X",
                 "+Y",
-                "-Y"
+                "-Y",
+                "+Z",
+                "-Z"
               ]
             },
             "unit": {

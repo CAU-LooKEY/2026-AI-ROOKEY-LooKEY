@@ -39,9 +39,12 @@ const displayNames = {
   "hc-sr04": "HC-SR04",
   "led-5mm-blue": "LED 5mm Blue",
   "led-5mm-red": "LED 5mm Red",
+  "led-rgb-5mm": "RGB LED 5mm",
+  "potentiometer-10k": "Potentiometer 10k",
   "pushbutton-6x6": "Push Button 6x6",
   "resistor-220-ohm": "Resistor 220 ohm",
   "servo-sg90": "Servo SG90",
+  "slide-switch-spdt": "Slide Switch SPDT",
 };
 
 function normalizeModule(moduleValue) {

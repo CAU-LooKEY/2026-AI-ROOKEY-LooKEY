@@ -888,7 +888,7 @@
         "label": "+ top",
         "signal_type": "power",
         "side": "top",
-        "x_px": 65.0,
+        "x_px": 65,
         "y_px": 45.9,
         "aliases": [
           "+"
@@ -901,7 +901,7 @@
         "label": "- top",
         "signal_type": "ground",
         "side": "top",
-        "x_px": 65.0,
+        "x_px": 65,
         "y_px": 61.2,
         "aliases": [
           "-"
@@ -1064,7 +1064,7 @@
         "signal_type": "power",
         "side": "bottom",
         "x_px": 37.9,
-        "y_px": 214.0,
+        "y_px": 214,
         "aliases": [
           "+"
         ],
@@ -1164,7 +1164,7 @@
         "signal_type": "component",
         "side": "center",
         "x_px": 32.1,
-        "y_px": 142.0,
+        "y_px": 142,
         "aliases": [],
         "notes": "Procedural terminal hole; electrically common with lower bank column 1.",
         "sort_order": 250,
@@ -1342,21 +1342,18 @@
   },
   "led-5mm-blue": {
     "component_slug": "led-5mm-blue",
-    "display_name": "Blue LED 5mm",
+    "display_name": "Led 5mm Blue",
     "category": "output",
-    "board_family": null,
-    "description": "Two-lead blue LED calibrated from the uploaded angled image. A true top-view LED asset is still recommended.",
+    "description": "Real-world procedural breadboard component.",
     "grid_width": 2,
-    "grid_height": 4,
-    "pixel_width": 310,
-    "pixel_height": 381,
-    "license_status": "needs_review",
-    "trademark_notes": null,
+    "grid_height": 1,
+    "pixel_width": 100,
+    "pixel_height": 100,
     "image": {
-      "path": "assets_db/2d_svgs/raster_sources/led-5mm-blue-top.png",
-      "mime_type": "image/png",
-      "width_px": 310,
-      "height_px": 381,
+      "path": null,
+      "mime_type": null,
+      "width_px": 100,
+      "height_px": 100,
       "coordinate_origin": "top-left",
       "background": "transparent"
     },
@@ -1364,36 +1361,34 @@
       {
         "pin_key": "ANODE",
         "label": "Anode +",
-        "signal_type": "component",
+        "signal_type": "passive",
         "side": "bottom",
-        "x_px": 31,
-        "y_px": 372,
+        "x_px": 33.333333333333336,
+        "y_px": 90,
         "aliases": [
           "A",
           "+",
           "long-leg"
         ],
-        "sort_order": 0,
-        "notes": "Longer visible lead; inferred as anode."
+        "sort_order": 0
       },
       {
         "pin_key": "CATHODE",
         "label": "Cathode -",
-        "signal_type": "ground",
+        "signal_type": "passive",
         "side": "bottom",
-        "x_px": 9,
-        "y_px": 319,
+        "x_px": 66.66666666666667,
+        "y_px": 90,
         "aliases": [
           "K",
           "-",
           "short-leg"
         ],
-        "sort_order": 1,
-        "notes": "Shorter visible lead; inferred as cathode."
+        "sort_order": 1
       }
     ],
     "notes": [
-      "The uploaded LED image is angled, not a strict top-view photo; replace with a top-view or rendered LED for production-quality 2.5D placement."
+      "Generated with the discrete I/O pack."
     ]
   },
   "led-5mm-red": {
@@ -1656,6 +1651,204 @@
     ],
     "notes": [
       "Servo connector order inferred from visible wire colors: brown/dark, red, orange."
+    ]
+  },
+  "led-rgb-5mm": {
+    "component_slug": "led-rgb-5mm",
+    "display_name": "Led Rgb 5mm",
+    "category": "output",
+    "description": "Real-world procedural breadboard component.",
+    "grid_width": 4,
+    "grid_height": 1,
+    "pixel_width": 100,
+    "pixel_height": 100,
+    "image": {
+      "path": null,
+      "mime_type": null,
+      "width_px": 100,
+      "height_px": 100,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "RED",
+        "label": "Red channel",
+        "signal_type": "signal",
+        "side": "bottom",
+        "x_px": 20,
+        "y_px": 90,
+        "aliases": [
+          "R"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "COMMON_CATHODE",
+        "label": "Common cathode",
+        "signal_type": "ground",
+        "side": "bottom",
+        "x_px": 40,
+        "y_px": 90,
+        "aliases": [
+          "COM",
+          "K",
+          "-"
+        ],
+        "sort_order": 1
+      },
+      {
+        "pin_key": "GREEN",
+        "label": "Green channel",
+        "signal_type": "signal",
+        "side": "bottom",
+        "x_px": 60,
+        "y_px": 90,
+        "aliases": [
+          "G"
+        ],
+        "sort_order": 2
+      },
+      {
+        "pin_key": "BLUE",
+        "label": "Blue channel",
+        "signal_type": "signal",
+        "side": "bottom",
+        "x_px": 80,
+        "y_px": 90,
+        "aliases": [
+          "B"
+        ],
+        "sort_order": 3
+      }
+    ],
+    "notes": [
+      "Generated with the discrete I/O pack."
+    ]
+  },
+  "potentiometer-10k": {
+    "component_slug": "potentiometer-10k",
+    "display_name": "Potentiometer 10k",
+    "category": "input",
+    "description": "Real-world procedural breadboard component.",
+    "grid_width": 3,
+    "grid_height": 4,
+    "pixel_width": 100,
+    "pixel_height": 100,
+    "image": {
+      "path": null,
+      "mime_type": null,
+      "width_px": 100,
+      "height_px": 100,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "CCW",
+        "label": "Counter-clockwise terminal",
+        "signal_type": "passive",
+        "side": "bottom",
+        "x_px": 25,
+        "y_px": 90,
+        "aliases": [
+          "A",
+          "1"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "WIPER",
+        "label": "Wiper",
+        "signal_type": "signal",
+        "side": "bottom",
+        "x_px": 50,
+        "y_px": 90,
+        "aliases": [
+          "W",
+          "2",
+          "SIG"
+        ],
+        "sort_order": 1
+      },
+      {
+        "pin_key": "CW",
+        "label": "Clockwise terminal",
+        "signal_type": "passive",
+        "side": "bottom",
+        "x_px": 75,
+        "y_px": 90,
+        "aliases": [
+          "B",
+          "3"
+        ],
+        "sort_order": 2
+      }
+    ],
+    "notes": [
+      "Generated with the discrete I/O pack."
+    ]
+  },
+  "slide-switch-spdt": {
+    "component_slug": "slide-switch-spdt",
+    "display_name": "Slide Switch Spdt",
+    "category": "input",
+    "description": "Real-world procedural breadboard component.",
+    "grid_width": 3,
+    "grid_height": 3,
+    "pixel_width": 100,
+    "pixel_height": 100,
+    "image": {
+      "path": null,
+      "mime_type": null,
+      "width_px": 100,
+      "height_px": 100,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "THROW_A",
+        "label": "Throw A",
+        "signal_type": "signal",
+        "side": "bottom",
+        "x_px": 25,
+        "y_px": 90,
+        "aliases": [
+          "A",
+          "1"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "COMMON",
+        "label": "Common",
+        "signal_type": "signal",
+        "side": "bottom",
+        "x_px": 50,
+        "y_px": 90,
+        "aliases": [
+          "COM",
+          "2"
+        ],
+        "sort_order": 1
+      },
+      {
+        "pin_key": "THROW_B",
+        "label": "Throw B",
+        "signal_type": "signal",
+        "side": "bottom",
+        "x_px": 75,
+        "y_px": 90,
+        "aliases": [
+          "B",
+          "3"
+        ],
+        "sort_order": 2
+      }
+    ],
+    "notes": [
+      "Generated with the discrete I/O pack."
     ]
   }
 }
