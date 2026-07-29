@@ -7,13 +7,7 @@ from typing import Any
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
 ASSET_ROOT = REPOSITORY_ROOT / "assets_db"
-
-COMPONENT_METADATA_PATHS = {
-    "led-5mm-blue": ASSET_ROOT / "3d_models/component_metadata/examples/led-5mm-blue.projected-2d.example.json",
-    "led-5mm-red": ASSET_ROOT / "3d_models/component_metadata/candidates/led-5mm-red/metadata.json",
-    "resistor-220-ohm": ASSET_ROOT / "3d_models/component_metadata/candidates/resistor-220-ohm/metadata.json",
-    "hc-sr04": ASSET_ROOT / "3d_models/component_metadata/candidates/hc-sr04/metadata.json",
-}
+COMPONENT_METADATA_ROOT = ASSET_ROOT / "3d_models/component_metadata"
 BREADBOARD_COORDINATES_PATH = (
     ASSET_ROOT / "db_scripts/pin_coordinates/breadboard-half-pin-coordinates.json"
 )
@@ -38,6 +32,7 @@ class ComponentFootprint:
     depth_meter: float
     keep_out_meter: float
     normalized: bool
+    pin_positions_meter: tuple[tuple[float, float], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -72,20 +67,24 @@ def _read_json(path: Path) -> dict[str, Any]:
 
 @lru_cache
 def load_component_footprint(asset_slug: str) -> ComponentFootprint:
-    path = COMPONENT_METADATA_PATHS.get(asset_slug)
-    if path is None:
-        raise AssetMetadataError(f"No 3D component metadata for {asset_slug}")
+    path = _find_component_metadata_path(asset_slug)
     metadata = _read_json(path)
     pins = metadata.get("pins", [])
     compatible = [pin for pin in pins if pin.get("mounting", {}).get("breadboardCompatible")]
     if not compatible:
         raise AssetMetadataError(f"No breadboard-compatible pins for {asset_slug}")
 
-    positions = [float(pin["position"][0]) for pin in compatible]
-    origin = min(positions)
+    pin_positions = tuple(
+        (float(pin["position"][0]), float(pin["position"][2]))
+        for pin in compatible
+    )
+    x_positions = [position[0] for position in pin_positions]
+    origin = min(x_positions)
     pitch = 0.00254
     normalized = bool(metadata.get("origin", {}).get("normalized"))
-    offsets = tuple(round((position - origin) / pitch) for position in positions)
+    offsets = tuple(
+        round((position - origin) / pitch) for position in x_positions
+    )
     if not normalized or len(set(offsets)) != len(offsets):
         offsets = tuple(range(len(compatible)))
 
@@ -99,7 +98,20 @@ def load_component_footprint(asset_slug: str) -> ComponentFootprint:
         depth_meter=float(dimensions["depth"]) / 1000,
         keep_out_meter=float(placement.get("keepOutMarginMillimeter", 0)) / 1000,
         normalized=normalized,
+        pin_positions_meter=pin_positions,
     )
+
+
+def _find_component_metadata_path(asset_slug: str) -> Path:
+    candidates = (
+        COMPONENT_METADATA_ROOT / "approved" / asset_slug / "metadata.json",
+        COMPONENT_METADATA_ROOT / "candidates" / asset_slug / "metadata.json",
+        COMPONENT_METADATA_ROOT / "examples" / f"{asset_slug}.projected-2d.example.json",
+    )
+    for path in candidates:
+        if path.is_file():
+            return path
+    raise AssetMetadataError(f"No 3D component metadata for {asset_slug}")
 
 
 @lru_cache

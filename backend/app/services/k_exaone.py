@@ -7,25 +7,21 @@ from pydantic import ValidationError
 
 from app.core.settings import Settings
 from app.schemas.circuit import CircuitGenerationResponse
+from app.services.component_rules import component_prompt_catalog
 from app.services.physical_assembly import PhysicalAssemblyPlanEngine
 
 
 logger = logging.getLogger(__name__)
 
 
-SYSTEM_PROMPT = """You generate safe Arduino circuit projects for beginners.
+SYSTEM_PROMPT = f"""You generate safe Arduino circuit projects for beginners.
 Return only valid JSON matching the supplied JSON schema. Do not use Markdown.
 
 Rules:
-- Use only these componentKey values when drawing parts: arduino-uno-r3,
-  hc-sr04, led-5mm-blue, resistor-220-ohm.
+- Use only the componentKey and pin values in this catalog:
+{component_prompt_catalog()}
 - Every circuit part id must be unique. Every connection source and target must
   refer to an existing part id.
-- Arduino pin keys must be one of: SCL, SDA, AREF, GND_D, D0-D13, IOREF,
-  RESET, 3V3, 5V, GND_P1, GND_P2, VIN, A0-A5, AUX_RX, AUX_TX, AUX_5V,
-  AUX_GND_1, AUX_SDA, AUX_SCL, AUX_3V3, AUX_GND_2.
-- HC-SR04 pin keys are VCC, TRIG, ECHO, GND. LED pin keys are ANODE and
-  CATHODE. Resistor pin keys are LEAD_A and LEAD_B.
 - Treat every connection as one physical jumper wire. Do not return
   sourceConnector, targetConnector, or wireType; the server derives those
   fields from the connected component types.
