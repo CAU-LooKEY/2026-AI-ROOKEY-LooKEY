@@ -70,15 +70,47 @@ function addLead(root, name, x, z = 0, top = 3 * meter, depth = 6 * meter) {
   ));
 }
 
+function addLeadSegment(root, name, from, to) {
+  const start = new THREE.Vector3(...from);
+  const end = new THREE.Vector3(...to);
+  const direction = end.clone().sub(start);
+  const value = mesh(
+    name,
+    new THREE.CylinderGeometry(0.25 * meter, 0.25 * meter, direction.length(), 10),
+    material("tin_plated_lead", 0xb8bec5, { metalness: 0.82, roughness: 0.25 }),
+    start.clone().add(end).multiplyScalar(0.5).toArray(),
+  );
+  value.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.normalize());
+  root.add(value);
+}
+
+function createLedLensGeometry() {
+  const radius = 2.5 * meter;
+  const domeCenterY = 6.1 * meter;
+  const profile = [
+    new THREE.Vector2(0, 3 * meter),
+    new THREE.Vector2(radius, 3 * meter),
+    new THREE.Vector2(radius, domeCenterY),
+  ];
+  for (let step = 1; step <= 12; step += 1) {
+    const angle = (step / 12) * (Math.PI / 2);
+    profile.push(new THREE.Vector2(
+      Math.cos(angle) * radius,
+      domeCenterY + Math.sin(angle) * radius,
+    ));
+  }
+  return new THREE.LatheGeometry(profile, 32);
+}
+
 function createLed(slug, color) {
   const root = new THREE.Group();
   root.name = slug;
   root.userData = { componentSlug: slug, schemaVersion: "1.0.0", assetStatus: "candidate" };
   root.add(mesh(
     "led_body",
-    new THREE.CylinderGeometry(2.5 * meter, 2.5 * meter, 8.6 * meter, 32),
+    createLedLensGeometry(),
     material(`${slug}_lens`, color, { transparent: true, opacity: 0.72, roughness: 0.22 }),
-    [0, 7.3 * meter, 0],
+    [0, 0, 0],
   ));
   root.add(mesh(
     "led_flange",
@@ -107,9 +139,9 @@ function createRgbLed() {
   root.userData = { componentSlug: slug, schemaVersion: "1.0.0", assetStatus: "candidate" };
   root.add(mesh(
     "rgb_led_body",
-    new THREE.CylinderGeometry(2.5 * meter, 2.5 * meter, 8.6 * meter, 32),
+    createLedLensGeometry(),
     material("rgb_diffused_lens", 0xe7edf4, { transparent: true, opacity: 0.68, roughness: 0.25 }),
-    [0, 7.3 * meter, 0],
+    [0, 0, 0],
   ));
   root.add(mesh(
     "rgb_led_flange",
@@ -123,14 +155,16 @@ function createRgbLed() {
     ["GREEN", "Green channel", 1.27, ["G"], "signal"],
     ["BLUE", "Blue channel", 3.81, ["B"], "signal"],
   ];
-  definitions.forEach(([key], index) => addLead(
-    root,
-    `${key.toLowerCase()}_lead`,
-    [-3.81, -1.27, 1.27, 3.81][index] * meter,
-    0,
-    3 * meter,
-    key === "COMMON_CATHODE" ? 6 * meter : 7 * meter,
-  ));
+  const breadboardX = [-3.81, -1.27, 1.27, 3.81];
+  const bodyExitX = [-1.8, -0.6, 0.6, 1.8];
+  definitions.forEach(([key], index) => {
+    const depth = key === "COMMON_CATHODE" ? 6 : 7;
+    const lowerY = -depth * meter;
+    const targetX = breadboardX[index] * meter;
+    const exitX = bodyExitX[index] * meter;
+    addLeadSegment(root, `${key.toLowerCase()}_lead_lower`, [targetX, lowerY, 0], [targetX, 0, 0]);
+    addLeadSegment(root, `${key.toLowerCase()}_lead_bend`, [targetX, 0, 0], [exitX, 3 * meter, 0]);
+  });
   return {
     root,
     dimensions: [8.12, 5.8, 19.6],
@@ -143,22 +177,52 @@ function createRgbLed() {
 function createPotentiometer() {
   const slug = "potentiometer-10k";
   const root = new THREE.Group();
+  const housing = new THREE.Group();
+  housing.name = "pot_vertical_housing";
+  housing.rotation.x = Math.PI / 2;
+  housing.position.y = 10 * meter;
   root.name = slug;
   root.userData = { componentSlug: slug, schemaVersion: "1.0.0", assetStatus: "candidate" };
-  root.add(mesh("pot_body", new THREE.BoxGeometry(9.5 * meter, 6.2 * meter, 9.5 * meter), material("pot_blue", 0x2563a8), [0, 5.8 * meter, 0]));
-  root.add(mesh("pot_knob", new THREE.CylinderGeometry(2.4 * meter, 2.4 * meter, 3 * meter, 24), material("pot_knob", 0xd8dde3), [0, 10.4 * meter, 0]));
-  root.add(mesh("pot_slot", new THREE.BoxGeometry(0.7 * meter, 0.3 * meter, 3.2 * meter), material("pot_slot", 0x60666d), [0, 11.95 * meter, 0]));
-  [-2.54, 0, 2.54].forEach((x, index) => addLead(root, `pot_lead_${index + 1}`, x * meter));
+  const steel = material("pot_steel", 0xaeb4b8, { metalness: 0.82, roughness: 0.3 });
+  const darkSteel = material("pot_slot_shadow", 0x454b50, { metalness: 0.55, roughness: 0.38 });
+  const terminal = material("pot_terminal", 0xb8bec5, { metalness: 0.84, roughness: 0.24 });
+
+  // Brown phenolic wafer and stamped metal housing used by common panel-mount pots.
+  housing.add(mesh("pot_phenolic_wafer", new THREE.CylinderGeometry(8 * meter, 8 * meter, 1.6 * meter, 48), material("pot_phenolic", 0x8b3f16, { roughness: 0.72 }), [0, 4.8 * meter, 0]));
+  housing.add(mesh("pot_terminal_tab", new THREE.BoxGeometry(9.2 * meter, 1.6 * meter, 5.5 * meter), material("pot_phenolic_tab", 0x8b3f16, { roughness: 0.72 }), [0, 4.8 * meter, 6.2 * meter]));
+  housing.add(mesh("pot_metal_can", new THREE.CylinderGeometry(7.25 * meter, 7.25 * meter, 3.2 * meter, 48), steel, [0, 7.1 * meter, -0.5 * meter]));
+  housing.add(mesh("pot_retaining_plate", new THREE.CylinderGeometry(5.7 * meter, 6.3 * meter, 1 * meter, 32), steel, [0, 9.1 * meter, 0]));
+  housing.add(mesh("pot_hex_nut", new THREE.CylinderGeometry(4.8 * meter, 4.8 * meter, 1.4 * meter, 6), steel, [0, 10.25 * meter, 0]));
+
+  // Threaded bushing is represented by stacked ridges so it reads clearly in Asset Lab.
+  housing.add(mesh("pot_bushing", new THREE.CylinderGeometry(3.25 * meter, 3.25 * meter, 4.4 * meter, 32), darkSteel, [0, 12.8 * meter, 0]));
+  [11.1, 12.0, 12.9, 13.8, 14.7].forEach((y, index) => {
+    housing.add(mesh(`pot_thread_${index + 1}`, new THREE.CylinderGeometry(3.55 * meter, 3.55 * meter, 0.35 * meter, 32), steel, [0, y * meter, 0]));
+  });
+
+  // Tall split shaft, matching the reference part rather than a screwdriver trimmer.
+  housing.add(mesh("pot_shaft", new THREE.CylinderGeometry(2.35 * meter, 2.35 * meter, 9 * meter, 32), steel, [0, 19.3 * meter, 0]));
+  housing.add(mesh("pot_shaft_slot", new THREE.BoxGeometry(0.75 * meter, 5.2 * meter, 5 * meter), darkSteel, [0, 21.8 * meter, 0]));
+
+  const terminalZ = 3.9;
+  [-2.54, 0, 2.54].forEach((x, index) => {
+    housing.add(mesh(`pot_solder_lug_${index + 1}`, new THREE.BoxGeometry(1.45 * meter, 0.7 * meter, 5.5 * meter), terminal, [x * meter, 3.9 * meter, 5.2 * meter]));
+    addLead(root, `pot_lead_${index + 1}`, x * meter, terminalZ * meter, 4.1 * meter, 6 * meter);
+  });
+  [-6.35, 6.35].forEach((x, index) => {
+    housing.add(mesh(`pot_mounting_tab_${index + 1}`, new THREE.BoxGeometry(1.5 * meter, 2.2 * meter, 4.2 * meter), steel, [x * meter, 4.1 * meter, 3.5 * meter]));
+  });
+  root.add(housing);
   return {
     root,
-    dimensions: [9.5, 9.5, 13.45],
+    dimensions: [16, 27, 24],
     pins: [
-      pin("CCW", "Counter-clockwise terminal", -2.54, 0, ["A", "1"], "passive"),
-      pin("WIPER", "Wiper", 0, 0, ["W", "2", "SIG"], "signal"),
-      pin("CW", "Clockwise terminal", 2.54, 0, ["B", "3"], "passive"),
+      pin("CCW", "Counter-clockwise terminal", -2.54, terminalZ, ["A", "1"], "passive"),
+      pin("WIPER", "Wiper", 0, terminalZ, ["W", "2", "SIG"], "signal"),
+      pin("CW", "Clockwise terminal", 2.54, terminalZ, ["B", "3"], "passive"),
     ],
     marker: { key: "wiper-center", pinKey: "WIPER", direction: "+Z", description: "The wiper is the center lead." },
-    occupancy: { columns: 3, rows: 4, pitchMillimeter: 2.54 },
+    occupancy: { columns: 7, rows: 7, pitchMillimeter: 2.54 },
   };
 }
 

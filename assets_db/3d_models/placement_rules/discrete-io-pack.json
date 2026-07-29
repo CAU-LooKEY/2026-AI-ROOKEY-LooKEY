@@ -41,8 +41,8 @@
         "CW"
       ],
       "pitchMillimeter": 2.54,
-      "occupiedColumns": 3,
-      "occupiedRows": 4,
+      "occupiedColumns": 7,
+      "occupiedRows": 7,
       "polarity": null
     },
     "slide-switch-spdt": {

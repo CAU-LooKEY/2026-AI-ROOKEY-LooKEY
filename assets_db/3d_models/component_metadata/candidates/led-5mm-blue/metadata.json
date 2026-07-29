@@ -3,7 +3,7 @@
   "componentSlug": "led-5mm-blue",
   "asset": {
     "path": "assets_db/3d_models/glb/led-5mm-blue.glb",
-    "sha256": "80375d7027a5829133152750903c2b287d244c1e7e01519b68885755a6cde215",
+    "sha256": "8c891d49faca1aa69226cec21760827d44ce2758231dbe0c7f37652e0cd4934d",
     "format": "glb",
     "scaleStatus": "real-world",
     "thumbnailPath": null

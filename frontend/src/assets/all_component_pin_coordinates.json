@@ -1517,8 +1517,8 @@
     "display_name": "Potentiometer 10k",
     "category": "input",
     "description": "Real-world procedural breadboard component.",
-    "grid_width": 3,
-    "grid_height": 4,
+    "grid_width": 7,
+    "grid_height": 7,
     "pixel_width": 100,
     "pixel_height": 100,
     "image": {
