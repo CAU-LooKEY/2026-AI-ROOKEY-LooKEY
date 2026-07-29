@@ -1,0 +1,1681 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "arduino-uno-r3",
+  "asset": {
+    "path": "assets_db/3d_models/glb/arduino-uno-r3.glb",
+    "sha256": "14ad528f6afef1117708f08ac6a2dda00eff9e0fffea13f951df851075485511",
+    "format": "glb",
+    "scaleStatus": "uncalibrated",
+    "thumbnailPath": "assets_db/2d_svgs/raster_sources/arduino-uno-r3-top.png"
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 75.337738,
+    "depth": 53.54475,
+    "height": 10.032145,
+    "measurementScope": "overall-including-connectors",
+    "source": "mesh-bounds",
+    "confidence": 0.7
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "custom",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": true,
+    "description": "ARDUINO_UNO_R3_ROOT is identity at the exported model origin. Mounting-surface reference still requires dimensional review."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "usb-side",
+        "pinKey": "AREF",
+        "direction": "-X",
+        "description": "The USB connector is on the -X side in runtime space."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "3V3",
+      "label": "3V3",
+      "nodeName": "pin_3V3",
+      "position": [
+        0.002720109,
+        0.018686056,
+        0.021553388
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [],
+        "functions": [
+          "power"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_3V3",
+      "notes": []
+    },
+    {
+      "pinKey": "5V",
+      "label": "5V",
+      "nodeName": "pin_5V",
+      "position": [
+        0.005260109,
+        0.018686056,
+        0.021553388
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [],
+        "functions": [
+          "power"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_5V",
+      "notes": []
+    },
+    {
+      "pinKey": "A0",
+      "label": "A0",
+      "nodeName": "pin_A0",
+      "position": [
+        0.018027131,
+        0.018686056,
+        0.02138048
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "D14"
+        ],
+        "functions": [
+          "analog",
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_A0",
+      "notes": []
+    },
+    {
+      "pinKey": "A1",
+      "label": "A1",
+      "nodeName": "pin_A1",
+      "position": [
+        0.02056713,
+        0.018686056,
+        0.02138048
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "D15"
+        ],
+        "functions": [
+          "analog",
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_A1",
+      "notes": []
+    },
+    {
+      "pinKey": "A2",
+      "label": "A2",
+      "nodeName": "pin_A2",
+      "position": [
+        0.02310713,
+        0.018686056,
+        0.02138048
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "D16"
+        ],
+        "functions": [
+          "analog",
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_A2",
+      "notes": []
+    },
+    {
+      "pinKey": "A3",
+      "label": "A3",
+      "nodeName": "pin_A3",
+      "position": [
+        0.02564713,
+        0.018686056,
+        0.02138048
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "D17"
+        ],
+        "functions": [
+          "analog",
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_A3",
+      "notes": []
+    },
+    {
+      "pinKey": "A4",
+      "label": "A4",
+      "nodeName": "pin_A4",
+      "position": [
+        0.02818713,
+        0.018686056,
+        0.02138048
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "D18",
+          "SDA"
+        ],
+        "functions": [
+          "analog",
+          "digital",
+          "i2c"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_A4",
+      "notes": []
+    },
+    {
+      "pinKey": "A5",
+      "label": "A5",
+      "nodeName": "pin_A5",
+      "position": [
+        0.03075102,
+        0.018686056,
+        0.021308808
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "D19",
+          "SCL"
+        ],
+        "functions": [
+          "analog",
+          "digital",
+          "i2c"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_A5",
+      "notes": []
+    },
+    {
+      "pinKey": "AREF",
+      "label": "AREF",
+      "nodeName": "pin_AREF",
+      "position": [
+        -0.009190381,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "analog",
+          "reference"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_AREF",
+      "notes": []
+    },
+    {
+      "pinKey": "D0",
+      "label": "D0",
+      "nodeName": "pin_D0",
+      "position": [
+        0.026848398,
+        0.018723954,
+        -0.026192384
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "0",
+          "RX"
+        ],
+        "functions": [
+          "digital",
+          "uart"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D0",
+      "notes": []
+    },
+    {
+      "pinKey": "D1",
+      "label": "D1",
+      "nodeName": "pin_D1",
+      "position": [
+        0.025241897,
+        0.018686056,
+        -0.026293723
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "1",
+          "TX"
+        ],
+        "functions": [
+          "digital",
+          "uart"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D1",
+      "notes": []
+    },
+    {
+      "pinKey": "D10",
+      "label": "D10",
+      "nodeName": "pin_D10",
+      "position": [
+        0.003509618,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "10",
+          "SS"
+        ],
+        "functions": [
+          "digital",
+          "pwm",
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D10",
+      "notes": []
+    },
+    {
+      "pinKey": "D11",
+      "label": "D11",
+      "nodeName": "pin_D11",
+      "position": [
+        0.000969619,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "11",
+          "MOSI",
+          "COPI"
+        ],
+        "functions": [
+          "digital",
+          "pwm",
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D11",
+      "notes": []
+    },
+    {
+      "pinKey": "D12",
+      "label": "D12",
+      "nodeName": "pin_D12",
+      "position": [
+        -0.001570381,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "12",
+          "MISO",
+          "CIPO"
+        ],
+        "functions": [
+          "digital",
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D12",
+      "notes": []
+    },
+    {
+      "pinKey": "D13",
+      "label": "D13",
+      "nodeName": "pin_D13",
+      "position": [
+        -0.004110381,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "13",
+          "SCK"
+        ],
+        "functions": [
+          "digital",
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D13",
+      "notes": []
+    },
+    {
+      "pinKey": "D2",
+      "label": "D2",
+      "nodeName": "pin_D2",
+      "position": [
+        0.023141894,
+        0.018686056,
+        -0.026293723
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "2"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D2",
+      "notes": []
+    },
+    {
+      "pinKey": "D3",
+      "label": "D3",
+      "nodeName": "pin_D3",
+      "position": [
+        0.021041896,
+        0.018686056,
+        -0.026293723
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "3"
+        ],
+        "functions": [
+          "digital",
+          "pwm"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D3",
+      "notes": []
+    },
+    {
+      "pinKey": "D4",
+      "label": "D4",
+      "nodeName": "pin_D4",
+      "position": [
+        0.018941894,
+        0.018686056,
+        -0.026293723
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "4"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D4",
+      "notes": []
+    },
+    {
+      "pinKey": "D5",
+      "label": "D5",
+      "nodeName": "pin_D5",
+      "position": [
+        0.016841896,
+        0.018686056,
+        -0.026293723
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "5"
+        ],
+        "functions": [
+          "digital",
+          "pwm"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D5",
+      "notes": []
+    },
+    {
+      "pinKey": "D6",
+      "label": "D6",
+      "nodeName": "pin_D6",
+      "position": [
+        0.014741895,
+        0.018686056,
+        -0.026293723
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "6"
+        ],
+        "functions": [
+          "digital",
+          "pwm"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D6",
+      "notes": []
+    },
+    {
+      "pinKey": "D7",
+      "label": "D7",
+      "nodeName": "pin_D7",
+      "position": [
+        0.012641895,
+        0.018686056,
+        -0.026293723
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "7"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D7",
+      "notes": []
+    },
+    {
+      "pinKey": "D8",
+      "label": "D8",
+      "nodeName": "pin_D8",
+      "position": [
+        0.008490537,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "8"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D8",
+      "notes": []
+    },
+    {
+      "pinKey": "D9",
+      "label": "D9",
+      "nodeName": "pin_D9",
+      "position": [
+        0.006049618,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "9"
+        ],
+        "functions": [
+          "digital",
+          "pwm"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_D9",
+      "notes": []
+    },
+    {
+      "pinKey": "GND_D",
+      "label": "GND D",
+      "nodeName": "pin_GND_1",
+      "position": [
+        -0.006650381,
+        0.018686056,
+        -0.026039539
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "ground",
+        "aliases": [
+          "GND"
+        ],
+        "functions": [
+          "ground"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_GND_1",
+      "notes": []
+    },
+    {
+      "pinKey": "GND_P1",
+      "label": "GND P1",
+      "nodeName": "pin_GND_2",
+      "position": [
+        0.007800109,
+        0.018686056,
+        0.021553388
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "ground",
+        "aliases": [
+          "GND"
+        ],
+        "functions": [
+          "ground"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_GND_2",
+      "notes": []
+    },
+    {
+      "pinKey": "GND_P2",
+      "label": "GND P2",
+      "nodeName": "pin_GND_3",
+      "position": [
+        0.010340109,
+        0.018686056,
+        0.021553388
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "ground",
+        "aliases": [
+          "GND"
+        ],
+        "functions": [
+          "ground"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_GND_3",
+      "notes": []
+    },
+    {
+      "pinKey": "ICSP_MCU_R1C1",
+      "label": "ICSP MCU R1C1",
+      "nodeName": "pin_ICSP_MCU_R1C1",
+      "position": [
+        0.031802371,
+        0.019950001,
+        -0.007293585
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_MCU_R1C1",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_MCU_R1C2",
+      "label": "ICSP MCU R1C2",
+      "nodeName": "pin_ICSP_MCU_R1C2",
+      "position": [
+        0.03370237,
+        0.019950001,
+        -0.007293585
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_MCU_R1C2",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_MCU_R2C1",
+      "label": "ICSP MCU R2C1",
+      "nodeName": "pin_ICSP_MCU_R2C1",
+      "position": [
+        0.031802371,
+        0.019950001,
+        -0.005233585
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_MCU_R2C1",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_MCU_R2C2",
+      "label": "ICSP MCU R2C2",
+      "nodeName": "pin_ICSP_MCU_R2C2",
+      "position": [
+        0.03370237,
+        0.019950001,
+        -0.005233585
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_MCU_R2C2",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_MCU_R3C1",
+      "label": "ICSP MCU R3C1",
+      "nodeName": "pin_ICSP_MCU_R3C1",
+      "position": [
+        0.031802371,
+        0.019950001,
+        -0.003173585
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_MCU_R3C1",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_MCU_R3C2",
+      "label": "ICSP MCU R3C2",
+      "nodeName": "pin_ICSP_MCU_R3C2",
+      "position": [
+        0.03370237,
+        0.019950001,
+        -0.003173585
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_MCU_R3C2",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_USB_R1C1",
+      "label": "ICSP USB R1C1",
+      "nodeName": "pin_ICSP_USB_R1C1",
+      "position": [
+        -0.017195754,
+        0.019950181,
+        -0.022128405
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_USB_R1C1",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_USB_R1C2",
+      "label": "ICSP USB R1C2",
+      "nodeName": "pin_ICSP_USB_R1C2",
+      "position": [
+        -0.015205754,
+        0.019950181,
+        -0.022128405
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_USB_R1C2",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_USB_R1C3",
+      "label": "ICSP USB R1C3",
+      "nodeName": "pin_ICSP_USB_R1C3",
+      "position": [
+        -0.013215754,
+        0.019950181,
+        -0.022128405
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_USB_R1C3",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_USB_R2C1",
+      "label": "ICSP USB R2C1",
+      "nodeName": "pin_ICSP_USB_R2C1",
+      "position": [
+        -0.017195754,
+        0.019950181,
+        -0.020128405
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_USB_R2C1",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_USB_R2C2",
+      "label": "ICSP USB R2C2",
+      "nodeName": "pin_ICSP_USB_R2C2",
+      "position": [
+        -0.015205754,
+        0.019950181,
+        -0.020128405
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_USB_R2C2",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "ICSP_USB_R2C3",
+      "label": "ICSP USB R2C3",
+      "nodeName": "pin_ICSP_USB_R2C3",
+      "position": [
+        -0.013215754,
+        0.019950181,
+        -0.020128405
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.64
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [],
+        "functions": [
+          "spi"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.6,
+      "sourceObject": "pin_ICSP_USB_R2C3",
+      "notes": [
+        "Spatial marker only; electrical mapping must be confirmed before approval."
+      ]
+    },
+    {
+      "pinKey": "IOREF",
+      "label": "IOREF",
+      "nodeName": "pin_IOREF",
+      "position": [
+        -0.002359891,
+        0.018686056,
+        0.021553388
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [],
+        "functions": [
+          "power"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_IOREF",
+      "notes": []
+    },
+    {
+      "pinKey": "NC",
+      "label": "NC",
+      "nodeName": "pin_NC",
+      "position": [
+        -0.004899891,
+        0.018686056,
+        0.021553388
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "no-connect",
+        "aliases": [],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.5,
+      "sourceObject": "pin_NC",
+      "notes": [
+        "Current GLB contains NC where the canonical UNO R3 catalog expects SDA/SCL."
+      ]
+    },
+    {
+      "pinKey": "RESET",
+      "label": "RESET",
+      "nodeName": "pin_RESET",
+      "position": [
+        0.000180109,
+        0.018686056,
+        0.021553388
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "RST"
+        ],
+        "functions": [
+          "reset"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_RESET",
+      "notes": []
+    },
+    {
+      "pinKey": "VIN",
+      "label": "VIN",
+      "nodeName": "pin_VIN",
+      "position": [
+        0.01357295,
+        0.018686056,
+        0.02160117
+      ],
+      "outwardDirection": [
+        0,
+        1,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [],
+        "functions": [
+          "power"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_VIN",
+      "notes": []
+    }
+  ],
+  "placement": {
+    "mountingType": "surface",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "keepOutMarginMillimeter": 2
+  },
+  "provenance": {
+    "authorGithub": "yoohyeon93",
+    "branch": "feat/assets-arduino-board-data",
+    "method": "blender-empty",
+    "sourceTool": "Blender 5.2",
+    "assetOrigin": "project-existing",
+    "sourceUrl": null,
+    "redistributionRights": "needs-review",
+    "createdAt": "2026-07-29",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "All 42 exported pin_* nodes are recorded at exact GLB-local coordinates.",
+    "Digital/PWM, analog, I2C, SPI, UART, power, ground, reset, and reference functions are classified.",
+    "Female header sockets use +Y insertion direction in runtime coordinates.",
+    "D0-D7 measured pitch is about 2.1 mm, not the nominal 2.54 mm.",
+    "ICSP marker pitch and electrical mapping require review.",
+    "The GLB contains pin_NC but lacks the canonical UNO R3 SDA and SCL header nodes.",
+    "The first digital header mesh visually contains ten sockets where eight are expected.",
+    "Do not promote to approved until the open geometry/catalog issues are corrected."
+  ]
+}
