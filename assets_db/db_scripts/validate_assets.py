@@ -291,6 +291,7 @@ def validate_physical_dimensions(root: Path = REPO_ROOT) -> CheckResult:
             if (
                 asset.get("scaleStatus") != "real-world"
                 or runtime.get("unit") != "meter"
+                or dimensions.get("measurementScope") == "body-only"
             ):
                 continue
             checked += 1
@@ -423,6 +424,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 
 def main(argv: list[str] | None = None) -> int:
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure:
+            reconfigure(encoding="utf-8", errors="replace")
+
     args = parse_args(argv)
     try:
         changed_files = discover_changed_files(

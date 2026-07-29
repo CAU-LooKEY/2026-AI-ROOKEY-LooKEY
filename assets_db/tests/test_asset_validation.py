@@ -144,6 +144,37 @@ class GlbPinNodeTest(unittest.TestCase):
 
 
 class PhysicalDimensionsTest(unittest.TestCase):
+    def test_body_only_dimensions_are_not_compared_with_overall_bounds(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_json(
+                root / "assets_db/3d_models/glb_model_manifest.json",
+                [{
+                    "component_slug": "part",
+                    "bounds": {"size": [0.01, 0.05, 0.02]},
+                }],
+            )
+            write_json(
+                root / (
+                    "assets_db/3d_models/component_metadata/"
+                    "candidates/part/test.json"
+                ),
+                {
+                    "componentSlug": "part",
+                    "asset": {"scaleStatus": "real-world"},
+                    "coordinateSystems": {"runtime": {"unit": "meter"}},
+                    "physicalDimensions": {
+                        "unit": "millimeter",
+                        "width": 10,
+                        "depth": 20,
+                        "height": 5,
+                        "measurementScope": "body-only",
+                    },
+                },
+            )
+            result = validate_physical_dimensions(root)
+            self.assertEqual(result.status, "passed")
+
     def test_real_world_dimension_mismatch_is_an_error(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

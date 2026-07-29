@@ -24,7 +24,7 @@
   "axis_mapping": {
     "runtime_up_axis": "+Y",
     "runtime_front_axis": "+Z",
-    "calibration_quality": "candidate_blender_empty"
+    "calibration_quality": "candidate_embedded_pin"
   },
   "pins": [
     {
@@ -46,6 +46,6 @@
   ],
   "notes": [
     "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
-    "Candidate assets require visual review before moving to approved metadata."
+    "Candidate assets require visual review before approval."
   ]
 }

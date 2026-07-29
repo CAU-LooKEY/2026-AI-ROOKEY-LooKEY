@@ -12,6 +12,7 @@ dist/
 frontend/node_modules/
 frontend/dist/
 artifacts/asset-validation/
+.tmp/
 
 asset-import/
 .DS_Store

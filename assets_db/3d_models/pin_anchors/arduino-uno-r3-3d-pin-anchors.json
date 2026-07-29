@@ -4,429 +4,368 @@
   "model_storage_path": "3d_models/glb/arduino-uno-r3.glb",
   "model_bounds": {
     "min": [
-      -0.6041634910627027,
-      -0.37986031128498043,
-      0.16593804822606747
+      -0.03907009198973581,
+      0.010753239538727618,
+      -0.028928851706235617
     ],
     "max": [
-      0.5596647789396831,
-      0.4464157889981979,
-      0.349629177977125
+      0.036267651815104704,
+      0.02078538610293792,
+      0.02461590711820128
     ],
     "size": [
-      1.1638282700023859,
-      0.8262761002831783,
-      0.18369112975105753
+      0.07533774380484051,
+      0.010032146564210304,
+      0.0535447588244369
     ]
   },
-  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "method": "embedded_glb_empty",
   "coordinate_space": "glb_model_local",
   "axis_mapping": {
-    "image_x_axis": "x",
-    "image_y_axis": "y",
-    "surface_axis": "z",
-    "image_y_direction": "negative",
-    "calibration_quality": "draft_projected"
-  },
-  "pixel_source": {
-    "width_px": 580,
-    "height_px": 417,
-    "origin": "top-left"
+    "runtime_up_axis": "+Y",
+    "runtime_front_axis": "+Z",
+    "calibration_quality": "candidate_embedded_pin"
   },
   "pins": [
     {
-      "pin_key": "SCL",
-      "label": "SCL",
-      "x_3d": -0.214883,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_scl",
-      "source_x_px": 194,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "SDA",
-      "label": "SDA",
-      "x_3d": -0.17475099,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_sda",
-      "source_x_px": 214,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "AREF",
-      "label": "AREF",
-      "x_3d": -0.13662558,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aref",
-      "source_x_px": 233,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "GND_D",
-      "label": "GND",
-      "x_3d": -0.09649357,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_gnd_d",
-      "source_x_px": 253,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D13",
-      "label": "D13/SCK",
-      "x_3d": -0.05836816,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d13",
-      "source_x_px": 272,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D12",
-      "label": "D12/MISO",
-      "x_3d": -0.02024276,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d12",
-      "source_x_px": 291,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D11",
-      "label": "D11 PWM/MOSI",
-      "x_3d": 0.01988925,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d11",
-      "source_x_px": 311,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D10",
-      "label": "D10 PWM/SS",
-      "x_3d": 0.06002126,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d10",
-      "source_x_px": 331,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D9",
-      "label": "D9 PWM",
-      "x_3d": 0.09614007,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d9",
-      "source_x_px": 349,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D8",
-      "label": "D8",
-      "x_3d": 0.13827868,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d8",
-      "source_x_px": 370,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D7",
-      "label": "D7",
-      "x_3d": 0.2004833,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d7",
-      "source_x_px": 401,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D6",
-      "label": "D6 PWM",
-      "x_3d": 0.2386087,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d6",
-      "source_x_px": 420,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D5",
-      "label": "D5 PWM",
-      "x_3d": 0.27673411,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d5",
-      "source_x_px": 439,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D4",
-      "label": "D4",
-      "x_3d": 0.31686612,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d4",
-      "source_x_px": 459,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D3",
-      "label": "D3 PWM",
-      "x_3d": 0.35699813,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d3",
-      "source_x_px": 479,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D2",
-      "label": "D2",
-      "x_3d": 0.39512354,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d2",
-      "source_x_px": 498,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D1",
-      "label": "D1/TX",
-      "x_3d": 0.43525555,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d1",
-      "source_x_px": 518,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "D0",
-      "label": "D0/RX",
-      "x_3d": 0.47338096,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d0",
-      "source_x_px": 537,
-      "source_y_px": 46
-    },
-    {
-      "pin_key": "IOREF",
-      "label": "IOREF",
-      "x_3d": -0.07843417,
-      "y_3d": -0.28673087,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_ioref",
-      "source_x_px": 262,
-      "source_y_px": 370
-    },
-    {
-      "pin_key": "RESET",
-      "label": "RESET",
-      "x_3d": -0.03830216,
-      "y_3d": -0.28673087,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_reset",
-      "source_x_px": 282,
-      "source_y_px": 370
-    },
-    {
       "pin_key": "3V3",
       "label": "3.3V",
-      "x_3d": 0.00182985,
-      "y_3d": -0.28673087,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_3v3",
-      "source_x_px": 302,
-      "source_y_px": 370
+      "x_3d": 0.00272011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_3V3"
     },
     {
       "pin_key": "5V",
       "label": "5V",
-      "x_3d": 0.03995526,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_5v",
-      "source_x_px": 321,
-      "source_y_px": 371
-    },
-    {
-      "pin_key": "GND_P1",
-      "label": "GND",
-      "x_3d": 0.08209387,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_gnd_p1",
-      "source_x_px": 342,
-      "source_y_px": 371
-    },
-    {
-      "pin_key": "GND_P2",
-      "label": "GND",
-      "x_3d": 0.11620608,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_gnd_p2",
-      "source_x_px": 359,
-      "source_y_px": 371
-    },
-    {
-      "pin_key": "VIN",
-      "label": "VIN",
-      "x_3d": 0.15633809,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_vin",
-      "source_x_px": 379,
-      "source_y_px": 372
+      "x_3d": 0.00526011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_5V"
     },
     {
       "pin_key": "A0",
       "label": "A0",
-      "x_3d": 0.27472751,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a0",
-      "source_x_px": 438,
-      "source_y_px": 371
+      "x_3d": 0.01802713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A0"
     },
     {
       "pin_key": "A1",
       "label": "A1",
-      "x_3d": 0.31285292,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a1",
-      "source_x_px": 457,
-      "source_y_px": 372
+      "x_3d": 0.02056713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A1"
     },
     {
       "pin_key": "A2",
       "label": "A2",
-      "x_3d": 0.35499153,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a2",
-      "source_x_px": 478,
-      "source_y_px": 372
+      "x_3d": 0.02310713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A2"
     },
     {
       "pin_key": "A3",
       "label": "A3",
-      "x_3d": 0.39311694,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a3",
-      "source_x_px": 497,
-      "source_y_px": 372
+      "x_3d": 0.02564713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A3"
     },
     {
       "pin_key": "A4",
       "label": "A4/SDA",
-      "x_3d": 0.43525555,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a4",
-      "source_x_px": 518,
-      "source_y_px": 372
+      "x_3d": 0.02818713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A4"
     },
     {
       "pin_key": "A5",
       "label": "A5/SCL",
-      "x_3d": 0.47338096,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a5",
-      "source_x_px": 537,
-      "source_y_px": 372
+      "x_3d": 0.03075102,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02130881,
+      "model_anchor_name": "pin_A5"
     },
     {
-      "pin_key": "AUX_RX",
-      "label": "RX",
-      "x_3d": 0.40515654,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_rx",
-      "source_x_px": 503,
-      "source_y_px": 275
+      "pin_key": "AREF",
+      "label": "AREF",
+      "x_3d": -0.00919038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_AREF"
     },
     {
-      "pin_key": "AUX_TX",
-      "label": "TX",
-      "x_3d": 0.43926875,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_tx",
-      "source_x_px": 520,
-      "source_y_px": 275
+      "pin_key": "D0",
+      "label": "D0/RX",
+      "x_3d": 0.0268484,
+      "y_3d": 0.01872395,
+      "z_3d": -0.02619238,
+      "model_anchor_name": "pin_D0"
     },
     {
-      "pin_key": "AUX_5V",
-      "label": "5V",
-      "x_3d": 0.48140736,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_5v",
-      "source_x_px": 541,
-      "source_y_px": 275
+      "pin_key": "D1",
+      "label": "D1/TX",
+      "x_3d": 0.0252419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D1"
     },
     {
-      "pin_key": "AUX_GND_1",
+      "pin_key": "D10",
+      "label": "D10 PWM/SS",
+      "x_3d": 0.00350962,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D10"
+    },
+    {
+      "pin_key": "D11",
+      "label": "D11 PWM/MOSI",
+      "x_3d": 0.00096962,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D11"
+    },
+    {
+      "pin_key": "D12",
+      "label": "D12/MISO",
+      "x_3d": -0.00157038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D12"
+    },
+    {
+      "pin_key": "D13",
+      "label": "D13/SCK",
+      "x_3d": -0.00411038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D13"
+    },
+    {
+      "pin_key": "D2",
+      "label": "D2",
+      "x_3d": 0.02314189,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D2"
+    },
+    {
+      "pin_key": "D3",
+      "label": "D3 PWM",
+      "x_3d": 0.0210419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D3"
+    },
+    {
+      "pin_key": "D4",
+      "label": "D4",
+      "x_3d": 0.01894189,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D4"
+    },
+    {
+      "pin_key": "D5",
+      "label": "D5 PWM",
+      "x_3d": 0.0168419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D5"
+    },
+    {
+      "pin_key": "D6",
+      "label": "D6 PWM",
+      "x_3d": 0.01474189,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D6"
+    },
+    {
+      "pin_key": "D7",
+      "label": "D7",
+      "x_3d": 0.0126419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D7"
+    },
+    {
+      "pin_key": "D8",
+      "label": "D8",
+      "x_3d": 0.00849054,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D8"
+    },
+    {
+      "pin_key": "D9",
+      "label": "D9 PWM",
+      "x_3d": 0.00604962,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D9"
+    },
+    {
+      "pin_key": "GND_D",
       "label": "GND",
-      "x_3d": 0.51953277,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_gnd_1",
-      "source_x_px": 560,
-      "source_y_px": 275
+      "x_3d": -0.00665038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_GND_1"
     },
     {
-      "pin_key": "AUX_SDA",
-      "label": "SDA",
-      "x_3d": 0.40515654,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_sda",
-      "source_x_px": 503,
-      "source_y_px": 295
-    },
-    {
-      "pin_key": "AUX_SCL",
-      "label": "SCL",
-      "x_3d": 0.44127535,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_scl",
-      "source_x_px": 521,
-      "source_y_px": 295
-    },
-    {
-      "pin_key": "AUX_3V3",
-      "label": "3.3V",
-      "x_3d": 0.47940076,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_3v3",
-      "source_x_px": 540,
-      "source_y_px": 295
-    },
-    {
-      "pin_key": "AUX_GND_2",
+      "pin_key": "GND_P1",
       "label": "GND",
-      "x_3d": 0.51953277,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_gnd_2",
-      "source_x_px": 560,
-      "source_y_px": 295
+      "x_3d": 0.00780011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_GND_2"
+    },
+    {
+      "pin_key": "GND_P2",
+      "label": "GND",
+      "x_3d": 0.01034011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_GND_3"
+    },
+    {
+      "pin_key": "ICSP_MCU_R1C1",
+      "label": "ICSP MCU R1C1",
+      "x_3d": 0.03180237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00729358,
+      "model_anchor_name": "pin_ICSP_MCU_R1C1"
+    },
+    {
+      "pin_key": "ICSP_MCU_R1C2",
+      "label": "ICSP MCU R1C2",
+      "x_3d": 0.03370237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00729358,
+      "model_anchor_name": "pin_ICSP_MCU_R1C2"
+    },
+    {
+      "pin_key": "ICSP_MCU_R2C1",
+      "label": "ICSP MCU R2C1",
+      "x_3d": 0.03180237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00523358,
+      "model_anchor_name": "pin_ICSP_MCU_R2C1"
+    },
+    {
+      "pin_key": "ICSP_MCU_R2C2",
+      "label": "ICSP MCU R2C2",
+      "x_3d": 0.03370237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00523358,
+      "model_anchor_name": "pin_ICSP_MCU_R2C2"
+    },
+    {
+      "pin_key": "ICSP_MCU_R3C1",
+      "label": "ICSP MCU R3C1",
+      "x_3d": 0.03180237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00317359,
+      "model_anchor_name": "pin_ICSP_MCU_R3C1"
+    },
+    {
+      "pin_key": "ICSP_MCU_R3C2",
+      "label": "ICSP MCU R3C2",
+      "x_3d": 0.03370237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00317359,
+      "model_anchor_name": "pin_ICSP_MCU_R3C2"
+    },
+    {
+      "pin_key": "ICSP_USB_R1C1",
+      "label": "ICSP USB R1C1",
+      "x_3d": -0.01719575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.02212841,
+      "model_anchor_name": "pin_ICSP_USB_R1C1"
+    },
+    {
+      "pin_key": "ICSP_USB_R1C2",
+      "label": "ICSP USB R1C2",
+      "x_3d": -0.01520575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.02212841,
+      "model_anchor_name": "pin_ICSP_USB_R1C2"
+    },
+    {
+      "pin_key": "ICSP_USB_R1C3",
+      "label": "ICSP USB R1C3",
+      "x_3d": -0.01321575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.02212841,
+      "model_anchor_name": "pin_ICSP_USB_R1C3"
+    },
+    {
+      "pin_key": "ICSP_USB_R2C1",
+      "label": "ICSP USB R2C1",
+      "x_3d": -0.01719575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.0201284,
+      "model_anchor_name": "pin_ICSP_USB_R2C1"
+    },
+    {
+      "pin_key": "ICSP_USB_R2C2",
+      "label": "ICSP USB R2C2",
+      "x_3d": -0.01520575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.0201284,
+      "model_anchor_name": "pin_ICSP_USB_R2C2"
+    },
+    {
+      "pin_key": "ICSP_USB_R2C3",
+      "label": "ICSP USB R2C3",
+      "x_3d": -0.01321575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.0201284,
+      "model_anchor_name": "pin_ICSP_USB_R2C3"
+    },
+    {
+      "pin_key": "IOREF",
+      "label": "IOREF",
+      "x_3d": -0.00235989,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_IOREF"
+    },
+    {
+      "pin_key": "NC",
+      "label": "NC",
+      "x_3d": -0.00489989,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_NC"
+    },
+    {
+      "pin_key": "RESET",
+      "label": "RESET",
+      "x_3d": 0.00018011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_RESET"
+    },
+    {
+      "pin_key": "VIN",
+      "label": "VIN",
+      "x_3d": 0.01357295,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02160117,
+      "model_anchor_name": "pin_VIN"
     }
   ],
   "notes": [
-    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
-    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+    "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
+    "Candidate assets require visual review before approval."
   ]
 }

@@ -12,9 +12,9 @@
     "unit": "millimeter",
     "width": 13,
     "depth": 7,
-    "height": 13.1,
+    "height": 17.6,
     "measurementScope": "overall-including-pins",
-    "source": "nominal",
+    "source": "measured",
     "confidence": 0.9
   },
   "coordinateSystems": {

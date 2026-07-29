@@ -2,17 +2,17 @@
   "summary": [
     {
       "component_slug": "arduino-nano",
-      "pin_count": 30,
-      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "pin_count": 36,
+      "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "draft_projected"
+      "calibration_quality": "approved_embedded_pin"
     },
     {
       "component_slug": "arduino-uno-r3",
-      "pin_count": 39,
-      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "pin_count": 42,
+      "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "draft_projected"
+      "calibration_quality": "candidate_embedded_pin"
     },
     {
       "component_slug": "breadboard-full",
@@ -23,38 +23,38 @@
     },
     {
       "component_slug": "breadboard-half",
-      "pin_count": 8,
-      "method": "blender-empty",
+      "pin_count": 400,
+      "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "measured_candidate"
+      "calibration_quality": "candidate_embedded_pin"
     },
     {
       "component_slug": "hc-sr04",
       "pin_count": 4,
       "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "candidate_blender_empty"
+      "calibration_quality": "candidate_embedded_pin"
     },
     {
       "component_slug": "led-5mm-blue",
       "pin_count": 2,
-      "method": "projected_from_2d_pin_map_to_glb_bounds",
+      "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "draft_projected"
+      "calibration_quality": "candidate_embedded_pin"
     },
     {
       "component_slug": "pushbutton-6x6",
       "pin_count": 4,
       "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "candidate_blender_empty"
+      "calibration_quality": "candidate_embedded_pin"
     },
     {
       "component_slug": "resistor-220-ohm",
       "pin_count": 2,
       "method": "embedded_glb_empty",
       "coordinate_space": "glb_model_local",
-      "calibration_quality": "candidate_blender_empty"
+      "calibration_quality": "candidate_embedded_pin"
     },
     {
       "component_slug": "servo-sg90",
@@ -68,554 +68,626 @@
     {
       "slug": "arduino-nano",
       "pin_key": "D12",
-      "x_3d": -1.11611418,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d12"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01778,
+      "model_anchor_name": "pin_D12"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D11",
-      "x_3d": -0.96826838,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d11"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01524,
+      "model_anchor_name": "pin_D11"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D10",
-      "x_3d": -0.81473621,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d10"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.0127,
+      "model_anchor_name": "pin_D10"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D9",
-      "x_3d": -0.66120405,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d9"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01016,
+      "model_anchor_name": "pin_D9"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D8",
-      "x_3d": -0.5019855,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d8"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00762,
+      "model_anchor_name": "pin_D8"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D7",
-      "x_3d": -0.35413971,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d7"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00508,
+      "model_anchor_name": "pin_D7"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D6",
-      "x_3d": -0.20060754,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d6"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00254,
+      "model_anchor_name": "pin_D6"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D5",
-      "x_3d": -0.05276175,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d5"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0,
+      "model_anchor_name": "pin_D5"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D4",
-      "x_3d": 0.1064568,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d4"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00254,
+      "model_anchor_name": "pin_D4"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D3",
-      "x_3d": 0.26567535,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d3"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00508,
+      "model_anchor_name": "pin_D3"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D2",
-      "x_3d": 0.41352114,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d2"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00762,
+      "model_anchor_name": "pin_D2"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "GND_2",
-      "x_3d": 0.57273968,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_gnd_2"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01016,
+      "model_anchor_name": "pin_GND_2"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "RESET_2",
-      "x_3d": 0.7148991,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_reset_2"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.0127,
+      "model_anchor_name": "pin_RESET_2"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D0",
-      "x_3d": 0.87980402,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d0"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01524,
+      "model_anchor_name": "pin_D0"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D1",
-      "x_3d": 1.02196344,
-      "y_3d": 5.00892408,
-      "z_3d": 0.35687878,
-      "model_anchor_name": "pin_d1"
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01778,
+      "model_anchor_name": "pin_D1"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "D13",
-      "x_3d": -1.11611418,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_d13"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01778,
+      "model_anchor_name": "pin_D13"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "3V3",
-      "x_3d": -0.96826838,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_3v3"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01524,
+      "model_anchor_name": "pin_3V3"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "AREF",
-      "x_3d": -0.81473621,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_aref"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.0127,
+      "model_anchor_name": "pin_AREF"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A0",
-      "x_3d": -0.66120405,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a0"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01016,
+      "model_anchor_name": "pin_A0"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A1",
-      "x_3d": -0.5019855,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a1"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00762,
+      "model_anchor_name": "pin_A1"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A2",
-      "x_3d": -0.35413971,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a2"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00508,
+      "model_anchor_name": "pin_A2"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A3",
-      "x_3d": -0.20060754,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a3"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00254,
+      "model_anchor_name": "pin_A3"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A4",
-      "x_3d": -0.05276175,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a4"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0,
+      "model_anchor_name": "pin_A4"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A5",
-      "x_3d": 0.1064568,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a5"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00254,
+      "model_anchor_name": "pin_A5"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A6",
-      "x_3d": 0.26567535,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a6"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00508,
+      "model_anchor_name": "pin_A6"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "A7",
-      "x_3d": 0.41352114,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_a7"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00762,
+      "model_anchor_name": "pin_A7"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "5V",
-      "x_3d": 0.57273968,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_5v"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01016,
+      "model_anchor_name": "pin_5V"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "RESET_1",
-      "x_3d": 0.7148991,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_reset_1"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.0127,
+      "model_anchor_name": "pin_RESET_1"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "GND_1",
-      "x_3d": 0.87980402,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_gnd_1"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01524,
+      "model_anchor_name": "pin_GND_1"
     },
     {
       "slug": "arduino-nano",
       "pin_key": "VIN",
-      "x_3d": 1.02196344,
-      "y_3d": 5.00892408,
-      "z_3d": 5.72038885,
-      "model_anchor_name": "pin_vin"
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01778,
+      "model_anchor_name": "pin_VIN"
     },
     {
-      "slug": "arduino-uno-r3",
-      "pin_key": "SCL",
-      "x_3d": -0.214883,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_scl"
+      "slug": "arduino-nano",
+      "pin_key": "ICSP_CIPO",
+      "x_3d": -0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.021152,
+      "model_anchor_name": "pin_ICSP_CIPO"
     },
     {
-      "slug": "arduino-uno-r3",
-      "pin_key": "SDA",
-      "x_3d": -0.17475099,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_sda"
+      "slug": "arduino-nano",
+      "pin_key": "ICSP_5V",
+      "x_3d": -0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.018456,
+      "model_anchor_name": "pin_ICSP_5V"
     },
     {
-      "slug": "arduino-uno-r3",
-      "pin_key": "AREF",
-      "x_3d": -0.13662558,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aref"
+      "slug": "arduino-nano",
+      "pin_key": "ICSP_SCK",
+      "x_3d": 0,
+      "y_3d": 0.0148467,
+      "z_3d": -0.021152,
+      "model_anchor_name": "pin_ICSP_SCK"
     },
     {
-      "slug": "arduino-uno-r3",
-      "pin_key": "GND_D",
-      "x_3d": -0.09649357,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_gnd_d"
+      "slug": "arduino-nano",
+      "pin_key": "ICSP_COPI",
+      "x_3d": 0,
+      "y_3d": 0.0148467,
+      "z_3d": -0.018456,
+      "model_anchor_name": "pin_ICSP_COPI"
     },
     {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D13",
-      "x_3d": -0.05836816,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d13"
+      "slug": "arduino-nano",
+      "pin_key": "ICSP_RESET",
+      "x_3d": 0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.021152,
+      "model_anchor_name": "pin_ICSP_RESET"
     },
     {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D12",
-      "x_3d": -0.02024276,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d12"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D11",
-      "x_3d": 0.01988925,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d11"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D10",
-      "x_3d": 0.06002126,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d10"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D9",
-      "x_3d": 0.09614007,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d9"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D8",
-      "x_3d": 0.13827868,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d8"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D7",
-      "x_3d": 0.2004833,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d7"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D6",
-      "x_3d": 0.2386087,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d6"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D5",
-      "x_3d": 0.27673411,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d5"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D4",
-      "x_3d": 0.31686612,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d4"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D3",
-      "x_3d": 0.35699813,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d3"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D2",
-      "x_3d": 0.39512354,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d2"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D1",
-      "x_3d": 0.43525555,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d1"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "D0",
-      "x_3d": 0.47338096,
-      "y_3d": 0.35526783,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_d0"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "IOREF",
-      "x_3d": -0.07843417,
-      "y_3d": -0.28673087,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_ioref"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "RESET",
-      "x_3d": -0.03830216,
-      "y_3d": -0.28673087,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_reset"
+      "slug": "arduino-nano",
+      "pin_key": "ICSP_GND",
+      "x_3d": 0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.018456,
+      "model_anchor_name": "pin_ICSP_GND"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "3V3",
-      "x_3d": 0.00182985,
-      "y_3d": -0.28673087,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_3v3"
+      "x_3d": 0.00272011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_3V3"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "5V",
-      "x_3d": 0.03995526,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_5v"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "GND_P1",
-      "x_3d": 0.08209387,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_gnd_p1"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "GND_P2",
-      "x_3d": 0.11620608,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_gnd_p2"
-    },
-    {
-      "slug": "arduino-uno-r3",
-      "pin_key": "VIN",
-      "x_3d": 0.15633809,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_vin"
+      "x_3d": 0.00526011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_5V"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "A0",
-      "x_3d": 0.27472751,
-      "y_3d": -0.28871235,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a0"
+      "x_3d": 0.01802713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A0"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "A1",
-      "x_3d": 0.31285292,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a1"
+      "x_3d": 0.02056713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A1"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "A2",
-      "x_3d": 0.35499153,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a2"
+      "x_3d": 0.02310713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A2"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "A3",
-      "x_3d": 0.39311694,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a3"
+      "x_3d": 0.02564713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A3"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "A4",
-      "x_3d": 0.43525555,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a4"
+      "x_3d": 0.02818713,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02138048,
+      "model_anchor_name": "pin_A4"
     },
     {
       "slug": "arduino-uno-r3",
       "pin_key": "A5",
-      "x_3d": 0.47338096,
-      "y_3d": -0.29069383,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_a5"
+      "x_3d": 0.03075102,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02130881,
+      "model_anchor_name": "pin_A5"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_RX",
-      "x_3d": 0.40515654,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_rx"
+      "pin_key": "AREF",
+      "x_3d": -0.00919038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_AREF"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_TX",
-      "x_3d": 0.43926875,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_tx"
+      "pin_key": "D0",
+      "x_3d": 0.0268484,
+      "y_3d": 0.01872395,
+      "z_3d": -0.02619238,
+      "model_anchor_name": "pin_D0"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_5V",
-      "x_3d": 0.48140736,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_5v"
+      "pin_key": "D1",
+      "x_3d": 0.0252419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D1"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_GND_1",
-      "x_3d": 0.51953277,
-      "y_3d": -0.09849051,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_gnd_1"
+      "pin_key": "D10",
+      "x_3d": 0.00350962,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D10"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_SDA",
-      "x_3d": 0.40515654,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_sda"
+      "pin_key": "D11",
+      "x_3d": 0.00096962,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D11"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_SCL",
-      "x_3d": 0.44127535,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_scl"
+      "pin_key": "D12",
+      "x_3d": -0.00157038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D12"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_3V3",
-      "x_3d": 0.47940076,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_3v3"
+      "pin_key": "D13",
+      "x_3d": -0.00411038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D13"
     },
     {
       "slug": "arduino-uno-r3",
-      "pin_key": "AUX_GND_2",
-      "x_3d": 0.51953277,
-      "y_3d": -0.13812006,
-      "z_3d": 0.34962918,
-      "model_anchor_name": "pin_aux_gnd_2"
+      "pin_key": "D2",
+      "x_3d": 0.02314189,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D2"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "D3",
+      "x_3d": 0.0210419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D3"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "D4",
+      "x_3d": 0.01894189,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D4"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "D5",
+      "x_3d": 0.0168419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D5"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "D6",
+      "x_3d": 0.01474189,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D6"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "D7",
+      "x_3d": 0.0126419,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02629372,
+      "model_anchor_name": "pin_D7"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "D8",
+      "x_3d": 0.00849054,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D8"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "D9",
+      "x_3d": 0.00604962,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_D9"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "GND_D",
+      "x_3d": -0.00665038,
+      "y_3d": 0.01868606,
+      "z_3d": -0.02603954,
+      "model_anchor_name": "pin_GND_1"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "GND_P1",
+      "x_3d": 0.00780011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_GND_2"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "GND_P2",
+      "x_3d": 0.01034011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_GND_3"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_MCU_R1C1",
+      "x_3d": 0.03180237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00729358,
+      "model_anchor_name": "pin_ICSP_MCU_R1C1"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_MCU_R1C2",
+      "x_3d": 0.03370237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00729358,
+      "model_anchor_name": "pin_ICSP_MCU_R1C2"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_MCU_R2C1",
+      "x_3d": 0.03180237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00523358,
+      "model_anchor_name": "pin_ICSP_MCU_R2C1"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_MCU_R2C2",
+      "x_3d": 0.03370237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00523358,
+      "model_anchor_name": "pin_ICSP_MCU_R2C2"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_MCU_R3C1",
+      "x_3d": 0.03180237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00317359,
+      "model_anchor_name": "pin_ICSP_MCU_R3C1"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_MCU_R3C2",
+      "x_3d": 0.03370237,
+      "y_3d": 0.01995,
+      "z_3d": -0.00317359,
+      "model_anchor_name": "pin_ICSP_MCU_R3C2"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_USB_R1C1",
+      "x_3d": -0.01719575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.02212841,
+      "model_anchor_name": "pin_ICSP_USB_R1C1"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_USB_R1C2",
+      "x_3d": -0.01520575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.02212841,
+      "model_anchor_name": "pin_ICSP_USB_R1C2"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_USB_R1C3",
+      "x_3d": -0.01321575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.02212841,
+      "model_anchor_name": "pin_ICSP_USB_R1C3"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_USB_R2C1",
+      "x_3d": -0.01719575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.0201284,
+      "model_anchor_name": "pin_ICSP_USB_R2C1"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_USB_R2C2",
+      "x_3d": -0.01520575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.0201284,
+      "model_anchor_name": "pin_ICSP_USB_R2C2"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "ICSP_USB_R2C3",
+      "x_3d": -0.01321575,
+      "y_3d": 0.01995018,
+      "z_3d": -0.0201284,
+      "model_anchor_name": "pin_ICSP_USB_R2C3"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "IOREF",
+      "x_3d": -0.00235989,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_IOREF"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "NC",
+      "x_3d": -0.00489989,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_NC"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "RESET",
+      "x_3d": 0.00018011,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02155339,
+      "model_anchor_name": "pin_RESET"
+    },
+    {
+      "slug": "arduino-uno-r3",
+      "pin_key": "VIN",
+      "x_3d": 0.01357295,
+      "y_3d": 0.01868606,
+      "z_3d": 0.02160117,
+      "model_anchor_name": "pin_VIN"
     },
     {
       "slug": "breadboard-full",
@@ -682,6 +754,3206 @@
       "model_anchor_name": "pin_j1"
     },
     {
+      "slug": "breadboard-half",
+      "pin_key": "A1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "A30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": -0.014725,
+      "model_anchor_name": "pin_A30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "B30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": -0.012185,
+      "model_anchor_name": "pin_B30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "C30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": -0.009645,
+      "model_anchor_name": "pin_C30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "D30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": -0.007105,
+      "model_anchor_name": "pin_D30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "E30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": -0.004565,
+      "model_anchor_name": "pin_E30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "F30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": 0.003235,
+      "model_anchor_name": "pin_F30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "G30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": 0.005775,
+      "model_anchor_name": "pin_G30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "H30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": 0.008315,
+      "model_anchor_name": "pin_H30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "I30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": 0.010855,
+      "model_anchor_name": "pin_I30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J1",
+      "x_3d": -0.037495,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J2",
+      "x_3d": -0.034955,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J3",
+      "x_3d": -0.032415,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J4",
+      "x_3d": -0.029875,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J5",
+      "x_3d": -0.027335,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J6",
+      "x_3d": -0.024795,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J6"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J7",
+      "x_3d": -0.022255,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J7"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J8",
+      "x_3d": -0.019715,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J8"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J9",
+      "x_3d": -0.017175,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J9"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J10",
+      "x_3d": -0.014635,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J10"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J11",
+      "x_3d": -0.012095,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J11"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J12",
+      "x_3d": -0.009555,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J12"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J13",
+      "x_3d": -0.007015,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J13"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J14",
+      "x_3d": -0.004475,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J14"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J15",
+      "x_3d": -0.001935,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J15"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J16",
+      "x_3d": 0.000605,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J16"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J17",
+      "x_3d": 0.003145,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J17"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J18",
+      "x_3d": 0.005685,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J18"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J19",
+      "x_3d": 0.008225,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J19"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J20",
+      "x_3d": 0.010765,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J20"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J21",
+      "x_3d": 0.013305,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J21"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J22",
+      "x_3d": 0.015845,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J22"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J23",
+      "x_3d": 0.018385,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J23"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J24",
+      "x_3d": 0.020925,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J24"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J25",
+      "x_3d": 0.023465,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J25"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J26",
+      "x_3d": 0.026005,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J26"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J27",
+      "x_3d": 0.028545,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J27"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J28",
+      "x_3d": 0.031085,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J28"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J29",
+      "x_3d": 0.033625,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J29"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "J30",
+      "x_3d": 0.036165,
+      "y_3d": 0,
+      "z_3d": 0.013395,
+      "model_anchor_name": "pin_J30"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S1_1",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S1_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S1_2",
+      "x_3d": -0.033685,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S1_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S1_3",
+      "x_3d": -0.031145,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S1_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S1_4",
+      "x_3d": -0.028605,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S1_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S1_5",
+      "x_3d": -0.026065,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S1_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S2_1",
+      "x_3d": -0.020985,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S2_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S2_2",
+      "x_3d": -0.018445,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S2_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S2_3",
+      "x_3d": -0.015905,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S2_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S2_4",
+      "x_3d": -0.013365,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S2_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S2_5",
+      "x_3d": -0.010825,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S2_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S3_1",
+      "x_3d": -0.005745,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S3_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S3_2",
+      "x_3d": -0.003205,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S3_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S3_3",
+      "x_3d": -0.000665,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S3_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S3_4",
+      "x_3d": 0.001875,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S3_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S3_5",
+      "x_3d": 0.004415,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S3_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S4_1",
+      "x_3d": 0.009495,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S4_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S4_2",
+      "x_3d": 0.012035,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S4_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S4_3",
+      "x_3d": 0.014575,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S4_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S4_4",
+      "x_3d": 0.017115,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S4_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S4_5",
+      "x_3d": 0.019655,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S4_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S5_1",
+      "x_3d": 0.024735,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S5_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S5_2",
+      "x_3d": 0.027275,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S5_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S5_3",
+      "x_3d": 0.029815,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S5_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S5_4",
+      "x_3d": 0.032355,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S5_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_POS_S5_5",
+      "x_3d": 0.034895,
+      "y_3d": 0,
+      "z_3d": -0.02469,
+      "model_anchor_name": "pin_RAIL_TOP_POS_S5_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S1_1",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S1_2",
+      "x_3d": -0.033685,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S1_3",
+      "x_3d": -0.031145,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S1_4",
+      "x_3d": -0.028605,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S1_5",
+      "x_3d": -0.026065,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S2_1",
+      "x_3d": -0.020985,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S2_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S2_2",
+      "x_3d": -0.018445,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S2_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S2_3",
+      "x_3d": -0.015905,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S2_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S2_4",
+      "x_3d": -0.013365,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S2_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S2_5",
+      "x_3d": -0.010825,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S2_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S3_1",
+      "x_3d": -0.005745,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S3_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S3_2",
+      "x_3d": -0.003205,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S3_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S3_3",
+      "x_3d": -0.000665,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S3_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S3_4",
+      "x_3d": 0.001875,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S3_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S3_5",
+      "x_3d": 0.004415,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S3_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S4_1",
+      "x_3d": 0.009495,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S4_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S4_2",
+      "x_3d": 0.012035,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S4_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S4_3",
+      "x_3d": 0.014575,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S4_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S4_4",
+      "x_3d": 0.017115,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S4_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S4_5",
+      "x_3d": 0.019655,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S4_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S5_1",
+      "x_3d": 0.024735,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S5_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S5_2",
+      "x_3d": 0.027275,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S5_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S5_3",
+      "x_3d": 0.029815,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S5_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S5_4",
+      "x_3d": 0.032355,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S5_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_TOP_NEG_S5_5",
+      "x_3d": 0.034895,
+      "y_3d": 0,
+      "z_3d": -0.02215,
+      "model_anchor_name": "pin_RAIL_TOP_NEG_S5_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S1_1",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S1_2",
+      "x_3d": -0.033685,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S1_3",
+      "x_3d": -0.031145,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S1_4",
+      "x_3d": -0.028605,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S1_5",
+      "x_3d": -0.026065,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S2_1",
+      "x_3d": -0.020985,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S2_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S2_2",
+      "x_3d": -0.018445,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S2_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S2_3",
+      "x_3d": -0.015905,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S2_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S2_4",
+      "x_3d": -0.013365,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S2_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S2_5",
+      "x_3d": -0.010825,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S2_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S3_1",
+      "x_3d": -0.005745,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S3_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S3_2",
+      "x_3d": -0.003205,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S3_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S3_3",
+      "x_3d": -0.000665,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S3_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S3_4",
+      "x_3d": 0.001875,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S3_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S3_5",
+      "x_3d": 0.004415,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S3_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S4_1",
+      "x_3d": 0.009495,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S4_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S4_2",
+      "x_3d": 0.012035,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S4_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S4_3",
+      "x_3d": 0.014575,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S4_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S4_4",
+      "x_3d": 0.017115,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S4_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S4_5",
+      "x_3d": 0.019655,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S4_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S5_1",
+      "x_3d": 0.024735,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S5_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S5_2",
+      "x_3d": 0.027275,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S5_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S5_3",
+      "x_3d": 0.029815,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S5_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S5_4",
+      "x_3d": 0.032355,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S5_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_POS_S5_5",
+      "x_3d": 0.034895,
+      "y_3d": 0,
+      "z_3d": 0.02082,
+      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S5_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S1_1",
+      "x_3d": -0.036225,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S1_2",
+      "x_3d": -0.033685,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S1_3",
+      "x_3d": -0.031145,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S1_4",
+      "x_3d": -0.028605,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S1_5",
+      "x_3d": -0.026065,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S2_1",
+      "x_3d": -0.020985,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S2_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S2_2",
+      "x_3d": -0.018445,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S2_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S2_3",
+      "x_3d": -0.015905,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S2_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S2_4",
+      "x_3d": -0.013365,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S2_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S2_5",
+      "x_3d": -0.010825,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S2_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S3_1",
+      "x_3d": -0.005745,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S3_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S3_2",
+      "x_3d": -0.003205,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S3_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S3_3",
+      "x_3d": -0.000665,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S3_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S3_4",
+      "x_3d": 0.001875,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S3_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S3_5",
+      "x_3d": 0.004415,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S3_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S4_1",
+      "x_3d": 0.009495,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S4_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S4_2",
+      "x_3d": 0.012035,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S4_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S4_3",
+      "x_3d": 0.014575,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S4_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S4_4",
+      "x_3d": 0.017115,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S4_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S4_5",
+      "x_3d": 0.019655,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S4_5"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S5_1",
+      "x_3d": 0.024735,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S5_1"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S5_2",
+      "x_3d": 0.027275,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S5_2"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S5_3",
+      "x_3d": 0.029815,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S5_3"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S5_4",
+      "x_3d": 0.032355,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S5_4"
+    },
+    {
+      "slug": "breadboard-half",
+      "pin_key": "RAIL_BOTTOM_NEG_S5_5",
+      "x_3d": 0.034895,
+      "y_3d": 0,
+      "z_3d": 0.02336,
+      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S5_5"
+    },
+    {
       "slug": "hc-sr04",
       "pin_key": "VCC",
       "x_3d": -0.00381,
@@ -716,17 +3988,17 @@
     {
       "slug": "led-5mm-blue",
       "pin_key": "ANODE",
-      "x_3d": -0.61489252,
-      "y_3d": 1.30503732,
-      "z_3d": 0.23535273,
+      "x_3d": 0.00127,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_anode"
     },
     {
       "slug": "led-5mm-blue",
       "pin_key": "CATHODE",
-      "x_3d": -0.68232816,
-      "y_3d": 0.94797256,
-      "z_3d": 0.23535273,
+      "x_3d": -0.00127,
+      "y_3d": 0,
+      "z_3d": 0,
       "model_anchor_name": "pin_cathode"
     },
     {
@@ -800,70 +4072,6 @@
       "y_3d": 2.58911993,
       "z_3d": -1.24314635,
       "model_anchor_name": "pin_signal"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "A1",
-      "x_3d": -0.037495,
-      "y_3d": 0,
-      "z_3d": -0.014725,
-      "model_anchor_name": "pin_A1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "E1",
-      "x_3d": -0.037495,
-      "y_3d": 0,
-      "z_3d": -0.004565,
-      "model_anchor_name": "pin_E1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "F1",
-      "x_3d": -0.037495,
-      "y_3d": 0,
-      "z_3d": 0.003235,
-      "model_anchor_name": "pin_F1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "J1",
-      "x_3d": -0.037495,
-      "y_3d": 0,
-      "z_3d": 0.013395,
-      "model_anchor_name": "pin_J1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_TOP_POS",
-      "x_3d": -0.036225,
-      "y_3d": 0,
-      "z_3d": -0.02469,
-      "model_anchor_name": "pin_RAIL_TOP_POS_S1_1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_TOP_NEG",
-      "x_3d": -0.036225,
-      "y_3d": 0,
-      "z_3d": -0.02215,
-      "model_anchor_name": "pin_RAIL_TOP_NEG_S1_1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_BOTTOM_POS",
-      "x_3d": -0.036225,
-      "y_3d": 0,
-      "z_3d": 0.02082,
-      "model_anchor_name": "pin_RAIL_BOTTOM_POS_S1_1"
-    },
-    {
-      "slug": "breadboard-half",
-      "pin_key": "RAIL_BOTTOM_NEG",
-      "x_3d": -0.036225,
-      "y_3d": 0,
-      "z_3d": 0.02336,
-      "model_anchor_name": "pin_RAIL_BOTTOM_NEG_S1_1"
     }
   ]
 }
