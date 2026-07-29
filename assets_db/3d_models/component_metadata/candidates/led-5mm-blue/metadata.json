@@ -3,19 +3,19 @@
   "componentSlug": "led-5mm-blue",
   "asset": {
     "path": "assets_db/3d_models/glb/led-5mm-blue.glb",
-    "sha256": "f0578c1fb11aaaaa7f1b1bc1301c0f333173b95bc5c3a2e57e023ede01e54801",
+    "sha256": "8c891d49faca1aa69226cec21760827d44ce2758231dbe0c7f37652e0cd4934d",
     "format": "glb",
     "scaleStatus": "real-world",
     "thumbnailPath": null
   },
   "physicalDimensions": {
     "unit": "millimeter",
-    "width": 5.8,
-    "depth": 5.8,
-    "height": 19.6,
-    "measurementScope": "overall-including-pins",
-    "source": "nominal",
-    "confidence": 0.9
+    "width": 5.9,
+    "depth": 5.9,
+    "height": 8.6,
+    "measurementScope": "body-only",
+    "source": "datasheet",
+    "confidence": 0.98
   },
   "coordinateSystems": {
     "authoring": {
@@ -168,6 +168,9 @@
   },
   "notes": [
     "Nominal real-world procedural model; breadboard occupancy 2 columns x 1 rows.",
-    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata.",
+    "Package reference: Kingbright WP7113QBC/D, Spec DSAG3481 Rev V.18B (2025-03-26).",
+    "Datasheet body dimensions: 5.9 mm diameter, 8.6 mm height, 2.54 mm lead spacing, ±0.25 mm general tolerance.",
+    "Official datasheet: https://www.kingbrightusa.com/images/catalog/spec/wp7113qbc-d.pdf"
   ]
 }

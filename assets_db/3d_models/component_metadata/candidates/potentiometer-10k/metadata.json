@@ -3,16 +3,16 @@
   "componentSlug": "potentiometer-10k",
   "asset": {
     "path": "assets_db/3d_models/glb/potentiometer-10k.glb",
-    "sha256": "1a82ef394a0a87728da9c9b48039cb2038f09bffcc6e788432fb9b1655b3b2c3",
+    "sha256": "497f7932e597f4e1ef1b9553d3772a5ab3226460db60de73eec565b1dbb4eb64",
     "format": "glb",
     "scaleStatus": "real-world",
     "thumbnailPath": null
   },
   "physicalDimensions": {
     "unit": "millimeter",
-    "width": 9.5,
-    "depth": 9.5,
-    "height": 13.45,
+    "width": 16,
+    "depth": 27,
+    "height": 24,
     "measurementScope": "overall-including-pins",
     "source": "nominal",
     "confidence": 0.9
@@ -70,7 +70,7 @@
       "position": [
         -0.00254,
         0,
-        0
+        0.0039
       ],
       "outwardDirection": [
         0,
@@ -107,7 +107,7 @@
       "position": [
         0,
         0,
-        0
+        0.0039
       ],
       "outwardDirection": [
         0,
@@ -145,7 +145,7 @@
       "position": [
         0.00254,
         0,
-        0
+        0.0039
       ],
       "outwardDirection": [
         0,
@@ -203,7 +203,7 @@
     "approvedAt": null
   },
   "notes": [
-    "Nominal real-world procedural model; breadboard occupancy 3 columns x 4 rows.",
+    "Nominal real-world procedural model; breadboard occupancy 7 columns x 7 rows.",
     "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
   ]
 }
