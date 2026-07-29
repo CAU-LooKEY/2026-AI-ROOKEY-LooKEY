@@ -272,16 +272,23 @@ def validate_metadata(
         errors.append("coordinateSystems.runtime must be an object")
         runtime = {}
 
-    expected_authoring = {
-        "space": "blender-object-local",
-        "handedness": "right",
-        "upAxis": "+Z",
+    authoring_space = authoring.get("space")
+    expected_authoring_up = {
+        "blender-object-local": "+Z",
+        "threejs-object-local": "+Y",
     }
-    for key, expected_value in expected_authoring.items():
-        if authoring.get(key) != expected_value:
-            errors.append(
-                f"coordinateSystems.authoring.{key} must be {expected_value}"
-            )
+    if authoring_space not in expected_authoring_up:
+        errors.append(
+            "coordinateSystems.authoring.space must be blender-object-local "
+            "or threejs-object-local"
+        )
+    elif authoring.get("upAxis") != expected_authoring_up[authoring_space]:
+        errors.append(
+            "coordinateSystems.authoring.upAxis must match the authoring tool "
+            f"({expected_authoring_up[authoring_space]} for {authoring_space})"
+        )
+    if authoring.get("handedness") != "right":
+        errors.append("coordinateSystems.authoring.handedness must be right")
 
     expected_runtime = {
         "space": "gltf-model-local",

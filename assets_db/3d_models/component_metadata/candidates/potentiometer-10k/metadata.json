@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "potentiometer-10k",
+  "asset": {
+    "path": "assets_db/3d_models/glb/potentiometer-10k.glb",
+    "sha256": "1a82ef394a0a87728da9c9b48039cb2038f09bffcc6e788432fb9b1655b3b2c3",
+    "format": "glb",
+    "scaleStatus": "real-world",
+    "thumbnailPath": null
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 9.5,
+    "depth": 9.5,
+    "height": 13.45,
+    "measurementScope": "overall-including-pins",
+    "source": "nominal",
+    "confidence": 0.9
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "threejs-object-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": true,
+    "description": "Origin is centered on the breadboard insertion plane between the outer leads."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "wiper-center",
+        "pinKey": "WIPER",
+        "direction": "+Z",
+        "description": "The wiper is the center lead."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "CCW",
+      "label": "Counter-clockwise terminal",
+      "nodeName": "pin_ccw",
+      "position": [
+        -0.00254,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "A",
+          "1"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_ccw",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    },
+    {
+      "pinKey": "WIPER",
+      "label": "Wiper",
+      "nodeName": "pin_wiper",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "W",
+          "2",
+          "SIG"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_wiper",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    },
+    {
+      "pinKey": "CW",
+      "label": "Clockwise terminal",
+      "nodeName": "pin_cw",
+      "position": [
+        0.00254,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "B",
+          "3"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_cw",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    }
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "keepOutMarginMillimeter": 0.5
+  },
+  "provenance": {
+    "authorGithub": "a3222",
+    "branch": "feat/assets-discrete-io-pack",
+    "method": "other",
+    "sourceTool": "Three.js GLTFExporter",
+    "createdAt": "2026-07-28",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "Nominal real-world procedural model; breadboard occupancy 3 columns x 4 rows.",
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
+  ]
+}
