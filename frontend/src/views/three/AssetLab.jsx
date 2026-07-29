@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   Box,
+  Cable,
   CheckCircle2,
   CircleAlert,
   Crosshair,
@@ -80,6 +81,7 @@ export default function AssetLab() {
   const [settings, setSettings] = useState({
     axes: true,
     grid: true,
+    jumperFit: true,
     pins: true,
   });
   const fileInputRef = useRef(null);
@@ -253,6 +255,12 @@ export default function AssetLab() {
               label="Pins"
               onChange={(checked) => updateSetting("pins", checked)}
             />
+            <Toggle
+              checked={settings.jumperFit}
+              icon={Cable}
+              label="Jumper"
+              onChange={(checked) => updateSetting("jumperFit", checked)}
+            />
             <button
               className="iconButton"
               type="button"
@@ -283,6 +291,9 @@ export default function AssetLab() {
           <div className="pinLegend">
             <span><i className="nodePinDot" />GLB pin_* node</span>
             <span><i className="metadataPinDot" />Metadata position</span>
+            {inspection?.jumperFit && (
+              <span><i className="jumperFitDot" />0.64 mm jumper</span>
+            )}
           </div>
         </div>
       </section>
@@ -337,6 +348,22 @@ export default function AssetLab() {
             </div>
           )}
         </section>
+
+        {inspection?.jumperFit && (
+          <section>
+            <div className="sectionHeading">
+              <h2>Jumper fit</h2>
+              <span className="fitPass">PASS</span>
+            </div>
+            <dl>
+              <div><dt>Connection</dt><dd>{inspection.jumperFit.connection}</dd></div>
+              <div><dt>Male pin</dt><dd>0.640 mm</dd></div>
+              <div><dt>Socket</dt><dd>0.724 mm</dd></div>
+              <div><dt>Clearance</dt><dd>0.084 mm</dd></div>
+              <div><dt>Insert depth</dt><dd>6.000 / 7.096 mm</dd></div>
+            </dl>
+          </section>
+        )}
 
         <section className="pinInspector">
           <div className="sectionHeading">
