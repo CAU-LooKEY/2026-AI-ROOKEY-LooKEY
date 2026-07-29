@@ -1,0 +1,71 @@
+name: Asset validation
+
+on:
+  pull_request:
+    paths:
+      - "assets_db/**"
+      - ".github/workflows/asset-validation.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "assets_db/**"
+      - ".github/workflows/asset-validation.yml"
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Require approved metadata for every GLB
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/Requirements.txt
+
+      - name: Install validator dependency
+        run: python -m pip install Pillow
+
+      - name: Run validator unit tests
+        run: python -m unittest discover -s assets_db/tests -v
+
+      - name: Validate pull-request assets
+        if: github.event_name == 'pull_request'
+        run: >-
+          python assets_db/db_scripts/validate_assets.py
+          --mode pr
+          --base-ref "${{ github.event.pull_request.base.sha }}"
+
+      - name: Validate repository assets
+        if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && !inputs.release)
+        run: python assets_db/db_scripts/validate_assets.py --mode all
+
+      - name: Validate release approval
+        if: github.event_name == 'workflow_dispatch' && inputs.release
+        run: python assets_db/db_scripts/validate_assets.py --mode release
+
+      - name: Upload validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-validation-report
+          path: artifacts/asset-validation/
+          if-no-files-found: warn
+          retention-days: 14

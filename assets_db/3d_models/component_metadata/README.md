@@ -134,6 +134,21 @@ python assets_db/db_scripts/validate_component_3d_metadata.py
 
 이 검사는 파일 경로, GLB 해시, 단위, 좌표와 방향 벡터, 핀 중복, 기존 핀 카탈로그 일치 여부, 상태별 승인 조건을 확인합니다.
 
+전체 에셋 검사와 CI에서 사용하는 통합 명령은 다음과 같습니다.
+
+~~~bash
+python3 assets_db/db_scripts/validate_assets.py --mode all
+~~~
+
+- `pr`: 변경된 GLB에 candidate 또는 approved 메타데이터가 없으면 실패
+- `all`: 현재 전체 데이터의 무결성을 검사하고 기존 메타데이터 누락은 경고
+- `release`: 모든 GLB에 approved 메타데이터가 없으면 실패
+
+통합 검사는 GLB 내부 `pin_*` 노드의 translation과 메타데이터 position을
+2µm 허용 오차로 비교합니다. 실제 크기 메타데이터는 GLB manifest bounds와
+0.25mm 또는 2% 중 큰 허용 오차로 비교하며, JSON과 Markdown 리포트를 함께
+생성합니다.
+
 ## 이후 연결
 
 AI 회로 응답은 부품 이름만 반환하지 않고 instanceId, componentSlug, pinKey, net을 반환해야 합니다. 배치 엔진은 approved 메타데이터의 핀 좌표와 브레드보드 홀 좌표를 결합해 GLB 위치와 점퍼선 경로를 계산합니다. 전기 시뮬레이션용 netlist와 3D 배치 데이터는 별도 계층으로 유지합니다.
