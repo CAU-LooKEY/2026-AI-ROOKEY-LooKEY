@@ -39,6 +39,46 @@
   2D 핀 좌표와 GLB bounds를 이용해 draft 3D pin anchor JSON과 SQL을 생성합니다.
 - `validate_3d_pin_anchors.py`
   생성된 3D pin anchor가 GLB bounds 안에 있는지 검증합니다.
+- `validate_component_3d_metadata.py`
+  후보·승인 메타데이터의 스키마, 단위, 원점, 방향, 핀과 승인 조건을
+  검증합니다.
+- `validate_breadboard_half_candidate.py`
+  half breadboard의 2.54mm 피치, 분리 레일, 핀 노드와 점퍼 삽입 규격을
+  검증합니다.
+- `validate_assets.py`
+  위 검사기를 하나의 명령으로 실행하고 GLB·manifest·메타데이터 대응 및
+  GLB 내부 `pin_*` 노드 좌표까지 검증한 뒤 JSON/Markdown 리포트를 만듭니다.
+
+## 통합 에셋 승인 검사
+
+일상적인 전체 검사는 저장소 루트에서 다음과 같이 실행합니다.
+
+~~~bash
+python3 assets_db/db_scripts/validate_assets.py --mode all
+~~~
+
+결과는 `artifacts/asset-validation/` 아래 JSON과 Markdown으로 생성됩니다.
+이 경로는 빌드 산출물이므로 Git에 커밋하지 않습니다.
+
+PR에서는 기준 커밋 이후 변경된 GLB에 candidate 또는 approved 메타데이터가
+반드시 있어야 합니다.
+
+~~~bash
+python3 assets_db/db_scripts/validate_assets.py --mode pr --base-ref origin/main
+~~~
+
+모든 GLB에 approved 메타데이터가 준비됐는지 확인하는 릴리스 게이트는 별도로
+실행합니다. 현재 미승인 에셋이 있으면 의도적으로 실패합니다.
+
+~~~bash
+python3 assets_db/db_scripts/validate_assets.py --mode release
+~~~
+
+검증 정책의 자동 테스트는 다음 명령으로 실행합니다.
+
+~~~bash
+python3 -m unittest discover -s assets_db/tests -v
+~~~
 
 ## 실행 순서
 
