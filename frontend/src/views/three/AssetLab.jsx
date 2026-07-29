@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowLeft,
   Box,
+  Cable,
   CheckCircle2,
   CircleAlert,
   Crosshair,
@@ -154,6 +155,10 @@ export default function AssetLab() {
         <Box size={21} aria-hidden="true" />
         <h1>3D Asset Lab</h1>
         <span className="modelCount">{modelRegistry.length} repo models</span>
+        <a className="jumperLabLink" href="/assets-3d/jumper-demo">
+          <Cable size={15} aria-hidden="true" />
+          Jumper Lab
+        </a>
       </header>
 
       <aside className="assetSidebar">
