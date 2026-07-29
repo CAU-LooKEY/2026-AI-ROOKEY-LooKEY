@@ -40,9 +40,21 @@ ALLOWED_CONNECTOR_FORMS = {
     "terminal",
     "other",
 }
-PIN_KEY_PATTERN = re.compile(r"^[A-Z][A-Z0-9_+\-]*$")
+ALLOWED_PIN_FUNCTIONS = {
+    "digital",
+    "analog",
+    "pwm",
+    "i2c",
+    "spi",
+    "uart",
+    "power",
+    "ground",
+    "reset",
+    "reference",
+}
+PIN_KEY_PATTERN = re.compile(r"^[A-Z0-9][A-Z0-9_+\-]*$")
 NODE_NAME_PATTERN = re.compile(
-    r"^pin_(?:[A-Z][A-Z0-9_+\-]*|[a-z0-9_]+)$"
+    r"^pin_(?:[A-Z0-9][A-Z0-9_+\-]*|[a-z0-9_]+)$"
 )
 SHA256_PATTERN = re.compile(r"^[a-f0-9]{64}$")
 SLUG_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
@@ -397,6 +409,28 @@ def validate_metadata(
                     value, f"{label}.connector.{optional_measurement}", errors
                 )
 
+        electrical = pin.get("electrical")
+        if not isinstance(electrical, dict):
+            errors.append(f"{label}.electrical must be an object")
+            electrical = {}
+        functions = electrical.get("functions")
+        if functions is not None:
+            if (
+                not isinstance(functions, list)
+                or not functions
+                or not all(isinstance(item, str) for item in functions)
+            ):
+                errors.append(f"{label}.electrical.functions must be a non-empty string array")
+            else:
+                invalid_functions = sorted(set(functions) - ALLOWED_PIN_FUNCTIONS)
+                if invalid_functions:
+                    errors.append(
+                        f"{label}.electrical.functions contains invalid values: "
+                        + ", ".join(invalid_functions)
+                    )
+                if len(functions) != len(set(functions)):
+                    errors.append(f"{label}.electrical.functions must not contain duplicates")
+
         mounting = pin.get("mounting")
         if not isinstance(mounting, dict):
             errors.append(f"{label}.mounting must be an object")
@@ -425,15 +459,36 @@ def validate_metadata(
             f"componentSlug is missing from the existing pin catalog: {component_slug}"
         )
     else:
-        unknown_keys = sorted(metadata_pin_keys - known_pin_keys)
+        # A board may expose the same logical signal through an additional
+        # physical connector (for example Nano's six-pin ICSP header). Keep a
+        # unique physical pinKey/nodeName while requiring at least one alias to
+        # resolve to the component's canonical pin catalog.
+        catalog_alias_pins = {
+            pin.get("pinKey")
+            for pin in pins
+            if isinstance(pin, dict)
+            and isinstance(pin.get("pinKey"), str)
+            and pin["pinKey"].startswith("ICSP_")
+            and isinstance(pin.get("electrical"), dict)
+            and isinstance(pin["electrical"].get("aliases"), list)
+            and any(
+                alias in known_pin_keys
+                for alias in pin["electrical"]["aliases"]
+                if isinstance(alias, str)
+            )
+        }
+        unknown_keys = sorted(
+            metadata_pin_keys - known_pin_keys - catalog_alias_pins
+        )
         if unknown_keys:
             errors.append(
                 "metadata contains pin keys not found in the pin catalog: "
                 + ", ".join(unknown_keys)
             )
-        if expected_status == "approved" and metadata_pin_keys != known_pin_keys:
+        canonical_metadata_keys = metadata_pin_keys - catalog_alias_pins
+        if expected_status == "approved" and canonical_metadata_keys != known_pin_keys:
             missing_keys = sorted(known_pin_keys - metadata_pin_keys)
-            extra_keys = sorted(metadata_pin_keys - known_pin_keys)
+            extra_keys = sorted(canonical_metadata_keys - known_pin_keys)
             if missing_keys:
                 errors.append(
                     "approved metadata is missing catalog pins: "
