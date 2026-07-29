@@ -82,7 +82,7 @@ function createLed(slug, color) {
   ));
   root.add(mesh(
     "led_flange",
-    new THREE.CylinderGeometry(2.9 * meter, 2.9 * meter, 1 * meter, 32),
+    new THREE.CylinderGeometry(2.95 * meter, 2.95 * meter, 1 * meter, 32),
     material(`${slug}_flange`, color, { transparent: true, opacity: 0.78, roughness: 0.3 }),
     [0, 2.5 * meter, 0],
   ));
@@ -90,7 +90,7 @@ function createLed(slug, color) {
   addLead(root, "cathode_lead", -1.27 * meter, 0, 3 * meter, 6 * meter);
   return {
     root,
-    dimensions: [5.8, 5.8, 19.6],
+    dimensions: [5.9, 5.9, 8.6],
     pins: [
       pin("ANODE", "Anode +", 1.27, 0, ["A", "+", "long-leg"], "passive"),
       pin("CATHODE", "Cathode -", -1.27, 0, ["K", "-", "short-leg"], "passive"),
@@ -203,6 +203,7 @@ function pin(pinKey, label, xMillimeter, zMillimeter, aliases, role) {
 
 function metadataFor(slug, definition, sha256) {
   const [width, depth, height] = definition.dimensions;
+  const isDatasheetBlueLed = slug === "led-5mm-blue";
   return {
     schemaVersion: "1.0.0",
     componentSlug: slug,
@@ -218,9 +219,9 @@ function metadataFor(slug, definition, sha256) {
       width,
       depth,
       height,
-      measurementScope: "overall-including-pins",
-      source: "nominal",
-      confidence: 0.9,
+      measurementScope: isDatasheetBlueLed ? "body-only" : "overall-including-pins",
+      source: isDatasheetBlueLed ? "datasheet" : "nominal",
+      confidence: isDatasheetBlueLed ? 0.98 : 0.9,
     },
     coordinateSystems: {
       authoring: { space: "threejs-object-local", handedness: "right", upAxis: "+Y", frontAxis: "+Z", unit: "meter" },
@@ -255,6 +256,11 @@ function metadataFor(slug, definition, sha256) {
     notes: [
       `Nominal real-world procedural model; breadboard occupancy ${definition.occupancy.columns} columns x ${definition.occupancy.rows} rows.`,
       "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata.",
+      ...(isDatasheetBlueLed ? [
+        "Package reference: Kingbright WP7113QBC/D, Spec DSAG3481 Rev V.18B (2025-03-26).",
+        "Datasheet body dimensions: 5.9 mm diameter, 8.6 mm height, 2.54 mm lead spacing, ±0.25 mm general tolerance.",
+        "Official datasheet: https://www.kingbrightusa.com/images/catalog/spec/wp7113qbc-d.pdf",
+      ] : []),
     ],
   };
 }
