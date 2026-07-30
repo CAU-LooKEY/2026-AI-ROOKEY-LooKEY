@@ -12,7 +12,7 @@
     "@vitejs/plugin-react": "latest",
     "@vitejs/plugin-react-swc": "latest",
     "@xyflow/react": "latest",
-    "lucide-react": "^1.25.0",
+    "lucide-react": "^1.27.0",
     "react": "latest",
     "react-dom": "latest",
     "three": "^0.185.1",

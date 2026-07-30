@@ -43,6 +43,7 @@ BOARD = part("uno", "arduino-uno-r3", 0, 260)
 LED = part("led", "led-5mm-blue", 380)
 RESISTOR = part("resistor", "resistor-220-ohm", 560)
 SENSOR = part("sensor", "hc-sr04", 400, 180)
+BUTTON = part("button", "pushbutton-6x6", 470)
 
 FIVE_REPRESENTATIVE_CIRCUITS = {
     "led_with_resistor": circuit_fixture("정상 LED", [BOARD, LED, RESISTOR], [
@@ -55,6 +56,13 @@ FIVE_REPRESENTATIVE_CIRCUITS = {
         wire("w2", "uno", "D7", "sensor", "TRIG"),
         wire("w3", "sensor", "ECHO", "uno", "D8"),
         wire("w4", "sensor", "GND", "uno", "GND_P1"),
+    ]),
+    "button_led": circuit_fixture("버튼 LED", [BOARD, BUTTON, LED, RESISTOR], [
+        wire("w1", "uno", "D2", "button", "A1"),
+        wire("w2", "button", "B1", "uno", "GND_P1"),
+        wire("w3", "uno", "D3", "resistor", "LEAD_A"),
+        wire("w4", "resistor", "LEAD_B", "led", "ANODE"),
+        wire("w5", "led", "CATHODE", "uno", "GND_P2"),
     ]),
     "reversed_led": circuit_fixture("역극성 LED", [BOARD, LED, RESISTOR], [
         wire("w1", "uno", "GND_P1", "led", "ANODE"),

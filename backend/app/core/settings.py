@@ -30,6 +30,15 @@ class Settings:
             os.getenv("K_EXAONE_TIMEOUT_SECONDS", "300")
         )
     )
+    k_exaone_max_tokens: int = field(
+        default_factory=lambda: int(os.getenv("K_EXAONE_MAX_TOKENS", "3000"))
+    )
+    k_exaone_repair_attempts: int = field(
+        default_factory=lambda: int(os.getenv("K_EXAONE_REPAIR_ATTEMPTS", "2"))
+    )
+    k_exaone_cache_size: int = field(
+        default_factory=lambda: int(os.getenv("K_EXAONE_CACHE_SIZE", "32"))
+    )
 
     @property
     def is_configured(self) -> bool:
