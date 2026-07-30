@@ -39,7 +39,7 @@ export function inferEndpointGender(componentKey, pinMetadata) {
     return metadataGender;
   }
 
-  if (componentKey?.startsWith("breadboard-") || componentKey === "arduino-uno-r3") {
+  if (componentKey?.startsWith("breadboard-") || componentKey?.startsWith("arduino-")) {
     return ConnectorGender.FEMALE;
   }
 

@@ -88,4 +88,5 @@ test("uses metadata gender before component fallback", () => {
     "male",
   );
   assert.equal(inferEndpointGender("arduino-uno-r3", null), "female");
+  assert.equal(inferEndpointGender("arduino-nano", null), "female");
 });

@@ -5,6 +5,8 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import pinCatalog from "../../assets/all_component_pin_coordinates.json";
 import { modelRegistry } from "./modelRegistry.js";
+import { resolveAssemblyParts } from "./assemblyCircuit.js";
+import { breadboardHoleRatios, resolveBreadboardWires } from "./breadboardWiring.js";
 import {
   calculateCurveProfile,
   createPinEndpoint,
@@ -16,6 +18,7 @@ const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
 const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
 const CONNECTOR_SHELL_HEIGHT = 0.24;
 const CONNECTOR_SEATING_DEPTH = 0.045;
+const BREADBOARD_INSERTION_DEPTH = 0.11;
 const BOARD_HEADER_ROW_RATIO = 0.425;
 
 const modelProfiles = {
@@ -48,6 +51,16 @@ const modelProfiles = {
     longestSide: 1.8,
     rotation: [0, 0, 0],
     pinLayout: "switch",
+  },
+  "breadboard-half": {
+    longestSide: 7.2,
+    rotation: [0, 0, 0],
+    pinLayout: "breadboard",
+  },
+  "breadboard-full": {
+    longestSide: 10.5,
+    rotation: [0, 0, 0],
+    pinLayout: "breadboard",
   },
 };
 
@@ -150,7 +163,26 @@ function prepareModel(gltf, part, asset, layoutBounds) {
 
   modelBounds = new THREE.Box3().setFromObject(model);
   size = modelBounds.getSize(new THREE.Vector3());
-  group.position.copy(normalizedPartPosition(part, layoutBounds));
+  if (part.assemblyTransform?.position) {
+    const { position, rotation, scale } = part.assemblyTransform;
+    group.position.set(
+      Number(position.x ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+      Number(position.y ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+      Number(position.z ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+    );
+    group.rotation.set(
+      Number(rotation?.x ?? 0),
+      Number(rotation?.y ?? 0),
+      Number(rotation?.z ?? 0),
+    );
+    group.scale.set(
+      Number(scale?.x ?? 1),
+      Number(scale?.y ?? 1),
+      Number(scale?.z ?? 1),
+    );
+  } else {
+    group.position.copy(normalizedPartPosition(part, layoutBounds));
+  }
 
   return {
     asset,
@@ -183,6 +215,16 @@ function pinLocalPosition(record, pinKey) {
     ? definition.y_px / component.pixel_height - 0.5
     : 0;
 
+  if (pinLayout === "breadboard") {
+    const hole = breadboardHoleRatios(pinKey);
+    if (hole) {
+      return new THREE.Vector3(
+        (hole.x - 0.5) * size.x,
+        size.y,
+        (hole.z - 0.5) * size.z,
+      );
+    }
+  }
   if (pinLayout === "board") {
     const side = definition?.side;
     const x = side === "right" ? size.x * 0.47 : xRatio * size.x;
@@ -338,14 +380,18 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
   shell.position.y = CONNECTOR_SHELL_HEIGHT / 2;
   group.add(shell);
 
+  const isBreadboardInsertion = endpoint.kind === "breadboard-hole";
   const pinIsInsideSocket = connectorType === "male"
     && endpoint.interfaceGender === "female";
-  if (connectorType === "male" && !pinIsInsideSocket) {
+  if (connectorType === "male" && (!pinIsInsideSocket || isBreadboardInsertion)) {
+    const visibleLength = isBreadboardInsertion
+      ? Math.max(0.035, insertionLength - BREADBOARD_INSERTION_DEPTH)
+      : insertionLength;
     const pin = new THREE.Mesh(
-      new THREE.BoxGeometry(0.032, insertionLength, 0.032),
+      new THREE.BoxGeometry(0.032, visibleLength, 0.032),
       new THREE.MeshStandardMaterial({ color: 0xc8a951, metalness: 0.8, roughness: 0.25 }),
     );
-    pin.position.y = -insertionLength / 2;
+    pin.position.y = -BREADBOARD_INSERTION_DEPTH - visibleLength / 2;
     group.add(pin);
   }
 
@@ -353,7 +399,10 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
   // continues into the socket/hole by the requested insertion depth.
   group.position.copy(position);
   if (connectorType === "male") {
-    group.position.addScaledVector(normalizedDirection, -CONNECTOR_SEATING_DEPTH);
+    group.position.addScaledVector(
+      normalizedDirection,
+      isBreadboardInsertion ? -BREADBOARD_INSERTION_DEPTH : -CONNECTOR_SEATING_DEPTH,
+    );
   }
   group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normalizedDirection);
   return group;
@@ -389,8 +438,14 @@ function makeWire(
   );
   const distance = sourceCable.distanceTo(targetCable);
   const profile = calculateCurveProfile(distance, Math.abs(source.y - target.y), index);
-  const sourceRise = sourceCable.clone().addScaledVector(sourceDirection, 0.34);
-  const targetRise = targetCable.clone().addScaledVector(targetDirection, 0.34);
+  const sourceRise = sourceCable.clone().addScaledVector(
+    sourceDirection,
+    Math.min(0.42, profile.lift * 0.32),
+  );
+  const targetRise = targetCable.clone().addScaledVector(
+    targetDirection,
+    Math.min(0.42, profile.lift * 0.32),
+  );
   const midpoint = sourceCable.clone().lerp(targetCable, 0.5);
   midpoint.y = Math.max(sourceCable.y, targetCable.y) + profile.lift;
   const lateral = targetCable.clone().sub(sourceCable).cross(new THREE.Vector3(0, 1, 0));
@@ -409,6 +464,8 @@ function makeWire(
     emissiveIntensity: 0,
     roughness: 0.58,
     metalness: 0.05,
+    transparent: true,
+    opacity: 0.94,
   });
   const wire = new THREE.Mesh(
     new THREE.TubeGeometry(
@@ -517,7 +574,7 @@ export default function Circuit3DView({ circuit, interactive = false }) {
 
   useEffect(() => {
     const container = containerRef.current;
-    const parts = circuit?.parts ?? [];
+    const parts = resolveAssemblyParts(circuit);
     if (!container || parts.length === 0) return undefined;
 
     let disposed = false;
@@ -651,13 +708,15 @@ export default function Circuit3DView({ circuit, interactive = false }) {
         const pinTargetGroup = new THREE.Group();
         pinTargetGroup.name = "pin-snap-targets";
         pinTargetGroup.visible = interactive;
-        recordsById.forEach((record) => {
-          getSelectablePinKeys(record).forEach((pinKey) => {
-            const marker = makePinTarget(record, pinKey);
-            pinTargetsRef.current.push(marker);
-            pinTargetGroup.add(marker);
+        if (interactive) {
+          recordsById.forEach((record) => {
+            getSelectablePinKeys(record).forEach((pinKey) => {
+              const marker = makePinTarget(record, pinKey);
+              pinTargetsRef.current.push(marker);
+              pinTargetGroup.add(marker);
+            });
           });
-        });
+        }
         assembly.add(pinTargetGroup);
         const normalizedWires = [];
         let signalIndex = 0;
@@ -690,7 +749,7 @@ export default function Circuit3DView({ circuit, interactive = false }) {
           wireGroup.add(group);
           return resolved;
         };
-        (circuit.connections ?? []).forEach((connection, index) => {
+        resolveBreadboardWires(circuit).forEach((connection, index) => {
           const resolved = addConnection(connection, index);
           if (resolved) normalizedWires.push(resolved);
         });
