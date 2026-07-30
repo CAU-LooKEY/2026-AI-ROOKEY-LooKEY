@@ -1657,5 +1657,223 @@
     "notes": [
       "Servo connector order inferred from visible wire colors: brown/dark, red, orange."
     ]
+  },
+  "active-buzzer": {
+    "component_slug": "active-buzzer",
+    "display_name": "Active Buzzer",
+    "category": "actuator",
+    "board_family": null,
+    "description": "Standalone two-pin cylindrical active buzzer. Produces sound when DC voltage is applied.",
+    "grid_width": 2,
+    "grid_height": 2,
+    "pixel_width": 120,
+    "pixel_height": 120,
+    "license_status": "needs_review",
+    "trademark_notes": null,
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/active-buzzer-top.png",
+      "mime_type": "image/png",
+      "width_px": 120,
+      "height_px": 120,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "NEGATIVE",
+        "label": "Negative -",
+        "signal_type": "ground",
+        "side": "left",
+        "x_px": 41,
+        "y_px": 60,
+        "aliases": [
+          "-",
+          "negative",
+          "minus"
+        ],
+        "sort_order": 0,
+        "notes": "Negative lead of the active buzzer."
+      },
+      {
+        "pin_key": "POSITIVE",
+        "label": "Positive +",
+        "signal_type": "power",
+        "side": "right",
+        "x_px": 79,
+        "y_px": 60,
+        "aliases": [
+          "+",
+          "positive",
+          "plus",
+          "5V"
+        ],
+        "sort_order": 1,
+        "notes": "Positive lead of the active buzzer."
+      }
+    ],
+    "notes": [
+      "Active buzzers generate sound from DC voltage and do not require tone PWM like passive buzzers.",
+      "Arduino GND and buzzer GND must be connected together."
+    ]
+  },
+  "passive-buzzer": {
+    "component_slug": "passive-buzzer",
+    "display_name": "Passive Buzzer",
+    "category": "actuator",
+    "board_family": null,
+    "description": "Standalone two-pin cylindrical passive buzzer. Requires a tone or PWM signal to produce sound.",
+    "grid_width": 2,
+    "grid_height": 2,
+    "pixel_width": 120,
+    "pixel_height": 120,
+    "license_status": "needs_review",
+    "trademark_notes": null,
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/passive-buzzer-top.png",
+      "mime_type": "image/png",
+      "width_px": 120,
+      "height_px": 120,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "NEGATIVE",
+        "label": "Negative -",
+        "signal_type": "ground",
+        "side": "left",
+        "x_px": 41,
+        "y_px": 60,
+        "aliases": [
+          "-",
+          "negative",
+          "minus"
+        ],
+        "sort_order": 0,
+        "notes": "Negative lead of the passive buzzer."
+      },
+      {
+        "pin_key": "POSITIVE",
+        "label": "Positive +",
+        "signal_type": "pwm",
+        "side": "right",
+        "x_px": 79,
+        "y_px": 60,
+        "aliases": [
+          "+",
+          "positive",
+          "plus",
+          "tone",
+          "PWM"
+        ],
+        "sort_order": 1,
+        "notes": "Positive lead of the passive buzzer; connect to an Arduino digital tone/PWM output."
+      }
+    ],
+    "notes": [
+      "Passive buzzers need a tone/PWM drive signal and do not self-oscillate from steady DC voltage.",
+      "Arduino GND and buzzer negative lead must be connected together."
+    ]
+  },
+  "dc-motor": {
+    "component_slug": "dc-motor",
+    "display_name": "DC TT Gear Motor",
+    "category": "actuator",
+    "board_family": null,
+    "description": "Two-wire yellow TT gear DC motor with red and black leads.",
+    "grid_width": 4,
+    "grid_height": 2,
+    "pixel_width": 280,
+    "pixel_height": 140,
+    "license_status": "needs_review",
+    "trademark_notes": null,
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/dc-motor-top.png",
+      "mime_type": "image/png",
+      "width_px": 280,
+      "height_px": 140,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      {
+        "pin_key": "MOTOR_POSITIVE",
+        "label": "Motor positive",
+        "signal_type": "motor",
+        "side": "right",
+        "x_px": 230,
+        "y_px": 58,
+        "aliases": [
+          "+",
+          "positive",
+          "red",
+          "M+"
+        ],
+        "sort_order": 0,
+        "notes": "Red motor lead; polarity controls rotation direction."
+      },
+      {
+        "pin_key": "MOTOR_NEGATIVE",
+        "label": "Motor negative",
+        "signal_type": "motor",
+        "side": "right",
+        "x_px": 230,
+        "y_px": 82,
+        "aliases": [
+          "-",
+          "negative",
+          "black",
+          "M-"
+        ],
+        "sort_order": 1,
+        "notes": "Black motor lead; polarity controls rotation direction."
+      }
+    ],
+    "notes": [
+      "Use an external motor driver and external motor power for Arduino projects.",
+      "Motor power GND and Arduino GND must be common when controlled by a driver.",
+      "Reversing polarity reverses motor direction."
+    ]
+  },
+  "l298n-motor-driver": {
+    "component_slug": "l298n-motor-driver",
+    "display_name": "L298N Motor Driver",
+    "category": "driver",
+    "board_family": null,
+    "description": "L298N dual H-bridge motor driver module with motor output terminals, power terminals, and Arduino logic pins.",
+    "grid_width": 4,
+    "grid_height": 4,
+    "pixel_width": 280,
+    "pixel_height": 280,
+    "license_status": "needs_review",
+    "trademark_notes": null,
+    "image": {
+      "path": "assets_db/2d_svgs/raster_sources/l298n-motor-driver-top.png",
+      "mime_type": "image/png",
+      "width_px": 280,
+      "height_px": 280,
+      "coordinate_origin": "top-left",
+      "background": "transparent"
+    },
+    "pins": [
+      { "pin_key": "MOTOR_A_OUT1", "label": "Motor A out 1", "signal_type": "motor", "side": "left", "x_px": 28, "y_px": 100, "aliases": ["OUT1", "A1"], "sort_order": 0, "notes": "Motor A terminal output 1." },
+      { "pin_key": "MOTOR_A_OUT2", "label": "Motor A out 2", "signal_type": "motor", "side": "left", "x_px": 28, "y_px": 128, "aliases": ["OUT2", "A2"], "sort_order": 1, "notes": "Motor A terminal output 2." },
+      { "pin_key": "MOTOR_B_OUT1", "label": "Motor B out 1", "signal_type": "motor", "side": "right", "x_px": 252, "y_px": 100, "aliases": ["OUT3", "B1"], "sort_order": 2, "notes": "Motor B terminal output 1." },
+      { "pin_key": "MOTOR_B_OUT2", "label": "Motor B out 2", "signal_type": "motor", "side": "right", "x_px": 252, "y_px": 128, "aliases": ["OUT4", "B2"], "sort_order": 3, "notes": "Motor B terminal output 2." },
+      { "pin_key": "POWER_12V", "label": "12V input", "signal_type": "power", "side": "bottom", "x_px": 92, "y_px": 244, "aliases": ["12V", "VIN", "VMOT"], "sort_order": 4, "notes": "External motor power input." },
+      { "pin_key": "POWER_GND", "label": "Power GND", "signal_type": "ground", "side": "bottom", "x_px": 120, "y_px": 244, "aliases": ["GND", "-"], "sort_order": 5, "notes": "Common ground for motor power and Arduino." },
+      { "pin_key": "POWER_5V", "label": "5V terminal", "signal_type": "power", "side": "bottom", "x_px": 148, "y_px": 244, "aliases": ["5V", "VLOGIC"], "sort_order": 6, "notes": "5V logic terminal; behavior depends on regulator jumper configuration." },
+      { "pin_key": "ENA", "label": "Enable A", "signal_type": "pwm", "side": "bottom", "x_px": 166, "y_px": 260, "aliases": ["ENABLE_A"], "sort_order": 7, "notes": "PWM enable for Motor A." },
+      { "pin_key": "IN1", "label": "Input 1", "signal_type": "signal", "side": "bottom", "x_px": 180, "y_px": 260, "aliases": ["A_IN1"], "sort_order": 8, "notes": "Motor A direction input 1." },
+      { "pin_key": "IN2", "label": "Input 2", "signal_type": "signal", "side": "bottom", "x_px": 194, "y_px": 260, "aliases": ["A_IN2"], "sort_order": 9, "notes": "Motor A direction input 2." },
+      { "pin_key": "IN3", "label": "Input 3", "signal_type": "signal", "side": "bottom", "x_px": 208, "y_px": 260, "aliases": ["B_IN1"], "sort_order": 10, "notes": "Motor B direction input 1." },
+      { "pin_key": "IN4", "label": "Input 4", "signal_type": "signal", "side": "bottom", "x_px": 222, "y_px": 260, "aliases": ["B_IN2"], "sort_order": 11, "notes": "Motor B direction input 2." },
+      { "pin_key": "ENB", "label": "Enable B", "signal_type": "pwm", "side": "bottom", "x_px": 236, "y_px": 260, "aliases": ["ENABLE_B"], "sort_order": 12, "notes": "PWM enable for Motor B." }
+    ],
+    "notes": [
+      "External motor power is required for the motor outputs.",
+      "POWER_GND must be common with Arduino GND.",
+      "ENA and ENB can receive PWM for speed control."
+    ]
   }
 }

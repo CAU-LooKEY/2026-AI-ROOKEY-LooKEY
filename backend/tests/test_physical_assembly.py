@@ -32,8 +32,12 @@ class IntegratedAssetMetadataTest(unittest.TestCase):
     def test_real_component_pin_pitch_is_loaded(self):
         resistor = load_component_footprint("resistor-220-ohm")
         sensor = load_component_footprint("hc-sr04")
+        button = load_component_footprint("pushbutton-6x6")
         self.assertEqual(resistor.offsets, (0, 4))
         self.assertEqual(sensor.offsets, (0, 1, 2, 3))
+        self.assertEqual(button.pins, ("A1", "A2", "B1", "B2"))
+        self.assertEqual(button.offsets, (0, 0, 3, 3))
+        self.assertEqual(button.row_offsets, (0, 1, 0, 1))
         self.assertTrue(resistor.normalized)
 
     def test_terminal_banks_and_segmented_rails_are_distinct(self):
@@ -84,10 +88,41 @@ class PhysicalAssemblyPlanTest(unittest.TestCase):
         self.assertEqual(resistor_wire.electrical_node,
                          next(item for item in plan.connections if item.id == "w2").electrical_node)
 
+    def test_jumper_holes_do_not_reuse_component_leg_holes(self):
+        plan = self.build("led_with_resistor")
+        leg_holes = {
+            address
+            for placement in plan.placements
+            for address in placement.addresses.values()
+        }
+        jumper_holes = {
+            endpoint.address
+            for connection in plan.connections
+            for endpoint in (connection.source, connection.target)
+            if endpoint.address
+        }
+        self.assertTrue(jumper_holes)
+        self.assertFalse(leg_holes & jumper_holes)
+
     def test_same_input_produces_byte_identical_plan(self):
         first = self.build("ultrasonic_sensor").model_dump_json(by_alias=True)
         second = self.build("ultrasonic_sensor").model_dump_json(by_alias=True)
         self.assertEqual(first, second)
+
+    def test_button_wires_land_on_opposite_sides_with_gap(self):
+        plan = self.build("button_led")
+        button = next(item for item in plan.placements if item.component_id == "button")
+        self.assertEqual(button.addresses, {
+            "A1": "E2",
+            "A2": "F2",
+            "B1": "E5",
+            "B2": "F5",
+        })
+
+        signal = next(item for item in plan.connections if item.id == "w1")
+        ground = next(item for item in plan.connections if item.id == "w2")
+        self.assertEqual(signal.target.address, "D2")
+        self.assertEqual(ground.source.address, "D5")
 
     def test_failure_code_is_returned_when_board_has_no_candidate(self):
         parts = [part(f"led-{index:03}", "led-5mm-blue", index * 10) for index in range(80)]
@@ -121,6 +156,7 @@ class PhysicalAssemblyPlanTest(unittest.TestCase):
             asset_slug="oversized",
             pins=("A", "B"),
             offsets=(0, 1),
+            row_offsets=None,
             width_meter=1,
             depth_meter=1,
             keep_out_meter=1,

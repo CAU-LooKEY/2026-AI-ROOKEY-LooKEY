@@ -1,5 +1,45 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://127.0.0.1:8000";
 
+export class CircuitGenerationError extends Error {
+  constructor(detail, status) {
+    const normalized = normalizeErrorDetail(detail, status);
+    super(normalized.title);
+    this.name = "CircuitGenerationError";
+    this.status = status;
+    this.code = normalized.code;
+    this.title = normalized.title;
+    this.reason = normalized.reason;
+    this.suggestions = normalized.suggestions;
+    this.rawMessage = normalized.rawMessage;
+  }
+}
+
+function normalizeErrorDetail(detail, status) {
+  if (detail && typeof detail === "object" && !Array.isArray(detail)) {
+    return {
+      code: detail.code ?? `HTTP_${status}`,
+      title: detail.title ?? "K-EXAONE 회로 생성에 실패했습니다.",
+      reason: detail.reason ?? detail.rawMessage ?? "알 수 없는 오류가 발생했습니다.",
+      suggestions: Array.isArray(detail.suggestions) ? detail.suggestions : defaultSuggestions,
+      rawMessage: detail.rawMessage ?? "",
+    };
+  }
+
+  return {
+    code: `HTTP_${status}`,
+    title: "K-EXAONE 회로 생성에 실패했습니다.",
+    reason: detail || `K-EXAONE API 요청에 실패했습니다. (${status})`,
+    suggestions: defaultSuggestions,
+    rawMessage: detail || "",
+  };
+}
+
+const defaultSuggestions = [
+  "문장을 더 짧고 구체적으로 입력해보세요.",
+  "지원 부품만 사용해보세요: LED, 버튼, 초음파 센서, 저항.",
+  "잠시 후 다시 시도해보세요.",
+];
+
 function toPartCards(components = []) {
   return components.map((component, index) => ({
     title: `${index + 1}. ${component.name ?? component.label ?? component.id}`,
@@ -37,7 +77,10 @@ export function normalizeCircuitResponse(response, prompt) {
   return {
     prompt,
     project,
-    circuit: response.circuit,
+    circuit: {
+      ...response.circuit,
+      assemblyPlan: response.assemblyPlan ?? response.assembly_plan ?? null,
+    },
   };
 }
 
@@ -59,7 +102,7 @@ export async function generateCircuit(prompt) {
       detail = "";
     }
 
-    throw new Error(detail || `K-EXAONE API 요청에 실패했습니다. (${response.status})`);
+    throw new CircuitGenerationError(detail, response.status);
   }
 
   return normalizeCircuitResponse(await response.json(), prompt);

@@ -1,6 +1,7 @@
 import arduinoUno from "../../assets/parts/arduino-uno-r3-top.png";
 import sensor from "../../assets/parts/hc-sr04-top.png";
 import led from "../../assets/parts/led-5mm-blue-top.png";
+import button from "../../assets/parts/pushbutton-6x6-top.png";
 import resistor from "../../assets/parts/resistor-220-ohm-top.png";
 import pinData from "../../assets/all_component_pin_coordinates.json";
 
@@ -8,6 +9,7 @@ const partImages = {
   "arduino-uno-r3": arduinoUno,
   "hc-sr04": sensor,
   "led-5mm-blue": led,
+  "pushbutton-6x6": button,
   "resistor-220-ohm": resistor,
 };
 
@@ -15,6 +17,7 @@ const PART_LABELS = {
   "arduino-uno-r3": "Arduino Uno",
   "hc-sr04": "HC-SR04",
   "led-5mm-blue": "LED",
+  "pushbutton-6x6": "푸시 버튼",
   "resistor-220-ohm": "220Ω",
 };
 
@@ -30,6 +33,10 @@ const PART_LAYOUTS = {
   "led-5mm-blue": {
     position: { x: 455, y: 305 },
     width: 68,
+  },
+  "pushbutton-6x6": {
+    position: { x: 440, y: 205 },
+    width: 82,
   },
   "resistor-220-ohm": {
     position: { x: 675, y: 330 },

@@ -49,6 +49,7 @@ SUPPORTED_COMPONENT_PINS = {
     },
     "hc-sr04": {"VCC", "TRIG", "ECHO", "GND"},
     "led-5mm-blue": {"ANODE", "CATHODE"},
+    "pushbutton-6x6": {"A1", "A2", "B1", "B2"},
     "resistor-220-ohm": {"LEAD_A", "LEAD_B"},
 }
 
@@ -56,6 +57,7 @@ SupportedComponentKey = Literal[
     "arduino-uno-r3",
     "hc-sr04",
     "led-5mm-blue",
+    "pushbutton-6x6",
     "resistor-220-ohm",
 ]
 
@@ -105,6 +107,10 @@ SupportedPinKey = Literal[
     "GND",
     "ANODE",
     "CATHODE",
+    "A1",
+    "A2",
+    "B1",
+    "B2",
     "LEAD_A",
     "LEAD_B",
 ]
@@ -228,6 +234,7 @@ class CircuitGenerationResponse(ApiModel):
                     f"Unsupported componentKey: {part.component_key}"
                 )
 
+        used_arduino_pins: set[tuple[str, str]] = set()
         signal_index = 0
         for connection in self.circuit.connections:
             source = parts_by_id.get(connection.source)
@@ -247,6 +254,19 @@ class CircuitGenerationResponse(ApiModel):
                 raise ValueError(
                     f"Unknown target pin: {connection.target_pin}"
                 )
+
+            for component, pin in (
+                (source, connection.source_pin),
+                (target, connection.target_pin),
+            ):
+                if component.component_key != "arduino-uno-r3":
+                    continue
+                pin_ref = (component.id, pin)
+                if pin_ref in used_arduino_pins:
+                    raise ValueError(
+                        f"Arduino pin {component.id}:{pin} is used by more than one jumper."
+                    )
+                used_arduino_pins.add(pin_ref)
 
             connection.source_connector = self._required_wire_connector(
                 source.component_key

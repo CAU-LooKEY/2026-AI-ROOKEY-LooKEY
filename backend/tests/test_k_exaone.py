@@ -4,7 +4,8 @@ import unittest
 import httpx
 
 from app.core.settings import Settings
-from app.services.k_exaone import KExaoneClient
+from app.schemas.circuit import CircuitGenerationResponse
+from app.services.k_exaone import KExaoneClient, _RESPONSE_CACHE
 
 
 SAMPLE_CIRCUIT = {
@@ -95,12 +96,16 @@ SAMPLE_CIRCUIT = {
 
 
 class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
+    def tearDown(self):
+        _RESPONSE_CACHE.clear()
+
     async def test_generates_and_validates_circuit_response(self):
         async def handler(request: httpx.Request) -> httpx.Response:
             self.assertEqual(request.headers["Authorization"], "Bearer test-token")
             request_body = json.loads(request.content)
             self.assertEqual(request_body["model"], "test-endpoint")
             self.assertFalse(request_body["stream"])
+            self.assertEqual(request_body["max_tokens"], 3000)
             self.assertFalse(
                 request_body["chat_template_kwargs"]["enable_thinking"]
             )
@@ -213,6 +218,7 @@ class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
             k_exaone_endpoint_id="test-endpoint",
             k_exaone_api_url="https://example.test/chat/completions",
             k_exaone_timeout_seconds=5,
+            k_exaone_repair_attempts=2,
         )
         client = KExaoneClient(
             settings,
@@ -224,11 +230,341 @@ class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(result.title, "LED 켜기")
         self.assertEqual(request_count, 2)
 
+    async def test_reuses_cached_response_for_same_prompt(self):
+        request_count = 0
+
+        async def handler(request: httpx.Request) -> httpx.Response:
+            nonlocal request_count
+            request_count += 1
+            return httpx.Response(
+                200,
+                json={
+                    "choices": [
+                        {
+                            "message": {
+                                "role": "assistant",
+                                "content": json.dumps(SAMPLE_CIRCUIT),
+                            },
+                            "finish_reason": "stop",
+                        }
+                    ]
+                },
+            )
+
+        settings = Settings(
+            k_exaone_api_key="test-token",
+            k_exaone_endpoint_id="test-endpoint",
+            k_exaone_api_url="https://example.test/chat/completions",
+            k_exaone_timeout_seconds=5,
+        )
+        client = KExaoneClient(settings, transport=httpx.MockTransport(handler))
+
+        first = await client.generate_circuit("LED를 켜줘")
+        second = await client.generate_circuit(" LED를   켜줘 ")
+
+        self.assertEqual(first.title, second.title)
+        self.assertEqual(request_count, 1)
+
     def test_parses_markdown_wrapped_json_as_fallback(self):
         content = "```json\n{\"title\": \"LED 켜기\"}\n```"
         self.assertEqual(
             KExaoneClient._parse_json_content(content),
             {"title": "LED 켜기"},
+        )
+
+    def test_rejects_duplicate_arduino_pin_connections(self):
+        duplicated = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        duplicated["code"] = "\n".join(duplicated.pop("codeLines"))
+        duplicated["circuit"]["connections"].append(
+            {
+                "id": "e3",
+                "source": "arduino",
+                "sourcePin": "D3",
+                "target": "resistor",
+                "targetPin": "LEAD_B",
+                "label": "D3 duplicate",
+                "color": "#059669",
+            }
+        )
+
+        with self.assertRaisesRegex(ValueError, "Arduino pin"):
+            CircuitGenerationResponse.model_validate(duplicated)
+
+    def test_repairs_common_connection_part_id_aliases(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["parts"].append(
+            {
+                "id": "pushbutton-6x6",
+                "label": "버튼",
+                "componentKey": "pushbutton-6x6",
+                "position": {"x": 560, "y": 240},
+                "width": 100,
+            }
+        )
+        payload["circuit"]["connections"] = [
+            {
+                "id": "button-wire",
+                "source": "ardino",
+                "sourcePin": "D2",
+                "target": "button",
+                "targetPin": "A1",
+                "label": "D2 to button",
+                "color": "#2563eb",
+            }
+        ]
+
+        KExaoneClient._repair_connection_part_ids(payload)
+
+        self.assertEqual(payload["circuit"]["connections"][0]["source"], "arduino")
+        self.assertEqual(payload["circuit"]["connections"][0]["target"], "pushbutton-6x6")
+
+    def test_repairs_unknown_connection_part_id_from_pin_compatibility(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["connections"] = [
+            {
+                "id": "resistor-wire",
+                "source": "arduino",
+                "sourcePin": "D3",
+                "target": "current_limiter",
+                "targetPin": "LEAD_A",
+                "label": "D3 to resistor",
+                "color": "#000000",
+            }
+        ]
+
+        KExaoneClient._repair_connection_part_ids(payload)
+
+        self.assertEqual(payload["circuit"]["connections"][0]["target"], "resistor")
+
+    def test_repairs_direct_led_drive_to_use_series_resistor(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["connections"] = [
+            {
+                "id": "direct-led",
+                "source": "ard",
+                "sourcePin": "D3",
+                "target": "led",
+                "targetPin": "ANODE",
+                "label": "D3 to LED",
+                "color": "#000000",
+            },
+            {
+                "id": "led-ground",
+                "source": "led",
+                "sourcePin": "CATHODE",
+                "target": "resistor",
+                "targetPin": "LEAD_A",
+                "label": "LED to resistor",
+                "color": "#000000",
+            },
+            {
+                "id": "resistor-ground",
+                "source": "resistor",
+                "sourcePin": "LEAD_B",
+                "target": "ard",
+                "targetPin": "GND",
+                "label": "resistor to ground",
+                "color": "#000000",
+            },
+        ]
+
+        KExaoneClient._repair_connection_part_ids(payload)
+        KExaoneClient._repair_connection_pin_aliases(payload)
+        KExaoneClient._repair_led_resistor_series(payload)
+
+        direct = payload["circuit"]["connections"][0]
+        ground = payload["circuit"]["connections"][1]
+        bridge = next(
+            connection
+            for connection in payload["circuit"]["connections"]
+            if connection["id"] == "resistor-led-series"
+        )
+        self.assertEqual(direct["source"], "arduino")
+        self.assertEqual(direct["target"], "resistor")
+        self.assertEqual(direct["targetPin"], "LEAD_A")
+        self.assertEqual(ground["source"], "led")
+        self.assertEqual(ground["sourcePin"], "CATHODE")
+        self.assertEqual(ground["target"], "arduino")
+        self.assertTrue(ground["targetPin"].startswith("GND_"))
+        self.assertEqual(bridge["source"], "resistor")
+        self.assertEqual(bridge["sourcePin"], "LEAD_B")
+        self.assertEqual(bridge["target"], "led")
+        self.assertEqual(bridge["targetPin"], "ANODE")
+        self.assertNotIn(
+            "resistor-ground",
+            {connection["id"] for connection in payload["circuit"]["connections"]},
+        )
+
+    def test_repairs_common_pin_aliases_by_component(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["parts"].append(
+            {
+                "id": "sensor",
+                "label": "HC-SR04",
+                "componentKey": "hc-sr04",
+                "position": {"x": 560, "y": 240},
+                "width": 100,
+            }
+        )
+        payload["circuit"]["connections"] = [
+            {
+                "id": "sensor-gnd",
+                "source": "sensor",
+                "sourcePin": "GROUND",
+                "target": "arduino",
+                "targetPin": "GND",
+                "label": "sensor ground",
+                "color": "#000000",
+            },
+            {
+                "id": "sensor-trig",
+                "source": "arduino",
+                "sourcePin": "digital 7",
+                "target": "sensor",
+                "targetPin": "TRIGGER",
+                "label": "sensor trigger",
+                "color": "#000000",
+            },
+            {
+                "id": "led-ground",
+                "source": "led",
+                "sourcePin": "negative",
+                "target": "arduino",
+                "targetPin": "GROUND",
+                "label": "led ground",
+                "color": "#000000",
+            },
+        ]
+
+        KExaoneClient._repair_connection_pin_aliases(payload)
+
+        self.assertEqual(payload["circuit"]["connections"][0]["sourcePin"], "GND")
+        self.assertEqual(payload["circuit"]["connections"][0]["targetPin"], "GND_P1")
+        self.assertEqual(payload["circuit"]["connections"][1]["sourcePin"], "D7")
+        self.assertEqual(payload["circuit"]["connections"][1]["targetPin"], "TRIG")
+        self.assertEqual(payload["circuit"]["connections"][2]["sourcePin"], "CATHODE")
+        self.assertEqual(payload["circuit"]["connections"][2]["targetPin"], "GND_P2")
+
+    def test_repairs_duplicate_arduino_ground_pins(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["parts"].append(
+            {
+                "id": "button",
+                "label": "버튼",
+                "componentKey": "pushbutton-6x6",
+                "position": {"x": 560, "y": 240},
+                "width": 100,
+            }
+        )
+        payload["circuit"]["connections"] = [
+            {
+                "id": "button-ground",
+                "source": "button",
+                "sourcePin": "A1",
+                "target": "arduino",
+                "targetPin": "GND_P1",
+                "label": "button ground",
+                "color": "#000000",
+            },
+            {
+                "id": "led-ground",
+                "source": "led",
+                "sourcePin": "CATHODE",
+                "target": "arduino",
+                "targetPin": "GND_P1",
+                "label": "led ground",
+                "color": "#000000",
+            },
+        ]
+
+        KExaoneClient._repair_duplicate_arduino_power_pins(payload)
+
+        self.assertEqual(
+            [
+                connection["targetPin"]
+                for connection in payload["circuit"]["connections"]
+            ],
+            ["GND_P1", "GND_P2"],
+        )
+
+    def test_removes_button_power_connection_for_input_pullup(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["parts"].append(
+            {
+                "id": "button",
+                "label": "버튼",
+                "componentKey": "pushbutton-6x6",
+                "position": {"x": 560, "y": 240},
+                "width": 100,
+            }
+        )
+        payload["circuit"]["connections"] = [
+            {
+                "id": "button-signal",
+                "source": "arduino",
+                "sourcePin": "D2",
+                "target": "button",
+                "targetPin": "A1",
+                "label": "button signal",
+                "color": "#000000",
+            },
+            {
+                "id": "button-power",
+                "source": "arduino",
+                "sourcePin": "5V",
+                "target": "button",
+                "targetPin": "A2",
+                "label": "bad button power",
+                "color": "#000000",
+            },
+        ]
+
+        KExaoneClient._repair_button_input_pullup(payload)
+
+        self.assertEqual(
+            [connection["id"] for connection in payload["circuit"]["connections"]],
+            ["button-signal"],
+        )
+
+    def test_removes_extra_led_cathode_resistor_connection(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["connections"] = [
+            {
+                "id": "good-series",
+                "source": "resistor",
+                "sourcePin": "LEAD_B",
+                "target": "led",
+                "targetPin": "ANODE",
+                "label": "series",
+                "color": "#000000",
+            },
+            {
+                "id": "bad-cathode",
+                "source": "led",
+                "sourcePin": "CATHODE",
+                "target": "resistor",
+                "targetPin": "LEAD_A",
+                "label": "bad extra",
+                "color": "#000000",
+            },
+        ]
+
+        KExaoneClient._remove_extra_led_resistor_connections(payload)
+
+        self.assertEqual(
+            [connection["id"] for connection in payload["circuit"]["connections"]],
+            ["good-series"],
+        )
+
+    def test_repairs_duplicate_connection_ids(self):
+        payload = json.loads(json.dumps(SAMPLE_CIRCUIT))
+        payload["circuit"]["connections"][1]["id"] = payload["circuit"]["connections"][0]["id"]
+
+        KExaoneClient._repair_duplicate_connection_ids(payload)
+
+        self.assertEqual(
+            [connection["id"] for connection in payload["circuit"]["connections"]],
+            ["e1", "e1-2"],
         )
 
 

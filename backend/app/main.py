@@ -31,6 +31,57 @@ app.add_middleware(
 )
 
 
+def build_generation_error_detail(error: str) -> dict:
+    normalized = error.lower()
+    if "timed out" in normalized:
+        return {
+            "code": "K_EXAONE_TIMEOUT",
+            "title": "K-EXAONE 응답을 받지 못했습니다.",
+            "reason": "설정된 대기 시간 안에 AI 응답이 도착하지 않았습니다.",
+            "suggestions": [
+                "문장을 더 짧고 구체적으로 입력해보세요.",
+                "지원 부품만 사용해보세요: LED, 버튼, 초음파 센서, 저항, 서보 모터.",
+                "잠시 후 다시 시도해보세요.",
+            ],
+            "rawMessage": error,
+        }
+    if "schema" in normalized or "validation" in normalized:
+        return {
+            "code": "K_EXAONE_SCHEMA_ERROR",
+            "title": "K-EXAONE 응답 형식이 회로 스키마와 맞지 않습니다.",
+            "reason": "AI가 지원하지 않는 부품, 잘못된 핀 이름, 중복 핀 연결 중 하나를 만들었을 가능성이 큽니다.",
+            "suggestions": [
+                "부품 이름을 명확히 적어보세요. 예: Arduino UNO, LED, 220옴 저항.",
+                "동작을 한 문장으로 단순하게 줄여 다시 시도해보세요.",
+                "같은 Arduino 핀을 여러 부품에 연결하는 요청은 피해주세요.",
+            ],
+            "rawMessage": error,
+        }
+    if "connect" in normalized:
+        return {
+            "code": "K_EXAONE_CONNECTION_ERROR",
+            "title": "K-EXAONE API에 연결하지 못했습니다.",
+            "reason": "네트워크, API URL, endpoint 설정 중 하나를 확인해야 합니다.",
+            "suggestions": [
+                "인터넷 연결 상태를 확인해주세요.",
+                "backend/.env의 K_EXAONE_API_URL과 endpoint ID를 확인해주세요.",
+                "잠시 후 다시 시도해보세요.",
+            ],
+            "rawMessage": error,
+        }
+    return {
+        "code": "K_EXAONE_ERROR",
+        "title": "K-EXAONE 회로 생성에 실패했습니다.",
+        "reason": error,
+        "suggestions": [
+            "문장을 더 짧게 입력해보세요.",
+            "지원 부품만 사용해보세요: LED, 버튼, 초음파 센서, 저항.",
+            "잠시 후 다시 시도해보세요.",
+        ],
+        "rawMessage": error,
+    }
+
+
 @app.get("/", include_in_schema=False)
 def root():
     return RedirectResponse(url="/docs")
@@ -56,13 +107,22 @@ async def generate_circuit(request: CircuitGenerateRequest):
     if not settings.is_configured:
         raise HTTPException(
             status_code=503,
-            detail=(
-                "K-EXAONE is not configured. Set K_EXAONE_API_KEY and "
-                "K_EXAONE_ENDPOINT_ID in backend/.env."
-            ),
+            detail={
+                "code": "K_EXAONE_NOT_CONFIGURED",
+                "title": "K-EXAONE 설정이 없습니다.",
+                "reason": "backend/.env에 API 키와 endpoint ID가 설정되어 있지 않습니다.",
+                "suggestions": [
+                    "K_EXAONE_API_KEY 값을 확인해주세요.",
+                    "K_EXAONE_ENDPOINT_ID 값을 확인해주세요.",
+                    "백엔드 서버를 재시작해주세요.",
+                ],
+            },
         )
 
     try:
         return await KExaoneClient(settings).generate_circuit(request.prompt)
     except KExaoneError as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise HTTPException(
+            status_code=502,
+            detail=build_generation_error_detail(str(exc)),
+        ) from exc

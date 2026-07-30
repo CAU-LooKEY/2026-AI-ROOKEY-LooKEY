@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { Component, useState } from "react";
 import { Box, Workflow } from "lucide-react";
-import { generateCircuit } from "./api/circuitApi.js";
+import { CircuitGenerationError, generateCircuit } from "./api/circuitApi.js";
 import CanvasView from "./views/canvas/CanvasView.jsx";
 import Circuit3DView from "./views/three/Circuit3DView.jsx";
-import { examplePrompts, sampleSavedProjects } from "./sampleProject.js";
+import {
+  examplePrompts,
+  ledBlinkDemoCircuit,
+  ledBlinkDemoProject,
+  sampleSavedProjects,
+} from "./sampleProject.js";
 import "./App.css";
 
 const resultSteps = [
   { key: "summary", label: "요약" },
+  { key: "wiring", label: "배선 정리" },
   { key: "circuit", label: "회로도" },
   { key: "code", label: "예제 코드" },
   { key: "tutor", label: "AI 튜터" },
   { key: "history", label: "저장/공유" },
 ];
+
+const componentDisplayNames = {
+  "arduino-uno-r3": "Arduino",
+  "hc-sr04": "HC-SR04",
+  "led-5mm-blue": "LED",
+  "pushbutton-6x6": "푸시 버튼",
+  "resistor-220-ohm": "220옴 저항",
+  "breadboard-half": "브레드보드",
+};
 
 export default function App() {
   const [page, setPage] = useState("home");
@@ -23,21 +38,25 @@ export default function App() {
   const [project, setProject] = useState(null);
   const [circuit, setCircuit] = useState(null);
   const [apiMessage, setApiMessage] = useState("");
-  const [generationError, setGenerationError] = useState("");
+  const [generationError, setGenerationError] = useState(null);
 
   const isGenerating = page === "loading";
   const hasGeneratedResult = Boolean(project && circuit);
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
-      setGenerationError("만들고 싶은 회로를 문장으로 입력해주세요.");
+      setGenerationError({
+        title: "입력 문장이 비어 있습니다.",
+        reason: "AI가 회로를 만들려면 만들고 싶은 동작 설명이 필요합니다.",
+        suggestions: ["예시 문장을 선택하거나 원하는 회로 동작을 한 문장으로 입력해주세요."],
+      });
       setPage("error");
       return;
     }
 
     setPage("loading");
     setApiMessage("");
-    setGenerationError("");
+    setGenerationError(null);
 
     try {
       const result = await generateCircuit(prompt);
@@ -46,9 +65,37 @@ export default function App() {
       setApiMessage("K-EXAONE API에서 새로 생성한 결과입니다.");
       setPage("summary");
     } catch (error) {
-      setGenerationError(error instanceof Error ? error.message : "K-EXAONE 회로 생성에 실패했습니다.");
+      if (error instanceof CircuitGenerationError) {
+        setGenerationError({
+          title: error.title,
+          reason: error.reason,
+          suggestions: error.suggestions,
+          rawMessage: error.rawMessage,
+          code: error.code,
+        });
+      } else {
+        setGenerationError({
+          title: "K-EXAONE 회로 생성에 실패했습니다.",
+          reason: error instanceof Error ? error.message : "알 수 없는 오류가 발생했습니다.",
+          suggestions: [
+            "문장을 더 짧고 구체적으로 입력해보세요.",
+            "지원 부품만 사용해보세요: LED, 버튼, 초음파 센서, 저항.",
+            "잠시 후 다시 시도해보세요.",
+          ],
+        });
+      }
       setPage("error");
     }
+  };
+
+  const openLocalDemo = () => {
+    const demoPrompt = "LED가 1초마다 깜빡이는 회로를 만들어줘 버튼 누르면 on/off 되고";
+    setPrompt(demoPrompt);
+    setProject(ledBlinkDemoProject);
+    setCircuit(ledBlinkDemoCircuit);
+    setApiMessage("API 없이 확인하는 로컬 3D 검증용 샘플입니다.");
+    setGenerationError(null);
+    setPage("summary");
   };
 
   const savePrompt = () => {
@@ -74,6 +121,7 @@ export default function App() {
           <button disabled={isGenerating || !hasGeneratedResult} onClick={() => setPage("summary")}>내 프로젝트</button>
           <button disabled={isGenerating || !hasGeneratedResult} onClick={() => setPage("tutor")}>AI 튜터</button>
           <button disabled={isGenerating || !hasGeneratedResult} onClick={() => setPage("history")}>저장</button>
+          <a className="navLink" href="/assets-3d">3D 에셋</a>
         </div>
       </header>
 
@@ -83,6 +131,7 @@ export default function App() {
           onPromptChange={setPrompt}
           onExampleSelect={setPrompt}
           onNext={handleGenerate}
+          onLocalDemo={openLocalDemo}
         />
       )}
       {page === "loading" && <LoadingPage prompt={prompt} />}
@@ -92,6 +141,7 @@ export default function App() {
           message={generationError}
           onBack={() => setPage("home")}
           onRetry={handleGenerate}
+          onLocalDemo={openLocalDemo}
         />
       )}
       {page === "summary" && (
@@ -102,6 +152,14 @@ export default function App() {
           apiMessage={apiMessage}
           onStepSelect={setPage}
           onBack={() => setPage("home")}
+          onNext={() => setPage("wiring")}
+        />
+      )}
+      {page === "wiring" && (
+        <WiringPage
+          circuit={circuit}
+          onStepSelect={setPage}
+          onBack={() => setPage("summary")}
           onNext={() => setPage("circuit")}
         />
       )}
@@ -110,7 +168,7 @@ export default function App() {
           circuit={circuit}
           project={project}
           onStepSelect={setPage}
-          onBack={() => setPage("summary")}
+          onBack={() => setPage("wiring")}
           onNext={() => setPage("code")}
         />
       )}
@@ -144,7 +202,7 @@ export default function App() {
   );
 }
 
-function HomePage({ prompt, onPromptChange, onExampleSelect, onNext }) {
+function HomePage({ prompt, onPromptChange, onExampleSelect, onNext, onLocalDemo }) {
   return (
     <main className="hero">
       <section className="card">
@@ -165,9 +223,14 @@ function HomePage({ prompt, onPromptChange, onExampleSelect, onNext }) {
           ))}
         </div>
 
-        <button className="mainBtn" onClick={onNext}>
-          AI로 회로 만들기
-        </button>
+        <div className="homeActions">
+          <button className="secondaryBtn" onClick={onLocalDemo}>
+            샘플 3D 보기
+          </button>
+          <button className="mainBtn" onClick={onNext}>
+            AI로 회로 만들기
+          </button>
+        </div>
       </section>
     </main>
   );
@@ -204,33 +267,74 @@ function LoadingPage({ prompt }) {
         <div className="loadingRequest">
           <b>입력 문장</b>
           <span>{prompt}</span>
-          <p>생성이 완료되면 결과 화면으로 자동 이동합니다. 보통 30~120초 정도 걸립니다.</p>
+          <p>생성이 완료되면 결과 화면으로 자동 이동합니다. 보통 15~60초 정도 걸립니다.</p>
         </div>
       </section>
     </main>
   );
 }
 
-function GenerationErrorPage({ prompt, message, onBack, onRetry }) {
+function GenerationErrorPage({ prompt, message, onBack, onRetry, onLocalDemo }) {
+  const errorInfo = normalizeGenerationError(message);
+
   return (
     <main className="hero">
       <section className="card errorPanel">
         <div className="errorMark">!</div>
-        <h1>회로를 생성하지 못했어요</h1>
+        <h1>{errorInfo.title}</h1>
         <p>샘플 회로로 대체하지 않았습니다. 오류를 확인한 뒤 다시 시도해주세요.</p>
         <div className="errorPrompt">
           <b>입력 문장</b>
           <span>{prompt}</span>
         </div>
-        <div className="notice errorNotice">{message}</div>
+        <div className="errorGuide">
+          <div>
+            <b>원인</b>
+            <p>{errorInfo.reason}</p>
+          </div>
+          <div>
+            <b>가능한 해결</b>
+            <ul>
+              {errorInfo.suggestions.map((suggestion) => (
+                <li key={suggestion}>{suggestion}</li>
+              ))}
+            </ul>
+          </div>
+          {errorInfo.rawMessage && <small>상세 오류: {errorInfo.rawMessage}</small>}
+        </div>
         <div className="pageActions errorActions">
           <button className="secondaryBtn" onClick={onBack}>입력 수정</button>
+          <button className="secondaryBtn" onClick={onLocalDemo}>샘플 3D 보기</button>
           <button className="mainBtn" onClick={onRetry}>다시 생성</button>
         </div>
       </section>
     </main>
   );
 }
+
+function normalizeGenerationError(message) {
+  if (message && typeof message === "object") {
+    return {
+      title: message.title ?? "K-EXAONE 응답을 받지 못했습니다.",
+      reason: message.reason ?? "알 수 없는 오류가 발생했습니다.",
+      suggestions: Array.isArray(message.suggestions) ? message.suggestions : defaultErrorSuggestions,
+      rawMessage: message.rawMessage ?? "",
+    };
+  }
+
+  return {
+    title: "K-EXAONE 응답을 받지 못했습니다.",
+    reason: message || "알 수 없는 오류가 발생했습니다.",
+    suggestions: defaultErrorSuggestions,
+    rawMessage: "",
+  };
+}
+
+const defaultErrorSuggestions = [
+  "문장을 더 짧고 구체적으로 입력해보세요.",
+  "지원 부품만 사용해보세요: LED, 버튼, 초음파 센서, 저항.",
+  "잠시 후 다시 시도해보세요.",
+];
 
 function ResultShell({ activeStep, title, desc, children, onBack, onNext, onStepSelect, nextLabel = "다음" }) {
   return (
@@ -284,7 +388,7 @@ function SummaryPage({ prompt, project, circuit, apiMessage, onStepSelect, onBac
       onStepSelect={onStepSelect}
       onBack={onBack}
       onNext={onNext}
-      nextLabel="회로도 보기"
+      nextLabel="배선 정리 보기"
     >
       {apiMessage && <div className="notice compactNotice">{apiMessage}</div>}
       <div className="generatedSummary">
@@ -366,7 +470,9 @@ function CircuitPage({ circuit, project, onStepSelect, onBack, onNext }) {
               </button>
             </div>
           </div>
-          {viewMode === "3d" ? <Circuit3DView circuit={circuit} /> : <CanvasView circuit={circuit} />}
+          <CircuitRenderBoundary key={viewMode}>
+            {viewMode === "3d" ? <Circuit3DView circuit={circuit} /> : <CanvasView circuit={circuit} />}
+          </CircuitRenderBoundary>
         </div>
       </div>
       {project.validationResults?.length > 0 && (
@@ -381,6 +487,119 @@ function CircuitPage({ circuit, project, onStepSelect, onBack, onNext }) {
       )}
     </ResultShell>
   );
+}
+
+class CircuitRenderBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+
+  componentDidCatch(error) {
+    console.error("Circuit rendering failed", error);
+  }
+
+  render() {
+    if (this.state.error) {
+      return (
+        <div className="circuitRenderError">
+          <strong>회로도를 그리지 못했습니다.</strong>
+          <span>배선 정리와 예제 코드는 생성된 K-EXAONE 정보를 기준으로 계속 확인할 수 있습니다.</span>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
+function WiringPage({ circuit, onStepSelect, onBack, onNext }) {
+  const wiringRows = buildWiringRows(circuit);
+
+  return (
+    <ResultShell
+      activeStep="wiring"
+      title="K-EXAONE 배선 정리"
+      desc="AI가 생성한 핀 연결을 실제로 꽂는 순서처럼 다시 정리합니다."
+      onStepSelect={onStepSelect}
+      onBack={onBack}
+      onNext={onNext}
+      nextLabel="회로도 보기"
+    >
+      <div className="wiringLayout">
+        <div className="wiringList">
+          {wiringRows.map((row, index) => (
+            <div className="wiringItem" key={row.id}>
+              <span className="wiringIndex">{index + 1}</span>
+              <div>
+                <b>{row.summary}</b>
+                <p>{row.detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="wiringSide">
+          <h3>사용 부품</h3>
+          {circuit.parts.map((part) => (
+            <div className="wiringPart" key={part.id}>
+              <b>{getPartName(part)}</b>
+              <span>{part.id}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </ResultShell>
+  );
+}
+
+function buildWiringRows(circuit) {
+  const partsById = new Map(circuit.parts.map((part) => [part.id, part]));
+  const assemblyConnections = new Map(
+    (circuit.assemblyPlan?.connections ?? []).map((connection) => [connection.id, connection]),
+  );
+
+  return circuit.connections.map((connection) => {
+    const source = partsById.get(connection.source);
+    const target = partsById.get(connection.target);
+    const sourceName = getPartName(source);
+    const targetName = getPartName(target);
+    const assembly = assemblyConnections.get(connection.id);
+    const sourceAddress = assembly?.source?.address;
+    const targetAddress = assembly?.target?.address;
+    const hasBreadboardAddress = sourceAddress || targetAddress;
+
+    return {
+      id: connection.id,
+      summary: `${sourceName} ${formatPin(connection.sourcePin)} -> ${targetName} ${formatPin(connection.targetPin)}`,
+      detail: hasBreadboardAddress
+        ? `${formatEndpoint(sourceName, connection.sourcePin, sourceAddress)}에서 ${formatEndpoint(targetName, connection.targetPin, targetAddress)}로 점퍼선을 연결합니다.`
+        : `${sourceName}의 ${formatPin(connection.sourcePin)} 핀을 ${targetName}의 ${formatPin(connection.targetPin)} 핀과 연결합니다.`,
+    };
+  });
+}
+
+function getPartName(part) {
+  if (!part) return "부품";
+  return componentDisplayNames[part.componentKey] ?? part.label ?? part.id;
+}
+
+function formatPin(pin) {
+  if (pin === "ANODE") return "LED(+)";
+  if (pin === "CATHODE") return "LED(-)";
+  if (pin === "LEAD_A") return "저항 한쪽";
+  if (pin === "LEAD_B") return "저항 반대쪽";
+  if (pin?.startsWith("GND")) return "GND";
+  return pin;
+}
+
+function formatEndpoint(name, pin, address) {
+  const label = `${name} ${formatPin(pin)}`;
+  return address ? `${label}, 브레드보드 ${address}` : label;
 }
 
 function CodePage({ project, copyMessage, onCopyMessage, onStepSelect, onBack, onNext }) {

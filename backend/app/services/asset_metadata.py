@@ -13,6 +13,7 @@ COMPONENT_METADATA_PATHS = {
     "led-5mm-red": ASSET_ROOT / "3d_models/component_metadata/candidates/led-5mm-red/metadata.json",
     "resistor-220-ohm": ASSET_ROOT / "3d_models/component_metadata/candidates/resistor-220-ohm/metadata.json",
     "hc-sr04": ASSET_ROOT / "3d_models/component_metadata/candidates/hc-sr04/metadata.json",
+    "pushbutton-6x6": ASSET_ROOT / "3d_models/component_metadata/candidates/pushbutton-6x6/metadata.json",
 }
 BREADBOARD_COORDINATES_PATH = (
     ASSET_ROOT / "db_scripts/pin_coordinates/breadboard-half-pin-coordinates.json"
@@ -34,6 +35,7 @@ class ComponentFootprint:
     asset_slug: str
     pins: tuple[str, ...]
     offsets: tuple[int, ...]
+    row_offsets: tuple[int, ...] | None
     width_meter: float
     depth_meter: float
     keep_out_meter: float
@@ -88,6 +90,13 @@ def load_component_footprint(asset_slug: str) -> ComponentFootprint:
     offsets = tuple(round((position - origin) / pitch) for position in positions)
     if not normalized or len(set(offsets)) != len(offsets):
         offsets = tuple(range(len(compatible)))
+    if asset_slug == "pushbutton-6x6":
+        # 6x6 tactile switches straddle the center gap: two legs on one side,
+        # two blank columns, then the opposite side.
+        offsets = (0, 0, 3, 3)
+        row_offsets = (0, 1, 0, 1)
+    else:
+        row_offsets = None
 
     dimensions = metadata["physicalDimensions"]
     placement = metadata["placement"]
@@ -95,6 +104,7 @@ def load_component_footprint(asset_slug: str) -> ComponentFootprint:
         asset_slug=asset_slug,
         pins=tuple(pin["pinKey"] for pin in compatible),
         offsets=offsets,
+        row_offsets=row_offsets,
         width_meter=float(dimensions["width"]) / 1000,
         depth_meter=float(dimensions["depth"]) / 1000,
         keep_out_meter=float(placement.get("keepOutMarginMillimeter", 0)) / 1000,

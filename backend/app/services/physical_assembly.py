@@ -88,7 +88,19 @@ class _UnionFind:
 class BreadboardAllocator:
     """Place real metadata footprints on unoccupied 2.54 mm breadboard holes."""
 
-    ROW_ORDER = ("E", "J", "D", "I", "C", "H", "B", "G", "A", "F")
+    ROW_ORDER = ("E", "D", "J", "I", "C", "H", "B", "G", "A", "F")
+    ROW_PAIRS = {
+        "A": "F",
+        "B": "G",
+        "C": "H",
+        "D": "F",
+        "E": "F",
+        "F": "A",
+        "G": "B",
+        "H": "C",
+        "I": "E",
+        "J": "E",
+    }
 
     def __init__(self, geometry: BreadboardGeometry):
         self.geometry = geometry
@@ -97,12 +109,12 @@ class BreadboardAllocator:
 
     def allocate(self, component_id: str, footprint: ComponentFootprint) -> Placement | None:
         max_offset = max(footprint.offsets)
+        start_column = 2 if footprint.asset_slug == "pushbutton-6x6" else 1
         for row in self.ROW_ORDER:
-            for column in range(1, self.geometry.columns - max_offset + 1):
-                addresses = {
-                    pin: f"{row}{column + offset}"
-                    for pin, offset in zip(footprint.pins, footprint.offsets)
-                }
+            for column in range(start_column, self.geometry.columns - max_offset + 1):
+                addresses = self._addresses_for(row, column, footprint)
+                if addresses is None:
+                    continue
                 if any(address in self.occupied_holes for address in addresses.values()):
                     continue
                 positions = [self.geometry.hole_position(address) for address in addresses.values()]
@@ -126,12 +138,83 @@ class BreadboardAllocator:
                 )
         return None
 
+    def _addresses_for(
+        self,
+        row: str,
+        column: int,
+        footprint: ComponentFootprint,
+    ) -> dict[str, str] | None:
+        if footprint.row_offsets is None:
+            return {
+                pin: f"{row}{column + offset}"
+                for pin, offset in zip(footprint.pins, footprint.offsets)
+            }
+
+        row_pair = self.ROW_PAIRS.get(row)
+        if row_pair is None:
+            return None
+        rows = (row, row_pair)
+        return {
+            pin: f"{rows[row_offset]}{column + column_offset}"
+            for pin, column_offset, row_offset in zip(
+                footprint.pins,
+                footprint.offsets,
+                footprint.row_offsets,
+            )
+        }
+
     @staticmethod
     def _intersects(left, right) -> bool:
         return not (
             left[1] <= right[0] or left[0] >= right[1]
             or left[3] <= right[2] or left[2] >= right[3]
         )
+
+
+def _terminal_siblings(address: str) -> list[str]:
+    terminal = TERMINAL_RE.fullmatch(address)
+    if not terminal:
+        return []
+    row, column = terminal.groups()
+    rows = "ABCDE" if row <= "E" else "FGHIJ"
+    return [f"{candidate}{column}" for candidate in rows]
+
+
+def _wire_rows_for_component_pin(component_key: str | None, pin_address: str) -> list[str] | None:
+    if component_key != "pushbutton-6x6":
+        return None
+    terminal = TERMINAL_RE.fullmatch(pin_address)
+    if not terminal:
+        return None
+    row, _ = terminal.groups()
+    if row == "E":
+        return ["D", "C", "B", "A"]
+    if row == "F":
+        return ["G", "H", "I", "J"]
+    if row <= "D":
+        return ["E", "D", "C", "B", "A"]
+    return ["F", "G", "H", "I", "J"]
+
+
+def _wire_hole_for_pin(
+    pin_address: str | None,
+    occupied_holes: set[str],
+    used_wire_holes: set[str],
+    component_key: str | None = None,
+) -> str | None:
+    if pin_address is None:
+        return None
+    preferred_rows = _wire_rows_for_component_pin(component_key, pin_address)
+    candidates = (
+        [f"{row}{TERMINAL_RE.fullmatch(pin_address).group(2)}" for row in preferred_rows]
+        if preferred_rows is not None
+        else _terminal_siblings(pin_address)
+    )
+    for candidate in candidates:
+        if candidate not in occupied_holes and candidate not in used_wire_holes:
+            used_wire_holes.add(candidate)
+            return candidate
+    return pin_address
 
 
 class PhysicalAssemblyPlanEngine:
@@ -232,6 +315,12 @@ class PhysicalAssemblyPlanEngine:
     def _connect(self, response, placements) -> tuple[list[AssemblyConnection], _UnionFind]:
         union = _UnionFind()
         addresses = {placement.component_id: placement.addresses for placement in placements}
+        occupied_holes = {
+            address
+            for pin_addresses in addresses.values()
+            for address in pin_addresses.values()
+        }
+        used_wire_holes: set[str] = set()
         try:
             geometry = load_breadboard_geometry()
         except AssetMetadataError:
@@ -252,19 +341,34 @@ class PhysicalAssemblyPlanEngine:
             union.union(f"pin:{item.source}:{item.source_pin}", f"pin:{item.target}:{item.target_pin}")
 
         connections = []
+        parts_by_id = {part.id: part for part in response.circuit.parts}
         for item in ordered:
             source_node = f"pin:{item.source}:{item.source_pin}"
+            source_pin_address = addresses.get(item.source, {}).get(item.source_pin)
+            target_pin_address = addresses.get(item.target, {}).get(item.target_pin)
+            source_part = parts_by_id.get(item.source)
+            target_part = parts_by_id.get(item.target)
             connections.append(AssemblyConnection(
                 id=item.id,
                 source=ConnectionEndpoint(
                     componentId=item.source,
                     pin=item.source_pin,
-                    address=addresses.get(item.source, {}).get(item.source_pin),
+                    address=_wire_hole_for_pin(
+                        source_pin_address,
+                        occupied_holes,
+                        used_wire_holes,
+                        source_part.component_key if source_part else None,
+                    ),
                 ),
                 target=ConnectionEndpoint(
                     componentId=item.target,
                     pin=item.target_pin,
-                    address=addresses.get(item.target, {}).get(item.target_pin),
+                    address=_wire_hole_for_pin(
+                        target_pin_address,
+                        occupied_holes,
+                        used_wire_holes,
+                        target_part.component_key if target_part else None,
+                    ),
                 ),
                 electricalNode=f"node:{union.find(source_node)}",
                 color=item.color,
