@@ -171,6 +171,10 @@
     "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata.",
     "Package reference: Kingbright WP7113QBC/D, Spec DSAG3481 Rev V.18B (2025-03-26).",
     "Datasheet body dimensions: 5.9 mm diameter, 8.6 mm height, 2.54 mm lead spacing, ±0.25 mm general tolerance.",
-    "Official datasheet: https://www.kingbrightusa.com/images/catalog/spec/wp7113qbc-d.pdf"
+    "Official datasheet: https://www.kingbrightusa.com/images/catalog/spec/wp7113qbc-d.pdf",
+    "Power: 5 mm blue LEDs require a current-limiting resistor and typically have a forward voltage around 2.8-3.3 V.",
+    "Current: choose a resistor for the target LED current, commonly 5-20 mA, within the Arduino GPIO current limit.",
+    "External power: usually not required for one indicator LED, but use a driver stage for higher-current LED loads.",
+    "Common ground: if an external LED supply or driver is used, connect Arduino GND and LED supply GND together."
   ]
 }

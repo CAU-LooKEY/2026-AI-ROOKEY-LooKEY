@@ -1,0 +1,221 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "servo-sg90",
+  "asset": {
+    "path": "assets_db/3d_models/glb/servo-sg90.glb",
+    "sha256": "b6b7791840ca81ada727c1f9f44bdb4a5919bf34674105ac23a01168c0c307c3",
+    "format": "glb",
+    "scaleStatus": "uncalibrated",
+    "thumbnailPath": "assets_db/2d_svgs/raster_sources/servo-sg90-top.png"
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 22.8,
+    "depth": 12.2,
+    "height": 31,
+    "measurementScope": "overall-including-pins",
+    "source": "nominal",
+    "confidence": 0.65
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "model-unit",
+      "modelUnitsPerMillimeter": null
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": false,
+    "description": "Draft origin and anchors are stored in current GLB local coordinates."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": false,
+    "markers": [
+      {
+        "key": "pin-row",
+        "pinKey": "GND",
+        "direction": "+X",
+        "description": "Pin row direction is provisional and should be visually reviewed."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "GND",
+      "label": "GND",
+      "nodeName": "pin_gnd",
+      "position": [
+        0,
+        -0.21,
+        0.28
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "ground",
+        "aliases": [
+          "brown",
+          "black",
+          "-"
+        ],
+        "functions": [
+          "ground"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.65,
+      "sourceObject": "pin_gnd",
+      "notes": [
+        "Draft anchor for 3D Asset Lab visual inspection."
+      ]
+    },
+    {
+      "pinKey": "VCC",
+      "label": "VCC",
+      "nodeName": "pin_vcc",
+      "position": [
+        0,
+        -0.21,
+        0.31
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [
+          "5V",
+          "red"
+        ],
+        "functions": [
+          "power"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.65,
+      "sourceObject": "pin_vcc",
+      "notes": [
+        "Draft anchor for 3D Asset Lab visual inspection."
+      ]
+    },
+    {
+      "pinKey": "SIGNAL",
+      "label": "Signal",
+      "nodeName": "pin_signal",
+      "position": [
+        0,
+        -0.21,
+        0.335
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "socket",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "SIG",
+          "PWM",
+          "orange",
+          "yellow"
+        ],
+        "functions": [
+          "digital",
+          "pwm"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.65,
+      "sourceObject": "pin_signal",
+      "notes": [
+        "Draft anchor for 3D Asset Lab visual inspection."
+      ]
+    }
+  ],
+  "placement": {
+    "mountingType": "free",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "free-yaw",
+    "allowedYawDegrees": [],
+    "keepOutMarginMillimeter": 1
+  },
+  "provenance": {
+    "authorGithub": "codex",
+    "branch": "integration/team-latest",
+    "method": "projected-2d",
+    "sourceTool": "add-3d-pin-metadata.mjs",
+    "createdAt": "2026-07-30",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "Pin anchors were projected from the existing 2D servo connector map.",
+    "Verify connector socket alignment in the 3D Asset Lab before promotion.",
+    "Power: SG90 class micro servos typically use 4.8-6 V on VCC; do not power the motor load from an Arduino GPIO pin.",
+    "Current: running current is load-dependent and stall current can exceed the Arduino 5 V regulator budget, so use an external 5 V supply when the servo may move under load.",
+    "Grounding: when an external servo supply is used, connect the external supply GND and Arduino GND together so the PWM signal has a common reference.",
+    "External power: recommended when the servo moves under load or when more than one servo is connected.",
+    "Common ground: when an external servo supply is used, connect the external supply GND and Arduino GND together so the PWM signal has a common reference."
+  ]
+}

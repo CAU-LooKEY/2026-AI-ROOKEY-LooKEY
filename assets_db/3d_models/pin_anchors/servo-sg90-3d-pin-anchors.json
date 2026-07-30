@@ -37,9 +37,9 @@
     {
       "pin_key": "GND",
       "label": "GND",
-      "x_3d": -0.07586592,
-      "y_3d": 2.58911993,
-      "z_3d": -1.24314635,
+      "x_3d": 0,
+      "y_3d": -0.21,
+      "z_3d": 0.28,
       "model_anchor_name": "pin_gnd",
       "source_x_px": 71,
       "source_y_px": 17
@@ -47,9 +47,9 @@
     {
       "pin_key": "VCC",
       "label": "VCC",
-      "x_3d": 0.01637567,
-      "y_3d": 2.58911993,
-      "z_3d": -1.24314635,
+      "x_3d": 0,
+      "y_3d": -0.21,
+      "z_3d": 0.31,
       "model_anchor_name": "pin_vcc",
       "source_x_px": 86,
       "source_y_px": 17
@@ -57,9 +57,9 @@
     {
       "pin_key": "SIGNAL",
       "label": "Signal",
-      "x_3d": 0.10861727,
-      "y_3d": 2.58911993,
-      "z_3d": -1.24314635,
+      "x_3d": 0,
+      "y_3d": -0.21,
+      "z_3d": 0.335,
       "model_anchor_name": "pin_signal",
       "source_x_px": 101,
       "source_y_px": 17

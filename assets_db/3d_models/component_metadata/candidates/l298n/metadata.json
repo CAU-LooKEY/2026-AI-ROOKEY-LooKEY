@@ -1,0 +1,600 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "l298n",
+  "asset": {
+    "path": "assets_db/3d_models/glb/l298n.glb",
+    "sha256": "d0ebb2806fe337a43790d68845c52ffaf2693dade8e29a741eedcfaf2babff23",
+    "format": "glb",
+    "scaleStatus": "uncalibrated",
+    "thumbnailPath": null
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 43,
+    "depth": 43,
+    "height": 27,
+    "measurementScope": "mounting-envelope",
+    "source": "nominal",
+    "confidence": 0.55
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "model-unit",
+      "modelUnitsPerMillimeter": null
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "geometric-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": false,
+    "description": "Origin is the imported GLB model origin. Pin anchors are candidate positions placed around the module edges in GLB model-local space."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": false,
+    "markers": [
+      {
+        "key": "logic-header-front",
+        "pinKey": "ENA",
+        "direction": "+Z",
+        "description": "Logic input header is placed along runtime +Z in the candidate coordinate layout."
+      },
+      {
+        "key": "power-terminal-back",
+        "pinKey": "VMS",
+        "direction": "-Z",
+        "description": "Power terminal anchors are placed along runtime -Z."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "ENA",
+      "label": "ENA",
+      "nodeName": "pin_ena",
+      "position": [
+        0.43,
+        -0.07,
+        -0.02
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "enable-a"
+        ],
+        "functions": [
+          "digital",
+          "pwm"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_ena",
+      "notes": [
+        "Candidate logic header position."
+      ]
+    },
+    {
+      "pinKey": "IN1",
+      "label": "IN1",
+      "nodeName": "pin_in1",
+      "position": [
+        0.43,
+        -0.07,
+        -0.08
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "input-1"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_in1",
+      "notes": [
+        "Candidate logic header position."
+      ]
+    },
+    {
+      "pinKey": "IN2",
+      "label": "IN2",
+      "nodeName": "pin_in2",
+      "position": [
+        0.43,
+        -0.07,
+        -0.12
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "input-2"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_in2",
+      "notes": [
+        "Candidate logic header position."
+      ]
+    },
+    {
+      "pinKey": "IN3",
+      "label": "IN3",
+      "nodeName": "pin_in3",
+      "position": [
+        0.43,
+        -0.07,
+        -0.17
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "input-3"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_in3",
+      "notes": [
+        "Candidate logic header position."
+      ]
+    },
+    {
+      "pinKey": "IN4",
+      "label": "IN4",
+      "nodeName": "pin_in4",
+      "position": [
+        0.43,
+        -0.07,
+        -0.22
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "input-4"
+        ],
+        "functions": [
+          "digital"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_in4",
+      "notes": [
+        "Candidate logic header position."
+      ]
+    },
+    {
+      "pinKey": "ENB",
+      "label": "ENB",
+      "nodeName": "pin_enb",
+      "position": [
+        0.43,
+        -0.07,
+        -0.29
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        1
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "enable-b"
+        ],
+        "functions": [
+          "digital",
+          "pwm"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_enb",
+      "notes": [
+        "Candidate logic header position."
+      ]
+    },
+    {
+      "pinKey": "OUT1",
+      "label": "OUT1",
+      "nodeName": "pin_out1",
+      "position": [
+        0.09,
+        -0.1,
+        0.38
+      ],
+      "outwardDirection": [
+        -1,
+        0,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "terminal",
+        "pitchMillimeter": 5.08,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "motor-a-1"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.5,
+      "sourceObject": "pin_out1",
+      "notes": [
+        "Candidate motor terminal position."
+      ]
+    },
+    {
+      "pinKey": "OUT2",
+      "label": "OUT2",
+      "nodeName": "pin_out2",
+      "position": [
+        0.16,
+        -0.1,
+        0.38
+      ],
+      "outwardDirection": [
+        -1,
+        0,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "terminal",
+        "pitchMillimeter": 5.08,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "motor-a-2"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.5,
+      "sourceObject": "pin_out2",
+      "notes": [
+        "Candidate motor terminal position."
+      ]
+    },
+    {
+      "pinKey": "OUT3",
+      "label": "OUT3",
+      "nodeName": "pin_out3",
+      "position": [
+        0.11,
+        -0.1,
+        -0.39
+      ],
+      "outwardDirection": [
+        1,
+        0,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "terminal",
+        "pitchMillimeter": 5.08,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "motor-b-1"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.5,
+      "sourceObject": "pin_out3",
+      "notes": [
+        "Candidate motor terminal position."
+      ]
+    },
+    {
+      "pinKey": "OUT4",
+      "label": "OUT4",
+      "nodeName": "pin_out4",
+      "position": [
+        0.23,
+        -0.1,
+        -0.39
+      ],
+      "outwardDirection": [
+        1,
+        0,
+        0
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "terminal",
+        "pitchMillimeter": 5.08,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "motor-b-2"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.5,
+      "sourceObject": "pin_out4",
+      "notes": [
+        "Candidate motor terminal position."
+      ]
+    },
+    {
+      "pinKey": "VMS",
+      "label": "+12V",
+      "nodeName": "pin_vms",
+      "position": [
+        0.4,
+        -0.1,
+        0.25
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        -1
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "terminal",
+        "pitchMillimeter": 5.08,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [
+          "VS",
+          "VMOT",
+          "12V",
+          "motor-supply"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_vms",
+      "notes": [
+        "Candidate motor supply terminal position."
+      ]
+    },
+    {
+      "pinKey": "GND",
+      "label": "GND",
+      "nodeName": "pin_gnd",
+      "position": [
+        0.4,
+        -0.1,
+        0.18
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        -1
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "terminal",
+        "pitchMillimeter": 5.08,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "ground",
+        "aliases": [
+          "ground"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_gnd",
+      "notes": [
+        "Candidate ground terminal position."
+      ]
+    },
+    {
+      "pinKey": "5V",
+      "label": "5V",
+      "nodeName": "pin_5v",
+      "position": [
+        0.4,
+        -0.1,
+        0.07
+      ],
+      "outwardDirection": [
+        0,
+        0,
+        -1
+      ],
+      "connector": {
+        "gender": "female",
+        "form": "terminal",
+        "pitchMillimeter": 5.08,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [
+          "logic-5v"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": false,
+        "insertionDepthMillimeter": null
+      },
+      "confidence": 0.55,
+      "sourceObject": "pin_5v",
+      "notes": [
+        "Candidate 5V logic terminal position."
+      ]
+    }
+  ],
+  "placement": {
+    "mountingType": "surface",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "keepOutMarginMillimeter": 2
+  },
+  "provenance": {
+    "authorGithub": "local-user",
+    "branch": "integration/team-latest",
+    "method": "manual-measure",
+    "sourceTool": "manual GLB node injection",
+    "createdAt": "2026-07-30",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "Pin anchors were added as embedded GLB pin_* nodes and mirrored in metadata.",
+    "Coordinates are candidate positions inferred from a common L298N module layout and should be visually adjusted before approval.",
+    "The source GLB is currently marked uncalibrated because its model units do not map to millimeters yet.",
+    "Power: L298N logic uses the 5V pin/reference, while VMS/VS is the external motor supply input matched to the motor voltage.",
+    "Current: motor current must stay within the L298N module and heatsink limits; account for motor stall current and L298N voltage drop.",
+    "External power: motors connected to OUT1-OUT4 require an external motor supply on VMS/VS for practical use.",
+    "Grounding: Arduino GND, L298N GND, and external motor supply GND must be common for ENA/ENB and IN1-IN4 control signals to work reliably.",
+    "Common ground: Arduino GND, L298N GND, and external motor supply GND must be common for ENA/ENB and IN1-IN4 control signals to work reliably."
+  ]
+}

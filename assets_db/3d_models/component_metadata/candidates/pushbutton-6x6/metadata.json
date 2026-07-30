@@ -37,12 +37,21 @@
   },
   "origin": {
     "targetReference": "mounting-surface-center",
-    "referencePoint": [0, 0, 0],
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
     "normalized": true,
     "description": "Origin is centered between the four measured leads on the breadboard mounting plane."
   },
   "orientation": {
-    "defaultRotationQuaternion": [0, 0, 0, 1],
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
     "normalized": true,
     "markers": [
       {
@@ -58,60 +67,165 @@
       "pinKey": "A1",
       "label": "A1",
       "nodeName": "pin_a1",
-      "position": [-0.00252083, 0, -0.00347212],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "lead", "pitchMillimeter": null, "diameterMillimeter": null },
-      "electrical": { "role": "signal", "aliases": ["left-top", "A-side"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 3.5 },
+      "position": [
+        -0.00252083,
+        0,
+        -0.00347212
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": null,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "left-top",
+          "A-side"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 3.5
+      },
       "confidence": 0.95,
       "sourceObject": "pin_a1",
-      "notes": ["Internally common with A2."]
+      "notes": [
+        "Internally common with A2."
+      ]
     },
     {
       "pinKey": "A2",
       "label": "A2",
       "nodeName": "pin_a2",
-      "position": [-0.00252084, 0, 0.00347071],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "lead", "pitchMillimeter": null, "diameterMillimeter": null },
-      "electrical": { "role": "signal", "aliases": ["left-bottom", "A-side"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 3.5 },
+      "position": [
+        -0.00252084,
+        0,
+        0.00347071
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": null,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "left-bottom",
+          "A-side"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 3.5
+      },
       "confidence": 0.95,
       "sourceObject": "pin_a2",
-      "notes": ["Internally common with A1."]
+      "notes": [
+        "Internally common with A1."
+      ]
     },
     {
       "pinKey": "B1",
       "label": "B1",
       "nodeName": "pin_b1",
-      "position": [0.00252085, 0, -0.00346929],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "lead", "pitchMillimeter": null, "diameterMillimeter": null },
-      "electrical": { "role": "signal", "aliases": ["right-top", "B-side"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 3.5 },
+      "position": [
+        0.00252085,
+        0,
+        -0.00346929
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": null,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "right-top",
+          "B-side"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 3.5
+      },
       "confidence": 0.95,
       "sourceObject": "pin_b1",
-      "notes": ["Internally common with B2."]
+      "notes": [
+        "Internally common with B2."
+      ]
     },
     {
       "pinKey": "B2",
       "label": "B2",
       "nodeName": "pin_b2",
-      "position": [0.00252083, 0, 0.00347071],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "lead", "pitchMillimeter": null, "diameterMillimeter": null },
-      "electrical": { "role": "signal", "aliases": ["right-bottom", "B-side"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 3.5 },
+      "position": [
+        0.00252083,
+        0,
+        0.00347071
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": null,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "right-bottom",
+          "B-side"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 3.5
+      },
       "confidence": 0.95,
       "sourceObject": "pin_b2",
-      "notes": ["Internally common with B1."]
+      "notes": [
+        "Internally common with B1."
+      ]
     }
   ],
   "placement": {
     "mountingType": "breadboard-insert",
-    "mountingPlaneNormal": [0, 1, 0],
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
     "rotationPolicy": "snap-yaw",
-    "allowedYawDegrees": [0, 90, 180, 270],
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
     "keepOutMarginMillimeter": 0.8
   },
   "provenance": {
@@ -127,6 +241,10 @@
   "notes": [
     "Four lead centers were measured directly from the lower metal geometry in the source GLB.",
     "A1/A2 are internally common and B1/B2 are internally common; pressing the button connects the A and B sides.",
-    "Verify source asset licensing before promotion to approved."
+    "Verify source asset licensing before promotion to approved.",
+    "Power: a tactile pushbutton has no required supply by itself; it switches a logic signal tied to VCC or GND through pull-up or pull-down wiring.",
+    "Current: switch current is normally limited to GPIO input leakage or pull resistor current in Arduino input circuits.",
+    "External power: not required for normal Arduino digital input use.",
+    "Common ground: if the button switches an external logic or supply reference into Arduino, Arduino GND and that circuit GND must be common."
   ]
 }

@@ -203,6 +203,10 @@
   },
   "notes": [
     "Nominal real-world procedural model; breadboard occupancy 3 columns x 3 rows.",
-    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata.",
+    "Power: an SPDT slide switch has no required supply by itself; it routes one common terminal to one of two throws.",
+    "Current: switch current and voltage must stay within the selected switch contact rating.",
+    "External power: not required by the switch itself; requirement depends on the circuit being switched.",
+    "Common ground: if the switch selects or routes signals between Arduino and external circuitry, Arduino GND and external circuit GND must be common."
   ]
 }

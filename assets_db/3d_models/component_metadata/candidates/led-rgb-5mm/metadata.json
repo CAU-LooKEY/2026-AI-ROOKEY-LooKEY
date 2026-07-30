@@ -238,6 +238,10 @@
   },
   "notes": [
     "Nominal real-world procedural model; breadboard occupancy 4 columns x 1 rows.",
-    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata.",
+    "Power: RGB LEDs require one current-limiting resistor per color channel; red is typically around 1.8-2.2 V and green/blue around 2.8-3.3 V.",
+    "Current: set each channel current with its own resistor, commonly 5-20 mA per channel, while respecting Arduino GPIO and total port limits.",
+    "External power: usually not required for one low-current RGB indicator LED, but use transistor drivers for brighter or multiple RGB LEDs.",
+    "Common ground: if an external LED supply or driver stage is used, connect Arduino GND and LED supply GND together."
   ]
 }
