@@ -5,6 +5,7 @@ import {
   calculateCurveProfile,
   colorForWireRole,
   inferEndpointGender,
+  insertionDepthSceneUnits,
   resolveJumperWire,
   WireColorRole,
 } from "./jumperWireSystem.js";
@@ -89,4 +90,9 @@ test("uses metadata gender before component fallback", () => {
   );
   assert.equal(inferEndpointGender("arduino-uno-r3", null), "female");
   assert.equal(inferEndpointGender("arduino-nano", null), "female");
+});
+
+test("converts connector insertion depth from millimeters to scene units", () => {
+  assert.equal(insertionDepthSceneUnits({ insertionDepthMillimeter: 6 }), 0.48);
+  assert.equal(insertionDepthSceneUnits({ insertionDepthMillimeter: 2 }), 0.16);
 });

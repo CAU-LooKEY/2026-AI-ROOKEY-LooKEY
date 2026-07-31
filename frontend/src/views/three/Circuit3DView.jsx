@@ -7,9 +7,11 @@ import pinCatalog from "../../assets/all_component_pin_coordinates.json";
 import { modelRegistry } from "./modelRegistry.js";
 import { resolveAssemblyParts } from "./assemblyCircuit.js";
 import { breadboardHoleRatios, resolveBreadboardWires } from "./breadboardWiring.js";
+import { obstacleClearanceHeight } from "./wireCollision.js";
 import {
   calculateCurveProfile,
   createPinEndpoint,
+  insertionDepthSceneUnits,
   JUMPER_SPEC,
   resolveJumperWire,
 } from "./jumperWireSystem.js";
@@ -17,8 +19,7 @@ import {
 const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
 const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
 const CONNECTOR_SHELL_HEIGHT = 0.24;
-const CONNECTOR_SEATING_DEPTH = 0.045;
-const BREADBOARD_INSERTION_DEPTH = 0.11;
+const MALE_CONNECTOR_SEAT_DEPTH = 0.04;
 const BOARD_HEADER_ROW_RATIO = 0.425;
 
 const modelProfiles = {
@@ -364,10 +365,7 @@ function makePinTarget(record, pinKey) {
 function makeConnector(position, direction, color, connectorType, endpoint) {
   const group = new THREE.Group();
   const normalizedDirection = direction.clone().normalize();
-  const insertionLength = Math.min(
-    0.52,
-    Math.max(0.12, Number(endpoint.insertionDepthMillimeter ?? 2) * 0.08),
-  );
+  const insertionLength = insertionDepthSceneUnits(endpoint);
   const shellMaterial = new THREE.MeshStandardMaterial({
     color: connectorType === "female" ? 0x111827 : color,
     metalness: 0.18,
@@ -380,18 +378,20 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
   shell.position.y = CONNECTOR_SHELL_HEIGHT / 2;
   group.add(shell);
 
-  const isBreadboardInsertion = endpoint.kind === "breadboard-hole";
-  const pinIsInsideSocket = connectorType === "male"
-    && endpoint.interfaceGender === "female";
-  if (connectorType === "male" && (!pinIsInsideSocket || isBreadboardInsertion)) {
-    const visibleLength = isBreadboardInsertion
-      ? Math.max(0.035, insertionLength - BREADBOARD_INSERTION_DEPTH)
-      : insertionLength;
+  if (connectorType === "male") {
+    const collar = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.052, 0.052, 0.035, 12),
+      new THREE.MeshStandardMaterial({ color: 0x20242b, roughness: 0.6 }),
+    );
+    collar.position.y = -0.012;
+    group.add(collar);
+
     const pin = new THREE.Mesh(
-      new THREE.BoxGeometry(0.032, visibleLength, 0.032),
+      new THREE.BoxGeometry(0.0512, insertionLength, 0.0512),
       new THREE.MeshStandardMaterial({ color: 0xc8a951, metalness: 0.8, roughness: 0.25 }),
     );
-    pin.position.y = -BREADBOARD_INSERTION_DEPTH - visibleLength / 2;
+    pin.position.y = -insertionLength / 2;
+    pin.userData.insertionDepthMillimeter = endpoint.insertionDepthMillimeter;
     group.add(pin);
   }
 
@@ -399,17 +399,16 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
   // continues into the socket/hole by the requested insertion depth.
   group.position.copy(position);
   if (connectorType === "male") {
-    group.position.addScaledVector(
-      normalizedDirection,
-      isBreadboardInsertion ? -BREADBOARD_INSERTION_DEPTH : -CONNECTOR_SEATING_DEPTH,
-    );
+    group.position.addScaledVector(normalizedDirection, -MALE_CONNECTOR_SEAT_DEPTH);
   }
   group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normalizedDirection);
+  group.userData.connectorGender = connectorType;
+  group.userData.insertionDepthSceneUnit = insertionLength;
   return group;
 }
 
 function connectorCablePosition(position, direction, connectorType) {
-  const seatingDepth = connectorType === "male" ? CONNECTOR_SEATING_DEPTH : 0;
+  const seatingDepth = connectorType === "male" ? MALE_CONNECTOR_SEAT_DEPTH : 0;
   return position.clone().addScaledVector(
     direction,
     CONNECTOR_SHELL_HEIGHT - seatingDepth,
@@ -425,6 +424,8 @@ function makeWire(
   sourceEndpoint,
   targetEndpoint,
   index,
+  obstacles,
+  excludedObstacleIds,
 ) {
   const sourceCable = connectorCablePosition(
     source,
@@ -438,6 +439,14 @@ function makeWire(
   );
   const distance = sourceCable.distanceTo(targetCable);
   const profile = calculateCurveProfile(distance, Math.abs(source.y - target.y), index);
+  const obstacleHeight = obstacleClearanceHeight(
+    sourceCable,
+    targetCable,
+    obstacles,
+    excludedObstacleIds,
+  );
+  const normalRouteHeight = Math.max(sourceCable.y, targetCable.y) + profile.lift;
+  const routeHeight = Math.max(normalRouteHeight, obstacleHeight ?? normalRouteHeight);
   const sourceRise = sourceCable.clone().addScaledVector(
     sourceDirection,
     Math.min(0.42, profile.lift * 0.32),
@@ -446,14 +455,30 @@ function makeWire(
     targetDirection,
     Math.min(0.42, profile.lift * 0.32),
   );
+  const sourceClearance = sourceCable.clone().lerp(targetCable, 0.28);
+  const targetClearance = sourceCable.clone().lerp(targetCable, 0.72);
   const midpoint = sourceCable.clone().lerp(targetCable, 0.5);
-  midpoint.y = Math.max(sourceCable.y, targetCable.y) + profile.lift;
+  if (obstacleHeight !== null) {
+    sourceClearance.y = routeHeight;
+    targetClearance.y = routeHeight;
+  }
+  midpoint.y = routeHeight;
   const lateral = targetCable.clone().sub(sourceCable).cross(new THREE.Vector3(0, 1, 0));
   if (lateral.lengthSq() > 0.0001) {
     midpoint.addScaledVector(lateral.normalize(), profile.lateralOffset);
   }
   const curve = new THREE.CatmullRomCurve3(
-    [sourceCable, sourceRise, midpoint, targetRise, targetCable],
+    obstacleHeight === null
+      ? [sourceCable, sourceRise, midpoint, targetRise, targetCable]
+      : [
+        sourceCable,
+        sourceRise,
+        sourceClearance,
+        midpoint,
+        targetClearance,
+        targetRise,
+        targetCable,
+      ],
     false,
     "centripetal",
   );
@@ -703,6 +728,19 @@ export default function Circuit3DView({ circuit, interactive = false }) {
       .then((records) => {
         if (disposed) return;
         const recordsById = new Map(records.filter(Boolean).map((record) => [record.part.id, record]));
+        const collisionObstacles = records.filter(Boolean).map((record) => {
+          record.group.updateWorldMatrix(true, true);
+          const bounds = new THREE.Box3().setFromObject(record.group);
+          return {
+            id: record.part.id,
+            minX: bounds.min.x,
+            maxX: bounds.max.x,
+            minY: bounds.min.y,
+            maxY: bounds.max.y,
+            minZ: bounds.min.z,
+            maxZ: bounds.max.z,
+          };
+        });
         const wireGroup = new THREE.Group();
         wireGroup.name = "jumper-wires";
         const pinTargetGroup = new THREE.Group();
@@ -743,6 +781,8 @@ export default function Circuit3DView({ circuit, interactive = false }) {
             sourceEndpoint,
             targetEndpoint,
             index,
+            collisionObstacles,
+            new Set([sourceRecord.part.id, targetRecord.part.id]),
           );
           group.userData.interactive = isInteractive;
           wireObjectsRef.current.set(connection.id, group);
