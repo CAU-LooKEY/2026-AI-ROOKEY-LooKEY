@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 
 from app.core.settings import get_settings
 from app.schemas.circuit import CircuitGenerateRequest, CircuitGenerationResponse
+from app.services.intent_templates import generate_intent_template
 from app.services.k_exaone import KExaoneClient, KExaoneError
 
 
@@ -52,17 +53,24 @@ def health():
     response_model_by_alias=True,
 )
 async def generate_circuit(request: CircuitGenerateRequest):
+    template = generate_intent_template(request.prompt)
+    if template is not None:
+        return template
+
     settings = get_settings()
     if not settings.is_configured:
         raise HTTPException(
             status_code=503,
             detail=(
-                "K-EXAONE is not configured. Set K_EXAONE_API_KEY and "
-                "K_EXAONE_ENDPOINT_ID in backend/.env."
+                "AI 회로 생성 서비스가 설정되지 않았습니다. 잠시 후 다시 시도하거나 "
+                "관리자에게 문의해 주세요."
             ),
         )
 
     try:
         return await KExaoneClient(settings).generate_circuit(request.prompt)
     except KExaoneError as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise HTTPException(
+            status_code=502,
+            detail="AI가 회로를 생성하지 못했습니다. 요청을 더 구체적으로 적어 다시 시도해 주세요.",
+        ) from exc

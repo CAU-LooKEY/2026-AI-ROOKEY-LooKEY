@@ -5,7 +5,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:jumper": "node --test src/views/three/jumperWireSystem.test.js",
-    "test:assembly": "node --test src/views/three/assemblyCircuit.test.js src/views/three/breadboardWiring.test.js src/views/three/wireCollision.test.js"
+    "test:assembly": "node --test src/views/three/assemblyCircuit.test.js src/views/three/breadboardWiring.test.js src/views/three/wireCollision.test.js",
+    "test:e2e:3d": "node e2e/intent-templates-3d.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
@@ -16,5 +17,8 @@
     "react-dom": "latest",
     "three": "^0.185.1",
     "vite": "latest"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.62.1"
   }
 }
