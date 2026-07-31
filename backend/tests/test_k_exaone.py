@@ -4,7 +4,12 @@ import unittest
 import httpx
 
 from app.core.settings import Settings
-from app.services.k_exaone import KExaoneClient
+from app.services.k_exaone import (
+    KExaoneClient,
+    KExaoneError,
+    MAX_GENERATION_ATTEMPTS,
+    MAX_RESPONSE_TOKENS,
+)
 
 
 SAMPLE_CIRCUIT = {
@@ -101,6 +106,11 @@ class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
             request_body = json.loads(request.content)
             self.assertEqual(request_body["model"], "test-endpoint")
             self.assertFalse(request_body["stream"])
+            self.assertEqual(request_body["temperature"], 0)
+            self.assertEqual(
+                request_body["max_tokens"],
+                MAX_RESPONSE_TOKENS,
+            )
             self.assertFalse(
                 request_body["chat_template_kwargs"]["enable_thinking"]
             )
@@ -114,6 +124,13 @@ class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
             self.assertIn("codeLines", response_properties)
             self.assertNotIn("code", response_properties)
             self.assertNotIn("assemblyPlan", response_properties)
+            self.assertEqual(response_properties["codeLines"]["maxItems"], 40)
+            self.assertEqual(response_properties["tutorSteps"]["maxItems"], 5)
+            self.assertEqual(response_properties["warnings"]["maxItems"], 4)
+            self.assertEqual(
+                response_properties["validationResults"]["maxItems"],
+                6,
+            )
             connection_properties = response_properties["circuit"]["properties"][
                 "connections"
             ]["items"]["properties"]
@@ -222,6 +239,141 @@ class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
         result = await client.generate_circuit("LED를 켜줘")
 
         self.assertEqual(result.title, "LED 켜기")
+        self.assertEqual(request_count, 2)
+
+    async def test_retries_truncated_response_without_replaying_it(self):
+        request_count = 0
+
+        async def handler(request: httpx.Request) -> httpx.Response:
+            nonlocal request_count
+            request_count += 1
+            request_body = json.loads(request.content)
+
+            if request_count == 1:
+                content = '{"title": "truncated'
+                finish_reason = "length"
+            else:
+                self.assertEqual(len(request_body["messages"]), 3)
+                self.assertEqual(request_body["messages"][-1]["role"], "user")
+                self.assertIn(
+                    "token limit was reached",
+                    request_body["messages"][-1]["content"],
+                )
+                self.assertIn(
+                    "substantially shorter",
+                    request_body["messages"][-1]["content"],
+                )
+                content = json.dumps(SAMPLE_CIRCUIT)
+                finish_reason = "stop"
+
+            return httpx.Response(
+                200,
+                json={
+                    "choices": [
+                        {
+                            "message": {
+                                "role": "assistant",
+                                "content": content,
+                            },
+                            "finish_reason": finish_reason,
+                        }
+                    ]
+                },
+            )
+
+        settings = Settings(
+            k_exaone_api_key="test-token",
+            k_exaone_endpoint_id="test-endpoint",
+            k_exaone_api_url="https://example.test/chat/completions",
+            k_exaone_timeout_seconds=5,
+        )
+        client = KExaoneClient(
+            settings,
+            transport=httpx.MockTransport(handler),
+        )
+
+        result = await client.generate_circuit("LED circuit")
+
+        self.assertEqual(result.circuit.parts[0].id, "arduino-uno-r3-1")
+        self.assertEqual(request_count, 2)
+
+    async def test_final_error_contains_request_id_and_specific_failure(self):
+        async def handler(request: httpx.Request) -> httpx.Response:
+            invalid = json.loads(json.dumps(SAMPLE_CIRCUIT))
+            invalid["circuit"]["connections"][0]["source"] = "missing-board"
+            return httpx.Response(
+                200,
+                json={
+                    "choices": [
+                        {
+                            "message": {
+                                "role": "assistant",
+                                "content": json.dumps(invalid),
+                            },
+                            "finish_reason": "stop",
+                        }
+                    ]
+                },
+            )
+
+        settings = Settings(
+            k_exaone_api_key="test-token",
+            k_exaone_endpoint_id="test-endpoint",
+            k_exaone_api_url="https://example.test/chat/completions",
+            k_exaone_timeout_seconds=5,
+        )
+        client = KExaoneClient(
+            settings,
+            transport=httpx.MockTransport(handler),
+        )
+
+        with self.assertRaisesRegex(
+            KExaoneError,
+            rf"after {MAX_GENERATION_ATTEMPTS} attempts "
+            r"\(request_id=[0-9a-f]{32}\).*Connection 'e1'.*missing-board",
+        ):
+            await client.generate_circuit("LED circuit")
+
+    async def test_retries_transient_api_error_with_a_fresh_request(self):
+        request_count = 0
+
+        async def handler(request: httpx.Request) -> httpx.Response:
+            nonlocal request_count
+            request_count += 1
+            request_body = json.loads(request.content)
+            self.assertEqual(len(request_body["messages"]), 2)
+
+            if request_count == 1:
+                return httpx.Response(503, json={"detail": "temporary"})
+            return httpx.Response(
+                200,
+                json={
+                    "choices": [
+                        {
+                            "message": {
+                                "role": "assistant",
+                                "content": json.dumps(SAMPLE_CIRCUIT),
+                            },
+                            "finish_reason": "stop",
+                        }
+                    ]
+                },
+            )
+
+        settings = Settings(
+            k_exaone_api_key="test-token",
+            k_exaone_endpoint_id="test-endpoint",
+            k_exaone_api_url="https://example.test/chat/completions",
+            k_exaone_timeout_seconds=5,
+        )
+        client = KExaoneClient(
+            settings,
+            transport=httpx.MockTransport(handler),
+        )
+
+        result = await client.generate_circuit("LED circuit")
+
+        self.assertEqual(result.circuit.parts[0].id, "arduino-uno-r3-1")
         self.assertEqual(request_count, 2)
 
     def test_parses_markdown_wrapped_json_as_fallback(self):

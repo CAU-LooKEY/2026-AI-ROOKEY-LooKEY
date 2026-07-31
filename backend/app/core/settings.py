@@ -27,7 +27,7 @@ class Settings:
     )
     k_exaone_timeout_seconds: float = field(
         default_factory=lambda: float(
-            os.getenv("K_EXAONE_TIMEOUT_SECONDS", "120")
+            os.getenv("K_EXAONE_TIMEOUT_SECONDS", "300")
         )
     )
 

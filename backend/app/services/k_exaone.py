@@ -1,5 +1,6 @@
 import json
 import logging
+import uuid
 from typing import Any
 
 import httpx
@@ -7,11 +8,16 @@ from pydantic import ValidationError
 
 from app.core.settings import Settings
 from app.schemas.circuit import CircuitGenerationResponse
+from app.services.circuit_contract import normalize_circuit_contract
 from app.services.component_rules import component_prompt_catalog
 from app.services.physical_assembly import PhysicalAssemblyPlanEngine
 
 
 logger = logging.getLogger(__name__)
+
+MAX_GENERATION_ATTEMPTS = 3
+MAX_RESPONSE_TOKENS = 8192
+MAX_REPAIR_CANDIDATE_CHARS = 12000
 
 
 SYSTEM_PROMPT = f"""You generate safe Arduino circuit projects for beginners.
@@ -22,6 +28,9 @@ Rules:
 {component_prompt_catalog()}
 - Every circuit part id must be unique. Every connection source and target must
   refer to an existing part id.
+- In every connection, source and target are part ids, while sourcePin and
+  targetPin are pin names. Never put a pin name in source or target, and never
+  put a part id in sourcePin or targetPin.
 - Treat every connection as one physical jumper wire. Do not return
   sourceConnector, targetConnector, or wireType; the server derives those
   fields from the connected component types.
@@ -45,7 +54,9 @@ Rules:
 
 
 class KExaoneError(RuntimeError):
-    pass
+    def __init__(self, message: str, *, retryable: bool = False):
+        super().__init__(message)
+        self.retryable = retryable
 
 
 class KExaoneClient:
@@ -58,6 +69,7 @@ class KExaoneClient:
         self.transport = transport
 
     async def generate_circuit(self, prompt: str) -> CircuitGenerationResponse:
+        request_id = uuid.uuid4().hex
         async with httpx.AsyncClient(
             timeout=self.settings.k_exaone_timeout_seconds,
             transport=self.transport,
@@ -65,32 +77,79 @@ class KExaoneClient:
             candidate: str | None = None
             validation_error: str | None = None
 
-            for attempt in range(2):
-                response = await self._request_completion(
-                    client,
-                    prompt,
-                    candidate=candidate,
-                    validation_error=validation_error,
+            for attempt in range(MAX_GENERATION_ATTEMPTS):
+                try:
+                    response = await self._request_completion(
+                        client,
+                        prompt,
+                        candidate=candidate,
+                        validation_error=validation_error,
+                    )
+                    content, finish_reason = self._extract_completion(response)
+                except KExaoneError as exc:
+                    logger.warning(
+                        "K-EXAONE request failed request_id=%s attempt=%s: %s",
+                        request_id,
+                        attempt + 1,
+                        exc,
+                    )
+                    if (
+                        not exc.retryable
+                        or attempt + 1 == MAX_GENERATION_ATTEMPTS
+                    ):
+                        raise KExaoneError(
+                            f"{exc} (request_id={request_id})"
+                        ) from exc
+                    candidate = None
+                    validation_error = None
+                    continue
+
+                logger.info(
+                    "K-EXAONE response request_id=%s attempt=%s "
+                    "finish_reason=%s chars=%s",
+                    request_id,
+                    attempt + 1,
+                    finish_reason,
+                    len(content),
                 )
-                content = self._extract_content(response)
+                logger.info(
+                    "K-EXAONE raw response request_id=%s attempt=%s content=%s",
+                    request_id,
+                    attempt + 1,
+                    content,
+                )
 
                 try:
+                    if finish_reason == "length":
+                        raise ValueError(
+                            "K-EXAONE response was truncated because the token "
+                            "limit was reached."
+                        )
                     circuit_data = self._parse_json_content(content)
                     circuit_data = self._prepare_circuit_data(circuit_data)
+                    circuit_data = normalize_circuit_contract(circuit_data)
                     result = CircuitGenerationResponse.model_validate(circuit_data)
                     result.assembly_plan = PhysicalAssemblyPlanEngine().build(result)
                     return result
                 except (ValueError, TypeError, ValidationError) as exc:
                     logger.warning(
-                        "K-EXAONE circuit validation failed on attempt %s: %s",
+                        "K-EXAONE validation failed request_id=%s attempt=%s: %s",
+                        request_id,
                         attempt + 1,
                         exc,
                     )
-                    candidate = content
+                    candidate = (
+                        content
+                        if finish_reason != "length"
+                        and len(content) <= MAX_REPAIR_CANDIDATE_CHARS
+                        else None
+                    )
                     validation_error = str(exc)[:2000]
 
         raise KExaoneError(
-            "K-EXAONE response did not match the circuit JSON schema after repair."
+            "K-EXAONE response validation failed after "
+            f"{MAX_GENERATION_ATTEMPTS} attempts "
+            f"(request_id={request_id}): {validation_error}"
         )
 
     async def _request_completion(
@@ -121,20 +180,39 @@ class KExaoneClient:
 
         if response.is_error:
             raise KExaoneError(
-                f"K-EXAONE request failed with status {response.status_code}."
+                f"K-EXAONE request failed with status {response.status_code}.",
+                retryable=(
+                    response.status_code == 429
+                    or response.status_code >= 500
+                ),
             )
         return response
 
     @staticmethod
-    def _extract_content(response: httpx.Response) -> str:
+    def _extract_completion(response: httpx.Response) -> tuple[str, str | None]:
         try:
             body = response.json()
-            content = body["choices"][0]["message"]["content"]
+            choice = body["choices"][0]
+            content = choice["message"]["content"]
+            finish_reason = choice.get("finish_reason")
         except (ValueError, KeyError, IndexError, TypeError) as exc:
-            raise KExaoneError("K-EXAONE returned an unexpected response.") from exc
+            raise KExaoneError(
+                "K-EXAONE returned an unexpected response.",
+                retryable=True,
+            ) from exc
 
         if not isinstance(content, str):
-            raise KExaoneError("K-EXAONE returned empty response content.")
+            raise KExaoneError(
+                "K-EXAONE returned empty response content.",
+                retryable=True,
+            )
+        if finish_reason is not None and not isinstance(finish_reason, str):
+            finish_reason = str(finish_reason)
+        return content, finish_reason
+
+    @staticmethod
+    def _extract_content(response: httpx.Response) -> str:
+        content, _ = KExaoneClient._extract_completion(response)
         return content
 
     async def _post(
@@ -152,9 +230,15 @@ class KExaoneClient:
                 json=payload,
             )
         except httpx.TimeoutException as exc:
-            raise KExaoneError("K-EXAONE request timed out.") from exc
+            raise KExaoneError(
+                "K-EXAONE request timed out.",
+                retryable=True,
+            ) from exc
         except httpx.RequestError as exc:
-            raise KExaoneError("Could not connect to the K-EXAONE API.") from exc
+            raise KExaoneError(
+                "Could not connect to the K-EXAONE API.",
+                retryable=True,
+            ) from exc
 
     def _build_payload(
         self,
@@ -168,27 +252,33 @@ class KExaoneClient:
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": prompt},
         ]
-        if candidate is not None and validation_error is not None:
-            messages.extend(
-                [
-                    {"role": "assistant", "content": candidate},
-                    {
-                        "role": "user",
-                        "content": (
-                            "The previous JSON was invalid. Return a corrected full "
-                            "JSON object only. Validation error:\n"
-                            f"{validation_error}"
-                        ),
-                    },
-                ]
+        if validation_error is not None:
+            if candidate is not None:
+                messages.append({"role": "assistant", "content": candidate})
+            compact_instruction = ""
+            if "truncated" in validation_error.casefold():
+                compact_instruction = (
+                    "\nThe response hit the token limit. Make the replacement "
+                    "substantially shorter: minimize labels and descriptions, "
+                    "omit code comments, and keep only essential code lines."
+                )
+            messages.append(
+                {
+                    "role": "user",
+                    "content": (
+                        "The previous response was invalid. Return a corrected full "
+                        "JSON object only. Validation error:\n"
+                        f"{validation_error}{compact_instruction}"
+                    ),
+                }
             )
 
         payload: dict[str, Any] = {
             "model": self.settings.k_exaone_endpoint_id,
             "messages": messages,
             "stream": False,
-            "temperature": 0.2,
-            "max_tokens": 2048,
+            "temperature": 0,
+            "max_tokens": MAX_RESPONSE_TOKENS,
             "chat_template_kwargs": {"enable_thinking": False},
             "parse_reasoning": True,
             "include_reasoning": False,
@@ -201,12 +291,14 @@ class KExaoneClient:
             schema = self._use_code_lines_schema(schema)
             schema = self._remove_server_derived_connection_fields(schema)
             schema["properties"].pop("assemblyPlan", None)
-            schema["required"] = [item for item in schema.get("required", []) if item != "assemblyPlan"]
+            schema["required"] = [
+                item
+                for item in schema.get("required", [])
+                if item != "assemblyPlan"
+            ]
             payload["response_format"] = {
                 "type": "json_schema",
-                "json_schema": {
-                    "schema": schema
-                },
+                "json_schema": {"schema": schema},
             }
 
         return payload
@@ -220,6 +312,7 @@ class KExaoneClient:
             "type": "array",
             "items": {"type": "string"},
             "minItems": 1,
+            "maxItems": 40,
         }
 
         required = schema.get("required", [])
