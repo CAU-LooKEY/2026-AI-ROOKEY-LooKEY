@@ -6,11 +6,11 @@ const appUrl = process.env.E2E_APP_URL ?? "http://127.0.0.1:5173";
 const chromePath = process.env.CHROME_PATH ?? "/usr/bin/google-chrome";
 const evidenceDir = path.resolve(process.cwd(), "../docs/test-evidence/intent-templates-e2e");
 const demos = [
-  ["01-proximity-led", "손을 가까이 대면 LED가 켜지게 해줘", "4/4 부품", 7],
-  ["02-proximity-led-ultrasonic", "초음파 센서로 가까이 온 손을 감지해 LED 켜기", "4/4 부품", 7],
-  ["03-button-led", "버튼을 누르면 LED가 켜지게 해줘", "4/4 부품", 5],
-  ["04-button-led-control", "푸시버튼으로 LED를 제어하고 싶어", "4/4 부품", 5],
-  ["05-distance-alarm", "물체가 가까우면 거리 경보를 보여줘", "4/4 부품", 7],
+  ["01-proximity-led", "손을 가까이 대면 LED가 켜지게 해줘", "5/5 부품", 7],
+  ["02-proximity-led-ultrasonic", "초음파 센서로 가까이 온 손을 감지해 LED 켜기", "5/5 부품", 7],
+  ["03-button-led", "버튼을 누르면 LED가 켜지게 해줘", "5/5 부품", 5],
+  ["04-button-led-control", "푸시버튼으로 LED를 제어하고 싶어", "5/5 부품", 5],
+  ["05-distance-alarm", "물체가 가까우면 거리 경보를 보여줘", "5/5 부품", 7],
 ];
 
 await mkdir(evidenceDir, { recursive: true });
