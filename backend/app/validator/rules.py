@@ -19,6 +19,7 @@ from .adapter import (
     CircuitJson,
     Connection,
     _to_lower,
+    convert_api_response_to_validator_json,
     convert_edges_to_connections,
     extract_used_pins_from_code,
     get_connected_pins_by_node,
@@ -190,7 +191,9 @@ def check_unknown_components(circuit_json: CircuitJson) -> Optional[ValidationRe
 
 def check_pin_mismatch(connections: List[Connection], circuit_json: CircuitJson) -> Optional[ValidationResult]:
     """[R011] 코드-회로 핀 불일치 검사"""
-    used_pins_in_code = extract_used_pins_from_code(circuit_json)
+    used_pins_in_code = [
+        pin for pin in extract_used_pins_from_code(circuit_json) if is_io_pin(pin)
+    ]
     if not used_pins_in_code:
         return None
 
@@ -214,7 +217,9 @@ def check_pin_mismatch(connections: List[Connection], circuit_json: CircuitJson)
 
 def check_unused_hardware_pin(connections: List[Connection], circuit_json: CircuitJson) -> Optional[ValidationResult]:
     """[R012] 회로에는 연결되어 있는데 코드에서 사용하지 않는 핀 검사"""
-    used_pins_in_code = extract_used_pins_from_code(circuit_json)
+    used_pins_in_code = [
+        pin for pin in extract_used_pins_from_code(circuit_json) if is_io_pin(pin)
+    ]
     if not used_pins_in_code:
         return None
 
@@ -336,6 +341,8 @@ def validate_circuit(circuit_input: Union[str, Path, CircuitJson]) -> List[Valid
     """회로 JSON을 검증하고 validation result 리스트를 반환한다."""
     try:
         circuit_json = load_circuit_json(circuit_input)
+        if isinstance(circuit_json.get("circuit"), dict):
+            circuit_json = convert_api_response_to_validator_json(circuit_json)
     except Exception as error:
         return [{
             "rule": "R001",
@@ -380,12 +387,27 @@ def validate_circuit(circuit_input: Union[str, Path, CircuitJson]) -> List[Valid
     return results
 
 
+def to_api_shape(results: List[ValidationResult]) -> List[Dict[str, str]]:
+    """Map internal validator results to CircuitGenerationResponse fields."""
+    api_results = []
+    for result in results:
+        level = result.get("grade", "ERROR")
+        if level == "INFO":
+            level = "WARNING"
+        api_results.append({
+            "ruleId": str(result.get("rule", "UNKNOWN")),
+            "level": str(level),
+            "message": str(result.get("feedback", result.get("title", ""))),
+        })
+    return api_results
+
+
 def validate_and_attach(circuit_input: Union[str, Path, CircuitJson]) -> CircuitJson:
     """회로 JSON을 검증한 뒤, 기존 JSON에 validationResults 필드를 붙여 반환한다."""
     circuit_json = load_circuit_json(circuit_input)
     validation_results = validate_circuit(circuit_json)
 
-    circuit_json["validationResults"] = validation_results
+    circuit_json["validationResults"] = to_api_shape(validation_results)
 
     existing_warnings = circuit_json.get("warnings", [])
     if not isinstance(existing_warnings, list):

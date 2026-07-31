@@ -1,7 +1,7 @@
 """
 LOOKEY 3팀 회로 검증 모듈 — adapter.py (JSON 수신/변환 담당)
 
-지원하는 입력 형식 3가지 (convert_edges_to_connections가 자동으로 판별):
+지원하는 입력 형식 4가지 (convert_edges_to_connections가 자동으로 판별):
 
 1. 이미 변환된 connections 배열 (그대로 통과)
 2. nodes + edges (componentKey/sourceHandle/targetHandle) — 이전 AI팀 목업 API 형식
@@ -16,8 +16,9 @@ LOOKEY 3팀 회로 검증 모듈 — adapter.py (JSON 수신/변환 담당)
    ⚠️ component_index는 components 배열에서 몇 번째 부품인지를 가리킵니다.
    같은 부품이 여러 개 있어도(LED 2개 등) 인덱스로 구분할 수 있게 3팀이
    제안한 형식입니다 — 아직 팀 확정 전이라 4팀/1팀과 맞춰봐야 합니다.
+4. circuit.parts + circuit.connections — 현재 LooKEY 생성 API 응답 형식
 
-세 형식 다 아래 공통 connections 구조로 변환되고, rules.py의 나머지
+네 형식 모두 아래 공통 connections 구조로 변환되고, rules.py의 나머지
 규칙들은 이 공통 구조만 보므로 그대로 재사용됩니다.
 """
 
@@ -126,7 +127,7 @@ def _connections_from_task_result(circuit_json: CircuitJson) -> List[Connection]
 
 def convert_edges_to_connections(circuit_json: CircuitJson) -> List[Connection]:
     """
-    회로 JSON을 공통 connections 구조로 변환한다. 세 가지 입력 형식을
+    회로 JSON을 공통 connections 구조로 변환한다. 네 가지 입력 형식을
     자동으로 판별해서 처리한다 (모듈 docstring 참고).
     """
     if isinstance(circuit_json.get("connections"), list):
@@ -135,7 +136,80 @@ def convert_edges_to_connections(circuit_json: CircuitJson) -> List[Connection]:
     if isinstance(circuit_json.get("circuit_connections"), list):
         return _connections_from_task_result(circuit_json)
 
+    circuit = circuit_json.get("circuit")
+    if isinstance(circuit, dict):
+        converted = convert_api_response_to_validator_json(circuit_json)
+        return _connections_from_nodes_edges(converted)
+
     return _connections_from_nodes_edges(circuit_json)
+
+
+def infer_component_type(component_key: str, label: str = "") -> str:
+    """Infer the legacy validator category from a canonical component key."""
+    text = f"{component_key} {label}".lower()
+    if any(token in text for token in ("arduino", "uno", "nano", "board")):
+        return "board"
+    if any(token in text for token in ("sensor", "hc-sr04", "button", "switch")):
+        return "input"
+    if any(token in text for token in ("led", "buzzer", "servo", "motor")):
+        return "output"
+    if any(token in text for token in ("resistor", "capacitor", "potentiometer")):
+        return "passive"
+    return "unknown"
+
+
+def convert_api_response_to_validator_json(api_response: CircuitJson) -> CircuitJson:
+    """Convert the current circuit API response into nodes/edges validator input."""
+    circuit = api_response.get("circuit")
+    if not isinstance(circuit, dict):
+        raise ValueError("API response must contain a circuit object.")
+
+    parts = circuit.get("parts")
+    connections = circuit.get("connections")
+    if not isinstance(parts, list) or not isinstance(connections, list):
+        raise ValueError("circuit.parts and circuit.connections must be arrays.")
+
+    nodes = []
+    for part in parts:
+        component_key = part.get("componentKey") or part.get("component_key") or ""
+        label = part.get("label") or part.get("name") or component_key
+        nodes.append({
+            "id": part.get("id"),
+            "componentKey": component_key,
+            "type": infer_component_type(component_key, label),
+            "label": label,
+            "position": part.get("position", {}),
+            "width": part.get("width"),
+        })
+
+    edges = []
+    for connection in connections:
+        edges.append({
+            "id": connection.get("id"),
+            "source": connection.get("source"),
+            "target": connection.get("target"),
+            "sourceHandle": connection.get("sourcePin") or connection.get("source_pin"),
+            "targetHandle": connection.get("targetPin") or connection.get("target_pin"),
+            "label": connection.get("label", ""),
+        })
+
+    code = api_response.get("code")
+    if not isinstance(code, str):
+        code_lines = api_response.get("codeLines") or api_response.get("code_lines")
+        code = "\n".join(str(line) for line in code_lines) if isinstance(code_lines, list) else ""
+
+    return {
+        "title": api_response.get("title"),
+        "intent": api_response.get("intent"),
+        "difficulty": api_response.get("difficulty"),
+        "estimatedTime": api_response.get("estimatedTime") or api_response.get("estimated_time"),
+        "nodes": nodes,
+        "edges": edges,
+        "code": code,
+        "codeMeta": api_response.get("codeMeta") or api_response.get("code_meta"),
+        "warnings": api_response.get("warnings", []),
+        "explanation": api_response.get("tutorSteps") or api_response.get("tutor_steps", []),
+    }
 
 
 def get_connected_pins_by_node(connections: List[Connection]) -> Dict[str, List[str]]:
@@ -163,6 +237,12 @@ _PIN_CALL_PATTERN = re.compile(
 
 def extract_used_pins_from_code(circuit_json: CircuitJson) -> List[str]:
     """code(또는 source_code) 문자열에서 pinMode/digitalWrite 등에 쓰인 핀을 뽑는다."""
+    code_meta = circuit_json.get("codeMeta") or circuit_json.get("code_meta")
+    if isinstance(code_meta, dict):
+        used_pins = code_meta.get("used_pins") or code_meta.get("usedPins")
+        if isinstance(used_pins, list):
+            return sorted({normalize_pin(pin) for pin in used_pins})
+
     code = circuit_json.get("code") or circuit_json.get("source_code") or ""
     if not isinstance(code, str):
         return []
