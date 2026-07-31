@@ -16,6 +16,14 @@ export const JUMPER_SPEC = Object.freeze({
   wireRadiusSceneUnit: 0.035,
 });
 
+export function insertionDepthSceneUnits(endpoint, sceneUnitsPerMillimeter = 0.08) {
+  const millimeters = Number(
+    endpoint?.insertionDepthMillimeter
+    ?? JUMPER_SPEC.defaultInsertionDepthMillimeter,
+  );
+  return Math.min(0.52, Math.max(0.12, millimeters * sceneUnitsPerMillimeter));
+}
+
 const SIGNAL_COLORS = Object.freeze([
   "#2563eb",
   "#059669",
@@ -39,7 +47,7 @@ export function inferEndpointGender(componentKey, pinMetadata) {
     return metadataGender;
   }
 
-  if (componentKey?.startsWith("breadboard-") || componentKey === "arduino-uno-r3") {
+  if (componentKey?.startsWith("breadboard-") || componentKey?.startsWith("arduino-")) {
     return ConnectorGender.FEMALE;
   }
 

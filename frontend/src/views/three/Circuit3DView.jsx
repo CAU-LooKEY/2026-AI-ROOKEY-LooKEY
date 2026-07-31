@@ -5,9 +5,13 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import pinCatalog from "../../assets/all_component_pin_coordinates.json";
 import { modelRegistry } from "./modelRegistry.js";
+import { resolveAssemblyParts } from "./assemblyCircuit.js";
+import { breadboardHoleRatios, resolveBreadboardWires } from "./breadboardWiring.js";
+import { obstacleClearanceHeight } from "./wireCollision.js";
 import {
   calculateCurveProfile,
   createPinEndpoint,
+  insertionDepthSceneUnits,
   JUMPER_SPEC,
   resolveJumperWire,
 } from "./jumperWireSystem.js";
@@ -15,7 +19,7 @@ import {
 const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
 const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
 const CONNECTOR_SHELL_HEIGHT = 0.24;
-const CONNECTOR_SEATING_DEPTH = 0.045;
+const MALE_CONNECTOR_SEAT_DEPTH = 0.04;
 const BOARD_HEADER_ROW_RATIO = 0.425;
 
 const modelProfiles = {
@@ -48,6 +52,16 @@ const modelProfiles = {
     longestSide: 1.8,
     rotation: [0, 0, 0],
     pinLayout: "switch",
+  },
+  "breadboard-half": {
+    longestSide: 7.2,
+    rotation: [0, 0, 0],
+    pinLayout: "breadboard",
+  },
+  "breadboard-full": {
+    longestSide: 10.5,
+    rotation: [0, 0, 0],
+    pinLayout: "breadboard",
   },
 };
 
@@ -150,7 +164,26 @@ function prepareModel(gltf, part, asset, layoutBounds) {
 
   modelBounds = new THREE.Box3().setFromObject(model);
   size = modelBounds.getSize(new THREE.Vector3());
-  group.position.copy(normalizedPartPosition(part, layoutBounds));
+  if (part.assemblyTransform?.position) {
+    const { position, rotation, scale } = part.assemblyTransform;
+    group.position.set(
+      Number(position.x ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+      Number(position.y ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+      Number(position.z ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+    );
+    group.rotation.set(
+      Number(rotation?.x ?? 0),
+      Number(rotation?.y ?? 0),
+      Number(rotation?.z ?? 0),
+    );
+    group.scale.set(
+      Number(scale?.x ?? 1),
+      Number(scale?.y ?? 1),
+      Number(scale?.z ?? 1),
+    );
+  } else {
+    group.position.copy(normalizedPartPosition(part, layoutBounds));
+  }
 
   return {
     asset,
@@ -183,6 +216,16 @@ function pinLocalPosition(record, pinKey) {
     ? definition.y_px / component.pixel_height - 0.5
     : 0;
 
+  if (pinLayout === "breadboard") {
+    const hole = breadboardHoleRatios(pinKey);
+    if (hole) {
+      return new THREE.Vector3(
+        (hole.x - 0.5) * size.x,
+        size.y,
+        (hole.z - 0.5) * size.z,
+      );
+    }
+  }
   if (pinLayout === "board") {
     const side = definition?.side;
     const x = side === "right" ? size.x * 0.47 : xRatio * size.x;
@@ -322,10 +365,7 @@ function makePinTarget(record, pinKey) {
 function makeConnector(position, direction, color, connectorType, endpoint) {
   const group = new THREE.Group();
   const normalizedDirection = direction.clone().normalize();
-  const insertionLength = Math.min(
-    0.52,
-    Math.max(0.12, Number(endpoint.insertionDepthMillimeter ?? 2) * 0.08),
-  );
+  const insertionLength = insertionDepthSceneUnits(endpoint);
   const shellMaterial = new THREE.MeshStandardMaterial({
     color: connectorType === "female" ? 0x111827 : color,
     metalness: 0.18,
@@ -338,14 +378,20 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
   shell.position.y = CONNECTOR_SHELL_HEIGHT / 2;
   group.add(shell);
 
-  const pinIsInsideSocket = connectorType === "male"
-    && endpoint.interfaceGender === "female";
-  if (connectorType === "male" && !pinIsInsideSocket) {
+  if (connectorType === "male") {
+    const collar = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.052, 0.052, 0.035, 12),
+      new THREE.MeshStandardMaterial({ color: 0x20242b, roughness: 0.6 }),
+    );
+    collar.position.y = -0.012;
+    group.add(collar);
+
     const pin = new THREE.Mesh(
-      new THREE.BoxGeometry(0.032, insertionLength, 0.032),
+      new THREE.BoxGeometry(0.0512, insertionLength, 0.0512),
       new THREE.MeshStandardMaterial({ color: 0xc8a951, metalness: 0.8, roughness: 0.25 }),
     );
     pin.position.y = -insertionLength / 2;
+    pin.userData.insertionDepthMillimeter = endpoint.insertionDepthMillimeter;
     group.add(pin);
   }
 
@@ -353,14 +399,16 @@ function makeConnector(position, direction, color, connectorType, endpoint) {
   // continues into the socket/hole by the requested insertion depth.
   group.position.copy(position);
   if (connectorType === "male") {
-    group.position.addScaledVector(normalizedDirection, -CONNECTOR_SEATING_DEPTH);
+    group.position.addScaledVector(normalizedDirection, -MALE_CONNECTOR_SEAT_DEPTH);
   }
   group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normalizedDirection);
+  group.userData.connectorGender = connectorType;
+  group.userData.insertionDepthSceneUnit = insertionLength;
   return group;
 }
 
 function connectorCablePosition(position, direction, connectorType) {
-  const seatingDepth = connectorType === "male" ? CONNECTOR_SEATING_DEPTH : 0;
+  const seatingDepth = connectorType === "male" ? MALE_CONNECTOR_SEAT_DEPTH : 0;
   return position.clone().addScaledVector(
     direction,
     CONNECTOR_SHELL_HEIGHT - seatingDepth,
@@ -376,6 +424,8 @@ function makeWire(
   sourceEndpoint,
   targetEndpoint,
   index,
+  obstacles,
+  excludedObstacleIds,
 ) {
   const sourceCable = connectorCablePosition(
     source,
@@ -389,16 +439,46 @@ function makeWire(
   );
   const distance = sourceCable.distanceTo(targetCable);
   const profile = calculateCurveProfile(distance, Math.abs(source.y - target.y), index);
-  const sourceRise = sourceCable.clone().addScaledVector(sourceDirection, 0.34);
-  const targetRise = targetCable.clone().addScaledVector(targetDirection, 0.34);
+  const obstacleHeight = obstacleClearanceHeight(
+    sourceCable,
+    targetCable,
+    obstacles,
+    excludedObstacleIds,
+  );
+  const normalRouteHeight = Math.max(sourceCable.y, targetCable.y) + profile.lift;
+  const routeHeight = Math.max(normalRouteHeight, obstacleHeight ?? normalRouteHeight);
+  const sourceRise = sourceCable.clone().addScaledVector(
+    sourceDirection,
+    Math.min(0.42, profile.lift * 0.32),
+  );
+  const targetRise = targetCable.clone().addScaledVector(
+    targetDirection,
+    Math.min(0.42, profile.lift * 0.32),
+  );
+  const sourceClearance = sourceCable.clone().lerp(targetCable, 0.28);
+  const targetClearance = sourceCable.clone().lerp(targetCable, 0.72);
   const midpoint = sourceCable.clone().lerp(targetCable, 0.5);
-  midpoint.y = Math.max(sourceCable.y, targetCable.y) + profile.lift;
+  if (obstacleHeight !== null) {
+    sourceClearance.y = routeHeight;
+    targetClearance.y = routeHeight;
+  }
+  midpoint.y = routeHeight;
   const lateral = targetCable.clone().sub(sourceCable).cross(new THREE.Vector3(0, 1, 0));
   if (lateral.lengthSq() > 0.0001) {
     midpoint.addScaledVector(lateral.normalize(), profile.lateralOffset);
   }
   const curve = new THREE.CatmullRomCurve3(
-    [sourceCable, sourceRise, midpoint, targetRise, targetCable],
+    obstacleHeight === null
+      ? [sourceCable, sourceRise, midpoint, targetRise, targetCable]
+      : [
+        sourceCable,
+        sourceRise,
+        sourceClearance,
+        midpoint,
+        targetClearance,
+        targetRise,
+        targetCable,
+      ],
     false,
     "centripetal",
   );
@@ -409,6 +489,8 @@ function makeWire(
     emissiveIntensity: 0,
     roughness: 0.58,
     metalness: 0.05,
+    transparent: true,
+    opacity: 0.94,
   });
   const wire = new THREE.Mesh(
     new THREE.TubeGeometry(
@@ -517,7 +599,7 @@ export default function Circuit3DView({ circuit, interactive = false }) {
 
   useEffect(() => {
     const container = containerRef.current;
-    const parts = circuit?.parts ?? [];
+    const parts = resolveAssemblyParts(circuit);
     if (!container || parts.length === 0) return undefined;
 
     let disposed = false;
@@ -646,18 +728,33 @@ export default function Circuit3DView({ circuit, interactive = false }) {
       .then((records) => {
         if (disposed) return;
         const recordsById = new Map(records.filter(Boolean).map((record) => [record.part.id, record]));
+        const collisionObstacles = records.filter(Boolean).map((record) => {
+          record.group.updateWorldMatrix(true, true);
+          const bounds = new THREE.Box3().setFromObject(record.group);
+          return {
+            id: record.part.id,
+            minX: bounds.min.x,
+            maxX: bounds.max.x,
+            minY: bounds.min.y,
+            maxY: bounds.max.y,
+            minZ: bounds.min.z,
+            maxZ: bounds.max.z,
+          };
+        });
         const wireGroup = new THREE.Group();
         wireGroup.name = "jumper-wires";
         const pinTargetGroup = new THREE.Group();
         pinTargetGroup.name = "pin-snap-targets";
         pinTargetGroup.visible = interactive;
-        recordsById.forEach((record) => {
-          getSelectablePinKeys(record).forEach((pinKey) => {
-            const marker = makePinTarget(record, pinKey);
-            pinTargetsRef.current.push(marker);
-            pinTargetGroup.add(marker);
+        if (interactive) {
+          recordsById.forEach((record) => {
+            getSelectablePinKeys(record).forEach((pinKey) => {
+              const marker = makePinTarget(record, pinKey);
+              pinTargetsRef.current.push(marker);
+              pinTargetGroup.add(marker);
+            });
           });
-        });
+        }
         assembly.add(pinTargetGroup);
         const normalizedWires = [];
         let signalIndex = 0;
@@ -684,13 +781,15 @@ export default function Circuit3DView({ circuit, interactive = false }) {
             sourceEndpoint,
             targetEndpoint,
             index,
+            collisionObstacles,
+            new Set([sourceRecord.part.id, targetRecord.part.id]),
           );
           group.userData.interactive = isInteractive;
           wireObjectsRef.current.set(connection.id, group);
           wireGroup.add(group);
           return resolved;
         };
-        (circuit.connections ?? []).forEach((connection, index) => {
+        resolveBreadboardWires(circuit).forEach((connection, index) => {
           const resolved = addConnection(connection, index);
           if (resolved) normalizedWires.push(resolved);
         });
