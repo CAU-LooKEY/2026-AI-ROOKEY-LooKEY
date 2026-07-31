@@ -165,6 +165,10 @@
     "Generated from the user-provided Red LED.glb without modifying the source file.",
     "The source mesh was normalized from a 192.48 mm diameter to a nominal 5 mm LED body.",
     "Lead geometry was aligned to a 2.54 mm pitch at the common mounting plane.",
-    "The source asset license and dimensions must be verified before approval."
+    "The source asset license and dimensions must be verified before approval.",
+    "Power: 5 mm red LEDs require a current-limiting resistor and typically have a forward voltage around 1.8-2.2 V.",
+    "Current: choose a resistor for the target LED current, commonly 5-20 mA, within the Arduino GPIO current limit.",
+    "External power: usually not required for one indicator LED, but use a driver stage for higher-current LED loads.",
+    "Common ground: if an external LED supply or driver is used, connect Arduino GND and LED supply GND together."
   ]
 }

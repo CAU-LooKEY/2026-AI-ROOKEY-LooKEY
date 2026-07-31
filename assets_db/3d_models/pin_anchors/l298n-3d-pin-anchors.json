@@ -1,0 +1,122 @@
+{
+  "component_slug": "l298n",
+  "display_name": "L298N Motor Driver",
+  "model_storage_path": "3d_models/glb/l298n.glb",
+  "method": "embedded_glb_empty",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "runtime_up_axis": "+Y",
+    "runtime_front_axis": "+Z",
+    "calibration_quality": "candidate_embedded_pin"
+  },
+  "pins": [
+    {
+      "pin_key": "ENA",
+      "label": "ENA",
+      "x_3d": 0.43,
+      "y_3d": -0.07,
+      "z_3d": -0.02,
+      "model_anchor_name": "pin_ena"
+    },
+    {
+      "pin_key": "IN1",
+      "label": "IN1",
+      "x_3d": 0.43,
+      "y_3d": -0.07,
+      "z_3d": -0.08,
+      "model_anchor_name": "pin_in1"
+    },
+    {
+      "pin_key": "IN2",
+      "label": "IN2",
+      "x_3d": 0.43,
+      "y_3d": -0.07,
+      "z_3d": -0.12,
+      "model_anchor_name": "pin_in2"
+    },
+    {
+      "pin_key": "IN3",
+      "label": "IN3",
+      "x_3d": 0.43,
+      "y_3d": -0.07,
+      "z_3d": -0.17,
+      "model_anchor_name": "pin_in3"
+    },
+    {
+      "pin_key": "IN4",
+      "label": "IN4",
+      "x_3d": 0.43,
+      "y_3d": -0.07,
+      "z_3d": -0.22,
+      "model_anchor_name": "pin_in4"
+    },
+    {
+      "pin_key": "ENB",
+      "label": "ENB",
+      "x_3d": 0.43,
+      "y_3d": -0.07,
+      "z_3d": -0.29,
+      "model_anchor_name": "pin_enb"
+    },
+    {
+      "pin_key": "OUT1",
+      "label": "OUT1",
+      "x_3d": 0.09,
+      "y_3d": -0.1,
+      "z_3d": 0.38,
+      "model_anchor_name": "pin_out1"
+    },
+    {
+      "pin_key": "OUT2",
+      "label": "OUT2",
+      "x_3d": 0.16,
+      "y_3d": -0.1,
+      "z_3d": 0.38,
+      "model_anchor_name": "pin_out2"
+    },
+    {
+      "pin_key": "OUT3",
+      "label": "OUT3",
+      "x_3d": 0.11,
+      "y_3d": -0.1,
+      "z_3d": -0.39,
+      "model_anchor_name": "pin_out3"
+    },
+    {
+      "pin_key": "OUT4",
+      "label": "OUT4",
+      "x_3d": 0.23,
+      "y_3d": -0.1,
+      "z_3d": -0.39,
+      "model_anchor_name": "pin_out4"
+    },
+    {
+      "pin_key": "VMS",
+      "label": "+12V",
+      "x_3d": 0.4,
+      "y_3d": -0.1,
+      "z_3d": 0.25,
+      "model_anchor_name": "pin_vms"
+    },
+    {
+      "pin_key": "GND",
+      "label": "GND",
+      "x_3d": 0.4,
+      "y_3d": -0.1,
+      "z_3d": 0.18,
+      "model_anchor_name": "pin_gnd"
+    },
+    {
+      "pin_key": "5V",
+      "label": "5V",
+      "x_3d": 0.4,
+      "y_3d": -0.1,
+      "z_3d": 0.07,
+      "model_anchor_name": "pin_5v"
+    }
+  ],
+  "notes": [
+    "Coordinates come from named pin Empty nodes embedded in the GLB.",
+    "Candidate anchors require visual review before approval."
+  ]
+}

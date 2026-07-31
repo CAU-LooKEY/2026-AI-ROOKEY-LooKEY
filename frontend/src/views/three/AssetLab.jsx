@@ -68,7 +68,9 @@ function Toggle({ checked, icon: Icon, label, onChange }) {
 }
 
 export default function AssetLab() {
+  const initialAssetSlug = new URLSearchParams(window.location.search).get("asset");
   const defaultAsset =
+    modelRegistry.find((asset) => asset.slug === initialAssetSlug) ??
     modelRegistry.find((asset) => asset.slug === "arduino-uno-r3") ??
     modelRegistry[0] ??
     null;
@@ -137,6 +139,16 @@ export default function AssetLab() {
     event.target.value = "";
   };
 
+  const handleSelectAsset = (asset) => {
+    setSelectedKey(asset.key);
+    setInspection(null);
+    if (!asset.isLocal) {
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("asset", asset.slug);
+      window.history.replaceState(null, "", nextUrl);
+    }
+  };
+
   const physicalDimensions = selectedAsset?.metadata?.physicalDimensions;
   const runtimeCoordinates =
     selectedAsset?.metadata?.coordinateSystems?.runtime;
@@ -200,10 +212,7 @@ export default function AssetLab() {
               }
               key={asset.key}
               type="button"
-              onClick={() => {
-                setSelectedKey(asset.key);
-                setInspection(null);
-              }}
+              onClick={() => handleSelectAsset(asset)}
             >
               <span className="assetListIcon">
                 <Box size={17} aria-hidden="true" />

@@ -37,12 +37,21 @@
   },
   "origin": {
     "targetReference": "mounting-surface-center",
-    "referencePoint": [0, 0, 0],
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
     "normalized": true,
     "description": "Origin is centered on the four-pin row where the pins cross the breadboard mounting plane."
   },
   "orientation": {
-    "defaultRotationQuaternion": [0, 0, 0, 1],
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
     "normalized": true,
     "markers": [
       {
@@ -64,24 +73,68 @@
       "pinKey": "VCC",
       "label": "VCC",
       "nodeName": "pin_vcc",
-      "position": [-0.00381, 0, 0],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
-      "electrical": { "role": "power", "aliases": ["5V"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "position": [
+        -0.00381,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "power",
+        "aliases": [
+          "5V"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
       "confidence": 0.95,
       "sourceObject": "pin_vcc",
-      "notes": ["Leftmost pin in the front view."]
+      "notes": [
+        "Leftmost pin in the front view."
+      ]
     },
     {
       "pinKey": "TRIG",
       "label": "TRIG",
       "nodeName": "pin_trig",
-      "position": [-0.00121298, 0, 0],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
-      "electrical": { "role": "signal", "aliases": ["trigger"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "position": [
+        -0.00121298,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "trigger"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
       "confidence": 0.9,
       "sourceObject": "pin_trig",
       "notes": []
@@ -90,11 +143,32 @@
       "pinKey": "ECHO",
       "label": "ECHO",
       "nodeName": "pin_echo",
-      "position": [0.00130629, 0, 0],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
-      "electrical": { "role": "signal", "aliases": ["echo"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "position": [
+        0.00130629,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "echo"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
       "confidence": 0.9,
       "sourceObject": "pin_echo",
       "notes": []
@@ -103,21 +177,53 @@
       "pinKey": "GND",
       "label": "GND",
       "nodeName": "pin_gnd",
-      "position": [0.00381, 0, 0],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
-      "electrical": { "role": "ground", "aliases": ["ground"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "position": [
+        0.00381,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "pin",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "ground",
+        "aliases": [
+          "ground"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
       "confidence": 0.95,
       "sourceObject": "pin_gnd",
-      "notes": ["Rightmost pin in the front view."]
+      "notes": [
+        "Rightmost pin in the front view."
+      ]
     }
   ],
   "placement": {
     "mountingType": "breadboard-insert",
-    "mountingPlaneNormal": [0, 1, 0],
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
     "rotationPolicy": "snap-yaw",
-    "allowedYawDegrees": [0, 90, 180, 270],
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
     "keepOutMarginMillimeter": 2
   },
   "provenance": {
@@ -133,6 +239,10 @@
   "notes": [
     "The source model was scaled from its measured pin row so the average pitch is 2.54 mm.",
     "Pin anchors are embedded in the GLB at the breadboard mounting plane, with 6 mm of pin below the plane.",
-    "Verify source asset licensing before promotion to approved."
+    "Verify source asset licensing before promotion to approved.",
+    "Power: HC-SR04 ultrasonic sensor modules typically use 5 V on VCC.",
+    "Current: operating current is commonly around 15 mA, but verify the selected module datasheet.",
+    "External power: usually not required for a single HC-SR04 because it can be powered from the Arduino 5 V rail when current budget allows.",
+    "Common ground: Arduino GND and HC-SR04 GND must be connected for TRIG and ECHO signals to share a logic reference."
   ]
 }

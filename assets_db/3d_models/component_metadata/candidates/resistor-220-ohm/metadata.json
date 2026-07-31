@@ -37,12 +37,21 @@
   },
   "origin": {
     "targetReference": "mounting-surface-center",
-    "referencePoint": [0, 0, 0],
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
     "normalized": true,
     "description": "Origin is the midpoint between both lead entry points on the breadboard mounting plane."
   },
   "orientation": {
-    "defaultRotationQuaternion": [0, 0, 0, 1],
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
     "normalized": true,
     "markers": [
       {
@@ -58,34 +67,93 @@
       "pinKey": "LEAD_A",
       "label": "Lead A",
       "nodeName": "pin_lead_a",
-      "position": [-0.00508, 0, 0],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "lead", "pitchMillimeter": 10.16, "diameterMillimeter": 0.44 },
-      "electrical": { "role": "passive", "aliases": ["A", "1", "lead-1"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 3 },
+      "position": [
+        -0.00508,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 10.16,
+        "diameterMillimeter": 0.44
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "A",
+          "1",
+          "lead-1"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 3
+      },
       "confidence": 0.95,
       "sourceObject": "pin_lead_a",
-      "notes": ["Geometric endpoint only; electrically interchangeable with LEAD_B."]
+      "notes": [
+        "Geometric endpoint only; electrically interchangeable with LEAD_B."
+      ]
     },
     {
       "pinKey": "LEAD_B",
       "label": "Lead B",
       "nodeName": "pin_lead_b",
-      "position": [0.00508, 0, 0],
-      "outwardDirection": [0, -1, 0],
-      "connector": { "gender": "male", "form": "lead", "pitchMillimeter": 10.16, "diameterMillimeter": 0.44 },
-      "electrical": { "role": "passive", "aliases": ["B", "2", "lead-2"] },
-      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 3 },
+      "position": [
+        0.00508,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 10.16,
+        "diameterMillimeter": 0.44
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "B",
+          "2",
+          "lead-2"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 3
+      },
       "confidence": 0.95,
       "sourceObject": "pin_lead_b",
-      "notes": ["Geometric endpoint only; electrically interchangeable with LEAD_A."]
+      "notes": [
+        "Geometric endpoint only; electrically interchangeable with LEAD_A."
+      ]
     }
   ],
   "placement": {
     "mountingType": "breadboard-insert",
-    "mountingPlaneNormal": [0, 1, 0],
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
     "rotationPolicy": "snap-yaw",
-    "allowedYawDegrees": [0, 90, 180, 270],
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
     "keepOutMarginMillimeter": 0.8
   },
   "provenance": {
@@ -101,6 +169,10 @@
   "notes": [
     "The source body and color bands were normalized to a 6.5 mm by 2.3 mm body.",
     "Leads were rebuilt for a four-grid breadboard span of 10.16 mm and a 3 mm insertion depth.",
-    "The resistor is non-polarized."
+    "The resistor is non-polarized.",
+    "Power: a 220 ohm resistor is passive and has no fixed operating voltage; voltage depends on the circuit where it is used.",
+    "Current: current follows Ohm's law and must stay within the resistor power rating, commonly checked with P = I^2R.",
+    "External power: not required by the resistor itself; requirement depends on the circuit load it is part of.",
+    "Common ground: no ground requirement by itself, but circuits using Arduino signals and external supplies still need a common GND reference."
   ]
 }

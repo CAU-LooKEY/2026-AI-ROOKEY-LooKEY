@@ -32,14 +32,18 @@ const exampleMetadataModules = import.meta.glob(
 );
 
 const displayNames = {
+  "active-buzzor": "Active Buzzer",
   "arduino-nano": "Arduino Nano",
   "arduino-uno-r3": "Arduino UNO R3",
   "breadboard-full": "Breadboard Full",
   "breadboard-half": "Breadboard Half",
+  "dc-motor": "DC Motor",
   "hc-sr04": "HC-SR04",
   "led-5mm-blue": "LED 5mm Blue",
   "led-5mm-red": "LED 5mm Red",
   "led-rgb-5mm": "RGB LED 5mm",
+  "l298n": "L298N Motor Driver",
+  "passive-buzzor": "Passive Buzzer",
   "potentiometer-10k": "Potentiometer 10k",
   "pushbutton-6x6": "Push Button 6x6",
   "resistor-220-ohm": "Resistor 220 ohm",

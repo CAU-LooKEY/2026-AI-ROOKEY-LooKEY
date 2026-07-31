@@ -204,6 +204,10 @@
   },
   "notes": [
     "Nominal real-world procedural model; breadboard occupancy 7 columns x 7 rows.",
-    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata.",
+    "Power: a 10 kOhm potentiometer used as an Arduino analog divider is typically connected between 5 V or 3.3 V and GND.",
+    "Current: divider current is low; at 5 V across 10 kOhm it is about 0.5 mA.",
+    "External power: not required for normal Arduino analog input use.",
+    "Common ground: Arduino GND and the potentiometer ground terminal must share the same reference for the wiper voltage to read correctly."
   ]
 }
