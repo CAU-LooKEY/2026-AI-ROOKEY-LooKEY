@@ -33,6 +33,7 @@ function makeMarker(position, radius, color, wireframe = false) {
     new THREE.MeshBasicMaterial({
       color,
       depthTest: false,
+      depthWrite: false,
       transparent: true,
       opacity: wireframe ? 0.75 : 0.95,
       wireframe,
@@ -59,6 +60,75 @@ function getPinNodes(root) {
   return pins;
 }
 
+function makeJumperFitPreview(pinNodes) {
+  const byName = new Map(pinNodes.map((pin) => [pin.name.toLowerCase(), pin]));
+  const source = byName.get("pin_a1");
+  const target = byName.get("pin_a5");
+  if (!source || !target) return null;
+
+  const group = new THREE.Group();
+  group.name = "jumper-fit-preview";
+  const seatingOffsetY = -0.001;
+  const pinMaterial = new THREE.MeshStandardMaterial({
+    color: 0xd9a441,
+    metalness: 0.85,
+    roughness: 0.25,
+  });
+  const housingMaterial = new THREE.MeshStandardMaterial({
+    color: 0x172033,
+    roughness: 0.5,
+  });
+  const wireMaterial = new THREE.MeshStandardMaterial({
+    color: 0xf59e0b,
+    roughness: 0.45,
+  });
+
+  const points = [source, target].map((pin) =>
+    new THREE.Vector3().fromArray(pin.position),
+  );
+  points.forEach((position) => {
+    // 10 mm male pin: 6 mm below the socket plane and 4 mm visible above it.
+    const malePin = new THREE.Mesh(
+      new THREE.BoxGeometry(0.00064, 0.01, 0.00064),
+      pinMaterial,
+    );
+    malePin.position.copy(position).add(new THREE.Vector3(0, -0.001, 0));
+    group.add(malePin);
+
+    const housing = new THREE.Mesh(
+      new THREE.BoxGeometry(0.00254, 0.003, 0.00254),
+      housingMaterial,
+    );
+    housing.position
+      .copy(position)
+      .add(new THREE.Vector3(0, 0.0045 + seatingOffsetY, 0));
+    group.add(housing);
+  });
+
+  const wireStart = points[0]
+    .clone()
+    .add(new THREE.Vector3(0, 0.006 + seatingOffsetY, 0));
+  const wireEnd = points[1]
+    .clone()
+    .add(new THREE.Vector3(0, 0.006 + seatingOffsetY, 0));
+  const midpoint = wireStart.clone().add(wireEnd).multiplyScalar(0.5);
+  midpoint.y += Math.max(points[0].distanceTo(points[1]) * 0.65, 0.008);
+  const curve = new THREE.CatmullRomCurve3([
+    wireStart,
+    wireStart.clone().add(new THREE.Vector3(0, 0.004, 0)),
+    midpoint,
+    wireEnd.clone().add(new THREE.Vector3(0, 0.004, 0)),
+    wireEnd,
+  ]);
+  group.add(
+    new THREE.Mesh(
+      new THREE.TubeGeometry(curve, 40, 0.00055, 10, false),
+      wireMaterial,
+    ),
+  );
+  return group;
+}
+
 export default function ThreeAssetViewer({
   asset,
   cameraView,
@@ -70,6 +140,7 @@ export default function ThreeAssetViewer({
   const gridRef = useRef(null);
   const axesRef = useRef(null);
   const pinsRef = useRef(null);
+  const jumperRef = useRef(null);
   const applyCameraViewRef = useRef(null);
   const cameraViewRef = useRef(cameraView);
   const settingsRef = useRef(settings);
@@ -93,6 +164,11 @@ export default function ThreeAssetViewer({
   useEffect(() => {
     pinsRef.current && (pinsRef.current.visible = settings.pins);
   }, [settings.pins]);
+
+  useEffect(() => {
+    jumperRef.current &&
+      (jumperRef.current.visible = settings.jumperFit);
+  }, [settings.jumperFit]);
 
   useEffect(() => {
     applyCameraViewRef.current?.(cameraView);
@@ -233,6 +309,16 @@ export default function ThreeAssetViewer({
         helperGroup.add(pinGroup);
         pinsRef.current = pinGroup;
 
+        const jumperFit =
+          asset.slug === "breadboard-half"
+            ? makeJumperFitPreview(pinNodes)
+            : null;
+        if (jumperFit) {
+          jumperFit.visible = settingsRef.current.jumperFit;
+          helperGroup.add(jumperFit);
+          jumperRef.current = jumperFit;
+        }
+
         const frameCamera = (viewName) => {
           const direction =
             cameraDirections[viewName] ?? cameraDirections.isometric;
@@ -264,6 +350,11 @@ export default function ThreeAssetViewer({
           extensionsRequired: gltf.parser?.json?.extensionsRequired ?? [],
           extensionsUsed: gltf.parser?.json?.extensionsUsed ?? [],
           fileBytes: transferredBytes,
+          jumperFit: jumperFit
+            ? {
+                connection: "A1 ↔ A5",
+              }
+            : null,
           pinNodes,
           size: size.toArray(),
         });
@@ -302,6 +393,7 @@ export default function ThreeAssetViewer({
       gridRef.current = null;
       axesRef.current = null;
       pinsRef.current = null;
+      jumperRef.current = null;
       cancelAnimationFrame(animationFrame);
       resizeObserver.disconnect();
       controls.dispose();
