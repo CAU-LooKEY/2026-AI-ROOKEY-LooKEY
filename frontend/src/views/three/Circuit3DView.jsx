@@ -17,6 +17,28 @@ const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
 const CONNECTOR_SHELL_HEIGHT = 0.24;
 const CONNECTOR_SEATING_DEPTH = 0.045;
 const BOARD_HEADER_ROW_RATIO = 0.425;
+const BREADBOARD_ROWS_Y_PX = {
+  A: 69.2,
+  B: 79.625,
+  C: 90.05,
+  D: 100.475,
+  E: 110.9,
+  F: 142,
+  G: 152.45,
+  H: 162.9,
+  I: 173.35,
+  J: 183.8,
+};
+const BREADBOARD_TERMINAL_X_START_PX = 32.1;
+const BREADBOARD_TERMINAL_X_PITCH_PX = 10.44;
+const BREADBOARD_RAIL_X_START_PX = 37.9;
+const BREADBOARD_RAIL_X_PITCH_PX = 12.13;
+const BREADBOARD_RAIL_ROWS_Y_PX = {
+  RAIL_TOP_POS: 28.6,
+  RAIL_TOP_NEG: 39.4,
+  RAIL_BOTTOM_POS: 214,
+  RAIL_BOTTOM_NEG: 224.5,
+};
 
 const modelProfiles = {
   "arduino-uno-r3": {
@@ -247,6 +269,39 @@ function findPinDefinition(record, pinKey) {
   return componentPins.find((pin) => pin.pin_key === pinKey) ?? null;
 }
 
+function breadboardPinLocalPosition(record, pinKey) {
+  const component = pinCatalog[record.part.componentKey];
+  const width = component?.pixel_width;
+  const height = component?.pixel_height;
+  if (!width || !height) return null;
+
+  const terminal = /^([A-J])([1-9]|[12][0-9]|30)$/.exec(pinKey);
+  let xPx = null;
+  let yPx = null;
+  if (terminal) {
+    const [, row, columnText] = terminal;
+    xPx = BREADBOARD_TERMINAL_X_START_PX
+      + (Number(columnText) - 1) * BREADBOARD_TERMINAL_X_PITCH_PX;
+    yPx = BREADBOARD_ROWS_Y_PX[row];
+  }
+
+  const rail = /^RAIL_(TOP|BOTTOM)_(POS|NEG)_S([1-5])_([1-5])$/.exec(pinKey);
+  if (rail) {
+    const [, side, polarity, segmentText, holeText] = rail;
+    const railKey = `RAIL_${side}_${polarity}`;
+    const railIndex = (Number(segmentText) - 1) * 5 + Number(holeText) - 1;
+    xPx = BREADBOARD_RAIL_X_START_PX + railIndex * BREADBOARD_RAIL_X_PITCH_PX;
+    yPx = BREADBOARD_RAIL_ROWS_Y_PX[railKey];
+  }
+
+  if (xPx == null || yPx == null) return null;
+  return new THREE.Vector3(
+    (xPx / width - 0.5) * record.size.x,
+    record.size.y + 0.08,
+    (yPx / height - 0.5) * record.size.z,
+  );
+}
+
 function pinLocalPosition(record, pinKey) {
   const { part, pinLayout, size } = record;
   const definition = findPinDefinition(record, pinKey);
@@ -278,6 +333,10 @@ function pinLocalPosition(record, pinKey) {
   if (pinLayout === "resistor") {
     const direction = pinKey === "LEAD_A" ? -1 : 1;
     return new THREE.Vector3(direction * size.x * 0.5, size.y * 0.5, 0);
+  }
+  if (pinLayout === "breadboard") {
+    return breadboardPinLocalPosition(record, pinKey)
+      ?? new THREE.Vector3(xRatio * size.x, size.y + 0.08, yRatio * size.z);
   }
 
   return new THREE.Vector3(xRatio * size.x, size.y + 0.08, yRatio * size.z);
