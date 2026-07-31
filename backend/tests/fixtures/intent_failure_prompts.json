@@ -1,0 +1,12 @@
+[
+  {"category": "unsupported-component", "prompt": "거리가 가까우면 부저 알람을 울려줘", "expected": "model-fallback"},
+  {"category": "unsupported-component", "prompt": "온도 센서로 뜨거우면 LED를 켜줘", "expected": "model-fallback"},
+  {"category": "unsupported-component", "prompt": "손이 가까우면 모터를 돌려줘", "expected": "model-fallback"},
+  {"category": "unsupported-component", "prompt": "LCD에 초음파 거리를 표시해줘", "expected": "model-fallback"},
+  {"category": "conflicting-input", "prompt": "손이 가까우면서 버튼을 누르면 LED를 켜줘", "expected": "model-fallback"},
+  {"category": "conflicting-input", "prompt": "근접 센서 대신 버튼으로 거리 LED를 만들어줘", "expected": "model-fallback"},
+  {"category": "ambiguous", "prompt": "센서 회로 만들어줘", "expected": "model-fallback"},
+  {"category": "ambiguous", "prompt": "LED 프로젝트가 필요해", "expected": "model-fallback"},
+  {"category": "unrelated", "prompt": "오늘 날씨를 알려줘", "expected": "model-fallback"},
+  {"category": "unrelated", "prompt": "파이썬 정렬 코드를 작성해줘", "expected": "model-fallback"}
+]

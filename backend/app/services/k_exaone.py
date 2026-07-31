@@ -28,6 +28,9 @@ Rules:
 - Use red (#dc2626) for power, dark gray (#1f2937) for ground, and distinct
   colors for separate signal wires. The server normalizes these values.
 - Include a current-limiting resistor for every LED.
+- When the user says a hand or object comes near, use HC-SR04. Never replace
+  proximity sensing with a pushbutton.
+- For every LED channel, connect exactly one 220 ohm resistor in series.
 - Do not draw unsupported parts. Put their names in unsupportedComponents.
 - Keep part positions inside an 850 by 450 canvas and avoid overlapping parts.
 - codeMeta.used_pins must agree with the pins used by the Arduino code.
@@ -79,6 +82,12 @@ class KExaoneClient:
                     circuit_data = self._prepare_circuit_data(circuit_data)
                     result = CircuitGenerationResponse.model_validate(circuit_data)
                     result.assembly_plan = PhysicalAssemblyPlanEngine().build(result)
+                    unsafe_codes = {"LED_RESISTOR_MISSING"}
+                    found_codes = {item.code for item in result.assembly_plan.warnings}
+                    if unsafe_codes & found_codes:
+                        raise ValueError(
+                            "각 LED 채널에 220Ω 저항을 직렬로 연결해야 합니다."
+                        )
                     return result
                 except (ValueError, TypeError, ValidationError) as exc:
                     logger.warning(
