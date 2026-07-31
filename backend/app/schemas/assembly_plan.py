@@ -48,6 +48,16 @@ class AssemblyConnection(AssemblyModel):
     color: str
 
 
+class AssemblyJumper(AssemblyModel):
+    id: str
+    source: ConnectionEndpoint
+    target: ConnectionEndpoint
+    electrical_node: str = Field(alias="electricalNode")
+    color: str
+    wire_type: Literal["male-male"] = Field(default="male-male", alias="wireType")
+    derived_from: list[str] = Field(default_factory=list, alias="derivedFrom")
+
+
 class AssemblyWarning(AssemblyModel):
     code: str
     severity: Literal["INFO", "WARNING", "ERROR"]
@@ -63,6 +73,7 @@ class AssemblyPlan(AssemblyModel):
     components: list[AssemblyComponent]
     placements: list[Placement]
     connections: list[AssemblyConnection]
+    jumpers: list[AssemblyJumper] = Field(default_factory=list)
     warnings: list[AssemblyWarning]
 
     @model_validator(mode="after")
@@ -80,4 +91,9 @@ class AssemblyPlan(AssemblyModel):
                 raise ValueError("Connection source references an unknown component.")
             if connection.target.component_id not in known:
                 raise ValueError("Connection target references an unknown component.")
+        for jumper in self.jumpers:
+            if jumper.source.component_id not in known:
+                raise ValueError("Jumper source references an unknown component.")
+            if jumper.target.component_id not in known:
+                raise ValueError("Jumper target references an unknown component.")
         return self

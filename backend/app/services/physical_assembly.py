@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from app.schemas.assembly_plan import (
     AssemblyComponent,
     AssemblyConnection,
+    AssemblyJumper,
     AssemblyPlan,
     AssemblyWarning,
     ConnectionEndpoint,
@@ -72,6 +73,117 @@ def parse_physical_address(value: str, geometry: BreadboardGeometry | None = Non
     if rail and address in geometry.rail_groups:
         return PhysicalAddress(address, "rail", geometry.rail_groups[address])
     raise ValueError(f"Unsupported breadboard address: {value}")
+
+
+def same_breadboard_electrical_group(
+    left_address: str,
+    right_address: str,
+    geometry: BreadboardGeometry | None = None,
+) -> bool:
+    left = parse_physical_address(left_address, geometry)
+    right = parse_physical_address(right_address, geometry)
+    return left.electrical_group == right.electrical_group
+
+
+def _breadboard_group_addresses(group: str, geometry: BreadboardGeometry) -> list[str]:
+    rail_addresses = sorted(
+        address for address, rail_group in geometry.rail_groups.items()
+        if rail_group == group
+    )
+    if rail_addresses:
+        return rail_addresses
+
+    terminal = re.fullmatch(r"terminal-(AE|FJ)-([1-9]|[12][0-9]|30)", group)
+    if terminal is None:
+        return []
+    bank, column = terminal.groups()
+    rows = ("A", "B", "C", "D", "E") if bank == "AE" else ("F", "G", "H", "I", "J")
+    return [f"{row}{column}" for row in rows]
+
+
+def _available_breadboard_endpoint(
+    address: PhysicalAddress,
+    occupied_holes: set[str],
+    reserved_holes: set[str],
+    geometry: BreadboardGeometry,
+) -> ConnectionEndpoint | None:
+    unavailable = occupied_holes | reserved_holes
+    for candidate in _breadboard_group_addresses(address.electrical_group, geometry):
+        if candidate not in unavailable:
+            reserved_holes.add(candidate)
+            return ConnectionEndpoint(
+                componentId=BREADBOARD_ID,
+                pin=candidate,
+                address=candidate,
+            )
+    return None
+
+
+def route_breadboard_jumpers(
+    connections: list[AssemblyConnection],
+    occupied_holes: set[str] | None = None,
+    geometry: BreadboardGeometry | None = None,
+) -> list[AssemblyJumper]:
+    try:
+        geometry = geometry or load_breadboard_geometry()
+    except AssetMetadataError:
+        return []
+    jumpers: list[AssemblyJumper] = []
+    routed_pairs: set[tuple[str, str]] = set()
+    occupied_holes = set(occupied_holes or set())
+    reserved_holes: set[str] = set()
+
+    for connection in connections:
+        source_address = connection.source.address
+        target_address = connection.target.address
+        if not source_address and not target_address:
+            continue
+        source = None
+        target = None
+        try:
+            if source_address:
+                source = parse_physical_address(source_address, geometry)
+            if target_address:
+                target = parse_physical_address(target_address, geometry)
+        except ValueError:
+            continue
+        if source and target and source.electrical_group == target.electrical_group:
+            continue
+
+        pair = tuple(sorted((
+            f"breadboard:{source.electrical_group}" if source else f"{connection.source.component_id}:{connection.source.pin}",
+            f"breadboard:{target.electrical_group}" if target else f"{connection.target.component_id}:{connection.target.pin}",
+        )))
+        if pair in routed_pairs:
+            continue
+
+        reserved_before = set(reserved_holes)
+        source_endpoint = (
+            _available_breadboard_endpoint(source, occupied_holes, reserved_holes, geometry)
+            if source
+            else connection.source
+        )
+        target_endpoint = (
+            _available_breadboard_endpoint(target, occupied_holes, reserved_holes, geometry)
+            if target
+            else connection.target
+        )
+        if source_endpoint is None or target_endpoint is None:
+            reserved_holes = reserved_before
+            continue
+
+        routed_pairs.add(pair)
+
+        jumpers.append(AssemblyJumper(
+            id=f"jumper-{len(jumpers) + 1}",
+            source=source_endpoint,
+            target=target_endpoint,
+            electricalNode=connection.electrical_node,
+            color=connection.color,
+            derivedFrom=[connection.id],
+        ))
+
+    return jumpers
 
 
 class _UnionFind:
@@ -201,11 +313,18 @@ class PhysicalAssemblyPlanEngine:
         ))
         placements, placement_warnings = self._place(parts)
         connections, union = self._connect(response, placements)
+        occupied_holes = {
+            address
+            for placement in placements
+            for address in placement.addresses.values()
+        }
+        jumpers = route_breadboard_jumpers(connections, occupied_holes=occupied_holes)
         warnings = placement_warnings + self._validate(response, placements, connections, union)
         return AssemblyPlan(
             components=components,
             placements=placements,
             connections=connections,
+            jumpers=jumpers,
             warnings=self._sort_warnings(warnings),
         )
 
