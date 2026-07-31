@@ -33,6 +33,7 @@ function makeMarker(position, radius, color, wireframe = false) {
     new THREE.MeshBasicMaterial({
       color,
       depthTest: false,
+      depthWrite: false,
       transparent: true,
       opacity: wireframe ? 0.75 : 0.95,
       wireframe,
@@ -67,6 +68,7 @@ function makeJumperFitPreview(pinNodes) {
 
   const group = new THREE.Group();
   group.name = "jumper-fit-preview";
+  const seatingOffsetY = -0.001;
   const pinMaterial = new THREE.MeshStandardMaterial({
     color: 0xd9a441,
     metalness: 0.85,
@@ -97,12 +99,18 @@ function makeJumperFitPreview(pinNodes) {
       new THREE.BoxGeometry(0.00254, 0.003, 0.00254),
       housingMaterial,
     );
-    housing.position.copy(position).add(new THREE.Vector3(0, 0.0045, 0));
+    housing.position
+      .copy(position)
+      .add(new THREE.Vector3(0, 0.0045 + seatingOffsetY, 0));
     group.add(housing);
   });
 
-  const wireStart = points[0].clone().add(new THREE.Vector3(0, 0.006, 0));
-  const wireEnd = points[1].clone().add(new THREE.Vector3(0, 0.006, 0));
+  const wireStart = points[0]
+    .clone()
+    .add(new THREE.Vector3(0, 0.006 + seatingOffsetY, 0));
+  const wireEnd = points[1]
+    .clone()
+    .add(new THREE.Vector3(0, 0.006 + seatingOffsetY, 0));
   const midpoint = wireStart.clone().add(wireEnd).multiplyScalar(0.5);
   midpoint.y += Math.max(points[0].distanceTo(points[1]) * 0.65, 0.008);
   const curve = new THREE.CatmullRomCurve3([
@@ -178,7 +186,14 @@ export default function ThreeAssetViewer({
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf3f6fa);
 
-    const camera = new THREE.PerspectiveCamera(38, 1, 0.001, 10000);
+    const initialWidth = Math.max(container.clientWidth, 1);
+    const initialHeight = Math.max(container.clientHeight, 1);
+    const camera = new THREE.PerspectiveCamera(
+      38,
+      initialWidth / initialHeight,
+      0.001,
+      10000,
+    );
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: false,
@@ -188,7 +203,7 @@ export default function ThreeAssetViewer({
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.05;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(container.clientWidth, container.clientHeight, false);
+    renderer.setSize(initialWidth, initialHeight, false);
     container.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -213,6 +228,7 @@ export default function ThreeAssetViewer({
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
+      applyCameraViewRef.current?.(cameraViewRef.current);
     });
     resizeObserver.observe(container);
 
@@ -306,8 +322,13 @@ export default function ThreeAssetViewer({
         const frameCamera = (viewName) => {
           const direction =
             cameraDirections[viewName] ?? cameraDirections.isometric;
+          const verticalFov = THREE.MathUtils.degToRad(camera.fov);
+          const horizontalFov = 2 * Math.atan(
+            Math.tan(verticalFov / 2) * camera.aspect,
+          );
+          const limitingFov = Math.min(verticalFov, horizontalFov);
           const distance =
-            maxSize / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
+            maxSize / (2 * Math.tan(limitingFov / 2));
           camera.position
             .copy(center)
             .add(direction.clone().normalize().multiplyScalar(distance * 1.65));
