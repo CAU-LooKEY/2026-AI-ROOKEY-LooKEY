@@ -231,20 +231,53 @@ function createSlideSwitch() {
   const root = new THREE.Group();
   root.name = slug;
   root.userData = { componentSlug: slug, schemaVersion: "1.0.0", assetStatus: "candidate" };
-  root.add(mesh("switch_body", new THREE.BoxGeometry(12 * meter, 5 * meter, 6 * meter), material("switch_black", 0x20252b), [0, 5.5 * meter, 0]));
-  root.add(mesh("switch_plate", new THREE.BoxGeometry(13 * meter, 0.8 * meter, 7 * meter), material("switch_metal", 0xa7afb8, { metalness: 0.72, roughness: 0.3 }), [0, 8.2 * meter, 0]));
-  root.add(mesh("switch_slider", new THREE.BoxGeometry(4 * meter, 3 * meter, 3 * meter), material("switch_slider", 0x374151), [-2.5 * meter, 10.1 * meter, 0]));
-  [-2.54, 0, 2.54].forEach((x, index) => addLead(root, `switch_lead_${index + 1}`, x * meter));
+  const blackPlastic = material("switch_black_plastic", 0x17191c, { roughness: 0.62 });
+  const edgePlastic = material("switch_edge", 0x24272b, { roughness: 0.55 });
+  const recess = material("switch_recess", 0x08090a, { roughness: 0.8 });
+  const terminal = material("switch_terminal", 0xc5c9cc, { metalness: 0.88, roughness: 0.22 });
+
+  // Main molded housing and the wider top mounting plate.
+  root.add(mesh("switch_body", new THREE.BoxGeometry(18 * meter, 6.2 * meter, 7 * meter), blackPlastic, [0, 6.2 * meter, 0]));
+  root.add(mesh("switch_top_plate", new THREE.BoxGeometry(20 * meter, 1.4 * meter, 8.5 * meter), edgePlastic, [0, 10 * meter, 0]));
+  [-10, 10].forEach((x, index) => {
+    root.add(mesh(`switch_mount_flange_${index + 1}`, new THREE.CylinderGeometry(4.25 * meter, 4.25 * meter, 1.4 * meter, 32), edgePlastic, [x * meter, 10 * meter, 0]));
+    root.add(mesh(`switch_mount_hole_${index + 1}`, new THREE.CylinderGeometry(1.45 * meter, 1.45 * meter, 1.65 * meter, 24), recess, [x * meter, 10.05 * meter, 0]));
+  });
+
+  // Recessed travel slot and a raised, ribbed thumb actuator.
+  root.add(mesh("switch_travel_slot", new THREE.BoxGeometry(9.5 * meter, 0.35 * meter, 4.6 * meter), recess, [0, 10.85 * meter, 0]));
+  root.add(mesh("switch_slider", new THREE.BoxGeometry(4.3 * meter, 5.2 * meter, 4.2 * meter), blackPlastic, [-2.4 * meter, 13.2 * meter, 0]));
+  for (let index = 0; index < 6; index += 1) {
+    root.add(mesh(
+      `switch_slider_rib_${index + 1}`,
+      new THREE.BoxGeometry(0.32 * meter, 0.35 * meter, 4.45 * meter),
+      edgePlastic,
+      [(-4.0 + index * 0.64) * meter, 15.95 * meter, 0],
+    ));
+  }
+
+  // Three stamped SPDT terminals with visible lug holes and breadboard tails.
+  [-2.54, 0, 2.54].forEach((x, index) => {
+    root.add(mesh(`switch_terminal_${index + 1}`, new THREE.BoxGeometry(1.5 * meter, 8 * meter, 0.7 * meter), terminal, [x * meter, 0, 0]));
+    const lugHole = mesh(
+      `switch_terminal_hole_${index + 1}`,
+      new THREE.CylinderGeometry(0.42 * meter, 0.42 * meter, 0.82 * meter, 20),
+      recess,
+      [x * meter, -2.1 * meter, 0],
+    );
+    lugHole.rotation.x = Math.PI / 2;
+    root.add(lugHole);
+  });
   return {
     root,
-    dimensions: [13, 7, 13.1],
+    dimensions: [28.5, 8.5, 23],
     pins: [
       pin("THROW_A", "Throw A", -2.54, 0, ["A", "1"], "signal"),
       pin("COMMON", "Common", 0, 0, ["COM", "2"], "signal"),
       pin("THROW_B", "Throw B", 2.54, 0, ["B", "3"], "signal"),
     ],
     marker: { key: "throw-a-left", pinKey: "THROW_A", direction: "-X", description: "Throw A is the runtime -X lead." },
-    occupancy: { columns: 3, rows: 3, pitchMillimeter: 2.54 },
+    occupancy: { columns: 11, rows: 4, pitchMillimeter: 2.54 },
   };
 }
 

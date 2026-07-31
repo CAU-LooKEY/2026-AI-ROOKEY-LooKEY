@@ -52,8 +52,8 @@
         "THROW_B"
       ],
       "pitchMillimeter": 2.54,
-      "occupiedColumns": 3,
-      "occupiedRows": 3,
+      "occupiedColumns": 11,
+      "occupiedRows": 4,
       "polarity": null
     }
   }
