@@ -11,10 +11,10 @@
   "physicalDimensions": {
     "unit": "millimeter",
     "width": 16,
-    "depth": 27,
+    "depth": 21.4,
     "height": 24,
     "measurementScope": "overall-including-pins",
-    "source": "nominal",
+    "source": "measured",
     "confidence": 0.9
   },
   "coordinateSystems": {

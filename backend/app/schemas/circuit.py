@@ -2,110 +2,17 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from app.schemas.assembly_plan import AssemblyPlan
+from app.services.component_rules import (
+    pin_capabilities,
+    required_wire_connector,
+    supported_component_keys,
+    supported_component_pins,
+    supported_pin_keys,
+)
 
-SUPPORTED_COMPONENT_PINS = {
-    "arduino-uno-r3": {
-        "SCL",
-        "SDA",
-        "AREF",
-        "GND_D",
-        "D13",
-        "D12",
-        "D11",
-        "D10",
-        "D9",
-        "D8",
-        "D7",
-        "D6",
-        "D5",
-        "D4",
-        "D3",
-        "D2",
-        "D1",
-        "D0",
-        "IOREF",
-        "RESET",
-        "3V3",
-        "5V",
-        "GND_P1",
-        "GND_P2",
-        "VIN",
-        "A0",
-        "A1",
-        "A2",
-        "A3",
-        "A4",
-        "A5",
-        "AUX_RX",
-        "AUX_TX",
-        "AUX_5V",
-        "AUX_GND_1",
-        "AUX_SDA",
-        "AUX_SCL",
-        "AUX_3V3",
-        "AUX_GND_2",
-    },
-    "hc-sr04": {"VCC", "TRIG", "ECHO", "GND"},
-    "led-5mm-blue": {"ANODE", "CATHODE"},
-    "resistor-220-ohm": {"LEAD_A", "LEAD_B"},
-}
 
-SupportedComponentKey = Literal[
-    "arduino-uno-r3",
-    "hc-sr04",
-    "led-5mm-blue",
-    "resistor-220-ohm",
-]
-
-SupportedPinKey = Literal[
-    "SCL",
-    "SDA",
-    "AREF",
-    "GND_D",
-    "D13",
-    "D12",
-    "D11",
-    "D10",
-    "D9",
-    "D8",
-    "D7",
-    "D6",
-    "D5",
-    "D4",
-    "D3",
-    "D2",
-    "D1",
-    "D0",
-    "IOREF",
-    "RESET",
-    "3V3",
-    "5V",
-    "GND_P1",
-    "GND_P2",
-    "VIN",
-    "A0",
-    "A1",
-    "A2",
-    "A3",
-    "A4",
-    "A5",
-    "AUX_RX",
-    "AUX_TX",
-    "AUX_5V",
-    "AUX_GND_1",
-    "AUX_SDA",
-    "AUX_SCL",
-    "AUX_3V3",
-    "AUX_GND_2",
-    "VCC",
-    "TRIG",
-    "ECHO",
-    "GND",
-    "ANODE",
-    "CATHODE",
-    "LEAD_A",
-    "LEAD_B",
-]
+SUPPORTED_COMPONENT_PINS = supported_component_pins()
 
 WireConnector = Literal["male", "female"]
 WireType = Literal["male-male", "male-female", "female-male", "female-female"]
@@ -143,7 +50,10 @@ class Component(ApiModel):
 class CircuitPart(ApiModel):
     id: str
     label: str
-    component_key: SupportedComponentKey = Field(alias="componentKey")
+    component_key: str = Field(
+        alias="componentKey",
+        json_schema_extra={"enum": list(supported_component_keys())},
+    )
     position: Position
     width: float = Field(gt=0)
 
@@ -151,9 +61,15 @@ class CircuitPart(ApiModel):
 class CircuitConnection(ApiModel):
     id: str
     source: str
-    source_pin: SupportedPinKey = Field(alias="sourcePin")
+    source_pin: str = Field(
+        alias="sourcePin",
+        json_schema_extra={"enum": list(supported_pin_keys())},
+    )
     target: str
-    target_pin: SupportedPinKey = Field(alias="targetPin")
+    target_pin: str = Field(
+        alias="targetPin",
+        json_schema_extra={"enum": list(supported_pin_keys())},
+    )
     label: str
     color: str
     source_connector: WireConnector | None = Field(
@@ -200,18 +116,20 @@ class CircuitGenerationResponse(ApiModel):
     warnings: list[str]
     validation_results: list[ValidationResult] = Field(alias="validationResults")
     unsupported_components: list[str] = Field(alias="unsupportedComponents")
+    assembly_plan: AssemblyPlan | None = Field(default=None, alias="assemblyPlan")
 
     @staticmethod
     def _required_wire_connector(component_key: str) -> WireConnector:
-        return "male" if component_key == "arduino-uno-r3" else "female"
+        return required_wire_connector(component_key)
 
     @staticmethod
-    def _is_ground_pin(pin_key: str) -> bool:
-        return "GND" in pin_key
+    def _is_ground_pin(component_key: str, pin_key: str) -> bool:
+        return "ground" in pin_capabilities(component_key, pin_key)
 
     @staticmethod
-    def _is_power_pin(pin_key: str) -> bool:
-        return pin_key in {"5V", "3V3", "VCC", "VIN", "AUX_5V", "AUX_3V3"}
+    def _is_power_pin(component_key: str, pin_key: str) -> bool:
+        capabilities = pin_capabilities(component_key, pin_key)
+        return bool({"power", "power_5v", "power_3v3"} & capabilities)
 
     @model_validator(mode="after")
     def validate_circuit_references(self):
@@ -255,12 +173,16 @@ class CircuitGenerationResponse(ApiModel):
                 f"{connection.source_connector}-{connection.target_connector}"
             )
 
-            if self._is_ground_pin(connection.source_pin) or self._is_ground_pin(
-                connection.target_pin
+            if self._is_ground_pin(
+                source.component_key, connection.source_pin
+            ) or self._is_ground_pin(
+                target.component_key, connection.target_pin
             ):
                 connection.color = "#1f2937"
-            elif self._is_power_pin(connection.source_pin) or self._is_power_pin(
-                connection.target_pin
+            elif self._is_power_pin(
+                source.component_key, connection.source_pin
+            ) or self._is_power_pin(
+                target.component_key, connection.target_pin
             ):
                 connection.color = "#dc2626"
             else:

@@ -113,6 +113,7 @@ class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
             ]["properties"]
             self.assertIn("codeLines", response_properties)
             self.assertNotIn("code", response_properties)
+            self.assertNotIn("assemblyPlan", response_properties)
             connection_properties = response_properties["circuit"]["properties"][
                 "connections"
             ]["items"]["properties"]
@@ -168,6 +169,9 @@ class KExaoneClientTest(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual(result.circuit.connections[0].color, "#2563eb")
         self.assertEqual(result.validation_results[0].level, "PASS")
+        self.assertIsNotNone(result.assembly_plan)
+        self.assertEqual(result.assembly_plan.schema_version, "1.0")
+        self.assertEqual(result.assembly_plan.components[0].asset_slug, "arduino-uno-r3")
 
     async def test_repairs_an_invalid_model_response_once(self):
         request_count = 0

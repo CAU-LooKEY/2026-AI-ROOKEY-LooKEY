@@ -473,7 +473,7 @@
       "properties": {
         "pinKey": {
           "type": "string",
-          "pattern": "^[A-Z][A-Z0-9_+-]*$"
+          "pattern": "^[A-Z0-9][A-Z0-9_+-]*$"
         },
         "label": {
           "type": "string",
@@ -481,7 +481,7 @@
         },
         "nodeName": {
           "type": "string",
-          "pattern": "^pin_(?:[A-Z][A-Z0-9_+\\-]*|[a-z0-9_]+)$"
+          "pattern": "^pin_(?:[A-Z0-9][A-Z0-9_+\\-]*|[a-z0-9_]+)$"
         },
         "position": {
           "$ref": "#/$defs/vector3"
@@ -558,6 +558,25 @@
               "uniqueItems": true,
               "items": {
                 "type": "string"
+              }
+            },
+            "functions": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "enum": [
+                  "digital",
+                  "analog",
+                  "pwm",
+                  "i2c",
+                  "spi",
+                  "uart",
+                  "power",
+                  "ground",
+                  "reset",
+                  "reference"
+                ]
               }
             }
           }

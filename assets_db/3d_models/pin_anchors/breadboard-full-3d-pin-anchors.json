@@ -41,7 +41,7 @@
       "y_3d": 0.80488734,
       "z_3d": -6.09123573,
       "model_anchor_name": "pin_rail_top_pos",
-      "source_x_px": 65.0,
+      "source_x_px": 65,
       "source_y_px": 45.9
     },
     {
@@ -51,7 +51,7 @@
       "y_3d": 0.80488734,
       "z_3d": -5.36934645,
       "model_anchor_name": "pin_rail_top_neg",
-      "source_x_px": 65.0,
+      "source_x_px": 65,
       "source_y_px": 61.2
     },
     {

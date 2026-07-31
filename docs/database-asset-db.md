@@ -1,4 +1,4 @@
-# 2.5D Circuit Asset DB
+# 2.5D 회로 자산 DB
 
 하드웨어 교육 챗봇에서 사용할 부품 에셋 DB 초안입니다. 프론트엔드와 백엔드는 다른 팀원이 만들고, 이 문서는 Supabase에 저장할 부품 이미지, 핀 좌표, 라이선스 상태를 관리하기 위한 기준입니다.
 
@@ -18,11 +18,11 @@ LED와 푸쉬버튼은 점퍼선으로 직접 연결하기보다 브레드보드
 
 `supabase/migrations/20260702000000_circuit_asset_schema.sql`은 다음을 만듭니다.
 
-- `circuit-assets` Storage bucket
+- `circuit-assets` 스토리지 버킷
 - `circuit_component_assets`
 - `circuit_component_asset_images`
 - `circuit_component_pins`
-- 공개 읽기용 RLS policy와 Data API `grant select`
+- 공개 읽기용 RLS 정책와 Data API `grant select`
 
 초기 데이터는 `supabase/seed.sql`에 있습니다.
 

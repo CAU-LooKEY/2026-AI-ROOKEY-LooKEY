@@ -7,6 +7,7 @@ MODEL_MANIFEST = ROOT / "3d_models" / "glb_model_manifest.json"
 OUT_DIR = ROOT / "3d_models" / "pin_anchors"
 SQL_OUT = ROOT / "db_scripts" / "006_seed_3d_pin_anchors.sql"
 CANDIDATE_METADATA_DIR = ROOT / "3d_models" / "component_metadata" / "candidates"
+APPROVED_METADATA_DIR = ROOT / "3d_models" / "component_metadata" / "approved"
 
 AXIS_CONFIG = {
     "arduino-uno-r3": {
@@ -128,16 +129,16 @@ def embedded_pin_anchors(component, metadata):
     ]
 
 
-def load_candidate_metadata(slug):
-    path = CANDIDATE_METADATA_DIR / slug / "metadata.json"
-    if not path.is_file():
-        return None
-    metadata = json.loads(path.read_text(encoding="utf-8"))
-    if metadata.get("componentSlug") != slug:
-        raise ValueError(f"Candidate metadata slug mismatch: {path}")
-    if metadata.get("provenance", {}).get("method") != "blender-empty":
-        return None
-    return metadata
+def load_component_metadata(slug):
+    paths = [
+        *sorted(APPROVED_METADATA_DIR.glob("*.json")),
+        *sorted((CANDIDATE_METADATA_DIR / slug).glob("*.json")),
+    ]
+    for path in paths:
+        metadata = json.loads(path.read_text(encoding="utf-8"))
+        if metadata.get("componentSlug") == slug:
+            return metadata
+    return None
 
 
 def main():
@@ -156,11 +157,14 @@ def main():
 
         model = models[slug]
         config = AXIS_CONFIG[slug]
-        candidate_metadata = load_candidate_metadata(slug)
-        if candidate_metadata:
-            anchors = embedded_pin_anchors(component, candidate_metadata)
+        component_metadata = load_component_metadata(slug)
+        if component_metadata:
+            anchors = embedded_pin_anchors(component, component_metadata)
             method = "embedded_glb_empty"
-            calibration_quality = "candidate_blender_empty"
+            metadata_status = component_metadata.get("provenance", {}).get(
+                "status", "candidate"
+            )
+            calibration_quality = f"{metadata_status}_embedded_pin"
             calibration = {
                 "component_slug": slug,
                 "display_name": component["display_name"],
@@ -176,7 +180,11 @@ def main():
                 "pins": anchors,
                 "notes": [
                     "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
-                    "Candidate assets require visual review before moving to approved metadata.",
+                    (
+                        "Approved metadata is the canonical source."
+                        if metadata_status == "approved"
+                        else "Candidate assets require visual review before approval."
+                    ),
                 ],
             }
         else:
@@ -235,10 +243,9 @@ def main():
 
     sql_rows = json.dumps(all_rows, ensure_ascii=False, indent=2)
     SQL_OUT.write_text(
-        f"""-- Seed draft GLB-local 3D pin anchors.
--- These values are projected from the existing 2D pin maps onto each selected GLB model bounds.
--- They are good enough for prototype 3D wire snapping, but should be reviewed in a visual
--- calibration tool before production.
+        f"""-- Seed GLB-local 3D pin anchors.
+-- Prefer embedded pin nodes from canonical component metadata. Components without metadata
+-- fall back to draft anchors projected from their 2D pin maps.
 
 with anchor_rows as (
   select * from jsonb_to_recordset($anchors${sql_rows}$anchors$::jsonb) as x(
@@ -258,7 +265,7 @@ set x_3d = anchor_rows.x_3d,
     notes = trim(both ' ' from concat_ws(
       ' ',
       pins.notes,
-      '[3D anchor: draft projected from 2D pin map to GLB bounds.]'
+      '[3D anchor: generated from canonical metadata or bounded 2D projection.]'
     )),
     updated_at = now()
 from anchor_rows

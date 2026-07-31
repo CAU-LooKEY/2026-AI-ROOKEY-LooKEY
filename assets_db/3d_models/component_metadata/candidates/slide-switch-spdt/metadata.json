@@ -8,15 +8,15 @@
     "scaleStatus": "real-world",
     "thumbnailPath": null
   },
-  "physicalDimensions": {
-    "unit": "millimeter",
-    "width": 28.5,
-    "depth": 8.5,
-    "height": 23,
-    "measurementScope": "overall-including-pins",
-    "source": "nominal",
-    "confidence": 0.9
-  },
+ "physicalDimensions": {
+  "unit": "millimeter",
+  "width": 28.5,
+  "depth": 8.5,
+  "height": 23,
+  "measurementScope": "overall-including-pins",
+  "source": "nominal",
+  "confidence": 0.9
+},
   "coordinateSystems": {
     "authoring": {
       "space": "threejs-object-local",
