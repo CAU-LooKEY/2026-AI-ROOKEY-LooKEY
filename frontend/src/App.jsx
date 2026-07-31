@@ -16,7 +16,7 @@ const resultSteps = [
 
 export default function App() {
   const [page, setPage] = useState("home");
-  const [prompt, setPrompt] = useState(examplePrompts[1].prompt);
+  const [prompt, setPrompt] = useState("");
   const [savedPrompts, setSavedPrompts] = useState([]);
   const [shareMessage, setShareMessage] = useState("");
   const [copyMessage, setCopyMessage] = useState("");
@@ -43,7 +43,7 @@ export default function App() {
       const result = await generateCircuit(prompt);
       setProject(result.project);
       setCircuit(result.circuit);
-      setApiMessage("K-EXAONE API에서 새로 생성한 결과입니다.");
+      setApiMessage("입력 문장을 바탕으로 K-EXAONE API에서 새로 생성한 결과입니다.");
       setPage("summary");
     } catch (error) {
       setGenerationError(error instanceof Error ? error.message : "K-EXAONE 회로 생성에 실패했습니다.");
@@ -152,7 +152,11 @@ function HomePage({ prompt, onPromptChange, onExampleSelect, onNext }) {
         <p>원하는 동작을 문장으로 입력하면 AI가 회로와 코드를 만들어드려요.</p>
 
         <div className="inputBox">
-          <input value={prompt} onChange={(event) => onPromptChange(event.target.value)} />
+          <input
+            value={prompt}
+            onChange={(event) => onPromptChange(event.target.value)}
+            placeholder="예: 버튼을 누르면 LED가 켜지는 회로를 만들어줘"
+          />
           <button onClick={onNext}>→</button>
         </div>
 

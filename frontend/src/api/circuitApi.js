@@ -37,7 +37,10 @@ export function normalizeCircuitResponse(response, prompt) {
   return {
     prompt,
     project,
-    circuit: response.circuit,
+    circuit: {
+      ...response.circuit,
+      assemblyPlan: response.assemblyPlan ?? response.assembly_plan ?? null,
+    },
   };
 }
 

@@ -1,6 +1,9 @@
 import unittest
 from unittest.mock import patch
 
+from pydantic import ValidationError
+
+from app.schemas.assembly_plan import AssemblyConnection, AssemblyJumper
 from app.schemas.circuit import CircuitGenerationResponse
 from app.services.asset_metadata import (
     AssetMetadataError,
@@ -13,6 +16,8 @@ from app.services.physical_assembly import (
     BreadboardAllocator,
     PhysicalAssemblyPlanEngine,
     parse_physical_address,
+    route_breadboard_jumpers,
+    same_breadboard_electrical_group,
 )
 from test_assembly_plan import (
     FIVE_REPRESENTATIVE_CIRCUITS,
@@ -54,6 +59,12 @@ class IntegratedAssetMetadataTest(unittest.TestCase):
             parse_physical_address("T+6").electrical_group,
         )
 
+    def test_same_breadboard_electrical_group_helper(self):
+        self.assertTrue(same_breadboard_electrical_group("A1", "E1"))
+        self.assertFalse(same_breadboard_electrical_group("E1", "F1"))
+        self.assertTrue(same_breadboard_electrical_group("T+1", "T+5"))
+        self.assertFalse(same_breadboard_electrical_group("T+5", "T+6"))
+
 
 class PhysicalAssemblyPlanTest(unittest.TestCase):
     def setUp(self):
@@ -83,6 +94,135 @@ class PhysicalAssemblyPlanTest(unittest.TestCase):
         self.assertRegex(resistor_wire.target.address, r"^[A-J](?:[1-9]|[12][0-9]|30)$")
         self.assertEqual(resistor_wire.electrical_node,
                          next(item for item in plan.connections if item.id == "w2").electrical_node)
+
+    def test_assembly_plan_includes_routed_jumpers(self):
+        plan = self.build("led_with_resistor")
+        serialized = plan.model_dump(by_alias=True)
+        occupied_holes = {
+            address
+            for placement in plan.placements
+            if placement.component_id != BREADBOARD_ID
+            for address in placement.addresses.values()
+        }
+        jumper_holes = {
+            endpoint.address
+            for jumper in plan.jumpers
+            for endpoint in (jumper.source, jumper.target)
+            if endpoint.component_id == BREADBOARD_ID and endpoint.address
+        }
+        self.assertIn("jumpers", serialized)
+        self.assertGreater(len(serialized["jumpers"]), 0)
+        self.assertTrue(
+            all(jumper["wireType"] == "male-male" for jumper in serialized["jumpers"])
+        )
+        self.assertTrue(
+            all(jumper["derivedFrom"] for jumper in serialized["jumpers"])
+        )
+        self.assertFalse(jumper_holes & occupied_holes)
+
+    def test_jumper_contract_is_male_to_male_and_tracks_source_connections(self):
+        jumper = AssemblyJumper.model_validate({
+            "id": "jumper-1",
+            "source": {"componentId": "resistor", "pin": "LEAD_B", "address": "A1"},
+            "target": {"componentId": "led", "pin": "ANODE", "address": "F1"},
+            "electricalNode": "node:signal-1",
+            "color": "#2563eb",
+            "derivedFrom": ["w2"],
+        })
+        self.assertEqual(jumper.wire_type, "male-male")
+        self.assertEqual(jumper.derived_from, ["w2"])
+
+        with self.assertRaises(ValidationError):
+            AssemblyJumper.model_validate({
+                "id": "jumper-2",
+                "source": {"componentId": "resistor", "pin": "LEAD_B", "address": "A1"},
+                "target": {"componentId": "led", "pin": "ANODE", "address": "F1"},
+                "electricalNode": "node:signal-1",
+                "color": "#2563eb",
+                "wireType": "female-female",
+            })
+
+    def test_route_breadboard_jumpers_skips_same_group_and_deduplicates_pairs(self):
+        connections = [
+            AssemblyConnection.model_validate({
+                "id": "same-node",
+                "source": {"componentId": "resistor", "pin": "LEAD_A", "address": "A1"},
+                "target": {"componentId": "led", "pin": "ANODE", "address": "E1"},
+                "electricalNode": "node:same",
+                "color": "#2563eb",
+            }),
+            AssemblyConnection.model_validate({
+                "id": "different-node",
+                "source": {"componentId": "resistor", "pin": "LEAD_B", "address": "A1"},
+                "target": {"componentId": "led", "pin": "CATHODE", "address": "F1"},
+                "electricalNode": "node:signal",
+                "color": "#059669",
+            }),
+            AssemblyConnection.model_validate({
+                "id": "duplicate-pair",
+                "source": {"componentId": "led", "pin": "CATHODE", "address": "F1"},
+                "target": {"componentId": "resistor", "pin": "LEAD_B", "address": "A1"},
+                "electricalNode": "node:signal",
+                "color": "#059669",
+            }),
+            AssemblyConnection.model_validate({
+                "id": "missing-address",
+                "source": {"componentId": "uno", "pin": "D3"},
+                "target": {"componentId": "led", "pin": "ANODE", "address": "A2"},
+                "electricalNode": "node:missing",
+                "color": "#7c3aed",
+            }),
+        ]
+
+        jumpers = route_breadboard_jumpers(connections)
+
+        self.assertEqual(len(jumpers), 2)
+        self.assertEqual(jumpers[0].id, "jumper-1")
+        self.assertEqual(jumpers[0].wire_type, "male-male")
+        self.assertEqual(jumpers[0].derived_from, ["different-node"])
+        self.assertEqual(jumpers[0].source.component_id, BREADBOARD_ID)
+        self.assertEqual(jumpers[0].source.pin, "A1")
+        self.assertEqual(jumpers[0].target.component_id, BREADBOARD_ID)
+        self.assertEqual(jumpers[0].target.pin, "F1")
+        self.assertEqual(jumpers[1].derived_from, ["missing-address"])
+        self.assertEqual(jumpers[1].source.component_id, "uno")
+        self.assertEqual(jumpers[1].source.pin, "D3")
+        self.assertEqual(jumpers[1].target.component_id, BREADBOARD_ID)
+        self.assertEqual(jumpers[1].target.pin, "A2")
+
+    def test_route_breadboard_jumpers_uses_free_holes_in_same_electrical_group(self):
+        connections = [
+            AssemblyConnection.model_validate({
+                "id": "different-node",
+                "source": {"componentId": "resistor", "pin": "LEAD_B", "address": "A1"},
+                "target": {"componentId": "led", "pin": "CATHODE", "address": "F1"},
+                "electricalNode": "node:signal",
+                "color": "#059669",
+            }),
+            AssemblyConnection.model_validate({
+                "id": "next-available",
+                "source": {"componentId": "button", "pin": "LEFT", "address": "A2"},
+                "target": {"componentId": "uno", "pin": "D2", "address": "F2"},
+                "electricalNode": "node:signal-2",
+                "color": "#2563eb",
+            }),
+        ]
+
+        jumpers = route_breadboard_jumpers(
+            connections,
+            occupied_holes={"A1", "A2", "F1", "F2"},
+        )
+
+        self.assertEqual(len(jumpers), 2)
+        self.assertEqual((jumpers[0].source.pin, jumpers[0].target.pin), ("B1", "G1"))
+        self.assertEqual((jumpers[1].source.pin, jumpers[1].target.pin), ("B2", "G2"))
+        self.assertFalse(
+            {"A1", "A2", "F1", "F2"} & {
+                endpoint.address
+                for jumper in jumpers
+                for endpoint in (jumper.source, jumper.target)
+            }
+        )
 
     def test_same_input_produces_byte_identical_plan(self):
         first = self.build("ultrasonic_sensor").model_dump_json(by_alias=True)

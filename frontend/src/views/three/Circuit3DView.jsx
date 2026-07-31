@@ -44,6 +44,11 @@ const modelProfiles = {
     rotation: [0, 0, 0],
     pinLayout: "resistor",
   },
+  "breadboard-half": {
+    longestSide: 9.5,
+    rotation: [0, 0, 0],
+    pinLayout: "breadboard",
+  },
   "pushbutton-6x6": {
     longestSide: 1.8,
     rotation: [0, 0, 0],
@@ -92,6 +97,75 @@ function getLayoutBounds(parts) {
     centerX: (minX + maxX) / 2,
     centerY: (minY + maxY) / 2,
     scale: Math.min(0.017, 10.5 / largestSpan),
+  };
+}
+
+function toScenePosition(transform) {
+  const position = transform?.position;
+  if (!position) return null;
+  return new THREE.Vector3(
+    Number(position.x ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+    Number(position.y ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+    Number(position.z ?? 0) * REAL_WORLD_SCENE_UNITS_PER_METER,
+  );
+}
+
+function endpointToConnectionSide(endpoint) {
+  return {
+    componentId: endpoint.componentId ?? endpoint.component_id,
+    pin: endpoint.pin,
+  };
+}
+
+function assemblyJumperToConnection(jumper) {
+  const source = endpointToConnectionSide(jumper.source);
+  const target = endpointToConnectionSide(jumper.target);
+  return {
+    id: jumper.id,
+    source: source.componentId,
+    sourcePin: source.pin,
+    target: target.componentId,
+    targetPin: target.pin,
+    color: jumper.color,
+    sourceConnector: "male",
+    targetConnector: "male",
+    wireType: jumper.wireType ?? jumper.wire_type ?? "male-male",
+  };
+}
+
+function circuitForAssemblyPlan(circuit) {
+  const plan = circuit?.assemblyPlan;
+  if (!plan?.components?.length || !plan?.placements?.length) return circuit;
+
+  const placementById = new Map(
+    plan.placements.map((placement) => [
+      placement.componentId ?? placement.component_id,
+      placement,
+    ]),
+  );
+  const fallbackPartById = new Map((circuit?.parts ?? []).map((part) => [part.id, part]));
+  const parts = plan.components.map((component, index) => {
+    const id = component.instanceId ?? component.instance_id;
+    const assetSlug = component.assetSlug ?? component.asset_slug;
+    const placement = placementById.get(id);
+    const fallback = fallbackPartById.get(id);
+    return {
+      id,
+      label: component.label ?? fallback?.label ?? id,
+      componentKey: assetSlug,
+      position: fallback?.position ?? { x: index * 170, y: 120 },
+      width: fallback?.width ?? (assetSlug === "breadboard-half" ? 360 : 120),
+      assemblyTransform: placement?.transform ?? null,
+    };
+  });
+
+  const jumpers = Array.isArray(plan.jumpers) ? plan.jumpers : [];
+  return {
+    ...circuit,
+    parts,
+    connections: jumpers.length
+      ? jumpers.map(assemblyJumperToConnection)
+      : (circuit?.connections ?? []),
   };
 }
 
@@ -150,7 +224,8 @@ function prepareModel(gltf, part, asset, layoutBounds) {
 
   modelBounds = new THREE.Box3().setFromObject(model);
   size = modelBounds.getSize(new THREE.Vector3());
-  group.position.copy(normalizedPartPosition(part, layoutBounds));
+  const assemblyPosition = toScenePosition(part.assemblyTransform);
+  group.position.copy(assemblyPosition ?? normalizedPartPosition(part, layoutBounds));
 
   return {
     asset,
@@ -491,6 +566,7 @@ export default function Circuit3DView({ circuit, interactive = false }) {
   const [pinSelection, setPinSelection] = useState(null);
   const [interactiveWireCount, setInteractiveWireCount] = useState(0);
   const [loadState, setLoadState] = useState({ loaded: 0, status: "loading", total: 0 });
+  const renderCircuit = useMemo(() => circuitForAssemblyPlan(circuit), [circuit]);
   const selectedWire = useMemo(
     () => resolvedWires.find((wire) => wire.id === selectedWireId) ?? null,
     [resolvedWires, selectedWireId],
@@ -517,7 +593,7 @@ export default function Circuit3DView({ circuit, interactive = false }) {
 
   useEffect(() => {
     const container = containerRef.current;
-    const parts = circuit?.parts ?? [];
+    const parts = renderCircuit?.parts ?? [];
     if (!container || parts.length === 0) return undefined;
 
     let disposed = false;
@@ -690,7 +766,7 @@ export default function Circuit3DView({ circuit, interactive = false }) {
           wireGroup.add(group);
           return resolved;
         };
-        (circuit.connections ?? []).forEach((connection, index) => {
+        (renderCircuit.connections ?? []).forEach((connection, index) => {
           const resolved = addConnection(connection, index);
           if (resolved) normalizedWires.push(resolved);
         });
@@ -790,7 +866,7 @@ export default function Circuit3DView({ circuit, interactive = false }) {
       renderer.dispose();
       renderer.domElement.remove();
     };
-  }, [circuit]);
+  }, [renderCircuit]);
 
   const toggleWireHidden = (wireId) => {
     setHiddenWireIds((current) => {
