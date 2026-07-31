@@ -1,0 +1,412 @@
+{
+  "component_slug": "arduino-nano",
+  "board_slug": "breadboard-half",
+  "mounting": {
+    "mounting_type": "breadboard-insert",
+    "rotation_policy": "snap-yaw",
+    "straddles_center_gap": true,
+    "board_rows": [
+      "E",
+      "F"
+    ],
+    "board_columns": [
+      8,
+      22
+    ],
+    "notes": [
+      "Nano header row spacing is 15.24 mm; the board's row E-row F gap measures 7.8 mm, so this placement straddles the center groove literally (rows E/F) rather than matching the header spacing to the millimeter."
+    ]
+  },
+  "pin_placements": [
+    {
+      "pinKey": "D12",
+      "nodeName": "pin_D12",
+      "holeAddress": "E8",
+      "terminalGroupId": "terminal-ae-8",
+      "boardRow": "E",
+      "boardColumn": 8,
+      "boardPosition": [
+        -0.019715,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D11",
+      "nodeName": "pin_D11",
+      "holeAddress": "E9",
+      "terminalGroupId": "terminal-ae-9",
+      "boardRow": "E",
+      "boardColumn": 9,
+      "boardPosition": [
+        -0.017175,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D10",
+      "nodeName": "pin_D10",
+      "holeAddress": "E10",
+      "terminalGroupId": "terminal-ae-10",
+      "boardRow": "E",
+      "boardColumn": 10,
+      "boardPosition": [
+        -0.014634999999999999,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D9",
+      "nodeName": "pin_D9",
+      "holeAddress": "E11",
+      "terminalGroupId": "terminal-ae-11",
+      "boardRow": "E",
+      "boardColumn": 11,
+      "boardPosition": [
+        -0.012094999999999998,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D8",
+      "nodeName": "pin_D8",
+      "holeAddress": "E12",
+      "terminalGroupId": "terminal-ae-12",
+      "boardRow": "E",
+      "boardColumn": 12,
+      "boardPosition": [
+        -0.009554999999999998,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D7",
+      "nodeName": "pin_D7",
+      "holeAddress": "E13",
+      "terminalGroupId": "terminal-ae-13",
+      "boardRow": "E",
+      "boardColumn": 13,
+      "boardPosition": [
+        -0.007015,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D6",
+      "nodeName": "pin_D6",
+      "holeAddress": "E14",
+      "terminalGroupId": "terminal-ae-14",
+      "boardRow": "E",
+      "boardColumn": 14,
+      "boardPosition": [
+        -0.004475,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D5",
+      "nodeName": "pin_D5",
+      "holeAddress": "E15",
+      "terminalGroupId": "terminal-ae-15",
+      "boardRow": "E",
+      "boardColumn": 15,
+      "boardPosition": [
+        -0.0019349999999999992,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D4",
+      "nodeName": "pin_D4",
+      "holeAddress": "E16",
+      "terminalGroupId": "terminal-ae-16",
+      "boardRow": "E",
+      "boardColumn": 16,
+      "boardPosition": [
+        0.0006050000000000014,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D3",
+      "nodeName": "pin_D3",
+      "holeAddress": "E17",
+      "terminalGroupId": "terminal-ae-17",
+      "boardRow": "E",
+      "boardColumn": 17,
+      "boardPosition": [
+        0.003145000000000002,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D2",
+      "nodeName": "pin_D2",
+      "holeAddress": "E18",
+      "terminalGroupId": "terminal-ae-18",
+      "boardRow": "E",
+      "boardColumn": 18,
+      "boardPosition": [
+        0.0056850000000000026,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "GND_2",
+      "nodeName": "pin_GND_2",
+      "holeAddress": "E19",
+      "terminalGroupId": "terminal-ae-19",
+      "boardRow": "E",
+      "boardColumn": 19,
+      "boardPosition": [
+        0.008225000000000003,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "RESET_2",
+      "nodeName": "pin_RESET_2",
+      "holeAddress": "E20",
+      "terminalGroupId": "terminal-ae-20",
+      "boardRow": "E",
+      "boardColumn": 20,
+      "boardPosition": [
+        0.010765000000000004,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D0",
+      "nodeName": "pin_D0",
+      "holeAddress": "E21",
+      "terminalGroupId": "terminal-ae-21",
+      "boardRow": "E",
+      "boardColumn": 21,
+      "boardPosition": [
+        0.013305000000000004,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D1",
+      "nodeName": "pin_D1",
+      "holeAddress": "E22",
+      "terminalGroupId": "terminal-ae-22",
+      "boardRow": "E",
+      "boardColumn": 22,
+      "boardPosition": [
+        0.015845000000000005,
+        0,
+        -0.004565
+      ]
+    },
+    {
+      "pinKey": "D13",
+      "nodeName": "pin_D13",
+      "holeAddress": "F8",
+      "terminalGroupId": "terminal-fj-8",
+      "boardRow": "F",
+      "boardColumn": 8,
+      "boardPosition": [
+        -0.019715,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "3V3",
+      "nodeName": "pin_3V3",
+      "holeAddress": "F9",
+      "terminalGroupId": "terminal-fj-9",
+      "boardRow": "F",
+      "boardColumn": 9,
+      "boardPosition": [
+        -0.017175,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "AREF",
+      "nodeName": "pin_AREF",
+      "holeAddress": "F10",
+      "terminalGroupId": "terminal-fj-10",
+      "boardRow": "F",
+      "boardColumn": 10,
+      "boardPosition": [
+        -0.014634999999999999,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A0",
+      "nodeName": "pin_A0",
+      "holeAddress": "F11",
+      "terminalGroupId": "terminal-fj-11",
+      "boardRow": "F",
+      "boardColumn": 11,
+      "boardPosition": [
+        -0.012094999999999998,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A1",
+      "nodeName": "pin_A1",
+      "holeAddress": "F12",
+      "terminalGroupId": "terminal-fj-12",
+      "boardRow": "F",
+      "boardColumn": 12,
+      "boardPosition": [
+        -0.009554999999999998,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A2",
+      "nodeName": "pin_A2",
+      "holeAddress": "F13",
+      "terminalGroupId": "terminal-fj-13",
+      "boardRow": "F",
+      "boardColumn": 13,
+      "boardPosition": [
+        -0.007015,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A3",
+      "nodeName": "pin_A3",
+      "holeAddress": "F14",
+      "terminalGroupId": "terminal-fj-14",
+      "boardRow": "F",
+      "boardColumn": 14,
+      "boardPosition": [
+        -0.004475,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A4",
+      "nodeName": "pin_A4",
+      "holeAddress": "F15",
+      "terminalGroupId": "terminal-fj-15",
+      "boardRow": "F",
+      "boardColumn": 15,
+      "boardPosition": [
+        -0.0019349999999999992,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A5",
+      "nodeName": "pin_A5",
+      "holeAddress": "F16",
+      "terminalGroupId": "terminal-fj-16",
+      "boardRow": "F",
+      "boardColumn": 16,
+      "boardPosition": [
+        0.0006050000000000014,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A6",
+      "nodeName": "pin_A6",
+      "holeAddress": "F17",
+      "terminalGroupId": "terminal-fj-17",
+      "boardRow": "F",
+      "boardColumn": 17,
+      "boardPosition": [
+        0.003145000000000002,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "A7",
+      "nodeName": "pin_A7",
+      "holeAddress": "F18",
+      "terminalGroupId": "terminal-fj-18",
+      "boardRow": "F",
+      "boardColumn": 18,
+      "boardPosition": [
+        0.0056850000000000026,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "5V",
+      "nodeName": "pin_5V",
+      "holeAddress": "F19",
+      "terminalGroupId": "terminal-fj-19",
+      "boardRow": "F",
+      "boardColumn": 19,
+      "boardPosition": [
+        0.008225000000000003,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "RESET_1",
+      "nodeName": "pin_RESET_1",
+      "holeAddress": "F20",
+      "terminalGroupId": "terminal-fj-20",
+      "boardRow": "F",
+      "boardColumn": 20,
+      "boardPosition": [
+        0.010765000000000004,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "GND_1",
+      "nodeName": "pin_GND_1",
+      "holeAddress": "F21",
+      "terminalGroupId": "terminal-fj-21",
+      "boardRow": "F",
+      "boardColumn": 21,
+      "boardPosition": [
+        0.013305000000000004,
+        0,
+        0.003235
+      ]
+    },
+    {
+      "pinKey": "VIN",
+      "nodeName": "pin_VIN",
+      "holeAddress": "F22",
+      "terminalGroupId": "terminal-fj-22",
+      "boardRow": "F",
+      "boardColumn": 22,
+      "boardPosition": [
+        0.015845000000000005,
+        0,
+        0.003235
+      ]
+    }
+  ]
+}
