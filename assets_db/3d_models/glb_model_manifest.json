@@ -1,0 +1,508 @@
+[
+  {
+    "component_slug": "arduino-uno-r3",
+    "target": "arduino-uno-r3.glb",
+    "source": "arduino_uno.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected Uno candidate with stable bounds and moderate file size.",
+    "storage_path": "3d_models/glb/arduino-uno-r3.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 3949412,
+    "sha256": "14ad528f6afef1117708f08ac6a2dda00eff9e0fffea13f951df851075485511",
+    "version": 2,
+    "nodes": 156,
+    "meshes": 33,
+    "materials": 33,
+    "textures": 21,
+    "images": 10,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.03907009198973581,
+        0.010753239538727618,
+        -0.028928851706235617
+      ],
+      "max": [
+        0.036267651815104704,
+        0.02078538610293792,
+        0.02461590711820128
+      ],
+      "size": [
+        0.07533774380484051,
+        0.010032146564210304,
+        0.0535447588244369
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "arduino-nano",
+    "target": "arduino-nano.glb",
+    "source": "arduino_nano (1).glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected Nano candidate with plausible board aspect ratio and 2.3 MB size.",
+    "storage_path": "3d_models/glb/arduino-nano.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 2234420,
+    "sha256": "c3c5e2f2ecfad9d317a6783ce31945cfa847568e163f0e82fce7754e4dce32d5",
+    "version": 2,
+    "nodes": 48,
+    "meshes": 7,
+    "materials": 7,
+    "textures": 1,
+    "images": 1,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.009000000512226679,
+        -9.351190521575403e-9,
+        -0.02250001433917099
+      ],
+      "max": [
+        0.009000000211464892,
+        0.014846717438545598,
+        0.022499986005503715
+      ],
+      "size": [
+        0.01800000072369157,
+        0.01484672678973612,
+        0.045000000344674704
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "breadboard-half",
+    "target": "breadboard-half.glb",
+    "source": "breadboard-half-working.blend",
+    "audit_status": "candidate",
+    "model_kind": "candidate_3d",
+    "notes": "Real-world Half Breadboard exported from Blender with a mounting-surface origin, 300 terminal-hole Empty nodes, and 100 power-rail Empty nodes.",
+    "storage_path": "3d_models/glb/breadboard-half.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 2142580,
+    "sha256": "09574a9d7b95d22dec389cef3048615289c18bcd4ed12287323bd4e223b1de76",
+    "version": 2,
+    "nodes": 402,
+    "meshes": 1,
+    "materials": 0,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.04150497540831566,
+        -0.009509995579719543,
+        -0.028040006756782532
+      ],
+      "max": [
+        0.04150497540831566,
+        0,
+        0.028039991855621338
+      ],
+      "size": [
+        0.08300995081663132,
+        0.009509995579719543,
+        0.05607999861240387
+      ]
+    },
+    "unit": "meter",
+    "upstream_url": "https://grabcad.com/library/half-breadboard-1",
+    "upstream_license": "GrabCAD Community personal-use permission; redistribution and commercial-use permission not explicitly established"
+  },
+  {
+    "component_slug": "breadboard-full",
+    "target": "breadboard-full.glb",
+    "source": "breadboard_blender.glb",
+    "audit_status": "needs_optimization",
+    "model_kind": "candidate_3d",
+    "notes": "Valid long breadboard candidate, but about 25 MB; optimize before production web delivery.",
+    "storage_path": "3d_models/glb/breadboard-full.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 25283068,
+    "sha256": "b9e9ef4e44db22fcf37dcc07714f16a01e1e8e7f4fdb1b217a3d1de4355279c9",
+    "version": 2,
+    "nodes": 41,
+    "meshes": 33,
+    "materials": 5,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [
+      "KHR_materials_clearcoat",
+      "KHR_materials_specular",
+      "KHR_materials_ior"
+    ],
+    "bounds": {
+      "min": [
+        -2.703288565661377,
+        0.0008963979780673981,
+        -8.25690358842266
+      ],
+      "max": [
+        2.70365066388778,
+        0.8048873360144884,
+        8.25690358842266
+      ],
+      "size": [
+        5.406939229549157,
+        0.803990938036421,
+        16.51380717684532
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "hc-sr04",
+    "target": "hc-sr04.glb",
+    "source": "hc-sr04.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Real-world HC-SR04 candidate normalized from the measured pin row with embedded VCC, TRIG, ECHO, and GND anchors.",
+    "storage_path": "3d_models/glb/hc-sr04.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 1329152,
+    "sha256": "1121ac4bc88cd428b21c2f7b30fd41ff11549aa39e0b6c00c93d55413158c4cc",
+    "version": 2,
+    "nodes": 30,
+    "meshes": 25,
+    "materials": 9,
+    "textures": 3,
+    "images": 3,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.022352345287799835,
+        -0.006000000052154064,
+        -0.0035682767629623413
+      ],
+      "max": [
+        0.022996479645371437,
+        0.020328156650066376,
+        0.014337833970785141
+      ],
+      "size": [
+        0.04534882493317127,
+        0.02632815670222044,
+        0.017906110733747482
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "led-5mm-blue",
+    "target": "led-5mm-blue.glb",
+    "source": "generate_discrete_io_pack.mjs",
+    "audit_status": "candidate",
+    "model_kind": "candidate_3d",
+    "notes": "Procedural blue LED with real-world dimensions and embedded pin anchors.",
+    "storage_path": "3d_models/glb/led-5mm-blue.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 38264,
+    "sha256": "8c891d49faca1aa69226cec21760827d44ce2758231dbe0c7f37652e0cd4934d",
+    "version": 2,
+    "nodes": 7,
+    "meshes": 4,
+    "materials": 4,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.002950000111013651,
+        -0.007999999970197678,
+        -0.002950000111013651
+      ],
+      "max": [
+        0.002950000111013651,
+        0.00860000029206276,
+        0.002950000111013651
+      ],
+      "size": [
+        0.005900000222027302,
+        0.01660000026226044,
+        0.005900000222027302
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "led-rgb-5mm",
+    "target": "led-rgb-5mm.glb",
+    "source": "generate_discrete_io_pack.mjs",
+    "audit_status": "candidate",
+    "model_kind": "candidate_3d",
+    "notes": "Procedural RGB LED with real-world dimensions and embedded pin anchors.",
+    "storage_path": "3d_models/glb/led-rgb-5mm.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 59768,
+    "sha256": "e5e91e13ceba23d98a15d4d41463dd75a7a6461ed44df5a4c7e33f3a2666cada",
+    "version": 2,
+    "nodes": 15,
+    "meshes": 10,
+    "materials": 10,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.004047764135817997,
+        -0.007000000108033418,
+        -0.002899999963119626
+      ],
+      "max": [
+        0.004047764135817997,
+        0.00860000029206276,
+        0.002899999963119626
+      ],
+      "size": [
+        0.008095528271635994,
+        0.015600000400096178,
+        0.005799999926239252
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "potentiometer-10k",
+    "target": "potentiometer-10k.glb",
+    "source": "generate_discrete_io_pack.mjs",
+    "audit_status": "candidate",
+    "model_kind": "candidate_3d",
+    "notes": "Procedural 10k potentiometer with real-world dimensions and embedded pin anchors.",
+    "storage_path": "3d_models/glb/potentiometer-10k.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 114588,
+    "sha256": "497f7932e597f4e1ef1b9553d3772a5ab3226460db60de73eec565b1dbb4eb64",
+    "version": 2,
+    "nodes": 26,
+    "meshes": 21,
+    "materials": 8,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.00800000037997961,
+        -0.0059999998033046726,
+        0.0030000000059604644
+      ],
+      "max": [
+        0.00800000037997961,
+        0.018000000379979612,
+        0.02440000000707805
+      ],
+      "size": [
+        0.01600000075995922,
+        0.024000000183284284,
+        0.021400000001117588
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "slide-switch-spdt",
+    "target": "slide-switch-spdt.glb",
+    "source": "generate_discrete_io_pack.mjs",
+    "audit_status": "candidate",
+    "model_kind": "candidate_3d",
+    "notes": "Procedural SPDT slide switch with real-world dimensions and embedded pin anchors.",
+    "storage_path": "3d_models/glb/slide-switch-spdt.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 17204,
+    "sha256": "b7a27506560a2589a91d0ab23ae9082d90a5d5541382bce333231a35c6be7e1c",
+    "version": 2,
+    "nodes": 10,
+    "meshes": 6,
+    "materials": 6,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.006500000134110451,
+        -0.005999999806284904,
+        -0.0035000001080334187
+      ],
+      "max": [
+        0.006500000134110451,
+        0.011600000013038516,
+        0.0035000001080334187
+      ],
+      "size": [
+        0.013000000268220901,
+        0.01759999981932342,
+        0.007000000216066837
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "led-5mm-red",
+    "target": "led-5mm-red.glb",
+    "source": "Red LED.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Normalized 5 mm red LED candidate with a 2.54 mm pin pitch and embedded pin anchor nodes; verify source license and physical measurements before approval.",
+    "storage_path": "3d_models/glb/led-5mm-red.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 2013224,
+    "sha256": "d6dcbc67be4ef2a2197ba04f2497c4a6fd70b620747b84b967720a582f62bbe9",
+    "version": 2,
+    "nodes": 4,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.002290737582370639,
+        -0.01433674618601799,
+        -0.0024615181609988213
+      ],
+      "max": [
+        0.002669190987944603,
+        0.011729164980351925,
+        0.0024940113071352243
+      ],
+      "size": [
+        0.004959928570315242,
+        0.026065911166369915,
+        0.004955529468134046
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "pushbutton-6x6",
+    "target": "pushbutton-6x6.glb",
+    "source": "push_button_6x6x5mm.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Real-world pushbutton candidate with a mounting-plane origin and four anchors measured from the source metal leads.",
+    "storage_path": "3d_models/glb/pushbutton-6x6.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 39480,
+    "sha256": "8b145ce3fea5e6958bf4859c4c1ac491d6d705722929b4b9805bec7c57539f99",
+    "version": 2,
+    "nodes": 7,
+    "meshes": 2,
+    "materials": 2,
+    "textures": 0,
+    "images": 0,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.0036296590697020292,
+        -0.0035000001080334187,
+        -0.004081931430846453
+      ],
+      "max": [
+        0.0035788659006357193,
+        0.005905970931053162,
+        0.004080507438629866
+      ],
+      "size": [
+        0.0072085249703377485,
+        0.00940597103908658,
+        0.008162438869476318
+      ]
+    },
+    "unit": "meter"
+  },
+  {
+    "component_slug": "servo-sg90",
+    "target": "servo-sg90.glb",
+    "source": "servo_motor_sg_90.glb",
+    "audit_status": "ready",
+    "model_kind": "production_3d",
+    "notes": "Selected SG90 candidate with compact file size.",
+    "storage_path": "3d_models/glb/servo-sg90.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 376656,
+    "sha256": "fc321496fc81d5183b4eda2eca3fc0fe4fec059e2cfe548d028d0152d586ea13",
+    "version": 2,
+    "nodes": 31,
+    "meshes": 14,
+    "materials": 7,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.5124761462211609,
+        -0.07357913255691528,
+        -1.4787427186965942
+      ],
+      "max": [
+        0.5144802927970886,
+        2.589119926095009,
+        1.9720511734485626
+      ],
+      "size": [
+        1.0269564390182495,
+        2.662699058651924,
+        3.450793892145157
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "resistor-220-ohm",
+    "target": "resistor-220-ohm.glb",
+    "source": "resistor.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Breadboard-ready 220 ohm resistor candidate with a 10.16 mm span, rebuilt bent leads, and embedded non-polarized anchors.",
+    "storage_path": "3d_models/glb/resistor-220-ohm.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 129436,
+    "sha256": "781a89587bcb58e9b915045a9cfaf40c9265a951221da60c033ec50cd356e842",
+    "version": 2,
+    "nodes": 11,
+    "meshes": 8,
+    "materials": 5,
+    "textures": 1,
+    "images": 1,
+    "extensions_used": [],
+    "bounds": {
+      "min": [
+        -0.0054517099633812904,
+        -0.003000000026077032,
+        -0.0011500000255182385
+      ],
+      "max": [
+        0.0054517099633812904,
+        0.0041499994695186615,
+        0.0011500000255182385
+      ],
+      "size": [
+        0.010903419926762581,
+        0.007149999495595694,
+        0.002300000051036477
+      ]
+    },
+    "unit": "meter"
+  }
+]

@@ -1,0 +1,197 @@
+.jumperDemo {
+  min-height: 100vh;
+  background: #eef3f9;
+  color: #172033;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.jumperDemoHeader {
+  min-height: 72px;
+  padding: 12px 24px;
+  border-bottom: 1px solid #d8e1ed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  background: #fff;
+}
+
+.jumperDemoHeader > div,
+.jumperDemoHeader a,
+.invalidToggle,
+.jumperScenarioGrid article,
+.jumperDemoFooter {
+  display: flex;
+  align-items: center;
+}
+
+.jumperDemoHeader > div {
+  gap: 11px;
+}
+
+.jumperDemoHeader a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d3deea;
+  border-radius: 7px;
+  justify-content: center;
+  color: #334155;
+}
+
+.jumperDemoHeader h1,
+.jumperDemoHeader p {
+  margin: 0;
+}
+
+.jumperDemoHeader h1 {
+  font-size: 17px;
+}
+
+.jumperDemoHeader p {
+  margin-top: 2px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.invalidToggle {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid #d3deea;
+  border-radius: 7px;
+  gap: 7px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.invalidToggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.invalidToggle.active {
+  border-color: #fb7185;
+  background: #fff1f2;
+  color: #be123c;
+}
+
+.jumperScenarioGrid {
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.jumperScenarioGrid article {
+  min-width: 0;
+  min-height: 54px;
+  padding: 9px 11px;
+  border: 1px solid #d8e1ed;
+  border-radius: 8px;
+  gap: 9px;
+  background: #fff;
+}
+
+.jumperScenarioGrid article > svg {
+  flex: 0 0 auto;
+  color: #059669;
+}
+
+.jumperScenarioGrid article > div {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.jumperScenarioGrid strong {
+  font-size: 11px;
+}
+
+.jumperScenarioGrid span {
+  overflow: hidden;
+  color: #64748b;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jumperScenarioGrid code {
+  margin-left: auto;
+  padding: 3px 5px;
+  border-radius: 4px;
+  background: #edf4ff;
+  color: #1d4ed8;
+  font-size: 8px;
+}
+
+.jumperScenarioGrid .interactionHint > svg {
+  color: #2563eb;
+}
+
+.jumperDemoStage {
+  margin: 0 20px;
+  overflow: hidden;
+  border: 1px solid #d8e1ed;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(30, 41, 59, 0.08);
+}
+
+.jumperDemo .circuit3dCanvas {
+  height: calc(100vh - 280px);
+  min-height: 480px;
+}
+
+.jumperDemoFooter {
+  min-height: 42px;
+  padding: 8px 22px;
+  flex-wrap: wrap;
+  gap: 14px;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.jumperDemoFooter span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.jumperDemoFooter i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.jumperDemoFooter .power { background: #dc2626; }
+.jumperDemoFooter .ground { background: #1f2937; }
+.jumperDemoFooter .signal { background: #2563eb; }
+
+@media (max-width: 900px) {
+  .jumperScenarioGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .jumperDemoHeader {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 620px) {
+  .jumperDemoHeader {
+    padding: 10px 12px;
+    flex-direction: column;
+  }
+
+  .jumperScenarioGrid {
+    padding: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .jumperDemoStage {
+    margin: 0 10px;
+  }
+}

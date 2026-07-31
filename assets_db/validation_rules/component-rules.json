@@ -1,0 +1,187 @@
+{
+  "schemaVersion": "1.0.0",
+  "components": {
+    "arduino-uno-r3": {
+      "category": "controller",
+      "mountingMode": "free",
+      "pinConnectorGender": "female",
+      "pins": [
+        "SCL", "SDA", "AREF", "GND_D", "D13", "D12", "D11", "D10",
+        "D9", "D8", "D7", "D6", "D5", "D4", "D3", "D2", "D1", "D0",
+        "IOREF", "RESET", "3V3", "5V", "GND_P1", "GND_P2", "VIN",
+        "A0", "A1", "A2", "A3", "A4", "A5", "AUX_RX", "AUX_TX",
+        "AUX_5V", "AUX_GND_1", "AUX_SDA", "AUX_SCL", "AUX_3V3",
+        "AUX_GND_2"
+      ],
+      "capabilityGroups": {
+        "ground": ["GND_D", "GND_P1", "GND_P2", "AUX_GND_1", "AUX_GND_2"],
+        "power": ["3V3", "5V", "AUX_5V", "AUX_3V3"],
+        "power_5v": ["5V", "AUX_5V"],
+        "power_3v3": ["3V3", "AUX_3V3"],
+        "power_input": ["VIN"],
+        "digital": [
+          "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7",
+          "D8", "D9", "D10", "D11", "D12", "D13"
+        ],
+        "analog": ["A0", "A1", "A2", "A3", "A4", "A5"],
+        "io": [
+          "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7",
+          "D8", "D9", "D10", "D11", "D12", "D13",
+          "A0", "A1", "A2", "A3", "A4", "A5",
+          "SCL", "SDA", "AUX_RX", "AUX_TX", "AUX_SDA", "AUX_SCL"
+        ],
+        "pwm": ["D3", "D5", "D6", "D9", "D10", "D11"],
+        "i2c": ["SCL", "SDA", "A4", "A5", "AUX_SDA", "AUX_SCL"],
+        "uart": ["D0", "D1", "AUX_RX", "AUX_TX"]
+      }
+    },
+    "arduino-nano": {
+      "category": "controller",
+      "mountingMode": "free",
+      "pinConnectorGender": "male",
+      "pins": [
+        "D12", "D11", "D10", "D9", "D8", "D7", "D6", "D5", "D4",
+        "D3", "D2", "GND_2", "RESET_2", "D0", "D1", "D13", "3V3",
+        "AREF", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7",
+        "5V", "RESET_1", "GND_1", "VIN"
+      ],
+      "capabilityGroups": {
+        "ground": ["GND_1", "GND_2"],
+        "power": ["3V3", "5V"],
+        "power_5v": ["5V"],
+        "power_3v3": ["3V3"],
+        "power_input": ["VIN"],
+        "digital": [
+          "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7",
+          "D8", "D9", "D10", "D11", "D12", "D13"
+        ],
+        "analog": ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7"],
+        "io": [
+          "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7",
+          "D8", "D9", "D10", "D11", "D12", "D13",
+          "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7"
+        ],
+        "pwm": ["D3", "D5", "D6", "D9", "D10", "D11"],
+        "i2c": ["A4", "A5"],
+        "uart": ["D0", "D1"]
+      }
+    },
+    "hc-sr04": {
+      "category": "sensor",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["VCC", "TRIG", "ECHO", "GND"],
+      "pinRequirements": {
+        "VCC": {"requiresAny": ["power_5v"]},
+        "TRIG": {"requiresAny": ["digital"]},
+        "ECHO": {"requiresAny": ["digital"]},
+        "GND": {"requiresAny": ["ground"]}
+      }
+    },
+    "led-5mm-blue": {
+      "category": "led",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["ANODE", "CATHODE"],
+      "pinRequirements": {
+        "ANODE": {"requiresAny": ["digital", "pwm", "power_5v"]},
+        "CATHODE": {"requiresAny": ["ground"]}
+      },
+      "electricalRules": {
+        "led": {
+          "groundPin": "CATHODE",
+          "channelPins": ["ANODE"],
+          "resistorMode": "per-channel"
+        }
+      }
+    },
+    "led-5mm-red": {
+      "category": "led",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["ANODE", "CATHODE"],
+      "pinRequirements": {
+        "ANODE": {"requiresAny": ["digital", "pwm", "power_5v"]},
+        "CATHODE": {"requiresAny": ["ground"]}
+      },
+      "electricalRules": {
+        "led": {
+          "groundPin": "CATHODE",
+          "channelPins": ["ANODE"],
+          "resistorMode": "per-channel"
+        }
+      }
+    },
+    "led-rgb-5mm": {
+      "category": "led",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["RED", "COMMON_CATHODE", "GREEN", "BLUE"],
+      "pinRequirements": {
+        "RED": {"requiresAny": ["digital", "pwm"], "preferredAny": ["pwm"]},
+        "COMMON_CATHODE": {"requiresAny": ["ground"]},
+        "GREEN": {"requiresAny": ["digital", "pwm"], "preferredAny": ["pwm"]},
+        "BLUE": {"requiresAny": ["digital", "pwm"], "preferredAny": ["pwm"]}
+      },
+      "electricalRules": {
+        "led": {
+          "groundPin": "COMMON_CATHODE",
+          "channelPins": ["RED", "GREEN", "BLUE"],
+          "resistorMode": "per-channel"
+        }
+      }
+    },
+    "resistor-220-ohm": {
+      "category": "passive",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["LEAD_A", "LEAD_B"]
+    },
+    "pushbutton-6x6": {
+      "category": "switch",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["A1", "A2", "B1", "B2"],
+      "internalConnections": [["A1", "A2"], ["B1", "B2"]]
+    },
+    "potentiometer-10k": {
+      "category": "input",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["CCW", "WIPER", "CW"],
+      "pinRequirements": {
+        "WIPER": {"requiresAny": ["analog"]}
+      },
+      "electricalRules": {
+        "potentiometer": {
+          "terminalPins": ["CCW", "CW"],
+          "wiperPin": "WIPER"
+        }
+      }
+    },
+    "slide-switch-spdt": {
+      "category": "switch",
+      "mountingMode": "breadboard",
+      "pinConnectorGender": "male",
+      "pins": ["THROW_A", "COMMON", "THROW_B"],
+      "pinRequirements": {
+        "COMMON": {"preferredAny": ["digital", "power_5v", "ground"]}
+      }
+    },
+    "servo-sg90": {
+      "category": "actuator",
+      "mountingMode": "free",
+      "pinConnectorGender": "female",
+      "pins": ["GND", "VCC", "SIGNAL"],
+      "pinRequirements": {
+        "GND": {"requiresAny": ["ground"]},
+        "VCC": {"requiresAny": ["power_5v"]},
+        "SIGNAL": {"requiresAny": ["digital"], "preferredAny": ["pwm"]}
+      },
+      "electricalRules": {
+        "externalPowerRecommended": true,
+        "commonGroundRequired": true
+      }
+    }
+  }
+}

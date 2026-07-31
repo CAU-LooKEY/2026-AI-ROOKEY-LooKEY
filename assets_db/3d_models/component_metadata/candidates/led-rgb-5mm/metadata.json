@@ -1,0 +1,243 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "led-rgb-5mm",
+  "asset": {
+    "path": "assets_db/3d_models/glb/led-rgb-5mm.glb",
+    "sha256": "e5e91e13ceba23d98a15d4d41463dd75a7a6461ed44df5a4c7e33f3a2666cada",
+    "format": "glb",
+    "scaleStatus": "real-world",
+    "thumbnailPath": null
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 8.12,
+    "depth": 5.8,
+    "height": 15.6,
+    "measurementScope": "overall-including-pins",
+    "source": "measured",
+    "confidence": 0.9
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "threejs-object-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": true,
+    "description": "Origin is centered on the breadboard insertion plane between the outer leads."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "red-left",
+        "pinKey": "RED",
+        "direction": "-X",
+        "description": "The red channel lead is on runtime -X."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "RED",
+      "label": "Red channel",
+      "nodeName": "pin_red",
+      "position": [
+        -0.00381,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "R"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_red",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    },
+    {
+      "pinKey": "COMMON_CATHODE",
+      "label": "Common cathode",
+      "nodeName": "pin_common_cathode",
+      "position": [
+        -0.00127,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "ground",
+        "aliases": [
+          "COM",
+          "K",
+          "-"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_common_cathode",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    },
+    {
+      "pinKey": "GREEN",
+      "label": "Green channel",
+      "nodeName": "pin_green",
+      "position": [
+        0.00127,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "G"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_green",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    },
+    {
+      "pinKey": "BLUE",
+      "label": "Blue channel",
+      "nodeName": "pin_blue",
+      "position": [
+        0.00381,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "signal",
+        "aliases": [
+          "B"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_blue",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    }
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "keepOutMarginMillimeter": 0.5
+  },
+  "provenance": {
+    "authorGithub": "a3222",
+    "branch": "feat/assets-discrete-io-pack",
+    "method": "other",
+    "sourceTool": "Three.js GLTFExporter",
+    "createdAt": "2026-07-28",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "Nominal real-world procedural model; breadboard occupancy 4 columns x 1 rows.",
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata."
+  ]
+}

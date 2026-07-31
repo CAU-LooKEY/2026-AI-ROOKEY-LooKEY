@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "arduino-nano",
+  "asset": {
+    "path": "assets_db/3d_models/glb/arduino-nano.glb",
+    "sha256": "c3c5e2f2ecfad9d317a6783ce31945cfa847568e163f0e82fce7754e4dce32d5",
+    "format": "glb",
+    "scaleStatus": "real-world",
+    "thumbnailPath": "assets_db/2d_svgs/raster_sources/arduino-nano-top.png"
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 18,
+    "depth": 45,
+    "height": 14.8467,
+    "measurementScope": "overall-including-pins",
+    "source": "datasheet",
+    "confidence": 0.95
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [0, 0, 0],
+    "normalized": true,
+    "description": "Origin remains on the male pin-tip plane; side-header snap anchors are 4 mm above it at the breadboard surface insertion plane."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [0, 0, 0, 1],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "usb-end",
+        "pinKey": "VIN",
+        "direction": "+Z",
+        "description": "In glTF runtime coordinates the USB connector faces +Z."
+      }
+    ]
+  },
+  "pins": [
+    {"pinKey":"D12","label":"D12/CIPO","nodeName":"pin_D12","position":[-0.00762,0.004,-0.01778],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["12","MISO","CIPO"],"functions":["digital","spi"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D12","notes":[]},
+    {"pinKey":"D11","label":"D11/COPI","nodeName":"pin_D11","position":[-0.00762,0.004,-0.01524],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["11","MOSI","COPI"],"functions":["digital","pwm","spi"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D11","notes":[]},
+    {"pinKey":"D10","label":"D10/SS","nodeName":"pin_D10","position":[-0.00762,0.004,-0.0127],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["10","SS"],"functions":["digital","pwm","spi"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D10","notes":[]},
+    {"pinKey":"D9","label":"D9","nodeName":"pin_D9","position":[-0.00762,0.004,-0.01016],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["9"],"functions":["digital","pwm"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D9","notes":[]},
+    {"pinKey":"D8","label":"D8","nodeName":"pin_D8","position":[-0.00762,0.004,-0.00762],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["8"],"functions":["digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D8","notes":[]},
+    {"pinKey":"D7","label":"D7","nodeName":"pin_D7","position":[-0.00762,0.004,-0.00508],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["7"],"functions":["digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D7","notes":[]},
+    {"pinKey":"D6","label":"D6","nodeName":"pin_D6","position":[-0.00762,0.004,-0.00254],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["6"],"functions":["digital","pwm"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D6","notes":[]},
+    {"pinKey":"D5","label":"D5","nodeName":"pin_D5","position":[-0.00762,0.004,0],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["5"],"functions":["digital","pwm"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D5","notes":[]},
+    {"pinKey":"D4","label":"D4","nodeName":"pin_D4","position":[-0.00762,0.004,0.00254],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["4"],"functions":["digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D4","notes":[]},
+    {"pinKey":"D3","label":"D3","nodeName":"pin_D3","position":[-0.00762,0.004,0.00508],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["3"],"functions":["digital","pwm"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D3","notes":[]},
+    {"pinKey":"D2","label":"D2","nodeName":"pin_D2","position":[-0.00762,0.004,0.00762],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["2"],"functions":["digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D2","notes":[]},
+    {"pinKey":"GND_2","label":"GND","nodeName":"pin_GND_2","position":[-0.00762,0.004,0.01016],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"ground","aliases":["GND"],"functions":["ground"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_GND_2","notes":[]},
+    {"pinKey":"RESET_2","label":"RESET","nodeName":"pin_RESET_2","position":[-0.00762,0.004,0.0127],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["RST","RESET"],"functions":["reset"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_RESET_2","notes":[]},
+    {"pinKey":"D0","label":"D0/RX","nodeName":"pin_D0","position":[-0.00762,0.004,0.01524],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["0","RX"],"functions":["digital","uart"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D0","notes":[]},
+    {"pinKey":"D1","label":"D1/TX","nodeName":"pin_D1","position":[-0.00762,0.004,0.01778],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["1","TX"],"functions":["digital","uart"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D1","notes":[]},
+    {"pinKey":"D13","label":"D13/SCK","nodeName":"pin_D13","position":[0.00762,0.004,-0.01778],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["13","SCK"],"functions":["digital","spi"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_D13","notes":[]},
+    {"pinKey":"3V3","label":"3.3V","nodeName":"pin_3V3","position":[0.00762,0.004,-0.01524],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"power","aliases":["3.3V"],"functions":["power"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_3V3","notes":[]},
+    {"pinKey":"AREF","label":"AREF","nodeName":"pin_AREF","position":[0.00762,0.004,-0.0127],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":[],"functions":["analog","reference"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_AREF","notes":[]},
+    {"pinKey":"A0","label":"A0","nodeName":"pin_A0","position":[0.00762,0.004,-0.01016],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["D14"],"functions":["analog","digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A0","notes":[]},
+    {"pinKey":"A1","label":"A1","nodeName":"pin_A1","position":[0.00762,0.004,-0.00762],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["D15"],"functions":["analog","digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A1","notes":[]},
+    {"pinKey":"A2","label":"A2","nodeName":"pin_A2","position":[0.00762,0.004,-0.00508],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["D16"],"functions":["analog","digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A2","notes":[]},
+    {"pinKey":"A3","label":"A3","nodeName":"pin_A3","position":[0.00762,0.004,-0.00254],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["D17"],"functions":["analog","digital"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A3","notes":[]},
+    {"pinKey":"A4","label":"A4/SDA","nodeName":"pin_A4","position":[0.00762,0.004,0],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["D18","SDA"],"functions":["analog","digital","i2c"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A4","notes":[]},
+    {"pinKey":"A5","label":"A5/SCL","nodeName":"pin_A5","position":[0.00762,0.004,0.00254],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["D19","SCL"],"functions":["analog","digital","i2c"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A5","notes":[]},
+    {"pinKey":"A6","label":"A6","nodeName":"pin_A6","position":[0.00762,0.004,0.00508],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":[],"functions":["analog"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A6","notes":["Analog input only."]},
+    {"pinKey":"A7","label":"A7","nodeName":"pin_A7","position":[0.00762,0.004,0.00762],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":[],"functions":["analog"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_A7","notes":["Analog input only."]},
+    {"pinKey":"5V","label":"5V","nodeName":"pin_5V","position":[0.00762,0.004,0.01016],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"power","aliases":[],"functions":["power"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_5V","notes":[]},
+    {"pinKey":"RESET_1","label":"RESET","nodeName":"pin_RESET_1","position":[0.00762,0.004,0.0127],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["RST","RESET"],"functions":["reset"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_RESET_1","notes":[]},
+    {"pinKey":"GND_1","label":"GND","nodeName":"pin_GND_1","position":[0.00762,0.004,0.01524],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"ground","aliases":["GND"],"functions":["ground"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_GND_1","notes":[]},
+    {"pinKey":"VIN","label":"VIN","nodeName":"pin_VIN","position":[0.00762,0.004,0.01778],"outwardDirection":[0,-1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"power","aliases":[],"functions":["power"]},"mounting":{"breadboardCompatible":true,"insertionDepthMillimeter":4},"confidence":0.95,"sourceObject":"pin_VIN","notes":[]},
+    {"pinKey":"ICSP_CIPO","label":"ICSP CIPO","nodeName":"pin_ICSP_CIPO","position":[-0.00267,0.0148467,-0.021152],"outwardDirection":[0,1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["MISO","D12"],"functions":["digital","spi"]},"mounting":{"breadboardCompatible":false,"insertionDepthMillimeter":6},"confidence":0.95,"sourceObject":"pin_ICSP_CIPO","notes":["ICSP pin 1; upward-facing programming header."]},
+    {"pinKey":"ICSP_5V","label":"ICSP +5V","nodeName":"pin_ICSP_5V","position":[-0.00267,0.0148467,-0.018456],"outwardDirection":[0,1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"power","aliases":["5V"],"functions":["power"]},"mounting":{"breadboardCompatible":false,"insertionDepthMillimeter":6},"confidence":0.95,"sourceObject":"pin_ICSP_5V","notes":["ICSP pin 2; upward-facing programming header."]},
+    {"pinKey":"ICSP_SCK","label":"ICSP SCK","nodeName":"pin_ICSP_SCK","position":[0,0.0148467,-0.021152],"outwardDirection":[0,1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["SCK","D13"],"functions":["digital","spi"]},"mounting":{"breadboardCompatible":false,"insertionDepthMillimeter":6},"confidence":0.95,"sourceObject":"pin_ICSP_SCK","notes":["ICSP pin 3; upward-facing programming header."]},
+    {"pinKey":"ICSP_COPI","label":"ICSP COPI","nodeName":"pin_ICSP_COPI","position":[0,0.0148467,-0.018456],"outwardDirection":[0,1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["MOSI","D11"],"functions":["digital","spi"]},"mounting":{"breadboardCompatible":false,"insertionDepthMillimeter":6},"confidence":0.95,"sourceObject":"pin_ICSP_COPI","notes":["ICSP pin 4; upward-facing programming header."]},
+    {"pinKey":"ICSP_RESET","label":"ICSP RESET","nodeName":"pin_ICSP_RESET","position":[0.00267,0.0148467,-0.021152],"outwardDirection":[0,1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"signal","aliases":["RESET","RESET_1"],"functions":["reset"]},"mounting":{"breadboardCompatible":false,"insertionDepthMillimeter":6},"confidence":0.95,"sourceObject":"pin_ICSP_RESET","notes":["ICSP pin 5; upward-facing programming header."]},
+    {"pinKey":"ICSP_GND","label":"ICSP GND","nodeName":"pin_ICSP_GND","position":[0.00267,0.0148467,-0.018456],"outwardDirection":[0,1,0],"connector":{"gender":"male","form":"pin","pitchMillimeter":2.54,"diameterMillimeter":0.64},"electrical":{"role":"ground","aliases":["GND","GND_1"],"functions":["ground"]},"mounting":{"breadboardCompatible":false,"insertionDepthMillimeter":6},"confidence":0.95,"sourceObject":"pin_ICSP_GND","notes":["ICSP pin 6; upward-facing programming header."]}
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [0, 1, 0],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [0, 180],
+    "keepOutMarginMillimeter": 1
+  },
+  "provenance": {
+    "authorGithub": "yoohyeon93",
+    "branch": "feat/assets-arduino-board-data",
+    "method": "blender-empty",
+    "sourceTool": "Blender 5.2 and normalize_arduino_nano.py",
+    "assetOrigin": "in-house",
+    "sourceUrl": null,
+    "redistributionRights": "project-owned",
+    "createdAt": "2026-07-26",
+    "status": "approved",
+    "reviewerGithub": "yoohyeon93",
+    "approvedAt": "2026-07-29"
+  },
+  "notes": [
+    "Board width and length follow the official Arduino Nano 18 mm by 45 mm specification.",
+    "Header geometry uses standard 2.54 mm pitch and 15.24 mm row spacing.",
+    "Pin nodes are placed at the male pin-tip insertion plane and verified after GLB round-trip import.",
+    "Official pinout: https://docs.arduino.cc/resources/pinouts/A000005-full-pinout.pdf",
+    "The GLB model is an in-house project asset and has no external model source."
+  ]
+}

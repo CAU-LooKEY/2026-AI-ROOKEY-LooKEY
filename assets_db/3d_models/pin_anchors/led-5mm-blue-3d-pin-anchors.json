@@ -1,0 +1,51 @@
+{
+  "component_slug": "led-5mm-blue",
+  "display_name": "Led 5mm Blue",
+  "model_storage_path": "3d_models/glb/led-5mm-blue.glb",
+  "model_bounds": {
+    "min": [
+      -0.002950000111013651,
+      -0.007999999970197678,
+      -0.002950000111013651
+    ],
+    "max": [
+      0.002950000111013651,
+      0.00860000029206276,
+      0.002950000111013651
+    ],
+    "size": [
+      0.005900000222027302,
+      0.01660000026226044,
+      0.005900000222027302
+    ]
+  },
+  "method": "embedded_glb_empty",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "runtime_up_axis": "+Y",
+    "runtime_front_axis": "+Z",
+    "calibration_quality": "candidate_embedded_pin"
+  },
+  "pins": [
+    {
+      "pin_key": "ANODE",
+      "label": "Anode +",
+      "x_3d": 0.00127,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_anode"
+    },
+    {
+      "pin_key": "CATHODE",
+      "label": "Cathode -",
+      "x_3d": -0.00127,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_cathode"
+    }
+  ],
+  "notes": [
+    "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
+    "Candidate assets require visual review before approval."
+  ]
+}

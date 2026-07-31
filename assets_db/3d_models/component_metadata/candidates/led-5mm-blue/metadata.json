@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "led-5mm-blue",
+  "asset": {
+    "path": "assets_db/3d_models/glb/led-5mm-blue.glb",
+    "sha256": "8c891d49faca1aa69226cec21760827d44ce2758231dbe0c7f37652e0cd4934d",
+    "format": "glb",
+    "scaleStatus": "real-world",
+    "thumbnailPath": null
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 5.9,
+    "depth": 5.9,
+    "height": 8.6,
+    "measurementScope": "body-only",
+    "source": "datasheet",
+    "confidence": 0.98
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "threejs-object-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": true,
+    "description": "Origin is centered on the breadboard insertion plane between the outer leads."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "anode-right",
+        "pinKey": "ANODE",
+        "direction": "+X",
+        "description": "The longer anode lead is on runtime +X."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "ANODE",
+      "label": "Anode +",
+      "nodeName": "pin_anode",
+      "position": [
+        0.00127,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "A",
+          "+",
+          "long-leg"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_anode",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    },
+    {
+      "pinKey": "CATHODE",
+      "label": "Cathode -",
+      "nodeName": "pin_cathode",
+      "position": [
+        -0.00127,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": 0.5
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "K",
+          "-",
+          "short-leg"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.95,
+      "sourceObject": "pin_cathode",
+      "notes": [
+        "Procedural anchor at the measured 2.54 mm breadboard grid position."
+      ]
+    }
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [
+      0,
+      90,
+      180,
+      270
+    ],
+    "keepOutMarginMillimeter": 0.5
+  },
+  "provenance": {
+    "authorGithub": "a3222",
+    "branch": "feat/assets-discrete-io-pack",
+    "method": "other",
+    "sourceTool": "Three.js GLTFExporter",
+    "createdAt": "2026-07-28",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "Nominal real-world procedural model; breadboard occupancy 2 columns x 1 rows.",
+    "Pin spacing, polarity, and terminal roles are encoded in named GLB nodes and metadata.",
+    "Package reference: Kingbright WP7113QBC/D, Spec DSAG3481 Rev V.18B (2025-03-26).",
+    "Datasheet body dimensions: 5.9 mm diameter, 8.6 mm height, 2.54 mm lead spacing, ±0.25 mm general tolerance.",
+    "Official datasheet: https://www.kingbrightusa.com/images/catalog/spec/wp7113qbc-d.pdf"
+  ]
+}

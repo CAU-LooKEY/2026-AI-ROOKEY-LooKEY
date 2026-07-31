@@ -1,0 +1,170 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "led-5mm-red",
+  "asset": {
+    "path": "assets_db/3d_models/glb/led-5mm-red.glb",
+    "sha256": "d6dcbc67be4ef2a2197ba04f2497c4a6fd70b620747b84b967720a582f62bbe9",
+    "format": "glb",
+    "scaleStatus": "real-world",
+    "thumbnailPath": "assets_db/2d_svgs/raster_sources/led-5mm-red-front.png"
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 4.96,
+    "depth": 4.96,
+    "height": 26.07,
+    "measurementScope": "overall-including-pins",
+    "source": "inferred",
+    "confidence": 0.7
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "millimeter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [
+      0,
+      0,
+      0
+    ],
+    "normalized": true,
+    "description": "The origin is the midpoint between both lead centerlines on the selected breadboard mounting plane."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "anode-right",
+        "pinKey": "ANODE",
+        "direction": "+X",
+        "description": "The longer anode lead is on the positive runtime X side."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "ANODE",
+      "label": "Anode +",
+      "nodeName": "pin_anode",
+      "position": [
+        0.00127,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "A",
+          "+",
+          "long-leg"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.8,
+      "sourceObject": "pin_anode",
+      "notes": [
+        "The source model's longer lead was classified as the anode."
+      ]
+    },
+    {
+      "pinKey": "CATHODE",
+      "label": "Cathode -",
+      "nodeName": "pin_cathode",
+      "position": [
+        -0.00127,
+        0,
+        0
+      ],
+      "outwardDirection": [
+        0,
+        -1,
+        0
+      ],
+      "connector": {
+        "gender": "male",
+        "form": "lead",
+        "pitchMillimeter": 2.54,
+        "diameterMillimeter": null
+      },
+      "electrical": {
+        "role": "passive",
+        "aliases": [
+          "K",
+          "-",
+          "short-leg"
+        ]
+      },
+      "mounting": {
+        "breadboardCompatible": true,
+        "insertionDepthMillimeter": 6
+      },
+      "confidence": 0.8,
+      "sourceObject": "pin_cathode",
+      "notes": [
+        "The source model's shorter lead was classified as the cathode."
+      ]
+    }
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [
+      0,
+      1,
+      0
+    ],
+    "rotationPolicy": "free-yaw",
+    "allowedYawDegrees": [],
+    "keepOutMarginMillimeter": 1
+  },
+  "provenance": {
+    "authorGithub": "tmd9898-dot",
+    "branch": "feat/red-led-3d-metadata",
+    "method": "blender-empty",
+    "sourceTool": "Blender 5.2 and prepare_led_glb_blender.py",
+    "createdAt": "2026-07-22",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "Generated from the user-provided Red LED.glb without modifying the source file.",
+    "The source mesh was normalized from a 192.48 mm diameter to a nominal 5 mm LED body.",
+    "Lead geometry was aligned to a 2.54 mm pitch at the common mounting plane.",
+    "The source asset license and dimensions must be verified before approval."
+  ]
+}

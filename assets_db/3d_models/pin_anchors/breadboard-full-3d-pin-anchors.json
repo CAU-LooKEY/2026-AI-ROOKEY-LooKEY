@@ -1,0 +1,122 @@
+{
+  "component_slug": "breadboard-full",
+  "display_name": "Full-size Breadboard",
+  "model_storage_path": "3d_models/glb/breadboard-full.glb",
+  "model_bounds": {
+    "min": [
+      -2.703288565661377,
+      0.0008963979780673981,
+      -8.25690358842266
+    ],
+    "max": [
+      2.70365066388778,
+      0.8048873360144884,
+      8.25690358842266
+    ],
+    "size": [
+      5.406939229549157,
+      0.803990938036421,
+      16.51380717684532
+    ]
+  },
+  "method": "projected_from_2d_pin_map_to_glb_bounds",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "image_x_axis": "x",
+    "image_y_axis": "z",
+    "surface_axis": "y",
+    "image_y_direction": "positive",
+    "calibration_quality": "draft_projected"
+  },
+  "pixel_source": {
+    "width_px": 1007,
+    "height_px": 350,
+    "origin": "top-left"
+  },
+  "pins": [
+    {
+      "pin_key": "RAIL_TOP_POS",
+      "label": "+ top",
+      "x_3d": -2.35428057,
+      "y_3d": 0.80488734,
+      "z_3d": -6.09123573,
+      "model_anchor_name": "pin_rail_top_pos",
+      "source_x_px": 65,
+      "source_y_px": 45.9
+    },
+    {
+      "pin_key": "RAIL_TOP_NEG",
+      "label": "- top",
+      "x_3d": -2.35428057,
+      "y_3d": 0.80488734,
+      "z_3d": -5.36934645,
+      "model_anchor_name": "pin_rail_top_neg",
+      "source_x_px": 65,
+      "source_y_px": 61.2
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_POS",
+      "label": "+ bottom",
+      "x_3d": -2.34676348,
+      "y_3d": 0.80488734,
+      "z_3d": 6.4403848,
+      "model_anchor_name": "pin_rail_bottom_pos",
+      "source_x_px": 66.4,
+      "source_y_px": 311.5
+    },
+    {
+      "pin_key": "RAIL_BOTTOM_NEG",
+      "label": "- bottom",
+      "x_3d": -2.34676348,
+      "y_3d": 0.80488734,
+      "z_3d": 7.16699231,
+      "model_anchor_name": "pin_rail_bottom_neg",
+      "source_x_px": 66.4,
+      "source_y_px": 326.9
+    },
+    {
+      "pin_key": "A1",
+      "label": "A1",
+      "x_3d": -2.47079555,
+      "y_3d": 0.80488734,
+      "z_3d": -3.36881666,
+      "model_anchor_name": "pin_a1",
+      "source_x_px": 43.3,
+      "source_y_px": 103.6
+    },
+    {
+      "pin_key": "E1",
+      "label": "E1",
+      "x_3d": -2.47079555,
+      "y_3d": 0.80488734,
+      "z_3d": -0.5237236,
+      "model_anchor_name": "pin_e1",
+      "source_x_px": 43.3,
+      "source_y_px": 163.9
+    },
+    {
+      "pin_key": "F1",
+      "label": "F1",
+      "x_3d": -2.47079555,
+      "y_3d": 0.80488734,
+      "z_3d": 1.59004372,
+      "model_anchor_name": "pin_f1",
+      "source_x_px": 43.3,
+      "source_y_px": 208.7
+    },
+    {
+      "pin_key": "J1",
+      "label": "J1",
+      "x_3d": -2.47079555,
+      "y_3d": 0.80488734,
+      "z_3d": 4.43041855,
+      "model_anchor_name": "pin_j1",
+      "source_x_px": 43.3,
+      "source_y_px": 268.9
+    }
+  ],
+  "notes": [
+    "These are draft GLB-local anchors projected from existing 2D pin coordinates.",
+    "Review in Blender or a Three.js calibration view before using for final production wire snapping."
+  ]
+}

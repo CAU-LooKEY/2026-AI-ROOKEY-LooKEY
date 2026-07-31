@@ -1,0 +1,51 @@
+{
+  "component_slug": "resistor-220-ohm",
+  "display_name": "220 Ohm Resistor",
+  "model_storage_path": "3d_models/glb/resistor-220-ohm.glb",
+  "model_bounds": {
+    "min": [
+      -0.0054517099633812904,
+      -0.003000000026077032,
+      -0.0011500000255182385
+    ],
+    "max": [
+      0.0054517099633812904,
+      0.0041499994695186615,
+      0.0011500000255182385
+    ],
+    "size": [
+      0.010903419926762581,
+      0.007149999495595694,
+      0.002300000051036477
+    ]
+  },
+  "method": "embedded_glb_empty",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "runtime_up_axis": "+Y",
+    "runtime_front_axis": "+Z",
+    "calibration_quality": "candidate_embedded_pin"
+  },
+  "pins": [
+    {
+      "pin_key": "LEAD_A",
+      "label": "Lead A",
+      "x_3d": -0.00508,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_lead_a"
+    },
+    {
+      "pin_key": "LEAD_B",
+      "label": "Lead B",
+      "x_3d": 0.00508,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_lead_b"
+    }
+  ],
+  "notes": [
+    "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
+    "Candidate assets require visual review before approval."
+  ]
+}

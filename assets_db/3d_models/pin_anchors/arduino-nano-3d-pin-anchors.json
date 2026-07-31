@@ -1,0 +1,323 @@
+{
+  "component_slug": "arduino-nano",
+  "display_name": "Arduino Nano",
+  "model_storage_path": "3d_models/glb/arduino-nano.glb",
+  "model_bounds": {
+    "min": [
+      -0.009000000512226679,
+      -9.351190521575403e-09,
+      -0.02250001433917099
+    ],
+    "max": [
+      0.009000000211464892,
+      0.014846717438545598,
+      0.022499986005503715
+    ],
+    "size": [
+      0.01800000072369157,
+      0.01484672678973612,
+      0.045000000344674704
+    ]
+  },
+  "method": "embedded_glb_empty",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "runtime_up_axis": "+Y",
+    "runtime_front_axis": "+Z",
+    "calibration_quality": "approved_embedded_pin"
+  },
+  "pins": [
+    {
+      "pin_key": "D12",
+      "label": "D12/MISO",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01778,
+      "model_anchor_name": "pin_D12"
+    },
+    {
+      "pin_key": "D11",
+      "label": "D11 PWM/MOSI",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01524,
+      "model_anchor_name": "pin_D11"
+    },
+    {
+      "pin_key": "D10",
+      "label": "D10 PWM/SS",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.0127,
+      "model_anchor_name": "pin_D10"
+    },
+    {
+      "pin_key": "D9",
+      "label": "D9 PWM",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01016,
+      "model_anchor_name": "pin_D9"
+    },
+    {
+      "pin_key": "D8",
+      "label": "D8",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00762,
+      "model_anchor_name": "pin_D8"
+    },
+    {
+      "pin_key": "D7",
+      "label": "D7",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00508,
+      "model_anchor_name": "pin_D7"
+    },
+    {
+      "pin_key": "D6",
+      "label": "D6 PWM",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00254,
+      "model_anchor_name": "pin_D6"
+    },
+    {
+      "pin_key": "D5",
+      "label": "D5 PWM",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0,
+      "model_anchor_name": "pin_D5"
+    },
+    {
+      "pin_key": "D4",
+      "label": "D4",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00254,
+      "model_anchor_name": "pin_D4"
+    },
+    {
+      "pin_key": "D3",
+      "label": "D3 PWM",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00508,
+      "model_anchor_name": "pin_D3"
+    },
+    {
+      "pin_key": "D2",
+      "label": "D2",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00762,
+      "model_anchor_name": "pin_D2"
+    },
+    {
+      "pin_key": "GND_2",
+      "label": "GND",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01016,
+      "model_anchor_name": "pin_GND_2"
+    },
+    {
+      "pin_key": "RESET_2",
+      "label": "RESET",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.0127,
+      "model_anchor_name": "pin_RESET_2"
+    },
+    {
+      "pin_key": "D0",
+      "label": "D0/RX",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01524,
+      "model_anchor_name": "pin_D0"
+    },
+    {
+      "pin_key": "D1",
+      "label": "D1/TX",
+      "x_3d": -0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01778,
+      "model_anchor_name": "pin_D1"
+    },
+    {
+      "pin_key": "D13",
+      "label": "D13/SCK",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01778,
+      "model_anchor_name": "pin_D13"
+    },
+    {
+      "pin_key": "3V3",
+      "label": "3.3V",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01524,
+      "model_anchor_name": "pin_3V3"
+    },
+    {
+      "pin_key": "AREF",
+      "label": "AREF",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.0127,
+      "model_anchor_name": "pin_AREF"
+    },
+    {
+      "pin_key": "A0",
+      "label": "A0",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.01016,
+      "model_anchor_name": "pin_A0"
+    },
+    {
+      "pin_key": "A1",
+      "label": "A1",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00762,
+      "model_anchor_name": "pin_A1"
+    },
+    {
+      "pin_key": "A2",
+      "label": "A2",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00508,
+      "model_anchor_name": "pin_A2"
+    },
+    {
+      "pin_key": "A3",
+      "label": "A3",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": -0.00254,
+      "model_anchor_name": "pin_A3"
+    },
+    {
+      "pin_key": "A4",
+      "label": "A4/SDA",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0,
+      "model_anchor_name": "pin_A4"
+    },
+    {
+      "pin_key": "A5",
+      "label": "A5/SCL",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00254,
+      "model_anchor_name": "pin_A5"
+    },
+    {
+      "pin_key": "A6",
+      "label": "A6",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00508,
+      "model_anchor_name": "pin_A6"
+    },
+    {
+      "pin_key": "A7",
+      "label": "A7",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.00762,
+      "model_anchor_name": "pin_A7"
+    },
+    {
+      "pin_key": "5V",
+      "label": "5V",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01016,
+      "model_anchor_name": "pin_5V"
+    },
+    {
+      "pin_key": "RESET_1",
+      "label": "RESET",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.0127,
+      "model_anchor_name": "pin_RESET_1"
+    },
+    {
+      "pin_key": "GND_1",
+      "label": "GND",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01524,
+      "model_anchor_name": "pin_GND_1"
+    },
+    {
+      "pin_key": "VIN",
+      "label": "VIN",
+      "x_3d": 0.00762,
+      "y_3d": 0.004,
+      "z_3d": 0.01778,
+      "model_anchor_name": "pin_VIN"
+    },
+    {
+      "pin_key": "ICSP_CIPO",
+      "label": "ICSP CIPO",
+      "x_3d": -0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.021152,
+      "model_anchor_name": "pin_ICSP_CIPO"
+    },
+    {
+      "pin_key": "ICSP_5V",
+      "label": "ICSP +5V",
+      "x_3d": -0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.018456,
+      "model_anchor_name": "pin_ICSP_5V"
+    },
+    {
+      "pin_key": "ICSP_SCK",
+      "label": "ICSP SCK",
+      "x_3d": 0,
+      "y_3d": 0.0148467,
+      "z_3d": -0.021152,
+      "model_anchor_name": "pin_ICSP_SCK"
+    },
+    {
+      "pin_key": "ICSP_COPI",
+      "label": "ICSP COPI",
+      "x_3d": 0,
+      "y_3d": 0.0148467,
+      "z_3d": -0.018456,
+      "model_anchor_name": "pin_ICSP_COPI"
+    },
+    {
+      "pin_key": "ICSP_RESET",
+      "label": "ICSP RESET",
+      "x_3d": 0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.021152,
+      "model_anchor_name": "pin_ICSP_RESET"
+    },
+    {
+      "pin_key": "ICSP_GND",
+      "label": "ICSP GND",
+      "x_3d": 0.00267,
+      "y_3d": 0.0148467,
+      "z_3d": -0.018456,
+      "model_anchor_name": "pin_ICSP_GND"
+    }
+  ],
+  "notes": [
+    "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
+    "Approved metadata is the canonical source."
+  ]
+}

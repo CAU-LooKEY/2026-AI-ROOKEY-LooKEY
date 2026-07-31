@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "1.0.0",
+  "componentSlug": "hc-sr04",
+  "asset": {
+    "path": "assets_db/3d_models/glb/hc-sr04.glb",
+    "sha256": "1121ac4bc88cd428b21c2f7b30fd41ff11549aa39e0b6c00c93d55413158c4cc",
+    "format": "glb",
+    "scaleStatus": "real-world",
+    "thumbnailPath": "assets_db/2d_svgs/raster_sources/hc-sr04-top.png"
+  },
+  "physicalDimensions": {
+    "unit": "millimeter",
+    "width": 45.35,
+    "depth": 17.91,
+    "height": 26.33,
+    "measurementScope": "overall-including-pins",
+    "source": "measured",
+    "confidence": 0.9
+  },
+  "coordinateSystems": {
+    "authoring": {
+      "space": "blender-object-local",
+      "handedness": "right",
+      "upAxis": "+Z",
+      "frontAxis": "-Y",
+      "unit": "meter"
+    },
+    "runtime": {
+      "space": "gltf-model-local",
+      "handedness": "right",
+      "upAxis": "+Y",
+      "frontAxis": "+Z",
+      "unit": "meter",
+      "modelUnitsPerMillimeter": 0.001
+    },
+    "anchorsStoredIn": "runtime"
+  },
+  "origin": {
+    "targetReference": "mounting-surface-center",
+    "referencePoint": [0, 0, 0],
+    "normalized": true,
+    "description": "Origin is centered on the four-pin row where the pins cross the breadboard mounting plane."
+  },
+  "orientation": {
+    "defaultRotationQuaternion": [0, 0, 0, 1],
+    "normalized": true,
+    "markers": [
+      {
+        "key": "sensor-front",
+        "pinKey": null,
+        "direction": "+Z",
+        "description": "The ultrasonic transducers face runtime +Z."
+      },
+      {
+        "key": "vcc-left",
+        "pinKey": "VCC",
+        "direction": "-X",
+        "description": "VCC is the leftmost pin when viewed from the sensor front."
+      }
+    ]
+  },
+  "pins": [
+    {
+      "pinKey": "VCC",
+      "label": "VCC",
+      "nodeName": "pin_vcc",
+      "position": [-0.00381, 0, 0],
+      "outwardDirection": [0, -1, 0],
+      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
+      "electrical": { "role": "power", "aliases": ["5V"] },
+      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "confidence": 0.95,
+      "sourceObject": "pin_vcc",
+      "notes": ["Leftmost pin in the front view."]
+    },
+    {
+      "pinKey": "TRIG",
+      "label": "TRIG",
+      "nodeName": "pin_trig",
+      "position": [-0.00121298, 0, 0],
+      "outwardDirection": [0, -1, 0],
+      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
+      "electrical": { "role": "signal", "aliases": ["trigger"] },
+      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "confidence": 0.9,
+      "sourceObject": "pin_trig",
+      "notes": []
+    },
+    {
+      "pinKey": "ECHO",
+      "label": "ECHO",
+      "nodeName": "pin_echo",
+      "position": [0.00130629, 0, 0],
+      "outwardDirection": [0, -1, 0],
+      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
+      "electrical": { "role": "signal", "aliases": ["echo"] },
+      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "confidence": 0.9,
+      "sourceObject": "pin_echo",
+      "notes": []
+    },
+    {
+      "pinKey": "GND",
+      "label": "GND",
+      "nodeName": "pin_gnd",
+      "position": [0.00381, 0, 0],
+      "outwardDirection": [0, -1, 0],
+      "connector": { "gender": "male", "form": "pin", "pitchMillimeter": 2.54, "diameterMillimeter": null },
+      "electrical": { "role": "ground", "aliases": ["ground"] },
+      "mounting": { "breadboardCompatible": true, "insertionDepthMillimeter": 6 },
+      "confidence": 0.95,
+      "sourceObject": "pin_gnd",
+      "notes": ["Rightmost pin in the front view."]
+    }
+  ],
+  "placement": {
+    "mountingType": "breadboard-insert",
+    "mountingPlaneNormal": [0, 1, 0],
+    "rotationPolicy": "snap-yaw",
+    "allowedYawDegrees": [0, 90, 180, 270],
+    "keepOutMarginMillimeter": 2
+  },
+  "provenance": {
+    "authorGithub": "tmd9898-dot",
+    "branch": "feat/asset-sensor-discrete-components",
+    "method": "blender-empty",
+    "sourceTool": "Blender 5.2 and prepare_assigned_components_blender.py",
+    "createdAt": "2026-07-22",
+    "status": "candidate",
+    "reviewerGithub": null,
+    "approvedAt": null
+  },
+  "notes": [
+    "The source model was scaled from its measured pin row so the average pitch is 2.54 mm.",
+    "Pin anchors are embedded in the GLB at the breadboard mounting plane, with 6 mm of pin below the plane.",
+    "Verify source asset licensing before promotion to approved."
+  ]
+}

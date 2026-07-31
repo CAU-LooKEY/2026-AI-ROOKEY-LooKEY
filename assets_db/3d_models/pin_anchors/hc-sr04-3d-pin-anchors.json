@@ -1,0 +1,67 @@
+{
+  "component_slug": "hc-sr04",
+  "display_name": "HC-SR04 Ultrasonic",
+  "model_storage_path": "3d_models/glb/hc-sr04.glb",
+  "model_bounds": {
+    "min": [
+      -0.022352345287799835,
+      -0.006000000052154064,
+      -0.0035682767629623413
+    ],
+    "max": [
+      0.022996479645371437,
+      0.020328156650066376,
+      0.014337833970785141
+    ],
+    "size": [
+      0.04534882493317127,
+      0.02632815670222044,
+      0.017906110733747482
+    ]
+  },
+  "method": "embedded_glb_empty",
+  "coordinate_space": "glb_model_local",
+  "axis_mapping": {
+    "runtime_up_axis": "+Y",
+    "runtime_front_axis": "+Z",
+    "calibration_quality": "candidate_embedded_pin"
+  },
+  "pins": [
+    {
+      "pin_key": "VCC",
+      "label": "VCC",
+      "x_3d": -0.00381,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_vcc"
+    },
+    {
+      "pin_key": "TRIG",
+      "label": "TRIG",
+      "x_3d": -0.00121298,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_trig"
+    },
+    {
+      "pin_key": "ECHO",
+      "label": "ECHO",
+      "x_3d": 0.00130629,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_echo"
+    },
+    {
+      "pin_key": "GND",
+      "label": "GND",
+      "x_3d": 0.00381,
+      "y_3d": 0,
+      "z_3d": 0,
+      "model_anchor_name": "pin_gnd"
+    }
+  ],
+  "notes": [
+    "Coordinates come from named pin Empty nodes embedded in the normalized GLB.",
+    "Candidate assets require visual review before approval."
+  ]
+}
