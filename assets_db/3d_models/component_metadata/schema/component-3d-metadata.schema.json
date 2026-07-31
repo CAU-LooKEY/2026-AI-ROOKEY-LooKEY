@@ -560,6 +560,10 @@
                 "type": "string"
               }
             },
+            "catalogMappable": {
+              "type": "boolean",
+              "description": "Whether this physical pin may resolve to the canonical circuit pin catalog."
+            },
             "functions": {
               "type": "array",
               "minItems": 1,

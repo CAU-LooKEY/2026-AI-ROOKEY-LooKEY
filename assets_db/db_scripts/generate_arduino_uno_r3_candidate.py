@@ -82,7 +82,12 @@ SPI_ALIASES = {
 
 def electrical(pin_key: str) -> dict:
     if pin_key.startswith("ICSP_"):
-        return {"role": "signal", "aliases": [], "functions": ["spi"]}
+        return {
+            "role": "signal",
+            "aliases": [],
+            "catalogMappable": False,
+            "functions": ["spi"],
+        }
     if pin_key.startswith("GND_"):
         return {"role": "ground", "aliases": ["GND"], "functions": ["ground"]}
     if pin_key in {"3V3", "5V", "VIN", "IOREF"}:
@@ -91,7 +96,12 @@ def electrical(pin_key: str) -> dict:
         # The current schema requires at least one function even for no-connect
         # pins. Keep the marker machine-readable while the catalog mapping is
         # resolved; the candidate notes and validation report block approval.
-        return {"role": "no-connect", "aliases": [], "functions": ["digital"]}
+        return {
+            "role": "no-connect",
+            "aliases": [],
+            "catalogMappable": False,
+            "functions": ["digital"],
+        }
     if pin_key == "RESET":
         return {"role": "signal", "aliases": ["RST"], "functions": ["reset"]}
     if pin_key == "AREF":

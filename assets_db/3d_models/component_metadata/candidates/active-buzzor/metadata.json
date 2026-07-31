@@ -3,7 +3,7 @@
   "componentSlug": "active-buzzor",
   "asset": {
     "path": "assets_db/3d_models/glb/active-buzzor.glb",
-    "sha256": "e227cfd4d8c97beba7cf3aff36bdc40829f4016fa2c7724b03a7fa5666760ed4",
+    "sha256": "ed1b913484caa8ad2976fb7734063a33209d2c13c946710675dc02ea876c195c",
     "format": "glb",
     "scaleStatus": "uncalibrated",
     "thumbnailPath": null
@@ -173,6 +173,7 @@
     "Current: expected current is module-dependent, commonly in the tens of milliamps; use a transistor driver if the selected module exceeds the microcontroller GPIO current limit.",
     "Grounding: if the buzzer is powered from an external supply or transistor stage, keep Arduino GND and buzzer supply GND common.",
     "External power: usually not required for a low-current buzzer module, but use an external supply or driver stage if current exceeds GPIO limits.",
-    "Common ground: if the buzzer is powered from an external supply or transistor stage, keep Arduino GND and buzzer supply GND common."
+    "Common ground: if the buzzer is powered from an external supply or transistor stage, keep Arduino GND and buzzer supply GND common.",
+    "GLB texture resolution and mesh density were reduced for web delivery; the asset remains an uncalibrated candidate."
   ]
 }

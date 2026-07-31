@@ -3,7 +3,7 @@
   "componentSlug": "servo-sg90",
   "asset": {
     "path": "assets_db/3d_models/glb/servo-sg90.glb",
-    "sha256": "b6b7791840ca81ada727c1f9f44bdb4a5919bf34674105ac23a01168c0c307c3",
+    "sha256": "ac6f439cbefe07194bde6097f1006aac659881024f6cc09bc63da71cbe7e4f5a",
     "format": "glb",
     "scaleStatus": "uncalibrated",
     "thumbnailPath": "assets_db/2d_svgs/raster_sources/servo-sg90-top.png"
@@ -216,6 +216,7 @@
     "Current: running current is load-dependent and stall current can exceed the Arduino 5 V regulator budget, so use an external 5 V supply when the servo may move under load.",
     "Grounding: when an external servo supply is used, connect the external supply GND and Arduino GND together so the PWM signal has a common reference.",
     "External power: recommended when the servo moves under load or when more than one servo is connected.",
-    "Common ground: when an external servo supply is used, connect the external supply GND and Arduino GND together so the PWM signal has a common reference."
+    "Common ground: when an external servo supply is used, connect the external supply GND and Arduino GND together so the PWM signal has a common reference.",
+    "GLB texture resolution and mesh density were reduced for web delivery; the asset remains an uncalibrated candidate."
   ]
 }

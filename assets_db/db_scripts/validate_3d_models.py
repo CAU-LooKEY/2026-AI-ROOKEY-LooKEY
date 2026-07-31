@@ -1,3 +1,4 @@
+import hashlib
 import json
 import struct
 from pathlib import Path
@@ -20,6 +21,15 @@ for model in manifest:
         raise SystemExit(f"Invalid GLB header: {glb_path}")
     if declared_length != len(data):
         raise SystemExit(f"GLB length mismatch: {glb_path}")
+
+    if model.get("bytes") != len(data):
+        raise SystemExit(
+            f"Manifest byte count mismatch: {glb_path} "
+            f"({model.get('bytes')} != {len(data)})"
+        )
+    actual_hash = hashlib.sha256(data).hexdigest()
+    if model.get("sha256") != actual_hash:
+        raise SystemExit(f"Manifest SHA256 mismatch: {glb_path}")
 
     size = model.get("bounds", {}).get("size", [])
     if len(size) != 3 or any(value <= 0 for value in size):

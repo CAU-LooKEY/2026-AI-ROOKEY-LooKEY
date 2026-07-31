@@ -8,6 +8,7 @@ import { modelRegistry } from "./modelRegistry.js";
 import { resolveAssemblyParts } from "./assemblyCircuit.js";
 import { breadboardHoleRatios, resolveBreadboardWires } from "./breadboardWiring.js";
 import { obstacleClearanceHeight } from "./wireCollision.js";
+import { resolveModelScale } from "./modelScale.js";
 import {
   calculateCurveProfile,
   createPinEndpoint,
@@ -17,7 +18,6 @@ import {
 } from "./jumperWireSystem.js";
 
 const assetBySlug = new Map(modelRegistry.map((asset) => [asset.slug, asset]));
-const REAL_WORLD_SCENE_UNITS_PER_METER = 80;
 const CONNECTOR_SHELL_HEIGHT = 0.24;
 const MALE_CONNECTOR_SEAT_DEPTH = 0.04;
 const BOARD_HEADER_ROW_RATIO = 0.425;
@@ -154,18 +154,11 @@ function prepareModel(gltf, part, asset, layoutBounds) {
     const pinKey = object.userData?.pinKey ?? pinKeyByNodeName.get(object.name);
     if (pinKey) pinAnchors.set(pinKey, object);
   });
-  const isRealWorldAsset = asset.metadata?.asset?.scaleStatus === "real-world"
-    && asset.metadata?.coordinateSystems?.runtime?.unit === "meter";
   const hasNormalizedOrigin = Boolean(asset.metadata?.origin?.normalized);
 
   let modelBounds = new THREE.Box3().setFromObject(model);
   let size = modelBounds.getSize(new THREE.Vector3());
-  if (isRealWorldAsset) {
-    model.scale.setScalar(REAL_WORLD_SCENE_UNITS_PER_METER);
-  } else {
-    const longestSide = Math.max(size.x, size.y, size.z, 0.0001);
-    model.scale.setScalar(profile.longestSide / longestSide);
-  }
+  model.scale.setScalar(resolveModelScale(asset.metadata, size, profile.longestSide));
   model.updateMatrixWorld(true);
 
   modelBounds = new THREE.Box3().setFromObject(model);

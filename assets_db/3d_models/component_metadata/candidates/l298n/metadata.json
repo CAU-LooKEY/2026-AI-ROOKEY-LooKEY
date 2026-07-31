@@ -3,7 +3,7 @@
   "componentSlug": "l298n",
   "asset": {
     "path": "assets_db/3d_models/glb/l298n.glb",
-    "sha256": "d0ebb2806fe337a43790d68845c52ffaf2693dade8e29a741eedcfaf2babff23",
+    "sha256": "ee1a1837ced768d811c4cc70798f60f03376c059789b17f587e9ac4381b38a58",
     "format": "glb",
     "scaleStatus": "uncalibrated",
     "thumbnailPath": null
@@ -595,6 +595,7 @@
     "Current: motor current must stay within the L298N module and heatsink limits; account for motor stall current and L298N voltage drop.",
     "External power: motors connected to OUT1-OUT4 require an external motor supply on VMS/VS for practical use.",
     "Grounding: Arduino GND, L298N GND, and external motor supply GND must be common for ENA/ENB and IN1-IN4 control signals to work reliably.",
-    "Common ground: Arduino GND, L298N GND, and external motor supply GND must be common for ENA/ENB and IN1-IN4 control signals to work reliably."
+    "Common ground: Arduino GND, L298N GND, and external motor supply GND must be common for ENA/ENB and IN1-IN4 control signals to work reliably.",
+    "GLB texture resolution and mesh density were reduced for web delivery; the asset remains an uncalibrated candidate."
   ]
 }

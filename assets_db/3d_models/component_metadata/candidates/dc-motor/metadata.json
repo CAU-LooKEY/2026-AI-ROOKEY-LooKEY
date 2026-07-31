@@ -3,7 +3,7 @@
   "componentSlug": "dc-motor",
   "asset": {
     "path": "assets_db/3d_models/glb/dc-motor.glb",
-    "sha256": "8f7f575ab47b6552ce9c66a877bf7902c57e4509c945a9327eaa9e14026432a9",
+    "sha256": "8d248b7b4e1af124780077e5b392589499472475c482c82f020181bb1c57e579",
     "format": "glb",
     "scaleStatus": "uncalibrated",
     "thumbnailPath": null
@@ -176,6 +176,7 @@
     "Current: running and stall current are motor-dependent and can be much higher than logic-pin limits; size the driver and supply for stall current.",
     "Grounding: when controlled by Arduino through a driver, connect Arduino GND and motor supply GND together.",
     "External power: required for practical Arduino control because the motor load should be supplied through a motor driver.",
-    "Common ground: when controlled by Arduino through a driver, connect Arduino GND and motor supply GND together."
+    "Common ground: when controlled by Arduino through a driver, connect Arduino GND and motor supply GND together.",
+    "GLB texture resolution and mesh density were reduced for web delivery; the asset remains an uncalibrated candidate."
   ]
 }

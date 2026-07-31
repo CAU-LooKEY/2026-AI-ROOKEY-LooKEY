@@ -36,8 +36,11 @@ class IntegratedAssetMetadataTest(unittest.TestCase):
         self.assertEqual(resistor.offsets, (0, 4))
         self.assertEqual(sensor.offsets, (0, 1, 2, 3))
         self.assertEqual(button.pins, ("A1", "A2", "B1", "B2"))
-        self.assertEqual(button.offsets, (0, 0, 3, 3))
-        self.assertEqual(button.row_offsets, (0, 1, 0, 1))
+        button_positions = dict(zip(button.pins, button.pin_positions_meter))
+        self.assertAlmostEqual(button_positions["A1"][0], button_positions["A2"][0])
+        self.assertAlmostEqual(button_positions["B1"][0], button_positions["B2"][0])
+        self.assertNotEqual(button_positions["A1"][0], button_positions["B1"][0])
+        self.assertNotEqual(button_positions["A1"][1], button_positions["A2"][1])
         self.assertTrue(resistor.normalized)
 
     def test_terminal_banks_and_segmented_rails_are_distinct(self):
@@ -97,8 +100,8 @@ class PhysicalAssemblyPlanTest(unittest.TestCase):
         }
         jumper_holes = {
             endpoint.address
-            for connection in plan.connections
-            for endpoint in (connection.source, connection.target)
+            for jumper in plan.jumpers
+            for endpoint in (jumper.source, jumper.target)
             if endpoint.address
         }
         self.assertTrue(jumper_holes)
@@ -112,17 +115,26 @@ class PhysicalAssemblyPlanTest(unittest.TestCase):
     def test_button_wires_land_on_opposite_sides_with_gap(self):
         plan = self.build("button_led")
         button = next(item for item in plan.placements if item.component_id == "button")
-        self.assertEqual(button.addresses, {
-            "A1": "E2",
-            "A2": "F2",
-            "B1": "E5",
-            "B2": "F5",
-        })
+        self.assertEqual(set(button.addresses), {"A1", "A2", "B1", "B2"})
+        self.assertEqual({button.addresses["A1"][0], button.addresses["A2"][0]}, {"E", "F"})
+        self.assertEqual({button.addresses["B1"][0], button.addresses["B2"][0]}, {"E", "F"})
+        self.assertEqual(button.addresses["A1"][1:], button.addresses["A2"][1:])
+        self.assertEqual(button.addresses["B1"][1:], button.addresses["B2"][1:])
+        self.assertEqual(
+            int(button.addresses["B1"][1:]) - int(button.addresses["A1"][1:]),
+            2,
+        )
 
         signal = next(item for item in plan.connections if item.id == "w1")
         ground = next(item for item in plan.connections if item.id == "w2")
-        self.assertEqual(signal.target.address, "D2")
-        self.assertEqual(ground.source.address, "D5")
+        self.assertEqual(
+            parse_physical_address(signal.target.address).electrical_group,
+            parse_physical_address(button.addresses["A1"]).electrical_group,
+        )
+        self.assertEqual(
+            parse_physical_address(ground.source.address).electrical_group,
+            parse_physical_address(button.addresses["B1"]).electrical_group,
+        )
 
     def test_failure_code_is_returned_when_board_has_no_candidate(self):
         parts = [part(f"led-{index:03}", "led-5mm-blue", index * 10) for index in range(80)]
@@ -156,7 +168,6 @@ class PhysicalAssemblyPlanTest(unittest.TestCase):
             asset_slug="oversized",
             pins=("A", "B"),
             offsets=(0, 1),
-            row_offsets=None,
             width_meter=1,
             depth_meter=1,
             keep_out_meter=1,

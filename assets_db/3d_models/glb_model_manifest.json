@@ -59,7 +59,7 @@
     "bounds": {
       "min": [
         -0.009000000512226679,
-        -9.351190521575403e-9,
+        -9.351190521575403e-09,
         -0.02250001433917099
       ],
       "max": [
@@ -125,10 +125,10 @@
     "storage_path": "3d_models/glb/breadboard-full.glb",
     "mime_type": "model/gltf-binary",
     "format": "glb",
-    "bytes": 25283068,
-    "sha256": "b9e9ef4e44db22fcf37dcc07714f16a01e1e8e7f4fdb1b217a3d1de4355279c9",
+    "bytes": 26803748,
+    "sha256": "f9b96893cbb8d5dcf0af401c7e97752b12376104fd241728907903ee61b7ffaa",
     "version": 2,
-    "nodes": 41,
+    "nodes": 841,
     "meshes": 33,
     "materials": 5,
     "textures": 0,
@@ -321,30 +321,30 @@
     "storage_path": "3d_models/glb/slide-switch-spdt.glb",
     "mime_type": "model/gltf-binary",
     "format": "glb",
-    "bytes": 17204,
-    "sha256": "b7a27506560a2589a91d0ab23ae9082d90a5d5541382bce333231a35c6be7e1c",
+    "bytes": 70324,
+    "sha256": "7612a39aa2dd596974960a30e15e338da6935e89dd0cbb85a82b0ca144517dc7",
     "version": 2,
-    "nodes": 10,
-    "meshes": 6,
-    "materials": 6,
+    "nodes": 24,
+    "meshes": 20,
+    "materials": 4,
     "textures": 0,
     "images": 0,
     "extensions_used": [],
     "bounds": {
       "min": [
-        -0.006500000134110451,
-        -0.005999999806284904,
-        -0.0035000001080334187
+        -0.01425000000745058,
+        -0.004000000189989805,
+        -0.0042500002309679985
       ],
       "max": [
-        0.006500000134110451,
-        0.011600000013038516,
-        0.0035000001080334187
+        0.01425000000745058,
+        0.016124999150633812,
+        0.0042500002309679985
       ],
       "size": [
-        0.013000000268220901,
-        0.01759999981932342,
-        0.007000000216066837
+        0.02850000001490116,
+        0.020124999340623617,
+        0.008500000461935997
       ]
     },
     "unit": "meter"
@@ -430,19 +430,19 @@
   {
     "component_slug": "servo-sg90",
     "target": "servo-sg90.glb",
-    "source": "servo_motor_sg_90.glb",
-    "audit_status": "ready",
-    "model_kind": "production_3d",
-    "notes": "Selected SG90 candidate with compact file size.",
+    "source": "servo-sg90.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Uncalibrated candidate optimized to 1K textures and a reduced mesh; verify physical scale, source license, and measurements before approval.",
     "storage_path": "3d_models/glb/servo-sg90.glb",
     "mime_type": "model/gltf-binary",
     "format": "glb",
-    "bytes": 376656,
-    "sha256": "fc321496fc81d5183b4eda2eca3fc0fe4fec059e2cfe548d028d0152d586ea13",
+    "bytes": 16929760,
+    "sha256": "ac6f439cbefe07194bde6097f1006aac659881024f6cc09bc63da71cbe7e4f5a",
     "version": 2,
-    "nodes": 31,
-    "meshes": 14,
-    "materials": 7,
+    "nodes": 4,
+    "meshes": 1,
+    "materials": 1,
     "textures": 2,
     "images": 2,
     "extensions_used": [
@@ -450,19 +450,19 @@
     ],
     "bounds": {
       "min": [
-        -0.5124761462211609,
-        -0.07357913255691528,
-        -1.4787427186965942
+        -0.500648379,
+        -0.250052303,
+        -0.360089451
       ],
       "max": [
-        0.5144802927970886,
-        2.589119926095009,
-        1.9720511734485626
+        0.500145495,
+        0.25079459,
+        0.358300567
       ],
       "size": [
-        1.0269564390182495,
-        2.662699058651924,
-        3.450793892145157
+        1.000793874,
+        0.500846893,
+        0.718390018
       ]
     },
     "unit": "model-unit"
@@ -504,5 +504,165 @@
       ]
     },
     "unit": "meter"
+  },
+  {
+    "component_slug": "active-buzzor",
+    "target": "active-buzzor.glb",
+    "source": "active-buzzor.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Uncalibrated candidate optimized to 1K textures and a reduced mesh; verify physical scale, source license, and measurements before approval.",
+    "storage_path": "3d_models/glb/active-buzzor.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 16900452,
+    "sha256": "ed1b913484caa8ad2976fb7734063a33209d2c13c946710675dc02ea876c195c",
+    "version": 2,
+    "nodes": 3,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.280606598,
+        -0.497127682,
+        -0.280497104
+      ],
+      "max": [
+        0.280690908,
+        0.501585543,
+        0.280510575
+      ],
+      "size": [
+        0.561297506,
+        0.998713225,
+        0.561007679
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "passive-buzzor",
+    "target": "passive-buzzor.glb",
+    "source": "passive-buzzor.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Uncalibrated candidate optimized to 1K textures and a reduced mesh; verify physical scale, source license, and measurements before approval.",
+    "storage_path": "3d_models/glb/passive-buzzor.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 16900452,
+    "sha256": "ed1b913484caa8ad2976fb7734063a33209d2c13c946710675dc02ea876c195c",
+    "version": 2,
+    "nodes": 3,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.280606598,
+        -0.497127682,
+        -0.280497104
+      ],
+      "max": [
+        0.280690908,
+        0.501585543,
+        0.280510575
+      ],
+      "size": [
+        0.561297506,
+        0.998713225,
+        0.561007679
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "dc-motor",
+    "target": "dc-motor.glb",
+    "source": "dc-motor.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Uncalibrated candidate optimized to 1K textures and a reduced mesh; verify physical scale, source license, and measurements before approval.",
+    "storage_path": "3d_models/glb/dc-motor.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 17270180,
+    "sha256": "8d248b7b4e1af124780077e5b392589499472475c482c82f020181bb1c57e579",
+    "version": 2,
+    "nodes": 3,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.112181403,
+        -0.397362322,
+        -0.500538409
+      ],
+      "max": [
+        0.114061303,
+        0.396373808,
+        0.500390708
+      ],
+      "size": [
+        0.226242706,
+        0.79373613,
+        1.000929117
+      ]
+    },
+    "unit": "model-unit"
+  },
+  {
+    "component_slug": "l298n",
+    "target": "l298n.glb",
+    "source": "l298n.glb",
+    "audit_status": "needs_review",
+    "model_kind": "candidate_3d",
+    "notes": "Uncalibrated candidate optimized to 1K textures and a reduced mesh; verify physical scale, source license, and measurements before approval.",
+    "storage_path": "3d_models/glb/l298n.glb",
+    "mime_type": "model/gltf-binary",
+    "format": "glb",
+    "bytes": 16504900,
+    "sha256": "ee1a1837ced768d811c4cc70798f60f03376c059789b17f587e9ac4381b38a58",
+    "version": 2,
+    "nodes": 14,
+    "meshes": 1,
+    "materials": 1,
+    "textures": 2,
+    "images": 2,
+    "extensions_used": [
+      "KHR_materials_specular"
+    ],
+    "bounds": {
+      "min": [
+        -0.501513422,
+        -0.251632899,
+        -0.500722528
+      ],
+      "max": [
+        0.501825273,
+        0.250872403,
+        0.502003491
+      ],
+      "size": [
+        1.003338695,
+        0.502505302,
+        1.002726019
+      ]
+    },
+    "unit": "model-unit"
   }
 ]

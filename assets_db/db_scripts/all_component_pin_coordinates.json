@@ -2036,5 +2036,163 @@
       "Candidate 2D catalog coordinates are placeholders for metadata validation until a calibrated L298N top image is added.",
       "Common L298N module pins include ENA, IN1-IN4, ENB, OUT1-OUT4, motor supply, GND, and 5V."
     ]
+  },
+  "active-buzzor": {
+    "component_slug": "active-buzzor",
+    "display_name": "Active Buzzer",
+    "category": "output",
+    "description": "Candidate active buzzer pin catalog for 3D metadata validation.",
+    "board_family": null,
+    "grid_width": 2,
+    "grid_height": 2,
+    "pixel_width": 1000,
+    "pixel_height": 1000,
+    "license_status": "candidate",
+    "trademark_notes": null,
+    "image": {
+      "path": null,
+      "mime_type": null,
+      "width_px": 1000,
+      "height_px": 1000,
+      "coordinate_origin": "top-left",
+      "background": "unknown"
+    },
+    "pins": [
+      {
+        "pin_key": "NEGATIVE",
+        "label": "-",
+        "signal_type": "ground",
+        "side": "bottom",
+        "x_px": 350,
+        "y_px": 900,
+        "aliases": [
+          "GND",
+          "-"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "POSITIVE",
+        "label": "+",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 650,
+        "y_px": 900,
+        "aliases": [
+          "VCC",
+          "+",
+          "S"
+        ],
+        "sort_order": 1
+      }
+    ],
+    "notes": [
+      "The project currently preserves the uploaded filename spelling: buzzor."
+    ]
+  },
+  "passive-buzzor": {
+    "component_slug": "passive-buzzor",
+    "display_name": "Passive Buzzer",
+    "category": "output",
+    "description": "Candidate passive buzzer pin catalog for 3D metadata validation.",
+    "board_family": null,
+    "grid_width": 2,
+    "grid_height": 2,
+    "pixel_width": 1000,
+    "pixel_height": 1000,
+    "license_status": "candidate",
+    "trademark_notes": null,
+    "image": {
+      "path": null,
+      "mime_type": null,
+      "width_px": 1000,
+      "height_px": 1000,
+      "coordinate_origin": "top-left",
+      "background": "unknown"
+    },
+    "pins": [
+      {
+        "pin_key": "NEGATIVE",
+        "label": "-",
+        "signal_type": "ground",
+        "side": "bottom",
+        "x_px": 350,
+        "y_px": 900,
+        "aliases": [
+          "GND",
+          "-"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "POSITIVE",
+        "label": "+",
+        "signal_type": "power",
+        "side": "bottom",
+        "x_px": 650,
+        "y_px": 900,
+        "aliases": [
+          "VCC",
+          "+",
+          "S"
+        ],
+        "sort_order": 1
+      }
+    ],
+    "notes": [
+      "The project currently preserves the uploaded filename spelling: buzzor."
+    ]
+  },
+  "dc-motor": {
+    "component_slug": "dc-motor",
+    "display_name": "DC Motor",
+    "category": "actuator",
+    "description": "Candidate two-terminal DC motor pin catalog for 3D metadata validation.",
+    "board_family": null,
+    "grid_width": 2,
+    "grid_height": 2,
+    "pixel_width": 1000,
+    "pixel_height": 1000,
+    "license_status": "candidate",
+    "trademark_notes": null,
+    "image": {
+      "path": null,
+      "mime_type": null,
+      "width_px": 1000,
+      "height_px": 1000,
+      "coordinate_origin": "top-left",
+      "background": "unknown"
+    },
+    "pins": [
+      {
+        "pin_key": "NEGATIVE",
+        "label": "M-",
+        "signal_type": "motor",
+        "side": "bottom",
+        "x_px": 400,
+        "y_px": 900,
+        "aliases": [
+          "-",
+          "black"
+        ],
+        "sort_order": 0
+      },
+      {
+        "pin_key": "POSITIVE",
+        "label": "M+",
+        "signal_type": "motor",
+        "side": "bottom",
+        "x_px": 600,
+        "y_px": 900,
+        "aliases": [
+          "+",
+          "red"
+        ],
+        "sort_order": 1
+      }
+    ],
+    "notes": [
+      "Use through a motor driver; do not connect a motor directly to a GPIO pin."
+    ]
   }
 }

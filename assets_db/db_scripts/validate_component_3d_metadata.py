@@ -484,15 +484,25 @@ def validate_metadata(
                 if isinstance(alias, str)
             )
         }
+        model_only_pins = {
+            pin.get("pinKey")
+            for pin in pins
+            if isinstance(pin, dict)
+            and isinstance(pin.get("pinKey"), str)
+            and isinstance(pin.get("electrical"), dict)
+            and pin["electrical"].get("catalogMappable") is False
+        }
         unknown_keys = sorted(
-            metadata_pin_keys - known_pin_keys - catalog_alias_pins
+            metadata_pin_keys - known_pin_keys - catalog_alias_pins - model_only_pins
         )
         if unknown_keys:
             errors.append(
                 "metadata contains pin keys not found in the pin catalog: "
                 + ", ".join(unknown_keys)
             )
-        canonical_metadata_keys = metadata_pin_keys - catalog_alias_pins
+        canonical_metadata_keys = (
+            metadata_pin_keys - catalog_alias_pins - model_only_pins
+        )
         if expected_status == "approved" and canonical_metadata_keys != known_pin_keys:
             missing_keys = sorted(known_pin_keys - metadata_pin_keys)
             extra_keys = sorted(canonical_metadata_keys - known_pin_keys)
