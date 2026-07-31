@@ -460,6 +460,20 @@
   background: transparent;
 }
 
+.jumperFitDot {
+  background: #f59e0b;
+}
+
+.fitPass {
+  border: 1px solid #86c49a;
+  border-radius: 999px;
+  padding: 1px 6px;
+  background: #eaf7ee;
+  color: #23713d;
+  font-size: 9px;
+  font-weight: 750;
+}
+
 .emptyViewer {
   height: 100%;
   display: flex;

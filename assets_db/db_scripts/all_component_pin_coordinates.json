@@ -1794,8 +1794,8 @@
     "display_name": "Slide Switch Spdt",
     "category": "input",
     "description": "Real-world procedural breadboard component.",
-    "grid_width": 3,
-    "grid_height": 3,
+    "grid_width": 11,
+    "grid_height": 4,
     "pixel_width": 100,
     "pixel_height": 100,
     "image": {
