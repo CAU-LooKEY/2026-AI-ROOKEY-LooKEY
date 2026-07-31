@@ -20,3 +20,5 @@ Thumbs.db
 *.tsbuildinfo
 vite.config.d.ts
 vite.config.js
+data/validator_cases/
+backend/data/validator_cases/

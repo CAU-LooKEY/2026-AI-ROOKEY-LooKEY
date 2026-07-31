@@ -7,7 +7,7 @@ import pinCatalog from "../../assets/all_component_pin_coordinates.json";
 import { modelRegistry } from "./modelRegistry.js";
 import { resolveAssemblyParts } from "./assemblyCircuit.js";
 import { breadboardHoleRatios, resolveBreadboardWires } from "./breadboardWiring.js";
-import { obstacleClearanceHeight } from "./wireCollision.js";
+import { endpointEgressPoint, obstacleClearanceHeight } from "./wireCollision.js";
 import {
   calculateCurveProfile,
   createPinEndpoint,
@@ -426,6 +426,8 @@ function makeWire(
   index,
   obstacles,
   excludedObstacleIds,
+  sourceObstacle,
+  targetObstacle,
 ) {
   const sourceCable = connectorCablePosition(
     source,
@@ -437,27 +439,35 @@ function makeWire(
     targetDirection,
     connection.targetConnector,
   );
-  const distance = sourceCable.distanceTo(targetCable);
+  const sourceEgressData = endpointEgressPoint(sourceCable, sourceObstacle);
+  const targetEgressData = endpointEgressPoint(targetCable, targetObstacle);
+  const sourceEgress = new THREE.Vector3(
+    sourceEgressData.x,
+    sourceEgressData.y,
+    sourceEgressData.z,
+  );
+  const targetEgress = new THREE.Vector3(
+    targetEgressData.x,
+    targetEgressData.y,
+    targetEgressData.z,
+  );
+  const distance = sourceEgress.distanceTo(targetEgress);
   const profile = calculateCurveProfile(distance, Math.abs(source.y - target.y), index);
   const obstacleHeight = obstacleClearanceHeight(
-    sourceCable,
-    targetCable,
+    sourceEgress,
+    targetEgress,
     obstacles,
     excludedObstacleIds,
   );
-  const normalRouteHeight = Math.max(sourceCable.y, targetCable.y) + profile.lift;
+  const normalRouteHeight = Math.max(sourceEgress.y, targetEgress.y) + profile.lift;
   const routeHeight = Math.max(normalRouteHeight, obstacleHeight ?? normalRouteHeight);
-  const sourceRise = sourceCable.clone().addScaledVector(
-    sourceDirection,
-    Math.min(0.42, profile.lift * 0.32),
-  );
-  const targetRise = targetCable.clone().addScaledVector(
-    targetDirection,
-    Math.min(0.42, profile.lift * 0.32),
-  );
-  const sourceClearance = sourceCable.clone().lerp(targetCable, 0.28);
-  const targetClearance = sourceCable.clone().lerp(targetCable, 0.72);
-  const midpoint = sourceCable.clone().lerp(targetCable, 0.5);
+  const sourceRise = sourceEgress.clone();
+  const targetRise = targetEgress.clone();
+  sourceRise.y = Math.max(sourceEgress.y + 0.24, routeHeight);
+  targetRise.y = Math.max(targetEgress.y + 0.24, routeHeight);
+  const sourceClearance = sourceEgress.clone().lerp(targetEgress, 0.28);
+  const targetClearance = sourceEgress.clone().lerp(targetEgress, 0.72);
+  const midpoint = sourceEgress.clone().lerp(targetEgress, 0.5);
   if (obstacleHeight !== null) {
     sourceClearance.y = routeHeight;
     targetClearance.y = routeHeight;
@@ -468,17 +478,17 @@ function makeWire(
     midpoint.addScaledVector(lateral.normalize(), profile.lateralOffset);
   }
   const curve = new THREE.CatmullRomCurve3(
-    obstacleHeight === null
-      ? [sourceCable, sourceRise, midpoint, targetRise, targetCable]
-      : [
-        sourceCable,
-        sourceRise,
-        sourceClearance,
-        midpoint,
-        targetClearance,
-        targetRise,
-        targetCable,
-      ],
+    [
+      sourceCable,
+      sourceEgress,
+      sourceRise,
+      sourceClearance,
+      midpoint,
+      targetClearance,
+      targetRise,
+      targetEgress,
+      targetCable,
+    ],
     false,
     "centripetal",
   );
@@ -783,6 +793,8 @@ export default function Circuit3DView({ circuit, interactive = false }) {
             index,
             collisionObstacles,
             new Set([sourceRecord.part.id, targetRecord.part.id]),
+            collisionObstacles.find((obstacle) => obstacle.id === sourceRecord.part.id),
+            collisionObstacles.find((obstacle) => obstacle.id === targetRecord.part.id),
           );
           group.userData.interactive = isInteractive;
           wireObjectsRef.current.set(connection.id, group);

@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  endpointEgressPoint,
   obstacleClearanceHeight,
   segmentCrossesObstacle,
 } from "./wireCollision.js";
@@ -45,5 +46,16 @@ test("ignores source and target components when checking collisions", () => {
       new Set(["sensor"]),
     ),
     null,
+  );
+});
+
+test("moves an embedded endpoint through the nearest footprint edge", () => {
+  assert.deepEqual(
+    endpointEgressPoint({ x: 3, y: 0, z: 1.1 }, sensor, 0.2),
+    { x: 3, y: 0, z: 0.8 },
+  );
+  assert.deepEqual(
+    endpointEgressPoint({ x: 0, y: 0, z: 0 }, sensor, 0.2),
+    { x: 0, y: 0, z: 0 },
   );
 });

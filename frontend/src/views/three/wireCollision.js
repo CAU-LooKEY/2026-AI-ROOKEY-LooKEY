@@ -41,3 +41,22 @@ export function obstacleClearanceHeight(
   }
   return height;
 }
+
+export function endpointEgressPoint(point, obstacle, padding = 0.22) {
+  if (!obstacle) return { ...point };
+  const insideX = point.x >= obstacle.minX && point.x <= obstacle.maxX;
+  const insideZ = point.z >= obstacle.minZ && point.z <= obstacle.maxZ;
+  if (!insideX || !insideZ) return { ...point };
+
+  const exits = [
+    { axis: "x", distance: Math.abs(point.x - obstacle.minX), value: obstacle.minX - padding },
+    { axis: "x", distance: Math.abs(obstacle.maxX - point.x), value: obstacle.maxX + padding },
+    { axis: "z", distance: Math.abs(point.z - obstacle.minZ), value: obstacle.minZ - padding },
+    { axis: "z", distance: Math.abs(obstacle.maxZ - point.z), value: obstacle.maxZ + padding },
+  ].sort((left, right) => left.distance - right.distance);
+
+  return {
+    ...point,
+    [exits[0].axis]: exits[0].value,
+  };
+}
